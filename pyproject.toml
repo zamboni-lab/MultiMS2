@@ -1,0 +1,15 @@
+[project]
+name = "modalx_sl"
+version = "0.0.1"
+description = "ModalX-SL"
+requires-python = ">=3.13,<4"
+dependencies = [
+    "msbuddy @ git+https://github.com/adafede/msbuddy",
+    "pre-commit>=4.3.0,<5",
+]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = ["pre-commit",]
+
+[tool.ty.rules]
+unresolved-import = "ignore"
