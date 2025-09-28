@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?><batch mzmine_version="4.7.27">
+    <batchstep method="io.github.mzmine.modules.io.import_rawdata_all.AllSpectralDataImportModule" module_name="Import MS data" parameter_version="1">
+        <parameter name="File names">
+            <file>/Volumes/T7_Shield/01_zeno/all_converted/CID/20/20230912_nexus_plate_1_Q1_neg_C1_CID_20ev.mzML</file>
+        </parameter>
+        <parameter name="Try vendor centroiding">true</parameter>
+        <parameter name="Advanced import" selected="false">
+            <parameter name="Scan filters" selected="false">
+                <parameter name="Scan number"/>
+                <parameter name="Base Filtering Integer"/>
+                <parameter name="Retention time"/>
+                <parameter name="Mobility"/>
+                <parameter name="MS level filter" selected="All MS levels">1</parameter>
+                <parameter name="Scan definition"/>
+                <parameter name="Polarity">Any</parameter>
+                <parameter name="Spectrum type">ANY</parameter>
+            </parameter>
+            <parameter name="Crop MS1 m/z" selected="false"/>
+            <parameter name="MS1 detector (Advanced)" selected="false" selected_item="Factor of lowest signal">
+                <module name="Factor of lowest signal">
+                    <parameter name="Noise factor">2.5</parameter>
+                </module>
+                <module name="Auto">
+                    <parameter name="Noise level">0.0</parameter>
+                </module>
+                <module name="Centroid">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Exact mass">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Local maxima">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Recursive threshold">
+                    <parameter name="Noise level"/>
+                    <parameter name="Min m/z peak width"/>
+                    <parameter name="Max m/z peak width"/>
+                </module>
+                <module name="Wavelet transform">
+                    <parameter name="Noise level"/>
+                    <parameter name="Scale level"/>
+                    <parameter name="Wavelet window size (%)"/>
+                </module>
+            </parameter>
+            <parameter name="MS2 detector (Advanced)" selected="false" selected_item="Factor of lowest signal">
+                <module name="Factor of lowest signal">
+                    <parameter name="Noise factor">2.5</parameter>
+                </module>
+                <module name="Auto">
+                    <parameter name="Noise level">0.0</parameter>
+                </module>
+                <module name="Centroid">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Exact mass">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Local maxima">
+                    <parameter name="Noise level"/>
+                </module>
+                <module name="Recursive threshold">
+                    <parameter name="Noise level"/>
+                    <parameter name="Min m/z peak width"/>
+                    <parameter name="Max m/z peak width"/>
+                </module>
+                <module name="Wavelet transform">
+                    <parameter name="Noise level"/>
+                    <parameter name="Scale level"/>
+                    <parameter name="Wavelet window size (%)"/>
+                </module>
+            </parameter>
+            <parameter name="Denormalize fragment scans (traps)">false</parameter>
+        </parameter>
+        <parameter name="Sort and color">true</parameter>
+        <parameter name="Spectral library files"/>
+    </batchstep>
+    <batchstep method="io.github.mzmine.modules.dataprocessing.featdet_massdetection.MassDetectionModule" module_name="Mass detection" parameter_version="1">
+        <parameter name="Raw data files" type="BATCH_LAST_FILES"/>
+        <parameter name="Scan filters" selected="true">
+            <parameter name="Scan number"/>
+            <parameter name="Base Filtering Integer"/>
+            <parameter name="Retention time"/>
+            <parameter name="Mobility"/>
+            <parameter name="MS level filter" selected="All MS levels">1</parameter>
+            <parameter name="Scan definition"/>
+            <parameter name="Polarity">Any</parameter>
+            <parameter name="Spectrum type">ANY</parameter>
+        </parameter>
+        <parameter name="Scan types (IMS)">All scan types</parameter>
+        <parameter name="Denormalize fragment scans (traps)">false</parameter>
+        <parameter name="Mass detector" selected_item="Factor of lowest signal">
+            <module name="Factor of lowest signal">
+                <parameter name="Noise factor">5.0</parameter>
+            </module>
+            <module name="Auto">
+                <parameter name="Noise level">0.0</parameter>
+            </module>
+            <module name="Centroid">
+                <parameter name="Noise level"/>
+            </module>
+            <module name="Exact mass">
+                <parameter name="Noise level">500.0</parameter>
+            </module>
+            <module name="Local maxima">
+                <parameter name="Noise level">500.0</parameter>
+            </module>
+            <module name="Recursive threshold">
+                <parameter name="Noise level">500.0</parameter>
+                <parameter name="Min m/z peak width">0.001</parameter>
+                <parameter name="Max m/z peak width">0.05</parameter>
+            </module>
+            <module name="Wavelet transform">
+                <parameter name="Noise level">500.0</parameter>
+                <parameter name="Scale level">75</parameter>
+                <parameter name="Wavelet window size (%)">0.05</parameter>
+            </module>
+        </parameter>
+    </batchstep>
+    <batchstep method="io.github.mzmine.modules.dataprocessing.featdet_msn_tree.MsnTreeFeatureDetectionModule" module_name="MSn tree feature list builder" parameter_version="1">
+        <parameter name="Raw data files" type="BATCH_LAST_FILES"/>
+        <parameter name="EIC scans" selected="true">
+            <parameter name="Scan number"/>
+            <parameter name="Base Filtering Integer"/>
+            <parameter name="Retention time"/>
+            <parameter name="Mobility"/>
+            <parameter name="MS level filter" selected="MS1, level = 1">1</parameter>
+            <parameter name="Scan definition"/>
+            <parameter name="Polarity">Any</parameter>
+            <parameter name="Spectrum type">ANY</parameter>
+        </parameter>
+        <parameter name="m/z tolerance (scan-to-scan)">
+            <absolutetolerance>0.01</absolutetolerance>
+            <ppmtolerance>20.0</ppmtolerance>
+        </parameter>
+        <parameter name="Suffix">msn trees</parameter>
+    </batchstep>
+    <batchstep method="io.github.mzmine.modules.dataprocessing.id_localcsvsearch.LocalCSVDatabaseSearchModule" module_name="Local compound database search" parameter_version="2">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Database file">
+            <current_file>/Users/adrutz/Documents/lab/Zeno/msmls_metadata_neg.tsv</current_file>
+            <last_file>/Users/adrutz/Documents/lab/Zeno/msmls_metadata_neg.tsv</last_file>
+        </parameter>
+        <parameter name="Field separator">\t</parameter>
+        <parameter name="Columns">
+            <importtype column="neutral mass" datatype="io.github.mzmine.datamodel.features.types.numbers.NeutralMassType" selected="false"/>
+            <importtype column="mz" datatype="io.github.mzmine.datamodel.features.types.numbers.PrecursorMZType" selected="false"/>
+            <importtype column="rt" datatype="io.github.mzmine.datamodel.features.types.numbers.RTType" selected="false"/>
+            <importtype column="formula" datatype="io.github.mzmine.datamodel.features.types.annotations.formula.FormulaType" selected="false"/>
+            <importtype column="smiles" datatype="io.github.mzmine.datamodel.features.types.annotations.SmilesStructureType" selected="true"/>
+            <importtype column="inchi" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIStructureType" selected="false"/>
+            <importtype column="inchi key" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIKeyStructureType" selected="false"/>
+            <importtype column="name" datatype="io.github.mzmine.datamodel.features.types.annotations.CompoundNameType" selected="true"/>
+            <importtype column="CCS" datatype="io.github.mzmine.datamodel.features.types.numbers.CCSType" selected="false"/>
+            <importtype column="mobility" datatype="io.github.mzmine.datamodel.features.types.numbers.MobilityType" selected="false"/>
+            <importtype column="comment" datatype="io.github.mzmine.datamodel.features.types.annotations.CommentType" selected="false"/>
+            <importtype column="adduct" datatype="io.github.mzmine.datamodel.features.types.annotations.iin.IonTypeType" selected="false"/>
+            <importtype column="PubChemCID" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.PubChemIdType" selected="false"/>
+            <importtype column="molecular_class" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.MolecularClassType" selected="false"/>
+            <importtype column="classyfire_superclass" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.ClassyFireSuperclassType" selected="false"/>
+            <importtype column="classyfire_class" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.ClassyFireClassType" selected="false"/>
+            <importtype column="classyfire_subclass" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.ClassyFireSubclassType" selected="false"/>
+            <importtype column="classyfire_direct_parent" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.ClassyFireParentType" selected="false"/>
+            <importtype column="npclassifier_superclass" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.NPClassifierSuperclassType" selected="false"/>
+            <importtype column="npclassifier_class" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.NPClassifierClassType" selected="false"/>
+            <importtype column="npclassifier_pathway" datatype="io.github.mzmine.datamodel.features.types.annotations.compounddb.NPClassifierPathwayType" selected="false"/>
+            <importtype column="q3_quantifier_mz" datatype="io.github.mzmine.datamodel.features.types.numbers.Q3QuantMzType" selected="false"/>
+            <importtype column="iupac_name" datatype="io.github.mzmine.datamodel.features.types.identifiers.IupacNameType" selected="false"/>
+            <importtype column="cas" datatype="io.github.mzmine.datamodel.features.types.identifiers.CASType" selected="false"/>
+            <importtype column="internal_id" datatype="io.github.mzmine.datamodel.features.types.identifiers.InternalIdType" selected="false"/>
+        </parameter>
+        <parameter name="m/z tolerance">
+            <absolutetolerance>0.005</absolutetolerance>
+            <ppmtolerance>10.0</ppmtolerance>
+        </parameter>
+        <parameter name="Retention time tolerance" selected="false" unit="MINUTES">9999999.0</parameter>
+        <parameter name="Mobility time tolerance" selected="false">0.01</parameter>
+        <parameter name="CCS tolerance (%)" selected="false">0.05</parameter>
+        <parameter name="Use isotope matcher" selected="true">
+            <parameter name="Isotope m/z tolerance">
+                <absolutetolerance>0.001</absolutetolerance>
+                <ppmtolerance>20.0</ppmtolerance>
+            </parameter>
+            <parameter name="Minimum isotope intensity (%)">0.05</parameter>
+            <parameter name="Minimum isotope score">0.0</parameter>
+        </parameter>
+        <parameter name="Use adducts" selected="true">
+            <parameter name="Maximum charge">2</parameter>
+            <parameter name="Maximum molecules/cluster">2</parameter>
+            <parameter name="Adducts">
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="5.4858E-4" mol_formula="" name="e" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="-1.007276" mol_formula="H" name="H" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="-1.007276" mol_formula="H" name="H" type="ADDUCT"/>
+                    <subpart charge="-1" mass_difference="-1.007276" mol_formula="H" name="H" type="ADDUCT"/>
+                    <subpart charge="1" mass_difference="22.989218" mol_formula="Na" name="Na" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="1" mass_difference="22.989218" mol_formula="Na" name="Na" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="34.969401" mol_formula="Cl" name="Cl" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="78.918886" mol_formula="Br" name="Br" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="44.99820285" mol_formula="HCO2" name="FA" type="ADDUCT"/>
+                </adduct_type>
+                <adduct_type selected="true">
+                    <subpart charge="-1" mass_difference="0.0" mol_formula="" name="e" type="ADDUCT"/>
+                </adduct_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                    <subpart charge="0" mass_difference="-18.010565" mol_formula="H2O" name="H2O" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-17.026549" mol_formula="NH3" name="NH3" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="15.99491462" mol_formula="O" name="O" type="CLUSTER"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-27.994915" mol_formula="CO" name="CO" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-43.989829" mol_formula="CO2" name="CO2" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="-28.031301" mol_formula="C2H4" name="C2H4" type="NEUTRAL_LOSS"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="46.005479" mol_formula="CHOOH" name="HFA" type="CLUSTER"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="60.021129" mol_formula="CH3COOH" name="HAc" type="CLUSTER"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="32.026215" mol_formula="CH3OH" name="MeOH" type="CLUSTER"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="41.026549" mol_formula="CH3CN" name="ACN" type="CLUSTER"/>
+                </modification_type>
+                <modification_type selected="true">
+                    <subpart charge="0" mass_difference="60.058064" mol_formula="C3H8O" name="IsoProp" type="CLUSTER"/>
+                </modification_type>
+            </parameter>
+        </parameter>
+        <parameter name="Filter filename header" selected="true">position</parameter>
+        <parameter name="Additional columns" selected="ignore"/>
+    </batchstep>
+    <batchstep method="io.github.mzmine.modules.io.spectraldbsubmit.batch.LibraryBatchGenerationModule" module_name="Batch spectral library generation" parameter_version="2">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Export file">
+            <current_file>/Users/adrutz/Documents/lab/Zeno/{}.mgf</current_file>
+        </parameter>
+        <parameter name="Export format">mgf</parameter>
+        <parameter name="MS level filter" selected="MS2, level = 2">3</parameter>
+        <parameter name="Metadata">
+            <parameter name="description"/>
+            <parameter name="Dataset ID"/>
+            <parameter name="INSTRUMENT_NAME">ZENOTOF7600</parameter>
+            <parameter name="INSTRUMENT">qTof</parameter>
+            <parameter name="Ion mobility">NONE</parameter>
+            <parameter name="IONSOURCE">DI-ESI</parameter>
+            <parameter name="ACQUISITION">Crude</parameter>
+            <parameter name="ACQUISITION_METHOD"/>
+            <parameter name="PI">NZamboni</parameter>
+            <parameter name="DATACOLLECTOR">MPovoa</parameter>
+            <parameter name="DATACURATOR">ARutz</parameter>
+            <parameter name="IONMODE" selected="false">Negative</parameter>
+        </parameter>
+        <parameter name="Intensity normalization" scientific="false">no_normalization</parameter>
+        <parameter name="Merge &amp; select fragment scans" selected_item="simple_merged">
+            <module name="simple_merged">
+                <parameter name="Presets">representative_msn_trees</parameter>
+                <parameter name="Merging m/z tolerance">
+                    <absolutetolerance>0.002</absolutetolerance>
+                    <ppmtolerance>10.0</ppmtolerance>
+                </parameter>
+            </module>
+            <module name="preset_merged">
+                <parameter name="Presets">representative_scans</parameter>
+                <parameter name="Merging m/z tolerance">
+                    <absolutetolerance>0.008</absolutetolerance>
+                    <ppmtolerance>25.0</ppmtolerance>
+                </parameter>
+                <parameter name="Merge">
+                    <selected>Across samples</selected>
+                </parameter>
+                <parameter name="Intensity merge mode">MAXIMUM</parameter>
+            </module>
+            <module name="input_scans">
+                <parameter name="Select input scans">all_scans</parameter>
+            </module>
+            <module name="advanced">
+                <parameter name="Merging options">
+                    <selected>Across energies</selected>
+                    <selected>Across samples</selected>
+                </parameter>
+                <parameter name="m/z tolerance">
+                    <absolutetolerance>0.008</absolutetolerance>
+                    <ppmtolerance>25.0</ppmtolerance>
+                </parameter>
+                <parameter name="Intensity merge mode">MAXIMUM</parameter>
+                <parameter name="Also include input scans">none</parameter>
+            </module>
+        </parameter>
+        <parameter name="Handle chimeric spectra" selected="true">
+            <parameter name="Target ion m/z tolerance">
+                <absolutetolerance>0.002</absolutetolerance>
+                <ppmtolerance>10.0</ppmtolerance>
+            </parameter>
+            <parameter name="Precursor m/z isolation tolerance">
+                <absolutetolerance>0.6</absolutetolerance>
+                <ppmtolerance>5.0</ppmtolerance>
+            </parameter>
+            <parameter name="Minimum precursor purity (%)">0.75</parameter>
+            <parameter name="Chimeric spectra">flag</parameter>
+        </parameter>
+        <parameter name="Quality parameters">
+            <parameter name="Minimum number of signals" selected="true">2</parameter>
+            <parameter name="Minimum explained signals (%)" selected="false">0.4</parameter>
+            <parameter name="Minimum explained intensity (%)" selected="false">0.4</parameter>
+            <parameter name="Formula m/z tolerance">
+                <absolutetolerance>0.002</absolutetolerance>
+                <ppmtolerance>10.0</ppmtolerance>
+            </parameter>
+            <parameter name="Export explained signals only">false</parameter>
+            <parameter name="Match compound and feature list name">false</parameter>
+        </parameter>
+        <parameter name="Advanced" selected="false">
+            <parameter name="Compact USI (limited compatibility)">false</parameter>
+        </parameter>
+    </batchstep>
+    <batchstep method="io.github.mzmine.modules.io.spectraldbsubmit.batch.LibraryBatchGenerationModule" module_name="Batch spectral library generation" parameter_version="2">
+        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
+        <parameter name="Export file">
+            <current_file>/Users/adrutz/Documents/lab/Zeno/{}.msp</current_file>
+            <last_file>/Users/adrutz</last_file>
+        </parameter>
+        <parameter name="Export format">msp</parameter>
+        <parameter name="MS level filter" selected="MS2, level = 2">3</parameter>
+        <parameter name="Metadata">
+            <parameter name="description"/>
+            <parameter name="Dataset ID"/>
+            <parameter name="INSTRUMENT_NAME">ZENOTOF7600</parameter>
+            <parameter name="INSTRUMENT">qTof</parameter>
+            <parameter name="Ion mobility">NONE</parameter>
+            <parameter name="IONSOURCE">DI-ESI</parameter>
+            <parameter name="ACQUISITION">Crude</parameter>
+            <parameter name="ACQUISITION_METHOD"/>
+            <parameter name="PI">NZamboni</parameter>
+            <parameter name="DATACOLLECTOR">MPovoa</parameter>
+            <parameter name="DATACURATOR">ARutz</parameter>
+            <parameter name="POLARITY">Negative</parameter>
+            <parameter name="IONMODE" selected="false">Negative</parameter>
+        </parameter>
+        <parameter name="Intensity normalization" scientific="false">no_normalization</parameter>
+        <parameter name="Merge &amp; select fragment scans" selected_item="simple_merged">
+            <module name="simple_merged">
+                <parameter name="Presets">representative_msn_trees</parameter>
+                <parameter name="Merging m/z tolerance">
+                    <absolutetolerance>0.002</absolutetolerance>
+                    <ppmtolerance>10.0</ppmtolerance>
+                </parameter>
+            </module>
+            <module name="preset_merged">
+                <parameter name="Presets">representative_scans</parameter>
+                <parameter name="Merging m/z tolerance">
+                    <absolutetolerance>0.008</absolutetolerance>
+                    <ppmtolerance>25.0</ppmtolerance>
+                </parameter>
+                <parameter name="Merge">
+                    <selected>Across samples</selected>
+                </parameter>
+                <parameter name="Intensity merge mode">MAXIMUM</parameter>
+            </module>
+            <module name="input_scans">
+                <parameter name="Select input scans">all_scans</parameter>
+            </module>
+            <module name="advanced">
+                <parameter name="Merging options">
+                    <selected>Across energies</selected>
+                    <selected>Across samples</selected>
+                </parameter>
+                <parameter name="m/z tolerance">
+                    <absolutetolerance>0.008</absolutetolerance>
+                    <ppmtolerance>25.0</ppmtolerance>
+                </parameter>
+                <parameter name="Intensity merge mode">MAXIMUM</parameter>
+                <parameter name="Also include input scans">none</parameter>
+            </module>
+        </parameter>
+        <parameter name="Handle chimeric spectra" selected="true">
+            <parameter name="Target ion m/z tolerance">
+                <absolutetolerance>0.002</absolutetolerance>
+                <ppmtolerance>10.0</ppmtolerance>
+            </parameter>
+            <parameter name="Precursor m/z isolation tolerance">
+                <absolutetolerance>0.6</absolutetolerance>
+                <ppmtolerance>5.0</ppmtolerance>
+            </parameter>
+            <parameter name="Minimum precursor purity (%)">0.75</parameter>
+            <parameter name="Chimeric spectra">flag</parameter>
+        </parameter>
+        <parameter name="Quality parameters">
+            <parameter name="Minimum number of signals" selected="true">2</parameter>
+            <parameter name="Minimum explained signals (%)" selected="false">0.4</parameter>
+            <parameter name="Minimum explained intensity (%)" selected="false">0.4</parameter>
+            <parameter name="Formula m/z tolerance">
+                <absolutetolerance>0.002</absolutetolerance>
+                <ppmtolerance>10.0</ppmtolerance>
+            </parameter>
+            <parameter name="Export explained signals only">false</parameter>
+            <parameter name="Match compound and feature list name">false</parameter>
+        </parameter>
+        <parameter name="Advanced" selected="false">
+            <parameter name="Compact USI (limited compatibility)">false</parameter>
+        </parameter>
+    </batchstep>
+</batch>
