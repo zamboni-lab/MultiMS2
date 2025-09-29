@@ -38,7 +38,7 @@ TODO small intro
 
 There are very few things that need to be manually adjusted when not working locally:
 
-* In `.mzmine/batch`, change 
+* In `.mzmine/batch`, change
 
 ```
 <parameter name="Database file">

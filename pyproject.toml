@@ -4,6 +4,7 @@ version = "0.0.1"
 description = "ModalX-SL"
 requires-python = ">=3.13,<4"
 dependencies = [
+    "marimo>=0.16.3,<1",
     "msbuddy @ git+https://github.com/adafede/msbuddy",
     "pre-commit>=4.3.0,<5",
 ]
