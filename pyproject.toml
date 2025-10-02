@@ -1,7 +1,7 @@
 [project]
 name = "multims2"
 version = "0.0.1"
-description = "ModalX-SL"
+description = "MultiMS2"
 requires-python = ">=3.13,<4"
 dependencies = [
     "cmcrameri>=1.9,<2",
