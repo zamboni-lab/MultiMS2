@@ -4,9 +4,9 @@
 
 TODO
 
-## Use
+### Initial conversion
 
-### Conversion
+This step is described here for transparency.
 
 #### `.wiff` to `.mzML`
 
@@ -30,6 +30,18 @@ files |>
     pattern = "/profile/",
     replacement = "/centroided/"
   )
+```
+
+The results have been archived on Zenodo (<https://doi.org/10.5281/zenodo.17250693>).
+
+TODO ALSO MASSIVE LATER ON
+
+## Use
+
+### Download the files from Zenodo
+
+```shell
+uv run python notebooks/get_mzmls_from_zenodo.py
 ```
 
 ### Extraction
