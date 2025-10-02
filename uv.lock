@@ -779,7 +779,7 @@ wheels = [
 ]
 
 [[package]]
-name = "modalx-sl"
+name = "multims2"
 version = "0.0.1"
 source = { virtual = "." }
 dependencies = [
@@ -791,6 +791,7 @@ dependencies = [
     { name = "matplotlib-colors" },
     { name = "molzip" },
     { name = "msbuddy" },
+    { name = "pooch" },
     { name = "pre-commit" },
     { name = "rdkit" },
     { name = "selfies" },
@@ -809,6 +810,7 @@ requires-dist = [
     { name = "matplotlib-colors", specifier = ">=1.0.16" },
     { name = "molzip", specifier = ">=0.9.2,<1" },
     { name = "msbuddy", git = "https://github.com/adafede/msbuddy" },
+    { name = "pooch", specifier = ">=1.8.2" },
     { name = "pre-commit", specifier = ">=4.3.0,<5" },
     { name = "rdkit", specifier = ">=2025.3.6,<2026" },
     { name = "selfies", specifier = ">=2.2.0,<3" },
@@ -1081,6 +1083,20 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/23/e8/21db9c9987b0e728855bd57bff6984f67952bea55d6f75e055c46b5383e8/platformdirs-4.4.0.tar.gz", hash = "sha256:ca753cf4d81dc309bc67b0ea38fd15dc97bc30ce419a7f58d13eb3bf14c4febf", size = 21634, upload-time = "2025-08-26T14:32:04.268Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/40/4b/2028861e724d3bd36227adfa20d3fd24c3fc6d52032f4a93c133be5d17ce/platformdirs-4.4.0-py3-none-any.whl", hash = "sha256:abd01743f24e5287cd7a5db3752faf1a2d65353f38ec26d98e25a6db65958c85", size = 18654, upload-time = "2025-08-26T14:32:02.735Z" },
+]
+
+[[package]]
+name = "pooch"
+version = "1.8.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "packaging" },
+    { name = "platformdirs" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c6/77/b3d3e00c696c16cf99af81ef7b1f5fe73bd2a307abca41bd7605429fe6e5/pooch-1.8.2.tar.gz", hash = "sha256:76561f0de68a01da4df6af38e9955c4c9d1a5c90da73f7e40276a5728ec83d10", size = 59353, upload-time = "2024-06-06T16:53:46.224Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a8/87/77cc11c7a9ea9fd05503def69e3d18605852cd0d4b0d3b8f15bbeb3ef1d1/pooch-1.8.2-py3-none-any.whl", hash = "sha256:3529a57096f7198778a5ceefd5ac3ef0e4d06a6ddaf9fc2d609b806f25302c47", size = 64574, upload-time = "2024-06-06T16:53:44.343Z" },
 ]
 
 [[package]]
