@@ -1,1014 +1,1014 @@
 position	smiles	name
-pos_A2	COc1cc2c(cc1)[nH]cc2CCNC(C)=O	zzz
-pos_B2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C\C(=O)O)C(C)(C)CCC1	zzz
-pos_C2	CC(=O)NC(CS)C(=O)O	zzz
-pos_D2	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_E2	Nc1ncnc2c1ncn2C1OC(CO)C(O)C1O	zzz
-pos_F2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C(=O)O)C(C)(C)CCC1	zzz
-pos_G2	CC12CCC3c4ccc(O)cc4CCC3C1CCC2=O	zzz
-pos_H2	CC12CCC(=O)C=C1CCC1C2C(O)CC2(C)C1CCC2(O)C(=O)CO	zzz
-pos_A3	CC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	zzz
-pos_B3	CC12CCC3c4c(cc(O)cc4)CCC3C1CCC2O	zzz
-pos_C3	O=C(O)c1cccnc1	zzz
-pos_D3	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_E3	NC(=O)c1cccnc1	zzz
-pos_F3	C/C1=C2/N=C(/C=C3\N=C(/C(C)=C4\[N-]C(C)(C5N=C1C(C)(CCC(=O)NCC(C)OP(=O)([O-])OC1C(CO)OC(n6cnc7cc(C)c(C)cc76)C1O)C5CC(N)=O)C(C)(CC(N)=O)C4CCC(N)=O)C(C)(CC(N)=O)C3CCC(N)=O)C(C)(C)C2CCC(N)=O.N#C[Co+2]	zzz
-pos_G3	CC(=O)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C	zzz
-pos_H3	CC1=CC(=O)c2ccccc2C1=O	zzz
-pos_A4	O=c1ccn(C2OC(CO)C(O)C2O)c(=O)[nH]1	zzz
-pos_B4	Nc1nc(=O)n(C2OC(CO)C(O)C2O)cc1	zzz
-pos_C4	O=CC(O)C(O)C(O)C(O)CO	zzz
-pos_D4	O=CC(O)C(O)C(O)CO	zzz
-pos_E4	O=C(O)CCCc1c[nH]c2c1cccc2	zzz
-pos_F4	CC(CCC(=O)O)C1CCC2C3CC(O)C4CC(O)CCC4(C)C3CCC12C	zzz
-pos_G4	O=C(O)c1cc(=O)[nH]c(=O)[nH]1	zzz
-pos_H4	CNCC(O)c1ccc(O)cc1	zzz
-pos_A5	NC(Cc1c[nH]c2ccc(O)cc12)C(=O)O	zzz
-pos_B5	C[N+](C)(C)CC(O)CC(=O)[O-]	zzz
-pos_C5	OCC(O)C(O)C(O)C(O)CO	zzz
-pos_D5	Nc1nc2c(ncn2C2OC(CO)C(O)C2O)c(=O)[nH]1	zzz
-pos_E5	O=c1[nH]cnc2c1ncn2C1OC(CO)C(O)C1O	zzz
-pos_F5	CC12CCC3c4ccc(O)cc4CCC3C1CC(O)C2O	zzz
-pos_G5	CNCC(O)c1cc(O)c(O)cc1	zzz
-pos_H5	NCCc1cc(O)c(O)cc1	zzz
-pos_A6	CC(=O)OCC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3C(=O)CC21C	zzz
-pos_B6	CC(C)NCC(O)c1ccc(O)c(O)c1	zzz
-pos_C6	CC(=O)OC1(C(C)=O)CCC2C3CC(C)C4=CC(=O)CCC4(C)C3CCC21C	zzz
-pos_D6	CNCC(O)c1cc(O)ccc1	zzz
-pos_E6	NC(Cc1cc(I)c(Oc2cc(I)c(O)c(I)c2)c(I)c1)C(=O)O	zzz
-pos_F6	CC12CCC3C(CC=C4CC(O)CCC43C)C1CCC2=O	zzz
-pos_G6	OCC(O)C(O)C(O)CO	zzz
-pos_H6	Cn1cnc(N)c2ncnc-21	zzz
-pos_A7	CC12CCC3C(CCC4CC(O)CCC43C)C1CCC2=O	zzz
-pos_B7	Nc1ccc(C(=O)NCC(=O)O)cc1	zzz
-pos_C7	CCCCCC(O)/C=C/C1C(O)CC(=O)C1C/C=C\CCCC(=O)O	zzz
-pos_D7	Cc1c(O)c(CO)c(CO)cn1	zzz
-pos_E7	O=C1OC(C(O)CO)C(O)=C1O	zzz
-pos_F7	O=C(O)CCCCC1SCC2NC(=O)NC21	zzz
-pos_G7	O=C(O)c1cccnc1C(=O)O	zzz
-pos_H7	NCCc1ccc(O)cc1	zzz
-pos_A8	NCCc1c[nH]c2ccccc12	zzz
-pos_B8	CC(=O)Oc1c(C)c(C)c2OC(C)(CCCC(C)CCCC(C)CCCC(C)C)CCc2c1C	zzz
-pos_C8	CC(C(=O)O)C(=O)O	zzz
-pos_D8	NC(N)=O	zzz
-pos_E8	O=c1[nH]c(=O)c2c(nc[nH]2)[nH]1	zzz
-pos_F8	NC1C(O)OC(CO)C(O)C1O	zzz
-pos_G8	CC1CNC(=O)NC1=O	zzz
-pos_H8	C=CCCCCCCCCC(=O)OC1CCC2C3CCC4=CC(=O)C=CC4(C)C3CCC12C	zzz
-pos_A9	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	zzz
-pos_C9	C[N+](C)(C)CC(=O)[O-]	zzz
-pos_D9	O=c1[nH]cnc2c1ncn2C1CC(O)C(CO)O1	zzz
-pos_E9	CCCCCCCCCCCCCCCC(=O)O	zzz
-pos_F9	O=C(O)c1c(O)ccc(O)c1	zzz
-pos_G9	C[n+]1cc(C(=O)O)ccc1	zzz
-pos_H9	OCC1OC(O)C(O)C(O)C1O	zzz
-pos_A10	NC(=O)NC1NC(=O)NC1=O	zzz
-pos_B10	OCC(O)C(O)C(O)C(O)CO	zzz
-pos_C10	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_E10	NC(Cc1cc(I)c(O)c(I)c1)C(=O)O	zzz
-pos_F10	NCCc1c[nH]cn1	zzz
-pos_G10	Cc1ncc(CO)c(CO)c1O	zzz
-pos_H10	NC(Cc1c[nH]c2c1cccc2)C(=O)O	zzz
-pos_A11	O=C(O)CCCCC1CCSS1	zzz
-pos_B11	CC(CCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_C11	C=C1CCC(O)C/C1=C/C=C1\CCCC2(C)C1CCC2C(C)/C=C/C(C)C(C)C	zzz
-pos_D11	C=C1CCC(O)C/C1=C/C=C1\CCCC2(C)C1CCC2C(C)CCCC(C)C	zzz
-pos_E11	NCCc1c[nH]cn1	zzz
-pos_F11	O=C(O)c1ccccc1	zzz
-pos_G11	CCCCCCCCCCCCCCCCO	zzz
-pos_H11	O=c1cc[nH]c(=O)[nH]1	zzz
-pos_A2	Nc1nc2c(nn[nH]2)c(=O)[nH]1	zzz
-pos_B2	NCCS	zzz
-pos_C2	CC(=O)OCC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	zzz
-pos_D2	NCCc1c[nH]c2ccc(O)cc12	zzz
-pos_E2	CC1(O)CCOC(=O)C1	zzz
-pos_F2	CC(C)(CO)C(O)C(=O)NCCC(=O)O	zzz
-pos_G2	CC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3CCC21C	zzz
-pos_H2	Nc1ccc(C(=O)O)cc1	zzz
-pos_A3	c1ccc(CNc2ncnc3c2[nH]cn3)cc1	zzz
-pos_B3	OC1C(O)C(O)C(O)C(O)C1O	zzz
-pos_C3	OCC(O)C(O)C(O)CO	zzz
-pos_D3	CC(CCC(=O)O)C1CCC2C3C(=O)CC4CC(=O)CCC4(C)C3CC(=O)C12C	zzz
-pos_E3	CC(C)(CO)C(O)C(=O)NCCCO	zzz
-pos_F3	Oc1ccc(O)cc1	zzz
-pos_G3	OCc1ccccc1	zzz
-pos_H3	NC(=O)C1CCCN1C(=O)C(Cc1c[nH]cn1)NC(=O)C1CCC(=O)N1	zzz
-pos_A4	Cc1c(O)c(C)c2CCC(C)(CCCC(C)CCCC(C)CCCC(C)C)Oc2c1C	zzz
-pos_B4	CC(CCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CC(O)C12C	zzz
-pos_C4	CC(C)(CO)C(O)C(=O)NCCCO	zzz
-pos_D4	CC1=C(C/C=C(\C)CCCC(C)CCCC(C)CCCC(C)C)C(=O)c2c(cccc2)C1=O	zzz
-pos_E4	OCC1OC(O)CC(O)C1O	zzz
-pos_F4	CCCCCCCC/C=C\CCCCCCCC(=O)O	zzz
-pos_G4	CCCCCCCCCCCCCCCC(=O)NCCO	zzz
-pos_H4	O=C(O)c1cc(O)c2ccccc2n1	zzz
-pos_A5	CCCCCCCCCCCC(=O)O	zzz
-pos_B5	CC12CCC(=O)C=C1CCC1C2C(O)CC2(C)C(C(=O)CO)CCC12	zzz
-pos_C5	CC(=O)c1c(O)cc(O)cc1	zzz
-pos_D5	O=CC(O)C(O)C(O)C(O)COC1OC(CO)C(O)C(O)C1O	zzz
-pos_E5	NC(Cc1c[nH]c2ccc(O)cc12)C(=O)O	zzz
-pos_F5	CC12CC(=O)C3C(CCC4=CC(=O)CCC43C)C1CCC2=O	zzz
-pos_G5	O=C(O)c1cc(O)c2cccc(O)c2n1	zzz
-pos_H5	CC12CCC(=O)C=C1CCC1C2CCC2(C)C1CCC2(O)C(=O)CO	zzz
-pos_A6	CC(=O)Oc1c2ccccc2c(OC(C)=O)c(C)c1	zzz
-pos_B6	NC(=O)c1ccc[n+]([O-])c1	zzz
-pos_D6	O=c1c(O)c(-c2ccccc2)oc2c1cccc2	zzz
-pos_E6	CC(=O)NC1C(O)CC(O)(C(=O)O)OC1C(O)C(O)CO	zzz
-pos_F6	CC(=O)OC1CCC2C3CCC4=CC(=O)CCC4=C3C=CC12C	zzz
-pos_G6	Cc1cn(C2CC(O)C(CO)O2)c(=O)[nH]c1=O	zzz
-pos_H6	O=C(O)CCc1c[nH]c2c1cccc2	zzz
-pos_A7	OCCc1c[nH]c2c1cccc2	zzz
-pos_B7	O=C(O)c1c[nH]c2c1cccc2	zzz
-pos_C7	Nc1nc(=O)[nH]cc1	zzz
-pos_D7	O=C1OC2C(O)C(O)OC2C1O	zzz
-pos_E7	O=C(O)/C=C(/CC(=O)O)C(=O)O	zzz
-pos_F7	CCCCCCCCC(=O)O	zzz
-pos_G7	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	zzz
-pos_H7	Cc1c[nH]c2c1cccc2	zzz
-pos_A8	COc1c(OC)c(OC)cc(/C=C/C(=O)O)c1	zzz
-pos_B8	C[Co+]N1/C2=C(/C)C3=N/C(=C\C4=N/C(=C(/C)C5=NC(C(CC(N)=O)C5(C)CCC(=O)NCC(C)OP(=O)([O-])OC5C(CO)OC(n6cnc7cc(C)c(C)cc76)C5O)C1(C)C(C)(CC(N)=O)C2CCC(N)=O)C(CCC(N)=O)C4(C)C)C(CCC(N)=O)C3(C)CC(N)=O	zzz
-pos_C8	CC(C)=CCC/C(C)=C/CC/C(C)=C/CC/C(C)=C/CC1=C(C)C(=O)c2c(cccc2)C1=O	zzz
-pos_D8	OCC1OC(OCC2OC(OCC3OC(OC4(CO)OC(CO)C(O)C4O)C(O)C(O)C3O)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_E8	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	zzz
-pos_F8	C=CC1=C(C)c2cc3nc(cc4c(CCC(=O)O)c(C)c(cc5[nH]c(cc1n2)c(C)c5C=C)[nH]4)C(CCC(=O)O)=C3C	zzz
-pos_G8	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	zzz
-pos_H8	Cc1ncc(COP(=O)(O)O)c(C=O)c1O	zzz
-pos_A9	NCCc1ccccc1	zzz
-pos_B9	O=CO	zzz
-pos_C9	CC(C)CCCC(C)C1CCC2C3=CC=C4CC(O)CCC4(C)C3CCC21C	zzz
-pos_D9	CCCCCCC(O)C(=O)O	zzz
-pos_E9	CC(=O)OC(CC(=O)O)C[N+](C)(C)C	zzz
-pos_F9	O=c1ccn(C2CC(O)C(CO)O2)c(=O)[nH]1	zzz
-pos_G9	O=CC(O)C(O)C(O)CO	zzz
-pos_H9	O=Cc1ccccc1	zzz
-pos_A10	NCCCCCN	zzz
-pos_B10	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/CO)C(C)(C)CCC1	zzz
-pos_C10	Cc1cc(O)c(O)cc1	zzz
-pos_D10	O=C(O)CNC(=O)c1ccccc1	zzz
-pos_E10	O=C(O)Cc1cc(O)c(O)cc1	zzz
-pos_F10	COc1c(O)ccc(CC(=O)O)c1	zzz
-pos_H10	CCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCC)OC(=O)CCCCCCCCC	zzz
-pos_A11	O=C(O)CCCCCCCCC(=O)O	zzz
-pos_B11	CCCCCCCCCCCCCCCCCC(=O)O	zzz
-pos_C11	O=C(O)CC(O)(CC(=O)O)C(=O)O	zzz
-pos_D11	OCC1OC(O)C(O)C(O)C1O	zzz
-pos_E11	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_F11	CC(=O)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_G11	O=C1CCC(C(=O)O)N1	zzz
-pos_H11	NCCCCN	zzz
-pos_A2	O=C(O)c1ccc[nH]1	zzz
-pos_B2	CNC(=NCCCC(N)C(=O)O)NC	zzz
-pos_C2	Nc1c(C(=O)CC(N)C(=O)O)cccc1	zzz
-pos_D2	CC12CCC(=O)C=C1CCC1C2C(=O)CC2(C)C1CCC2(O)C(=O)CO	zzz
-pos_E2	c1c[nH]cn1	zzz
-pos_F2	CC(C)(c1ccc(O)cc1)c1ccc(O)cc1	zzz
-pos_G2	O=Cc1ccc(O)cc1	zzz
-pos_H2	CC(N)=O	zzz
-pos_A3	CCOC(=O)C(=O)C(C)C(=O)OCC	zzz
-pos_B3	COc1cccc(CC(=O)O)c1	zzz
-pos_C3	O=C(O)c1ccncc1	zzz
-pos_D3	Cc1ccc(O)cc1	zzz
-pos_E3	Oc1ccccc1-c1ccccc1	zzz
-pos_F3	CC1(C)COC(=O)C1O	zzz
-pos_G3	OCC1OC(O)C(O)C(O)C1O	zzz
-pos_H3	COc1cccc(CCC(=O)O)c1	zzz
-pos_A4	O=C(O)c1c(O)cccc1O	zzz
-pos_B4	Nc1c(S(=O)(=O)O)cccc1	zzz
-pos_C4	O=C1C=CC(=O)C=C1	zzz
-pos_D4	Oc1ccc2ccccc2c1	zzz
-pos_E4	CC(O)C(C)O	zzz
-pos_F4	OCC(O)C(O)C(O)CO	zzz
-pos_G4	CC(C)CC(O)C(=O)O	zzz
-pos_H4	O=CC(O)C(O)C(OC1OC(CO)C(O)C(O)C1O)C(O)CO	zzz
-pos_A5	O=C(O)CC(=O)CC(=O)O	zzz
-pos_B5	Cn1ccc(=O)n(C)c1=O	zzz
-pos_C5	O=C(O)CNC(=O)Cc1ccccc1	zzz
-pos_D5	O=C(O)C(=O)c1ccccc1	zzz
-pos_E5	CCC(CC)C(=O)O	zzz
-pos_F5	O=C(O)C1CCC(O)CC1	zzz
-pos_G5	COC(=O)CCCC(=O)O	zzz
-pos_H5	NC(=O)CCC(NC(=O)Cc1ccccc1)C(=O)O	zzz
-pos_A6	Nc1nc(=O)n(C2OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C2O)cc1	zzz
-pos_B6	O=C(O)c1ccc(CO)o1	zzz
-pos_C6	NC(Cc1cc(O)c(O)cc1)C(=O)O	zzz
-pos_D6	CN(C)c1ncnc2c1[nH]cn2	zzz
-pos_E6	CC(CCC(=O)NCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CC(O)C12C	zzz
-pos_F6	O=C(O)/C=C\C=C/C(=O)O	zzz
-pos_G6	O=C(O)c1c2ccccc2ncc1	zzz
-pos_H6	O=C(O)CCCCc1ccccc1	zzz
-pos_A7	O=C(O)c1cocc1	zzz
-pos_B7	Cc1c(O)c(C)c2CCC(C)(CCCC(C)CCCC(C)CCCC(C)C)Oc2c1C	zzz
-pos_C7	O=C(O)/C=C/c1c[nH]c2c1cccc2	zzz
-pos_D7	C#CC(=O)O	zzz
-pos_E7	CC(CCC(=O)O)C(=O)O	zzz
-pos_F7	O=C1CC(C(=O)O)NC(=O)N1	zzz
-pos_G7	O=C(O)CC(=O)C(=O)O	zzz
-pos_H7	OCC(O)C(O)C(O)CO	zzz
-pos_A8	Cc1ncc(COP(=O)(O)O)c(C=O)c1O	zzz
-pos_B8	CC(C)(O)CC(=O)O	zzz
-pos_C8	O=c1[nH]cc(CO)c(=O)[nH]1	zzz
-pos_D8	O=C(O)C(=O)Cc1ccccc1	zzz
-pos_E8	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=O)C(C)(C)CCC1	zzz
-pos_F8	CC(C)=CCCC(C)(O)C1CC=C(C)CC1	zzz
-pos_G8	Cc1cn(C2OC(CO)C(O)C2O)c(=O)nc1N	zzz
-pos_H8	CC(=O)C1=CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	zzz
-pos_A9	NC(=O)NCCC(=O)O	zzz
-pos_B9	CC(=O)OCC(N)C(=O)O	zzz
-pos_C9	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_D9	O=C(O)CCCCCCCCCCCCCCC(=O)O	zzz
-pos_E9	CC(C)C(=O)C(=O)O	zzz
-pos_F9	O=C1CCCN1	zzz
-pos_G9	O=C(O)Cc1c(O)cccc1	zzz
-pos_H9	NC(=O)C(N)Cc1c[nH]c2c1cccc2	zzz
-pos_A10	Cc1cn(C2OC(CO)C(O)C2O)c(=O)[nH]c1=O	zzz
-pos_B10	O=C(O)c1cc(O)cc(O)c1	zzz
-pos_C10	CCC(=O)C(C)C	zzz
-pos_D10	CCCCC/C=C/C(=O)O	zzz
-pos_E10	C=CCC(C)C(=O)O	zzz
-pos_F10	O=C(O)/C=C/C=C/C(=O)O	zzz
-pos_G10	O=C(O)C/C=C/CC(=O)O	zzz
-pos_H10	CC(C)CC(=O)NCC(=O)O	zzz
-pos_A11	O=C1OC(C(O)CO)C(O)C1O	zzz
-pos_B11	CN1CC(=O)NC1=O	zzz
-pos_C11	CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)O	zzz
-pos_D11	CC(=O)NCCCCCN	zzz
-pos_E11	O=[N+]([O-])c1ccc(O)cc1	zzz
-pos_F11	CNC	zzz
-pos_G11	CCCCC(C)=O	zzz
-pos_H11	Cc1c(O)cccc1	zzz
-pos_A2	CSCCC(NC(C)=O)C(=O)O	zzz
-pos_B2	CCCCO	zzz
-pos_C2	NCCO	zzz
-pos_D2	O=C(O)c1ccccc1C(=O)O	zzz
-pos_E2	Cc1c(C(=O)O)cccc1	zzz
-pos_F2	COC(=O)CCN	zzz
-pos_G2	CC(=O)CC(C)C	zzz
-pos_H2	CN	zzz
-pos_A3	CCCCCCCCCCCCCCC(=O)O	zzz
-pos_B3	O=C1CCCCC1	zzz
-pos_C3	O=C(O)CCC(=O)C(=O)O	zzz
-pos_D3	CC(C)CO	zzz
-pos_E3	CC(=O)OCC1OC(OC(C)=O)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O	zzz
-pos_F3	Oc1c(Cl)cc(Cl)cc1	zzz
-pos_G3	CCOC(=O)C(C)=O	zzz
-pos_H3	CC(C)CC=O	zzz
-pos_A4	CC(=O)NC(CCC(=O)O)C(=O)O	zzz
-pos_B4	O=C(O)c1ncccc1	zzz
-pos_C4	CC(O)C(=O)O	zzz
-pos_D4	O=C(O)c1ccc(C(=O)O)cc1	zzz
-pos_E4	O=C(O)c1ncccc1O	zzz
-pos_F4	NC(Cc1c[nH]c2c1cccc2)C(=O)O	zzz
-pos_G4	O=C(O)CCc1ccccc1	zzz
-pos_H4	CC(C)CCO	zzz
-pos_A5	Nc1nccc(=O)[nH]1	zzz
-pos_B5	CC(=O)NC(C=O)C(O)C(O)C(O)CO	zzz
-pos_C5	CC(O)CO	zzz
-pos_D5	NC(=O)NC(CC(=O)O)C(=O)O	zzz
-pos_E5	O=C(O)CCCCCCCCCCC(=O)O	zzz
-pos_F5	COc1ccc(CC(=O)O)cc1	zzz
-pos_G5	CC(C)CCC(=O)O	zzz
-pos_H5	O=C(O)C1CCCCC1	zzz
-pos_A6	N#CS[Na]	zzz
-pos_B6	CC(C)(CC(=O)O)CC(=O)O	zzz
-pos_C6	CCCCCCCC(=O)O	zzz
-pos_D6	Cc1cc(C(=O)O)ccc1O	zzz
-pos_E6	CNC(=N)N	zzz
-pos_F6	CSSSC	zzz
-pos_G6	CC(=O)NC(Cc1ccc(O)cc1)C(=O)O	zzz
-pos_H6	O=C(O)c1ccc(C(=O)O)o1	zzz
-pos_A7	CC(C(=O)O)c1ccccc1	zzz
-pos_B7	COc1cc2c(cc1)[nH]cc2CCN	zzz
-pos_C7	O=C(O)C(O)Cc1ccccc1	zzz
-pos_D7	CCC(=O)C(=O)O	zzz
-pos_E7	O=C(O)CCCCCCCCCC(=O)O	zzz
-pos_F7	CSCCC(=O)O	zzz
-pos_G7	O=CC(O)C(O)C(O)C(O)C(=O)O	zzz
-pos_H7	O=C(O)CCCCCCCCCCCCC(=O)O	zzz
-pos_A8	Cc1cc(O)cc2c1OC(C)(CCCC(C)CCCC(C)CCCC(C)C)CC2	zzz
-pos_B8	NC(=O)C1=CN(C2OC(COP(=O)(O)OP(=O)(O)OCC3OC(n4cnc5c4ncnc5N)C(O)C3O)C(O)C2O)C=CC1	zzz
-pos_C8	CC12CCC3C(CCC4CC(O)CCC43C)C1CCC2=O	zzz
-pos_D8	CC(=O)NC(CCCNC(=N)N)C(=O)O	zzz
-pos_E8	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_F8	CC(CC(=O)O)C(=O)O	zzz
-pos_G8	NCCCCCN	zzz
-pos_H8	NC(C=O)C(O)C(O)C(O)CO	zzz
-pos_A9	CCCCCCCC/C=C\CCCCCCCCCCCCCC(=O)O	zzz
-pos_B9	CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCC(=O)O	zzz
-pos_C9	CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)O	zzz
-pos_D9	COc1ccc(CC(=O)O)cc1O	zzz
-pos_E9	CC(CCC(=O)O)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C	zzz
-pos_F9	CNC(CC(=O)O)C(=O)O	zzz
-pos_G9	O=C(O)C(O)c1ccccc1	zzz
-pos_H9	Nc1nc2c(ncn2C2CC(O)C(CO)O2)c(=O)[nH]1	zzz
-pos_A10	Nc1ncnc2c1ncn2C1CC(O)C(CO)O1	zzz
-pos_B10	O=C(O)Cc1c(O)ccc(O)c1	zzz
-pos_C10	O=CCc1ccccc1	zzz
-pos_D10	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	zzz
-pos_E10	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)O)C(O)C1O	zzz
-pos_F10	O=c1[nH]c(=O)c2c([nH]1)n(C1OC(CO)C(O)C1O)cn2	zzz
-pos_G10	Cc1c[nH]c(=O)[nH]c1=O	zzz
-pos_H10	O=C(O)/C=C/c1c[nH]cn1	zzz
-pos_A11	O=c1ccn(C2OC(COP(=O)(O)O)C(O)C2O)c(=O)[nH]1	zzz
-pos_B11	NCC(O)c1cc(O)c(O)cc1	zzz
-pos_C11	COc1c(O)cc2CCC3C(CCC4(C)C(O)CCC34)c2c1	zzz
-pos_D11	CCCCCC(O)/C=C/C1C(O)CC(=O)C1CCCCCCC(=O)O	zzz
-pos_E11	C#CC1(O)CCC2C3CCc4cc(O)ccc4C3CCC21C	zzz
-pos_F11	CC(=O)OCC[N+](C)(C)C	zzz
-pos_G11	O=C(O)/C=C/c1ccc(O)c(O)c1	zzz
-pos_H11	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_A2	COc1cc(/C=C/C(=O)O)ccc1O	zzz
-pos_B2	c1coc(CNc2ncnc3c2[nH]cn3)c1	zzz
-pos_C2	CC1(C)CC(C(=O)O)C2CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_D2	C=CC1(C)CC(=O)C2(O)C(C)(O1)C(OC(C)=O)C(O)C1C(C)(C)CCC(O)C12C	zzz
-pos_E2	Oc1ccc(C2COc3cc(O)ccc3C2)cc1	zzz
-pos_F2	NCC(=O)CCC(=O)O	zzz
-pos_G2	C#CC1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3CCC21C	zzz
-pos_H2	COc1cc(C=O)ccc1O	zzz
-pos_A3	NCC(O)c1ccc(O)cc1	zzz
-pos_B3	O=C(/C=C/c1ccc(O)c(O)c1)OC(Cc1ccc(O)c(O)c1)C(=O)O	zzz
-pos_C3	COc1cc(C(=O)O)cc(OC)c1O	zzz
-pos_D3	COC(=O)c1cc(OC)c(O)cc1	zzz
-pos_E3	O=c1cc(-c2ccccc2)oc2c1cc(O)cc2	zzz
-pos_F3	NC(=O)c1c(N)[nH]cn1	zzz
-pos_G3	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_H3	CC(C)C(NC(=O)C(CC(=O)O)NC(=O)C(CCCCN)NC(=O)C(N)CCCNC(=N)N)C(=O)NC(Cc1ccc(O)cc1)C(=O)O	zzz
-pos_A4	O=c1ccc2c(cc(O)cc2)o1	zzz
-pos_B4	O=C(O)/C=C/c1ccccc1	zzz
-pos_C4	O=C(O)c1ccc(O)cc1	zzz
-pos_D4	O=C/C=C/c1ccccc1	zzz
-pos_E4	C[N+]1(C)CCCC1C(=O)[O-]	zzz
-pos_F4	O=C(O)CCC(=O)O	zzz
-pos_G4	O=C(O)CCc1ccc(O)cc1	zzz
-pos_H4	O=C(O)/C=C/CCCCCCCO	zzz
-pos_A5	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)C(=O)C(O)CC2(C)C)C(C)(C)CC(O)C1=O	zzz
-pos_B5	COc1c(O)cccc1	zzz
-pos_C5	Oc1c(O)c(O)ccc1	zzz
-pos_D5	O=C(O)C1(O)CC(O)C(O)C(O)C1	zzz
-pos_E5	COc1ccc(-c2coc3c(ccc(OC)c3)c2=O)cc1	zzz
-pos_F5	O=CC(NS(=O)(=O)O)C(O)C(O)C(O)CO	zzz
-pos_G5	COc1c(OC)cc(CC(=O)O)cc1	zzz
-pos_H5	O=c1cc(-c2ccccc2)oc2c1cccc2	zzz
-pos_A6	CCCCCCCCCCCCCCCCCCOCC(O)CO	zzz
-pos_B6	O=C(O)CCCCC1CCSS1	zzz
-pos_C6	N=C(N)N	zzz
-pos_D6	OCC(O)C(O)CO	zzz
-pos_E6	CC(=O)NC(CCC(N)=O)C(=O)O	zzz
-pos_F6	O=C(O)c1c(O)cccc1	zzz
-pos_G6	O=C(O)CCCCCCCC(=O)O	zzz
-pos_H6	O=C1OC(CO)C(O)C(O)C1O	zzz
-pos_A7	O=C(O)/C=C/c1ccc(O)cc1	zzz
-pos_B7	O=C(O)Cc1c[nH]c2c1cccc2	zzz
-pos_C7	O=C(O)Cc1ccc(O)cc1	zzz
-pos_D7	CC(C)=CCC/C(C)=C/CC/C(C)=C/CO	zzz
-pos_E7	O=C(O)c1c(O)c(O)ccc1	zzz
-pos_F7	O=C(O)/C=C/C(=O)O	zzz
-pos_G7	O=C(O)CCCCCCCC(O)C(O)CCCCCCO	zzz
-pos_H7	O=C1OC(C(O)CO)C([O-])=C1O	zzz
-pos_A8	Cc1ncc(CSSCc2cnc(C)c(O)c2CO)c(CO)c1O	zzz
-pos_B8	O=C(CO)C(O)C(O)C(O)CO	zzz
-pos_C8	CCCCCCCCCCCCCCCCCCCCCC(=O)O	zzz
-pos_D8	CCCCCCCC/C=C\CCCCCCCCCCCC(=O)O	zzz
-pos_E8	O=C(CO)C(O)C(O)C(O)CO	zzz
-pos_F8	CCCOC(=O)c1ccc(O)cc1	zzz
-pos_G8	CC(=O)OCC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3C(O)CC21C	zzz
-pos_H8	CCCCCCCCCCCCCCCCCCCC(=O)O	zzz
-pos_A9	NC(=O)Cc1c[nH]c2c1cccc2	zzz
-pos_B9	CCCCC/C=C\C/C=C\C/C=C\CCCCC(=O)O	zzz
-pos_C9	CC(CCC(=O)O)C1CCC2C3C(=O)CC4CC(=O)CCC4(C)C3CC(=O)C12C	zzz
-pos_D9	CCCCC/C=C\C/C=C\CCCCCCCC(=O)O	zzz
-pos_E9	CCCCCCCCCCCCCC(=O)OCC(O)CO	zzz
-pos_F9	Cc1cn(C2CC(O)C(CO)O2)c(=O)nc1N	zzz
-pos_G9	COc1cccc(C(=O)O)c1	zzz
-pos_H9	C[N+](C)(C)[O-]	zzz
-pos_A10	O=C(O)CCCCCCCCCCCC(=O)O	zzz
-pos_B10	CCC(C(=O)O)c1ccccc1	zzz
-pos_C10	O=C(O)Cc1c[nH]cn1	zzz
-pos_D10	CC(C)C(O)C(=O)O	zzz
-pos_E10	CCCCCCCCCCCCC(=O)O	zzz
-pos_F10	OCC1OC(OC2C(CO)OC(OC3C(CO)OC(O)C(O)C3O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_G10	CCCCC/C=C\C/C=C\CCCCCCCC(=O)OCC(COC(=O)CCCCCCC/C=C\C/C=C\CCCCC)OC(=O)CCCCCCC/C=C\C/C=C\CCCCC	zzz
-pos_H10	CC(CCC(=O)O)CC(=O)O	zzz
-pos_A11	CCC(C)(O)C(=O)O	zzz
-pos_B11	O=S(=O)([O-])CCO	zzz
-pos_C11	CC(=O)CCC(=O)O	zzz
-pos_D11	O=C(O)CCCCCCC(=O)O	zzz
-pos_E11	O=C(O)C(O)C(O)C(=O)O	zzz
-pos_F11	CC(C)=CC(=O)O	zzz
-pos_G11	NOC=O	zzz
-pos_H11	O=C(O)C(O)Cc1ccccc1	zzz
-pos_A2	O=C(O)CO	zzz
-pos_B2	COC(=O)Cc1c[nH]c2c1cccc2	zzz
-pos_C2	O=C(O)c1cnc(O)cc1	zzz
-pos_D2	O=C(O)CC(O)C(=O)O	zzz
-pos_E2	O=C(O)c1c(O)cc(O)cc1	zzz
-pos_F2	COc1ccccc1C(=O)O	zzz
-pos_G2	Oc1c(O)cccc1	zzz
-pos_H2	CC(C)(O)C(=O)O	zzz
-pos_A3	CCc1ccc(O)cc1	zzz
-pos_B3	CCCCCCCC(=O)OCC(COC(=O)CCCCCCC)OC(=O)CCCCCCC	zzz
-pos_C3	O=CC(O)C(O)C(O)CO	zzz
-pos_D3	NCCS	zzz
-pos_E3	NC(=O)c1c(O)cccc1	zzz
-pos_F3	O=C(O)CC(O)C(=O)O	zzz
-pos_G3	CN1C(=O)CCC1c1cnccc1	zzz
-pos_H3	OCC1OC(OCC2OC(OC3(CO)OC(CO)C(O)C3O)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_A4	O=C(CO)C(OC1OC(CO)C(O)C(O)C1O)C(O)C(O)CO	zzz
-pos_B4	CCCCCCCCCCC(=O)O	zzz
-pos_C4	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5C(O)CC43C)C2C1C	zzz
-pos_D4	O=C(O)/C=C/c1ccc(O)cc1	zzz
-pos_E4	O=C1CC(c2cc(O)c(O)cc2)Oc2c1c(O)cc(O)c2	zzz
-pos_F4	CCC(c1ccccc1)c1c(O)c2ccccc2oc1=O	zzz
-pos_G4	CC(C)CC(=O)O	zzz
-pos_H4	CCCC(=O)OC1(C(=O)CO)CCC2C3CCC4=CC(=O)CCC4(C)C3C(O)CC21C	zzz
-pos_A5	Oc1ccc(C2COc3c(ccc(O)c3)C2)cc1	zzz
-pos_B5	NS(=O)(=O)c1cc2c(cc1Cl)NC(C1CC3C=CC1C3)NS2(=O)=O	zzz
-pos_C5	COc1cc(C(O)C(=O)O)ccc1O	zzz
-pos_D5	O=CC(O)C(O)C(OC1OC(CO)C(OC2OC(CO)C(OC3OC(CO)C(O)C(O)C3O)C(O)C2O)C(O)C1O)C(O)CO	zzz
-pos_E5	COC1C(OC(C)=O)CC(=O)OC(C)C/C=C/C=C/C(O)C(C)CC(CC=O)C1OC1OC(C)C(OC2CC(C)(O)C(OC(=O)CC(C)C)C(C)O2)C(N(C)C)C1O	zzz
-pos_F5	CN1CCN(CCCN2c3c(cccc3)Sc3c2cc(C(F)(F)F)cc3)CC1	zzz
-pos_G5	Nc1cc(Cl)c(NC2=NCCN2)c(Cl)c1	zzz
-pos_H5	CC(O)CC(=O)O	zzz
-pos_A6	CCCCCCCCCCCCC/C=C/C(O)C(N)CO	zzz
-pos_B6	CCCCCCCCCCCCCC(=O)OC(C)C	zzz
-pos_C6	FCOC(C(F)(F)F)C(F)(F)F	zzz
-pos_D6	NC(=O)c1ccc[n+](C2OC(CO)C(O)C2O)c1	zzz
-pos_E6	CCCCCCCCCCCCCC(=O)O	zzz
-pos_F6	COC1CC2CCC(C)C(O)(O2)C(=O)C(=O)N2CCCCC2C(=O)OC(C(C)CC2CCC(O)C(OC)C2)CC(=O)C(C)/C=C(\C)C(O)C(OC)C(=O)C(C)CC(C)/C=C/C=C/C=C/1C	zzz
-pos_G6	CC(=O)OC12COC1CC(O)C1(C)C(=O)C(O)C3=C(C)C(OC(=O)C(O)C(NC(=O)OC(C)(C)C)c4ccccc4)CC(O)(C(OC(=O)c4ccccc4)C21)C3(C)C	zzz
-pos_H6	O=c1[nH]cc(F)c(=O)[nH]1	zzz
-pos_A7	CC1=C(O)C(=O)C=C2C1=CC=C1C2(C)CCC2(C)C3CC(C)(C(=O)O)CCC3(C)CCC12C	zzz
-pos_B7	S=c1nc[nH]c2c1[nH]cn2	zzz
-pos_C7	C=C1C(=O)OC2/C=C(\C)CC/C=C(\C)CCC12	zzz
-pos_D7	CC1=NN(c2ccccc2)C(=O)C1	zzz
-pos_E7	CC1C(=O)OC2C(O)C34C5CC(C(C)(C)C)C36C(OC(=O)C6O)OC4(C(=O)O5)C12O	zzz
-pos_F7	C=C1/C(=C\C=C2/CCCC3(C)C2CCC3C(C)CCCC(C)(C)O)CC(O)CC1O	zzz
-pos_G7	CC1C/C=C/C=C/C=C/C=C/C(OC2OC(C)C(O)C(N)C2O)CC2OC(O)(CC(O)CC3OC3/C=C/C(=O)O1)CC(O)C2C(=O)O	zzz
-pos_H7	Nc1ccc(O)c(C(=O)O)c1	zzz
-pos_A8	CC12C=CC(=O)C=C1CCC1C2C(O)CC2(C)C1CCC2(O)C(=O)CO	zzz
-pos_B8	CN(C)C1C(O)=C(C(N)=O)C(=O)C2(O)C(=O)C3=C(O)c4c(cccc4O)C(C)(O)C3C(O)C12	zzz
-pos_C8	Nc1nc(=S)c2c(nc[nH]2)[nH]1	zzz
-pos_D8	COC(=O)Nc1nc2ccc([S+]([O-])c3ccccc3)cc2[nH]1	zzz
-pos_E8	O=c1c(-c2ccc(O)cc2)coc2cc(O)ccc12	zzz
-pos_F8	CCC(=O)OC1(C(=O)SCF)C(C)CC2C3CC(F)C4=CC(=O)C=CC4(C)C3(F)C(O)CC21C	zzz
-pos_G8	CC1C(=O)OC2CC34C5CC(C(C)(C)C)C36C(OC(=O)C6O)OC4(C(=O)O5)C21O	zzz
-pos_H8	O=C(OC1Cc2c(cc(O)cc2O)OC1c1cc(O)c(O)c(O)c1)c1cc(O)c(O)c(O)c1	zzz
-pos_A9	O=c1ccc2cc(OC3OC(CO)C(O)C(O)C3O)c(O)cc2o1	zzz
-pos_B9	O=C1c2c(C(=O)c3c1cc(CO)cc3O)c(O)ccc2	zzz
-pos_C9	OCC1OC(Oc2ccc(O)cc2)C(O)C(O)C1O	zzz
-pos_D9	CC(C)(C)C1(O)CC2OC(=O)CC23C(=O)OC2OC(=O)C(O)C231	zzz
-pos_E9	O=C(/C=C/c1cc(O)c(O)cc1)OC1CC(O)(C(=O)O)CC(O)C1O	zzz
-pos_F9	C=CC1CN2CCC1CC2C(O)c1ccnc2ccccc12	zzz
-pos_G9	CC1CCC2C(C)C(O)OC3OC4(C)CCC1C32OO4	zzz
-pos_H9	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(OC6OC(C(=O)O)C(O)C(O)C6OC6OC(C(=O)O)C(O)C(O)C6O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_A10	CC(C)=CCCC(C)(OC1OC(COC2OCC(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_B10	COc1ccc(C2CC(=O)c3c(O)cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O2)cc1O	zzz
-pos_C10	OCc1c[nH]c2c1cccc2	zzz
-pos_D10	O=c1c(O)c(-c2ccc(O)cc2)oc2cc(O)cc(O)c12	zzz
-pos_E10	CC1(C)OC2CC(=O)OCC23C1CC(=O)C1(C)C3CCC2(C)C(c3cocc3)OC(=O)C3OC321	zzz
-pos_F10	O=c1c(O)c(-c2cc(O)c(O)c(O)c2)oc2cc(O)cc(O)c12	zzz
-pos_G10	COc1c(OC)cc(-c2cc(=O)c3c(OC)c(OC)c(OC)c(OC)c3o2)cc1	zzz
-pos_H10	O=C(CCc1ccc(O)cc1)c1c(O)cc(O)cc1O	zzz
-pos_A11	O=C(/C=C/C=C/c1cc2c(cc1)OCO2)N1CCCCC1	zzz
-pos_B11	CC1OC(OCC2OC(Oc3c(-c4cc(O)c(O)cc4)oc4c(c(O)cc(O)c4)c3=O)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_C11	C=CC(C)(O)CCC1C(C)(O)CCC2C(C)(C)CCCC21C	zzz
-pos_D11	O=C(O)C1=CC(O)C(O)C(O)C1	zzz
-pos_E11	COc1cc(C2Oc3cc(C4Oc5cc(O)cc(O)c5C(=O)C4O)ccc3OC2CO)ccc1O	zzz
-pos_F11	COc1ccc(-c2cc(=O)c3c(OC)c(OC)c(OC)c(OC)c3o2)cc1	zzz
-pos_G11	CC1OC(OCC2OC(Oc3c(-c4cc(OCCO)c(OCCO)cc4)oc4cc(OCCO)cc(O)c4c3=O)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_H11	CC1CC(C(=O)O)C2CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C	zzz
-pos_A2	COc1cc(CCC(C)=O)ccc1O	zzz
-pos_B2	COc1ccc(-c2cc(=O)c3c(O)cc(O)cc3o2)cc1O	zzz
-pos_C2	O=C1CC(c2ccc(O)cc2)Oc2cc(O)cc(O)c12	zzz
-pos_D2	Cc1cc2c(C(=O)c3c(O)cccc3C2=O)c(O)c1	zzz
-pos_E2	COC(=O)C1=COC(O)C2C(CO)=CCC12	zzz
-pos_F2	O=C(O)C1=COC(OC2OC(CO)C(O)C(O)C2O)C2C(CO)=CCC12	zzz
-pos_G2	CC(C)(O)CCC(O)C(C)(O)C1CCC2(O)C3=CC(=O)C4CC(O)C(O)CC4(C)C3CCC12C	zzz
-pos_H2	COC(=O)Nc1nc2c(cc(Sc3ccccc3)cc2)[nH]1	zzz
-pos_A3	COc1c(C)c2c(C(=O)OC2)c(O)c1C/C=C(\C)CCC(=O)O	zzz
-pos_B3	CCCCCCCCCCCCCCCC(=O)OCC(O)C1OC(=O)C(O)=C1O	zzz
-pos_C3	COC(=O)/C=C/C(=O)OC	zzz
-pos_D3	CNc1ncnc2c1ncn2C1OC(CO)C(O)C1O	zzz
-pos_E3	C=C(C)C1CCC2(C(=O)O)CCC3(C)C(CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C12	zzz
-pos_F3	CC1(C)C2CCC1(C)C(O)C2	zzz
-pos_G3	CC1CCC2(C(=O)OC3OC(COC4OC(CO)C(OC5OC(C)C(O)C(O)C5O)C(O)C4O)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5CCC43C)C2C1C	zzz
-pos_H3	COC(=O)Nc1nc2c(cccc2)[nH]1	zzz
-pos_A4	OCCc1ccc(O)cc1	zzz
-pos_B4	CC1C(=O)OC2C(O)C34C5OC(=O)C3(OC3OC(=O)C(O)C34C(C(C)(C)C)C5O)C12O	zzz
-pos_C4	CC1(C)OC(=O)C=CC2(C)C1CC(=O)C1(C)C2CCC2(C)C(c3cocc3)OC(=O)C3OC321	zzz
-pos_D4	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OCC(O)C(O)C3O)CC12C	zzz
-pos_E4	Cc1ccc(C(C)C)cc1O	zzz
-pos_F4	C/C=C(\C)C(=O)O	zzz
-pos_G4	CC=C1C(=O)CC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	zzz
-pos_H4	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	zzz
-pos_A5	C/C=C(/C)C(=O)O	zzz
-pos_B5	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(O)C1OC1OC(CO)C(O)C(O)C1O)C3	zzz
-pos_C5	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)CC12C	zzz
-pos_D5	COc1cc2c(cc1OC1OC(CO)C(O)C(O)C1O)occ(-c1ccc(O)cc1)c2=O	zzz
-pos_E5	OCCc1ccc(O)c(O)c1	zzz
-pos_F5	C=C1C(=O)OC2CC3(C)CCCC(=C)C3CC12	zzz
-pos_G5	CC(CCC1(O)OC2CC3C4CC=C5CC(OC6OC(CO)C(OC7OC(C)C(O)C(O)C7O)C(O)C6OC6OC(C)C(O)C(O)C6O)CCC5(C)C4CCC3(C)C2C1C)COC1OC(CO)C(O)C(O)C1O	zzz
-pos_H5	O=c1cc(-c2ccc(O)c(-c3c(O)cc(O)c4c3oc(-c3ccc(O)cc3)cc4=O)c2)oc2c1c(O)cc(O)c2	zzz
-pos_A6	CC1CCC2(C(=O)OC3OC(COC4OC(CO)C(OC5OC(C)C(O)C(O)C5O)C(O)C4O)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5C(O)CC43C)C2C1C	zzz
-pos_B6	COc1ccc(-c2cc(=O)c3c(cc(O)c(OC)c3O)o2)cc1OC	zzz
-pos_C6	CC1(C)CCCC(C)(C2CCC3(C)C2C(O)CC2C4(C)CCC(O)C(C)(C)C4C(O)CC23C)O1	zzz
-pos_D6	C=C(C)C1CC=C(CO)CC1	zzz
-pos_E6	OCc1ccc(O)cc1	zzz
-pos_F6	COc1cc(CO)ccc1O	zzz
-pos_G6	COc1cc2c(cc1)c1ccnc(C)c1[nH]2	zzz
-pos_H6	CC(C)C(C)C(O)C(O)C(C)C1CCC2C3COC(=O)C4CC(O)C(O)CC4(C)C3CCC12C	zzz
-pos_A7	CN1CCc2c(cc3OCOc3c2)C(=O)Cc2c(C1)c1c(cc2)OCO1	zzz
-pos_B7	COc1c(O)ccc(CC2C(=O)OCC2Cc2ccc(OC)c(OC)c2)c1	zzz
-pos_C7	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(=O)C(C)(C)C5CCC43C)C2C1C	zzz
-pos_D7	COc1c(O)ccc(CCC(=O)CC(=O)CCc2ccc(O)c(OC)c2)c1	zzz
-pos_E7	COc1ccc(-c2cc(=O)c3c(cc(OC)cc3O)o2)cc1	zzz
-pos_F7	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3O)CC12C	zzz
-pos_G7	CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_H7	O=C1CC(c2ccc(O)cc2)Oc2cc(O)ccc12	zzz
-pos_A8	O=C1CC(c2ccc(OC3OC(CO)C(O)C(O)C3O)cc2)Oc2c1ccc(O)c2	zzz
-pos_B8	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_C8	CCCCCCCCC(=O)NCc1cc(OC)c(O)cc1	zzz
-pos_D8	O=C1CC(c2ccccc2)Oc2c1c(O)cc(O)c2	zzz
-pos_E8	CC1CC(=O)CC2CCC3C4CCC(O)C4(C)CCC3C12C	zzz
-pos_F8	O=C(O)CCc1ccc(O)cc1O	zzz
-pos_G8	CC1(C)C2CCC1(C)C(O)C2	zzz
-pos_H8	COc1c(OC(C)=O)ccc(C=O)c1	zzz
-pos_A9	CC1(C)C2CCC1(C)C(O)C2	zzz
-pos_B9	C=C1CCC2OC2(C)CCC2C1CC2(C)C	zzz
-pos_C9	COC(=O)c1ccc(O)cc1	zzz
-pos_D9	CC1=CC(=O)CC(C)(C)C1=O	zzz
-pos_E9	Cc1c2ccc(C)c-2cc(C(C)C)cc1	zzz
-pos_F9	Clc1cc2c(cc1)C(=C1CCNCC1)c1c(cccn1)CC2	zzz
-pos_G9	O=S(=O)(O)NC1CCCCC1	zzz
-pos_H9	Cc1c(-c2ccc(S(N)(=O)=O)cc2)c(-c2ccccc2)no1	zzz
-pos_A10	COc1ccc(O)cc1	zzz
-pos_B10	CC(=O)OC/C=C(C)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C	zzz
-pos_C10	Cc1c(C(N)=O)cc([N+](=O)[O-])cc1[N+](=O)[O-]	zzz
-pos_D10	Nc1nc(NC2CC2)nc(N)n1	zzz
-pos_E10	OCC1OC(OC2(CCl)OC(CCl)C(O)C2O)C(O)C(O)C1Cl	zzz
-pos_F10	COC(=O)N/N=C/c1[n+]([O-])c2c(cccc2)[n+]([O-])c1	zzz
-pos_G10	CC12CCC(O)CC1CCC1C2CC(O)C2(C)C(C3=CC(=O)OC3)CCC12O	zzz
-pos_A11	CCOC(=O)c1ccc(O)cc1	zzz
-pos_B11	CCOC(N)=O	zzz
-pos_C11	CCOc1c(O)ccc(C=O)c1	zzz
-pos_D11	CCCCCCc1c(O)cc(O)cc1	zzz
-pos_E11	Oc1cc(O)ccc1	zzz
-pos_F11	CC(=O)OCC(COC(C)=O)OC(C)=O	zzz
-pos_G11	CCCCOC(=O)c1ccc(O)cc1	zzz
-pos_H11	O=C(O)c1cc(O)c(O)c(O)c1	zzz
-pos_A2	C#CC1(O)CCC2C3CCC4=CC(=O)CCC4C3C(=C)CC21CC	zzz
-pos_B2	O=c1ccc2c(cc(O)c(O)c2)o1	zzz
-pos_C2	CC1CCC(C(C)C)C(O)C1	zzz
-pos_D2	NC(=O)c1ccccc1	zzz
-pos_E2	Oc1cc2c(CC(O)C(c3cc(O)c(O)cc3)O2)c(O)c1	zzz
-pos_F2	Oc1cc2c(CC(O)C(c3cc(O)c(O)cc3)O2)c(O)c1	zzz
-pos_G2	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2OC2OC(C)C(O)C(O)C2O)C1O)C3	zzz
-pos_H2	CC(CC(=O)CC(C)C1CC(O)C2(C)C3=C(C(=O)CC12C)C1(C)CCC(=O)C(C)(C)C1CC3O)C(=O)O	zzz
-pos_A3	C=C(C)C1CCC2(CO)CCC3(C)C(CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C12	zzz
-pos_B3	CC12CCC3C(CCC4CC(=O)CCC43C)C1CCC2O	zzz
-pos_C3	CC1=CC(=O)C(C(C)C)=CC1=O	zzz
-pos_D3	O=C(/C=C/c1ccc(O)cc1)c1ccccc1	zzz
-pos_E3	OCC1OC(OC2C(O)C(CO)OC2(CO)OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_F3	C=C1CC23CC1(O)CCC2C12C=CC(O)C(C)(C(=O)O1)C2C3C(=O)O	zzz
-pos_G3	C/C=C/c1c(OC)cc(OC)c(OC)c1	zzz
-pos_H3	COc1cc2c(cc1)c1c([nH]2)C(C)=NCC1	zzz
-pos_A4	COc1cc(O)c(C(C)=O)c(OC)c1	zzz
-pos_B4	CC(=O)c1c(O)cc(O)cc1O	zzz
-pos_C4	CC(=O)OC1(C)CCC23CC1C(C)(C)C2CCC3C	zzz
-pos_D4	Cc1cc2c(cc1)oc(=O)cc2	zzz
-pos_E4	O=C1NS(=O)(=O)c2c1cccc2	zzz
-pos_F4	CC1(C)CC(=O)CC(C)(C)N1	zzz
-pos_G4	CC(C)=CCC/C(C)=C/CC/C(C)=C/CC/C=C(\C)CC/C=C(\C)CCC=C(C)C	zzz
-pos_H4	O=C(O)c1ccco1	zzz
-pos_A5	C/C(=C\CNc1ncnc2c1nc[nH]2)CO	zzz
-pos_B5	CCc1c2Cn3c(cc4c(COC(=O)C4(O)CC)c3=O)-c2nc2c1cc(O)cc2	zzz
-pos_C5	Cc1c(O)c(=O)cco1	zzz
-pos_D5	C=CC(C)(O)CCC=C(C)C	zzz
-pos_E5	CC/C=C\CC1=C(C)CCC1=O	zzz
-pos_F5	CC(C)=CCC/C(C)=C\CO	zzz
-pos_G5	C/C=C/C=C/C(=O)O	zzz
-pos_H5	CC(C)(C)c1c(O)ccc(O)c1	zzz
-pos_A6	CC(=O)OC1CC(=O)OC(C)(C)C2CC(=O)C3(C)C(CCC4(C)C(c5cocc5)OC(=O)C5OC543)C12C	zzz
-pos_B6	C=CCOC(Cn1ccnc1)c1ccc(Cl)cc1Cl	zzz
-pos_C6	COc1ccc(C=O)cc1	zzz
-pos_D6	CC(C)c1ccc(C=O)cc1	zzz
-pos_E6	CC(C)c1ccc(CO)cc1	zzz
-pos_F6	CC(=O)OC/C=C(\C)CCC=C(C)C	zzz
-pos_G6	CCC1OC(=O)CC(O)C(C)C(OC2OC(C)C(OC3CC(C)(O)C(O)C(C)O3)C(N(C)C)C2O)C(CC=O)CC(C)C(=O)/C=C/C(C)=C/C1COC1OC(C)C(O)C(OC)C1OC	zzz
-pos_H6	O=C(/C=C/c1ccc(O)cc1)C1=C(O)C(O)(C2OC(CO)C(O)C(O)C2O)C(=O)/C(=C\C2=C(O)C(O)(C3OC(CO)C(O)C(O)C3O)C(O)=C(C(=O)/C=C/c3ccc(O)cc3)C2=O)C1=O	zzz
-pos_A7	CCCCCC1C(=O)CCC1CC(=O)OC	zzz
-pos_B7	OCC1OC(OC2C(O)C(CO)OC2(CO)OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_C7	COc1cc2c(cc1)ccc(=O)o2	zzz
-pos_D7	CC1(C)CCCC2(C)C1CCC1(C)OCCC12	zzz
-pos_E7	CC12CCC(=O)C=C1C=CC1C2CCC2(C)C1CCC21CCC(=O)O1	zzz
-pos_F7	O=c1oc2cc(O)ccc2c2ccc(O)cc12	zzz
-pos_G7	CCCCCC1=C(C)CCC1=O	zzz
-pos_H7	COc1c(O)ccc(C(=O)O)c1	zzz
-pos_A8	C=CC(C)(O)CC/C=C(\C)CCC=C(C)C	zzz
-pos_B8	CCCCCCCC/C=C\CCCCCCCC(=O)OCC	zzz
-pos_C8	CCCCCCCCCC=O	zzz
-pos_D8	CC12CCC(C1)C(C)(C)C2O	zzz
-pos_E8	CC(C)C12CCC(C)(CC1)O2	zzz
-pos_F8	OCC1=CC(O)C2C=COC(OC3OC(CO)C(O)C(O)C3O)C12	zzz
-pos_G8	O=C(O)C1=COC(OC2OC(CO)C(O)C(O)C2O)C2C1C=CC2(O)CO	zzz
-pos_H8	Nc1ccc(O)cc1	zzz
-pos_A9	O=C1C=CC(=O)c2c1cccc2O	zzz
-pos_B9	O=c1c(O)c(-c2ccccc2)oc2c1c(O)cc(O)c2	zzz
-pos_C9	CC(C)=CCC/C(C)=C/CO	zzz
-pos_D9	CCCCCCCC(=O)CCc1ccc(O)c(OC)c1	zzz
-pos_E9	CC(=O)OCc1ccccc1	zzz
-pos_F9	CC(=O)OC/C=C/c1ccccc1	zzz
-pos_G9	CC(C)=CCCC(C)CC=O	zzz
-pos_H9	O=C(O)/C=C/c1cc(O)ccc1	zzz
-pos_A10	CC1=CCC2C(C1)C2(C)C	zzz
-pos_B10	CC1=CCC2CC1C2(C)C	zzz
-pos_C10	COC(=O)c1ccco1	zzz
-pos_D10	CCN(CC)c1cc2c(cc1)c(-c1c(C(=O)O)cccc1)c1ccc(=[N+](CC)CC)cc-1o2	zzz
-pos_E10	CC(O)c1ccc(S(=O)(=O)NC(=O)NC2CCCCC2)cc1	zzz
-pos_F10	C=CCc1cc(OC)c(OC)cc1	zzz
-pos_G10	CCCCCCCCCCCCCCCCCC(=O)OC	zzz
-pos_H10	CCCCC/C=C\C/C=C\CCCCCCCC(=O)OC	zzz
-pos_A11	OC/C=C/c1ccccc1	zzz
-pos_B11	CCCCOC(=O)c1c(C(=O)O)cccc1	zzz
-pos_C11	CC(=O)OCCC(C)CCC=C(C)C	zzz
-pos_D11	OCCCc1ccc(O)cc1	zzz
-pos_E11	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(\C)C=O)C(C)(C)CCC1	zzz
-pos_F11	COc1ccc(C(=O)/C=C/c2ccccc2)cc1	zzz
-pos_G11	C/C1=C\CC(C)(C)/C=C/C(=O)/C(C)=C/CC1	zzz
-pos_H11	O=C(O)CC1CCCCC1	zzz
-pos_A2	CCOC(=O)CC(C)=O	zzz
-pos_B2	CCCCC(C)CCC(=O)O	zzz
-pos_C2	COC(=O)Cc1ccc(C(C)(C)C)cc1	zzz
-pos_D2	CCCCC(CC)CCC(=O)O	zzz
-pos_E2	CCCCOC(=O)CCCCCCCCC(=O)OCCCC	zzz
-pos_F2	N#CCc1c[nH]c2c1cccc2	zzz
-pos_G2	C=C(C)C1CC=C(C)C(=O)C1	zzz
-pos_H2	C=C1CC/C=C(\C)CCC2C1CC2(C)C	zzz
-pos_A3	CC/C=C\CCO	zzz
-pos_B3	CCCCC(C)C(=O)O	zzz
-pos_C3	CCC(C)CC(=O)O	zzz
-pos_D3	CCCCCC(C)C(=O)O	zzz
-pos_E3	c1coc(Cn2cccc2)c1	zzz
-pos_F3	CC1=CCC(O)(C(C)C)CC1	zzz
-pos_G3	CCC(O)C(=O)O	zzz
-pos_H3	O=C(O)CC(Cc1ccccc1)C(=O)O	zzz
-pos_A4	O=C(O)/C=C/CCCCCCCCC(=O)O	zzz
-pos_B4	CC(C)=CCCC(C)CC=O	zzz
-pos_C4	NC(=O)CCCCC1CCSS1	zzz
-pos_D4	C=CCSC	zzz
-pos_E4	CCOC(=O)CC(=O)OCC	zzz
-pos_F4	C=CCCCCCCCCCO	zzz
-pos_G4	C=CC(N)=O	zzz
-pos_H4	O=C(O)c1cc2c(cccc2)[nH]1	zzz
-pos_A5	COC(=O)c1cccnc1	zzz
-pos_B5	C1CCNC1	zzz
-pos_C5	CC(=O)c1nccnc1	zzz
-pos_D5	CCCC(=O)OCC(COC(=O)CCC)OC(=O)CCC	zzz
-pos_E5	CCC1CCC(=O)O1	zzz
-pos_F5	C=CCCC(=O)O	zzz
-pos_G5	C=C1CCC2CC1C2(C)C	zzz
-pos_H5	O=C(O)CC(CC(=O)O)C(=O)O	zzz
-pos_A6	CC1=CC(=O)C(C)O1	zzz
-pos_B6	COC(=O)C1CCCCC1	zzz
-pos_C6	CCC/C=C/C=O	zzz
-pos_D6	CC(S)C(=O)O	zzz
-pos_E6	COc1cccc(OC)c1C(=O)O	zzz
-pos_F6	CCCC(C)C=O	zzz
-pos_G6	Cc1cccc(O)c1	zzz
-pos_H6	CCc1c(O)c(=O)cco1	zzz
-pos_A7	O=C(O)CCc1cc(O)c(O)cc1	zzz
-pos_B7	COc1cc(/C=C/CO)ccc1O	zzz
-pos_C7	C/C=C/C(=O)C1=C(C)C=CCC1(C)C	zzz
-pos_D7	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_E7	CCC/C=C1\OC(=O)c2c1cccc2	zzz
-pos_F7	COc1cc(/C=C/C(=O)N2CCC=CC2=O)cc(OC)c1OC	zzz
-pos_G7	CCCCCCCCCCCCCCCc1cccc(O)c1C(=O)O	zzz
-pos_H7	CC1=CC(=O)CC(C)(C)C1(O)/C=C/C(C)=C\C(=O)O	zzz
-pos_A8	CCC(=C(c1ccc(O)cc1)c1ccc(OCCN(C)C)cc1)c1ccccc1	zzz
-pos_B8	C=CC(C)(C)c1cc(/C=C/C(=O)c2ccc(O)cc2)c(OC)cc1O	zzz
-pos_C8	O=C(CC1NCCCC1O)Cn1cnc2cc(Br)c(Cl)cc2c1=O	zzz
-pos_D8	CC(=O)OC(C)(C)/C=C/C(=O)C(C)(O)C1C(O)CC2(C)C3CC=C4C(CC(O)C(=O)C4(C)C)C3(C)C(=O)CC12C	zzz
-pos_E8	C=C1C(=O)OC2CC3(C)CCCC(C)C3=CC12	zzz
-pos_F8	CC(O)C(O)C(O)C(O)C=O	zzz
-pos_G8	C=C(C)C1CC=C(/C=N/O)CC1	zzz
-pos_H8	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_A9	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_B9	C[n+]1cc2c3OCOc3ccc2c2c1c1cc3c(cc1cc2)OCO3	zzz
-pos_C9	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(O)C1OC(=O)/C=C/c1ccc(O)c(O)c1	zzz
-pos_D9	CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_E9	O=C(/C=C/c1ccc(O)cc1)C1=C(O)C(O)(C2OC(CO)C(O)C(O)C2O)C(O)=C(C2OC(CO)C(O)C(O)C2O)C1=O	zzz
-pos_F9	C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1	zzz
-pos_G9	Cc1cc(O)c(C(=O)CCC(C)C)c(=O)o1	zzz
-pos_H9	O=c1cc(-c2cc(O)c(O)cc2)oc2c1c(O)cc(O)c2C1OC(CO)C(O)C(O)C1O	zzz
-pos_A10	OCC1OC(OC2(COC3(CO)OC(CO)C(O)C3O)OC(CO)C(O)C2O)C(O)C(O)C1O	zzz
-pos_B10	COc1c(O)c2c(cc1O)occ(-c1ccc(O)cc1)c2=O	zzz
-pos_C10	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3O)CC12C	zzz
-pos_D10	CC(C)=C1CCC(C)CC1=O	zzz
-pos_E10	COc1ccc(/C=C/c2cc(O)cc(O)c2)cc1O	zzz
-pos_F10	C/C1=C\CCC(C)C(=O)CC(C(C)C)C(=O)C1	zzz
-pos_G10	O=c1ccc2cc3c(occ3)c(O)c2o1	zzz
-pos_H10	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(O)C1OC1OC(CO)C(O)C(O)C1O)C3	zzz
-pos_A11	C=C(C)C1CCC2(C)CCC(=O)C(C)=C2C1	zzz
-pos_B11	COc1c(O)c2c(cc1)CC1c3c-2c(OC)c(OC)cc3CCN1C	zzz
-pos_C11	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(O)C1OC(=O)/C=C/c1ccc(O)c(O)c1	zzz
-pos_D11	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(OC(=O)/C=C/c2cc(O)c(O)cc2)C1O	zzz
-pos_E11	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(O)CC12C	zzz
-pos_F11	O=C(/C=C/c1ccc(O)c(O)c1)OC1C(O)CC(O)(C(=O)O)CC1O	zzz
-pos_G11	O=C(/C=C/C=C/c1ccccc1)CCc1ccccc1	zzz
-pos_H11	C=C(C)C1CC=C(C)CC1	zzz
-pos_A2	COC1C(O)C(O)C(O)C(O)C1O	zzz
-pos_B2	OCC1OC(OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_C2	CCOC(=O)/C=C/c1ccc(OC)cc1	zzz
-pos_D2	O=C(O)C(=O)O	zzz
-pos_E2	O=C(O)Cc1c2ccccc2ccc1	zzz
-pos_F2	CC(=O)c1c(O)ccc(O)c1	zzz
-pos_G2	CC(=O)c1ccccc1O	zzz
-pos_H2	CC(C)=CCCC(C(=O)O)C1CCC2(C)C3=C(CCC12C)C1(C)CCC(=O)C(C)(C)C1CC3	zzz
-pos_A3	CC12CC(c3cocc3)OC13CC(OC3=O)C1C3CC(CC12)OC3=O	zzz
-pos_B3	O=c1ccc2c(cc3occc3c2O)o1	zzz
-pos_C3	COC1=CC(=O)OC(CCc2ccccc2)C1	zzz
-pos_D3	C=CCCCCCCCCC(=O)O	zzz
-pos_E3	CCCCCCCCCC(C)O	zzz
-pos_F3	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1(C)O	zzz
-pos_G3	CC12CCC(C1)C(C)(C)C2=O	zzz
-pos_H3	CC(=O)OC1CCC2(C)C(CCC3(C)C2C(=O)C=C2C4C(C)C(C)CCC4(C)CCC23C)C1(C)C(=O)O	zzz
-pos_A4	COc1c(O)ccc(CNC(=O)CCCCCCC(C)C)c1	zzz
-pos_B4	O=c1c(O)c(-c2c(O)cc(O)cc2)oc2c1c(O)cc(O)c2	zzz
-pos_C4	COc1c(O)ccc(-c2c(O)c(=O)c3c(cc(O)cc3O)o2)c1	zzz
-pos_D4	COc1c(O)cc(-c2c(OC)c(=O)c3c(cc(OC)c(OC)c3O)o2)cc1	zzz
-pos_E4	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_F4	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)CC12C	zzz
-pos_G4	COc1ccc(C2CC(=O)c3c(cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O)O2)cc1	zzz
-pos_H4	Nc1cnc(NC(=O)c2ccc(C(F)(F)F)cc2)cc1	zzz
-pos_A5	OCC(O)CO	zzz
-pos_B5	COc1c(OC)cc(C=O)cc1	zzz
-pos_C5	C[n+]1cc(C(=O)[O-])ccc1	zzz
-pos_D5	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	zzz
-pos_E5	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	zzz
-pos_F5	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(O)C3	zzz
-pos_G5	COc1ccc(CC2COC(=O)C2(O)Cc2cc(OC)c(OC3OC(CO)C(O)C(O)C3O)cc2)cc1OC	zzz
-pos_H5	CC1=CC2C3C4C(=C(C)C3C13C1OC(=O)C(C)C1CCC(C)(O)C23)C1OC(=O)C(C)C1CCC4(C)O	zzz
-pos_A6	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(OC(=O)/C=C/c2ccc(O)c(O)c2)(C(=O)O)CC(O)C1O	zzz
-pos_B6	CC1=C2CC3CCC(C)C2(CC1=O)C3(C)C	zzz
-pos_C6	CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C(=O)O)C5CCC43C)C2C1	zzz
-pos_D6	COc1c(-c2ccccc2)oc2c(c(O)cc(O)c2)c1=O	zzz
-pos_E6	O=C(/C=C/c1cc(O)c(O)cc1)OC(C(=O)O)C(O)C(=O)O	zzz
-pos_F6	Cn1c(=O)[nH]c(=O)c2c1nc[nH]2	zzz
-pos_G6	COC(=O)/C=C/C(=O)O	zzz
-pos_H6	CCCCCCCCCC(=O)O	zzz
-pos_A7	COc1c(O)cc(CCC(=O)c2c(O)cc(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)cc2O)cc1	zzz
-pos_B7	COc1cc(O)cc(C2CC(=O)c3c(O)cc(OC4OC(CO)C(O)C(O)C4OC4OC(C)C(O)C(O)C4O)cc3O2)c1	zzz
-pos_C7	OCC(O)C(O)C(O)C(O)CO	zzz
-pos_D7	COc1cc(OC)c(OC)cc1C=O	zzz
-pos_E7	C/C=C/c1ccc(OC)cc1	zzz
-pos_F7	O=CC(O)C(O)C(OC1OC(CO)C(O)C(O)C1O)C(O)CO	zzz
-pos_G7	CCCCCCCCCCCCCCCC(=O)OCC	zzz
-pos_H7	COc1ccc(-c2cc(=O)c3c(cc(OC)cc3OC)o2)cc1	zzz
-pos_A8	O=c1oc2c(ccc(O)c2)c2ccccc12	zzz
-pos_B8	Nc1ncnc2c1nc[nH]2	zzz
-pos_C8	CC(=O)NCCc1c[nH]c2c1cc(O)cc2	zzz
-pos_D8	CC(C)CC(=O)C(=O)O	zzz
-pos_E8	CC(=O)NC(CC(N)=O)C(=O)O	zzz
-pos_F8	O=C(O)/C(O)=C(\O)C(=O)O	zzz
-pos_G8	CC1=CC(=O)CC(C)(C)C1	zzz
-pos_H8	CCCCCCCCOC(C)=O	zzz
-pos_A9	O=C(O)CC(=O)O	zzz
-pos_B9	O=C(O)/C=C\C(=O)O	zzz
-pos_C9	CSCCC(NC(C)=O)C(=O)O	zzz
-pos_D9	CC/C=C/CC1C(=O)CCC1CC(=O)OC	zzz
-pos_E9	O=C(O)CCCCCCCCCCCO	zzz
-pos_F9	O=C(O)/C=C(\CC(=O)O)C(=O)O	zzz
-pos_G9	COC(=O)CC(C)=O	zzz
-pos_H9	O=CC(=O)O	zzz
-pos_A10	c1c[nH]nc1	zzz
-pos_B10	CC(=O)NC(C)C(=O)O	zzz
-pos_C10	C=C(CC(=O)O)C(=O)O	zzz
-pos_D10	Cc1cc2c(cc1C)[nH]cn2	zzz
-pos_E10	CC(=O)NCC(=O)O	zzz
-pos_F10	O=C1CCCCO1	zzz
-pos_G10	O=CCC(O)C(O)CO	zzz
-pos_H10	O=C1CCC(C(=O)O)N1	zzz
-pos_A11	Cc1ncc(C)nc1	zzz
-pos_B11	CC(=O)NC(CC(C)C)C(=O)O	zzz
-pos_C11	Cc1ncc(CO)c(C=O)c1O	zzz
-pos_D11	CC(C)=CCO	zzz
-pos_E11	O=CNCC(=O)O	zzz
-pos_F11	CCC(O)C(=O)O	zzz
-pos_G11	O=C(O)c1c[nH]c(=O)[nH]c1=O	zzz
-pos_H11	CC(=O)NC(C=O)C(O)C(O)C(O)CO	zzz
-pos_A2	O=C(O)C(O)C(O)C(=O)O	zzz
-pos_B2	NCC(O)c1ccccc1	zzz
-pos_C2	CC(=O)C(=O)O	zzz
-pos_D2	O=C(O)CCCCCC(=O)O	zzz
-pos_E2	O=C(O)CCCC(=O)O	zzz
-pos_F2	C/C(=C/C(=O)O)C(=O)O	zzz
-pos_G2	Nc1c2ncn(C3CC(O)C(COP(=O)(O)O)O3)c2ncn1	zzz
-pos_H2	Nc1nc(=O)n(C2CC(O)C(COP(=O)(O)O)O2)cc1	zzz
-pos_A3	O=CC(O)C(O)C(O)C(O)C(=O)O	zzz
-pos_B3	c1cc(C2=NCCC2)cnc1	zzz
-pos_C3	CCOP(=O)(O)OCC	zzz
-pos_D3	CC/C=C\CCOC(=O)CCCCC	zzz
-pos_E3	CC(=O)NC(CCCNC(=N)N)C(=O)O	zzz
-pos_F3	OC1C2COC(O2)C(O)C1O	zzz
-pos_G3	CC(O)CC(=O)O	zzz
-pos_H3	CNC(=O)c1cccnc1	zzz
-pos_A4	O=C(O)CNC(=O)c1cccnc1	zzz
-pos_B4	CCCCC(O)C(=O)O	zzz
-pos_C4	O=C(O)Cc1c[nH]c2ccccc12	zzz
-pos_D4	NC(CS(=O)(=O)O)C(=O)O	zzz
-pos_E4	CSCCC(NC=O)C(=O)O	zzz
-pos_F4	O=C1OC(C(O)CO)C(=O)C1=O	zzz
-pos_G4	NC(=O)/C=C\C(=O)O	zzz
-pos_H4	NC(C=O)C(O)C(O)C(O)CO	zzz
-pos_A5	CC(O)C(C)O	zzz
-pos_B5	OC1COC(O)CO1	zzz
-pos_C5	NC(CO)Cc1cnc[nH]1	zzz
-pos_D5	O=CC(O)C(O)C(O)CO	zzz
-pos_E5	O=C(O)CCc1ccccc1O	zzz
-pos_F5	CCCCCC/C=C\CCCCCCCC(=O)O	zzz
-pos_G5	CCCCCCCCCCC/C=C/CCCCC(=O)O	zzz
-pos_H5	COC1OC(CO)C(O)C(O)C1O	zzz
-pos_A6	CN1CC(O)=NC1=N	zzz
-pos_A6	NCCc1c[nH]c2ccc(O)cc12	zzz
-pos_B6	CC(CC(=O)O)CC(=O)O	zzz
-pos_C6	CC(=O)OCC(N)C(=O)O	zzz
-pos_E6	CCCCCCCCCCCCCCCCCCCCCCC(=O)O	zzz
-pos_F6	CC(=O)CC(=O)O	zzz
-pos_G6	Nc1c(C(=O)O)cccc1O	zzz
-pos_H6	O=C(O)CP(=O)(O)O	zzz
-pos_A7	CCCCCCCC/C=C/CCCCCCCC(=O)O	zzz
-pos_B7	CC(=O)NCCCC(=O)O	zzz
-pos_C7	CCCCC(CC)COC(=O)c1ccccc1C(=O)OCC(CC)CCCC	zzz
-pos_D7	O=C1OC(C(O)CO)C(O)C1O	zzz
-pos_E7	O=C(O)C(O)c1ccccc1	zzz
-pos_F7	O=C(O)Cc1cccc(O)c1	zzz
-pos_G7	CC(O)c1ccccc1	zzz
-pos_H7	CCOC(=O)CC(=O)O	zzz
-pos_A8	CC(=O)NC1C(O)OC(CO)C(O)C1O	zzz
-pos_B8	NC(CCC(=O)NC(CSSCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(=O)NCC(=O)O)C(=O)O	zzz
-pos_C8	C=CC1=C(C)C2=N/C1=C\c1c(C)c(C=C)c3n1[Fe](Cl)n1/c(c(C)c(CCC(=O)O)/c1=C/C1=N/C(=C\3)C(C)=C1CCC(=O)O)=C\2	zzz
-pos_D8	c1cc2c(cc1)[nH]cc2	zzz
-pos_E8	Oc1ncccc1	zzz
-pos_F8	Nc1c(O)ccc(C(=O)O)c1	zzz
-pos_G8	CC(=O)NC(Cc1ccccc1)C(=O)O	zzz
-pos_H8	OCc1cc(O)ccc1	zzz
-pos_A9	O=C(O)c1ccc2ccccc2c1O	zzz
-pos_B9	O=C(O)c1ccc2ccccc2n1	zzz
-pos_C9	O=C(O)c1cccc(O)c1	zzz
-pos_D9	Nc1ncnc2c1ncn2C1OC(CSCCC(N)C(=O)O)C(O)C1O	zzz
-pos_E9	CC1(C)CCC2(C(=O)OC3OC(CO)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CCC(OC6OC(C(=O)O)C(O)C(O)C6OC6OC(CO)C(O)C(O)C6O)C(C)(C)C5CCC43C)C2C1	zzz
-pos_F9	O=CC(O)C(O)C(OC1OC(CO)C(OC2OC(CO)C(OC3OC(CO)C(OC4OC(CO)C(O)C(O)C4O)C(O)C3O)C(O)C2O)C(O)C1O)C(O)CO	zzz
-pos_G9	COC(=O)C1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(OC6OCC(OC7OC(CO)C(O)C(O)C7O)C(O)C6O)C(C)(CO)C5CCC43C)C2C1	zzz
-pos_H9	CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_A10	CCCCCc1ccco1	zzz
-pos_B10	CCCCCCCCCCCO	zzz
-pos_A2	NC(=O)CCC(N)C(=O)O	zzz
-pos_B2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	zzz
-pos_C2	CCCC(=O)[O-]	zzz
-pos_D2	NCCS(=O)(=O)O	zzz
-pos_E2	COC1OC(COS(=O)(=O)O)C(O)C(OC2OC(C(=O)O)C(C)C(O)C2O)C1NC(C)=O	zzz
-pos_F2	NC(=O)c1ccc[n+](C2OC(COP(=O)([O-])OP(=O)(O)OCC3OC(n4cnc5c(N)ncnc54)C(O)C3O)C(O)C2O)c1	zzz
-pos_G2	CN1CC(=O)NC1=N	zzz
-pos_H2	N=C(N)NCCCC(N)C(=O)O	zzz
-pos_A3	Cc1ncc(C[n+]2csc(CCO)c2C)c(N)n1	zzz
-pos_B3	C[N+](C)(C)CCOP(=O)(O)OP(=O)([O-])OCC1OC(n2ccc(N)nc2=O)C(O)C1O	zzz
-pos_C3	CCC(C)C(N)C(=O)O	zzz
-pos_D3	CC(C)CC(N)C(=O)O	zzz
-pos_E3	NC(=O)NCCCC(N)C(=O)O	zzz
-pos_F3	C[Se]CCC(N)C(=O)O	zzz
-pos_G3	NC(Cc1c[nH]cn1)C(=O)O	zzz
-pos_H3	O=C([O-])C(O)C(O)C(O)C(O)CO	zzz
-pos_A4	NC(CCC(=O)NC(CS)C(=O)NCC(=O)O)C(=O)O	zzz
-pos_B4	NCCCC(N)C(=O)O	zzz
-pos_C4	NCCCC(=O)O	zzz
-pos_D4	CNCC(=O)O	zzz
-pos_E4	OCC1OC(OC2C(CO)OC(O)C(O)C2O)C(O)C(O)C1O	zzz
-pos_F4	CN(CC(=O)O)C(=N)NP(=O)(O)O	zzz
-pos_G4	NCC(=O)NCC(=O)O	zzz
-pos_H4	NCC(=O)O	zzz
-pos_A5	CC(O)C(N)C(=O)O	zzz
-pos_B5	N=C(N)NCCCCN	zzz
-pos_C5	C[N+](C)(C)CCOP(=O)([O-])OCC(O)CO	zzz
-pos_D5	Cc1cc2c(cc1C)n(CC(O)C(O)C(O)COP(=O)(O)O)c1nc(=O)[nH]c(=O)c-1n2	zzz
-pos_E5	O=C1OC(C(O)CO)C(O)=C1OP(=O)(O)O	zzz
-pos_F5	NC(=O)NCCCC(N)C(=O)O	zzz
-pos_G5	NC(COP(=O)(O)O)C(=O)O	zzz
-pos_H5	CC(C)(CO)C(O)C(=O)NCCC(=O)NCCSSCCNC(=O)CCNC(=O)C(O)C(C)(C)CO	zzz
-pos_A6	NCCC(=O)NC(Cc1c[nH]cn1)C(=O)O	zzz
-pos_B6	NC(=O)c1ccc[n+](C2OC(COP(=O)([O-])O)C(O)C2O)c1	zzz
-pos_C6	N=C(N)NCCCCC(N)C(=O)O	zzz
-pos_D6	NCCCNCCCCNCCCN	zzz
-pos_E6	NCCC(=O)O	zzz
-pos_F6	NC(=O)CC(N)C(=O)O	zzz
-pos_G6	CN(CC(=O)O)C(=N)N	zzz
-pos_A7	CC(C)C(N)C(=O)O	zzz
-pos_B7	O=C(O)C1CCCN1	zzz
-pos_C7	NCCCCC(N)C(=O)O	zzz
-pos_D7	CC(N)C(=O)O	zzz
-pos_E7	NC(CC(=O)O)C(=O)O	zzz
-pos_F7	CSCCC(N)C(=O)O	zzz
-pos_G7	N=C(N)NCCCC(N)C(=O)O	zzz
-pos_H7	NC(CS)C(=O)O	zzz
-pos_A8	O=C(O)C1CC(O)CN1	zzz
-pos_B8	O=C(O)C1CCCN1	zzz
-pos_C8	Cc1c(N)[nH]c(=O)nc1	zzz
-pos_D8	CN(CC(=O)O)C(=N)N	zzz
-pos_E8	NC(Cc1cc(I)c(O)cc1)C(=O)O	zzz
-pos_F8	CC(C)CC(NC(=O)CN)C(=O)O	zzz
-pos_G8	CN(C)CC(=O)O	zzz
-pos_H8	NC(Cc1cc(O)ccc1)C(=O)O	zzz
-pos_A9	CC(=O)NCCCCC(N)C(=O)O	zzz
-pos_B9	NCCCCCCCC(=O)O	zzz
-pos_C9	Cc1ncc(C[n+]2csc(CCOP(=O)(O)OP(=O)(O)O)c2C)c(N)n1	zzz
-pos_D9	O=c1[nH]cnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	zzz
-pos_E9	NC(Cc1cc(Cl)c(O)cc1)C(=O)O	zzz
-pos_F9	N=C(N)NCCCCC(N)C(=O)O	zzz
-pos_G9	CC(=O)NC(CCCN)C(=O)O	zzz
-pos_H9	CC(C)C(NC(=O)CN)C(=O)O	zzz
-pos_A10	NC(=O)NCCCCC(N)C(=O)O	zzz
-pos_B10	NC(C(=O)O)C(=O)O	zzz
-pos_C10	NCC(=O)N1CCCC1C(=O)O	zzz
-pos_D10	CC(CN)C(=O)O	zzz
-pos_E10	N=C(N)NCCCC(=O)O	zzz
-pos_F10	CC(C)C(N)CC(=O)O	zzz
-pos_G10	CC(C)CC(N)C(=O)NC(C)C(=O)O	zzz
-pos_H10	CCC(N)C(=O)O	zzz
-pos_A11	NC(CO)C(=O)O	zzz
-pos_B11	NC(CCC(=O)O)C(=O)O	zzz
-pos_C11	CC(C)(N)C(=O)O	zzz
-pos_D11	O=C(COP(=O)(O)O)C(O)C(O)C(O)COP(=O)(O)O	zzz
-pos_E11	O=C(O)C1CCCCN1	zzz
-pos_F11	Nc1nc(=O)c2c([nH]1)n(C1OC(COP(=O)(O)O)C(O)C1O)cn2	zzz
-pos_G11	O=C(O[Ca]OC(=O)C(O)C(O)CO)C(O)C(O)CO	zzz
-pos_H11	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	zzz
-pos_A2	O=C(O)C1CCCCN1	zzz
-pos_B2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)O)C(O)C1O	zzz
-pos_C2	CCCC(N)C(=O)O	zzz
-pos_D2	NC(=O)c1ccc[n+](C2OC(COP(=O)(O)OP(=O)([O-])OCC3OC(n4cnc5c4ncnc5N)C(OP(=O)(O)O)C3O)C(O)C2O)c1	zzz
-pos_E2	NCCOP(=O)(O)O	zzz
-pos_F2	NC(CO)C(=O)O	zzz
-pos_G2	O=c1ccn(C2OC(COP(=O)(O)O)C(O)C2O)c(=O)[nH]1	zzz
-pos_H2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	zzz
-pos_A3	NC(=O)CCC(N)C(=O)O	zzz
-pos_B3	O=C(O)C1C2CCC(O2)C1C(=O)O	zzz
-pos_C3	O=C(O[Ca]OC(=O)C(O)C(O)C(O)C(O)C(O)CO)C(O)C(O)C(O)C(O)C(O)CO	zzz
-pos_D3	NCCCS(=O)(=O)O	zzz
-pos_E3	Nc1nc(O)c2c(n1)NCC(CNc1ccc(C(=O)NC(CCC(=O)O)C(=O)O)cc1)N2C=O	zzz
-pos_F3	O=C(CO)C(O)C(O)C(O)CO	zzz
-pos_G3	Cn1cncc1CC(NC(=O)CCN)C(=O)O	zzz
-pos_H3	CCC(N)C(=O)O	zzz
-pos_A4	CC(C)CC(NC(=O)C(COC(C)(C)C)NC(=O)C(Cc1ccc(O)cc1)NC(=O)C(CO)NC(=O)C(Cc1c[nH]c2ccccc12)NC(=O)C(Cc1cnc[nH]1)NC(=O)C1CCC(=O)N1)C(=O)NC(CCCN=C(N)N)C(=O)N1CCCC1C(=O)NNC(N)=O	zzz
-pos_B4	CC12CCC3c4c(cc(OC(=O)N(CCCl)CCCl)cc4)CCC3C1CCC2OP(=O)(O)O	zzz
-pos_C4	NCCCNCCCCNCCCN	zzz
-pos_D4	Nc1nc(=O)n(C2OC(CO)C(O)C2O)cc1	zzz
-pos_E4	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	zzz
-pos_F4	NC(=O)CCC(N)C(=O)O	zzz
-pos_G4	C[N+](C)(C)CCOP(=O)([O-])OP(=O)(O)OCC1OC(n2ccc(N)nc2=O)C(O)C1O	zzz
-pos_H4	CC(N)C(=O)NC(CCC(N)=O)C(=O)O	zzz
-pos_A5	OC1C(O)C(O)C(O)C(O)C1O	zzz
-pos_B5	O=C(O)CN(CCO)CCO	zzz
-pos_D5	CCC(C)C1NC(=O)C(Cc2ccc(O)cc2)NC(=O)C(N)CSSCC(C(=O)N2CCCC2C(=O)NC(CC(C)C)C(=O)NCC(N)=O)NC(=O)C(CC(N)=O)NC(=O)C(CCC(N)=O)NC1=O	zzz
-pos_E5	*OC1OC(C(=O)O)C(OC2OC(CO)C(O)C(O*)C2NC(C)=O)C(O)C1O	zzz
-pos_F5	CC(N)C(=O)O	zzz
-pos_G5	NCC(O)CCC(N)C(=O)O	zzz
-pos_H5	Cc1ncc(C[n+]2csc(CCOP(=O)(O)O)c2C)c(N)n1	zzz
-pos_A6	O=C(O)C(O)(O)C(=O)O	zzz
-pos_B6	O=C([O-])C(O)C(O)C(O)C(O)C(=O)O	zzz
-pos_C6	NCCC(N)C(=O)O	zzz
-pos_D6	O=C(O)CC(C(=O)O)C(O)C(=O)O	zzz
-pos_E6	CSCCC(O)C(=O)O[Ca]OC(=O)C(O)CCSC	zzz
-pos_F6	NC(Cc1cnc[nH]1)C(=O)O	zzz
-pos_G6	NC(CCO)C(=O)O	zzz
-pos_H6	NC1(C(=O)O)CC1	zzz
-pos_A7	Cc1cn(C2CC(O)C(COP(=O)(O)O)O2)c(=O)[nH]c1=O	zzz
-pos_B7	Cn1cncc1CC(NC(=O)CCN)C(=O)O	zzz
-pos_C7	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	zzz
-pos_D7	O=c1[nH]cnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	zzz
-pos_E7	NCCP(=O)(O)O	zzz
-pos_F7	C=C(OP(=O)(O)O)C(=O)O	zzz
-pos_G7	CC(=O)NC(CCCCN)C(=O)O	zzz
-pos_H7	C[n+]1cccc(C(N)=O)c1	zzz
-pos_A8	C[N+](C)(C)CCOP(=O)([O-])O	zzz
-pos_B8	O=C(O)C1CC(O)CN1	zzz
-pos_C8	O=c1ccn(C2OC(COP(=O)(O)OP(=O)(O)O)C(O)C2O)c(=O)[nH]1	zzz
-pos_A2	O=c1[nH]cnc2c1[nH]cn2	zzz
-pos_B2	Nc1nc(=O)c2c(ncc(CNc3ccc(C(=O)NC(CCC(=O)O)C(=O)O)cc3)n2)[nH]1	zzz
-pos_C2	C=CC1=C(C)/C(=C/c2c(C)c(CCC(=O)O)c(Cc3c(CCC(=O)O)c(C)c(/C=C4\NC(=O)C(C)=C4C=C)[nH]3)[nH]2)NC1=O	zzz
-pos_D2	CC(C)CCCC(C)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	zzz
-pos_E2	CC(O)C(O)c1nc2c(nc1)[nH]c(N)nc2=O	zzz
-pos_F2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)CCCC2(C)C)C(C)(C)CCC1	zzz
-pos_G2	CCCCCCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCC	zzz
-pos_H2	O=c1oc2c(O)c(O)cc3c2c2c(oc3=O)c(O)c(O)cc12	zzz
-pos_A3	CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNCC3)cc21	zzz
-pos_B3	CC(N)(Cc1cc(O)c(O)cc1)C(=O)O	zzz
-pos_C3	Cc1c(CCN2CCC(c3noc4c3ccc(F)c4)CC2)c(=O)n2CCCC(O)c2n1	zzz
-pos_D3	CN1C(C(=O)Nc2ncccc2)=C(O)c2c(cc(Cl)s2)S1(=O)=O	zzz
-pos_E3	COc1c(O)cc(-c2cc(=O)c3c(cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O)o2)cc1	zzz
-pos_F3	CCN1CCN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)CC1	zzz
-pos_G3	C1N2CN3CN1CN(C2)C3	zzz
-pos_H3	CC1(C)SC2C(N)C(=O)N2C1C(=O)O	zzz
-pos_A4	CCCCCCCCCCCCCCCCCCCCCCCCCCCCO	zzz
-pos_B4	CC(C)=CCCC(C)(OC1OC(COC2OCC(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	zzz
-pos_C4	CC1CCC2(CO)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C	zzz
-pos_D4	CC(=O)C1CCC2C3CCC4CC(=O)CCC4(C)C3CCC12C	zzz
-pos_E4	CCCCCCCCCCCCCCCC(=O)OC/C=C(C)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C	zzz
-pos_A2	NC(Cc1ccccc1)C(=O)O	zzz
-pos_B2	*OC1OC(C(=O)O)C(OC2OC(CO)C(O)C(*)C2NC(C)=O)C(O)C1O	zzz
+pos_A2	COc1cc2c(cc1)[nH]cc2CCNC(C)=O	Melatonin
+pos_B2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C\C(=O)O)C(C)(C)CCC1	Isotretinoin
+pos_C2	CC(=O)NC(CS)C(=O)O	N-Acetyl-DL-cysteine
+pos_D2	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	Alloursodeoxycholic acid
+pos_E2	Nc1ncnc2c1ncn2C1OC(CO)C(O)C1O	2-(6-Aminopurin-9-yl)-5-(hydroxymethyl)oxolane-3,4-diol
+pos_F2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C(=O)O)C(C)(C)CCC1	Retinoic Acid
+pos_G2	CC12CCC3c4ccc(O)cc4CCC3C1CCC2=O	Ketohydroxy-Estratriene
+pos_H2	CC12CCC(=O)C=C1CCC1C2C(O)CC2(C)C1CCC2(O)C(=O)CO	11,17,21-Trihydroxypregn-4-ene-3,20-dione
+pos_A3	CC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	1-acetyl-9a,11a-dimethyl-1H,2H,3H,3aH,3bH,4H,5H,7H,8H,9H,9aH,9bH,10H,11H,11aH-cyclopenta[a]phenanthren-7-one
+pos_B3	CC12CCC3c4c(cc(O)cc4)CCC3C1CCC2O	13-Methyl-6,7,8,9,11,12,14,15,16,17-decahydrocyclopenta(a)phenanthrene-3,17-diol
+pos_C3	O=C(O)c1cccnc1	Nicotinic Acid
+pos_D3	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	Alloursodeoxycholic acid
+pos_E3	NC(=O)c1cccnc1	Nicotinamide
+pos_F3	C/C1=C2/N=C(/C=C3\N=C(/C(C)=C4\[N-]C(C)(C5N=C1C(C)(CCC(=O)NCC(C)OP(=O)([O-])OC1C(CO)OC(n6cnc7cc(C)c(C)cc76)C1O)C5CC(N)=O)C(C)(CC(N)=O)C4CCC(N)=O)C(C)(CC(N)=O)C3CCC(N)=O)C(C)(C)C2CCC(N)=O.N#C[Co+2]	cobalt(3+);[5-(5,6-dimethylbenzimidazol-1-yl)-4-hydroxy-2-(hydroxymethyl)oxolan-3-yl] 1-[3-[2,13,18-tris(2-amino-2-oxoethyl)-7,12,17-tris(3-amino-3-oxopropyl)-3,5,8,8,13,15,18,19-octamethyl-2,7,12,17-tetrahydro-1H-corrin-21-id-3-yl]propanoylamino]propan-2-yl phosphate;cyanide
+pos_G3	CC(=O)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C	ORNBQBCIOKFOEO-UHFFFAOYSA-N
+pos_H3	CC1=CC(=O)c2ccccc2C1=O	MJVAVZPDRWSRRC-UHFFFAOYSA-N
+pos_A4	O=c1ccn(C2OC(CO)C(O)C2O)c(=O)[nH]1	DRTQHJPVMGBUCF-UHFFFAOYSA-N
+pos_B4	Nc1nc(=O)n(C2OC(CO)C(O)C2O)cc1	UHDGCWIWMRVCDJ-UHFFFAOYSA-N
+pos_C4	O=CC(O)C(O)C(O)C(O)CO	GZCGUPFRVQAUEE-UHFFFAOYSA-N
+pos_D4	O=CC(O)C(O)C(O)CO	PYMYPHUHKUWMLA-UHFFFAOYSA-N
+pos_E4	O=C(O)CCCc1c[nH]c2c1cccc2	JTEDVYBZBROSJT-UHFFFAOYSA-N
+pos_F4	CC(CCC(=O)O)C1CCC2C3CC(O)C4CC(O)CCC4(C)C3CCC12C	DGABKXLVXPYZII-UHFFFAOYSA-N
+pos_G4	O=C(O)c1cc(=O)[nH]c(=O)[nH]1	PXQPEWDEAKTCGB-UHFFFAOYSA-N
+pos_H4	CNCC(O)c1ccc(O)cc1	Synephrine
+pos_A5	NC(Cc1c[nH]c2ccc(O)cc12)C(=O)O	(+-)-5-Hydroxytryptophan
+pos_B5	C[N+](C)(C)CC(O)CC(=O)[O-]	DL-Carnitine
+pos_C5	OCC(O)C(O)C(O)C(O)CO	FBPFZTCFMRRESA-UHFFFAOYSA-N
+pos_D5	Nc1nc2c(ncn2C2OC(CO)C(O)C2O)c(=O)[nH]1	2-amino-9-(3,4-dihydroxy-5-(hydroxymethyl)oxolan-2-yl)-3H-purin-6-one
+pos_E5	O=c1[nH]cnc2c1ncn2C1OC(CO)C(O)C1O	beta-Inosine
+pos_F5	CC12CCC3c4ccc(O)cc4CCC3C1CC(O)C2O	PROQIPRRNZUXQM-UHFFFAOYSA-N
+pos_G5	CNCC(O)c1cc(O)c(O)cc1	UCTWMZQNUQWSLP-UHFFFAOYSA-N
+pos_H5	NCCc1cc(O)c(O)cc1	Dopamine
+pos_A6	CC(=O)OCC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3C(=O)CC21C	ITRJWOMZKQRYTA-UHFFFAOYSA-N
+pos_B6	CC(C)NCC(O)c1ccc(O)c(O)c1	Isoproterenol
+pos_C6	CC(=O)OC1(C(C)=O)CCC2C3CC(C)C4=CC(=O)CCC4(C)C3CCC21C	(17-acetyl-6,10,13-trimethyl-3-oxo-2,6,7,8,9,11,12,14,15,16-decahydro-1H-cyclopenta[a]phenanthren-17-yl) acetate
+pos_D6	CNCC(O)c1cc(O)ccc1	SONNWYBIRXJNDC-UHFFFAOYSA-N
+pos_E6	NC(Cc1cc(I)c(Oc2cc(I)c(O)c(I)c2)c(I)c1)C(=O)O	(+-)-Thyroxine
+pos_F6	CC12CCC3C(CC=C4CC(O)CCC43C)C1CCC2=O	FMGSKLZLMKYGDP-UHFFFAOYSA-N
+pos_G6	OCC(O)C(O)C(O)CO	HEBKCHPVOIAQTA-UHFFFAOYSA-N
+pos_H6	Cn1cnc(N)c2ncnc-21	ZPBYVFQJHWLTFB-UHFFFAOYSA-N
+pos_A7	CC12CCC3C(CCC4CC(O)CCC43C)C1CCC2=O	QGXBDMJGAMFCBF-UHFFFAOYSA-N
+pos_B7	Nc1ccc(C(=O)NCC(=O)O)cc1	HSMNQINEKMPTIC-UHFFFAOYSA-N
+pos_C7	CCCCCC(O)/C=C/C1C(O)CC(=O)C1C/C=C\CCCC(=O)O	XEYBRNLFEZDVAW-ZQDYKODVSA-N
+pos_D7	Cc1c(O)c(CO)c(CO)cn1	LXNHXLLTXMVWPM-UHFFFAOYSA-N
+pos_E7	O=C1OC(C(O)CO)C(O)=C1O	CIWBSHSKHKDKBQ-UHFFFAOYSA-N
+pos_F7	O=C(O)CCCCC1SCC2NC(=O)NC21	5-(2-oxo-hexahydro-1H-thieno(3,4-d)imidazolidin-4-yl)pentanoic acid
+pos_G7	O=C(O)c1cccnc1C(=O)O	Quinolinic Acid
+pos_H7	NCCc1ccc(O)cc1	Tyramine
+pos_A8	NCCc1c[nH]c2ccccc12	Tryptamine
+pos_B8	CC(=O)Oc1c(C)c(C)c2OC(C)(CCCC(C)CCCC(C)CCCC(C)C)CCc2c1C	Dl-alpha-tocopherol acetate
+pos_C8	CC(C(=O)O)C(=O)O	Methylmalonic Acid
+pos_D8	NC(N)=O	Urea
+pos_E8	O=c1[nH]c(=O)c2c(nc[nH]2)[nH]1	Xanthine
+pos_F8	NC1C(O)OC(CO)C(O)C1O	2-Amino-2-Deoxy-Hexose
+pos_G8	CC1CNC(=O)NC1=O	NBAKTGXDIBVZOO-UHFFFAOYSA-N
+pos_H8	C=CCCCCCCCCC(=O)OC1CCC2C3CCC4=CC(=O)C=CC4(C)C3CCC12C	AHMMSNQYOPMLSX-UHFFFAOYSA-N
+pos_A9	CC(CCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	Ox bile extract
+pos_C9	C[N+](C)(C)CC(=O)[O-]	KWIUHFFTVRNATP-UHFFFAOYSA-N
+pos_D9	O=c1[nH]cnc2c1ncn2C1CC(O)C(CO)O1	Hypoxanthine, 9-(2-deoxy-beta-D-erythro-pentofuranosyl)-
+pos_E9	CCCCCCCCCCCCCCCC(=O)O	Palmitic Acid
+pos_F9	O=C(O)c1c(O)ccc(O)c1	2,5-Dihydroxybenzoic acid
+pos_G9	C[n+]1cc(C(=O)O)ccc1	3-Carboxy-1-methylpyridinium
+pos_H9	OCC1OC(O)C(O)C(O)C1O	Hexose
+pos_A10	NC(=O)NC1NC(=O)NC1=O	Allantoin
+pos_B10	OCC(O)C(O)C(O)C(O)CO	FBPFZTCFMRRESA-UHFFFAOYSA-N
+pos_C10	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	2-[4-(3,7-dihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]ethanesulfonic acid
+pos_E10	NC(Cc1cc(I)c(O)c(I)c1)C(=O)O	3,5-Diiodotyrosine
+pos_F10	NCCc1c[nH]cn1	Histamine
+pos_G10	Cc1ncc(CO)c(CO)c1O	LXNHXLLTXMVWPM-UHFFFAOYSA-N
+pos_H10	NC(Cc1c[nH]c2c1cccc2)C(=O)O	QIVBCDIJIAJPQS-UHFFFAOYSA-N
+pos_A11	O=C(O)CCCCC1CCSS1	AGBQKNBQESQNJD-UHFFFAOYSA-N
+pos_B11	CC(CCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	SMEROWZSTRWXGI-UHFFFAOYSA-N
+pos_C11	C=C1CCC(O)C/C1=C/C=C1\CCCC2(C)C1CCC2C(C)/C=C/C(C)C(C)C	MECHNRXZTMCUDQ-AAGLSAJLSA-N
+pos_D11	C=C1CCC(O)C/C1=C/C=C1\CCCC2(C)C1CCC2C(C)CCCC(C)C	(5Z,7E)-9,10-Secocholesta-5,7,10-trien-3-ol
+pos_E11	NCCc1c[nH]cn1	Histamine
+pos_F11	O=C(O)c1ccccc1	Benzoic Acid
+pos_G11	CCCCCCCCCCCCCCCCO	Cetyl Alcohol
+pos_H11	O=c1cc[nH]c(=O)[nH]1	Uracil
+pos_A2	Nc1nc2c(nn[nH]2)c(=O)[nH]1	8-Azaguanine
+pos_B2	NCCS	Cysteamine
+pos_C2	CC(=O)OCC(=O)C1CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	3,20-Dioxopregn-4-en-21-yl acetate
+pos_D2	NCCc1c[nH]c2ccc(O)cc12	QZAYGJVTTNCVMB-UHFFFAOYSA-N
+pos_E2	CC1(O)CCOC(=O)C1	JYVXNLLUYHCIIH-UHFFFAOYSA-N
+pos_F2	CC(C)(CO)C(O)C(=O)NCCC(=O)O	(+-)-Pantothenic acid
+pos_G2	CC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3CCC21C	17alpha-Hydroxypregn-4-ene-3,20-dione
+pos_H2	Nc1ccc(C(=O)O)cc1	ALYNCZNDIQEVRV-UHFFFAOYSA-N
+pos_A3	c1ccc(CNc2ncnc3c2[nH]cn3)cc1	NWBJYWHLCVSVIJ-UHFFFAOYSA-N
+pos_B3	OC1C(O)C(O)C(O)C(O)C1O	CDAISMWEOUEBRE-UHFFFAOYSA-N
+pos_C3	OCC(O)C(O)C(O)CO	HEBKCHPVOIAQTA-UHFFFAOYSA-N
+pos_D3	CC(CCC(=O)O)C1CCC2C3C(=O)CC4CC(=O)CCC4(C)C3CC(=O)C12C	3,7,12-Trioxocholan-24-oic acid
+pos_E3	CC(C)(CO)C(O)C(=O)NCCCO	DL-panthenol
+pos_F3	Oc1ccc(O)cc1	Hydroquinone
+pos_G3	OCc1ccccc1	Benzyl Alcohol
+pos_H3	NC(=O)C1CCCN1C(=O)C(Cc1c[nH]cn1)NC(=O)C1CCC(=O)N1	5-Oxoprolylhistidylprolinamide
+pos_A4	Cc1c(O)c(C)c2CCC(C)(CCCC(C)CCCC(C)CCCC(C)C)Oc2c1C	DL-alpha-Tocopherol
+pos_B4	CC(CCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CC(O)C12C	Cholan-24-oic acid, 3,12-dihydroxy-, (3alpha,5beta,12alpha)-
+pos_C4	CC(C)(CO)C(O)C(=O)NCCCO	DL-panthenol
+pos_D4	CC1=C(C/C=C(\C)CCCC(C)CCCC(C)CCCC(C)C)C(=O)c2c(cccc2)C1=O	Vitamin K
+pos_E4	OCC1OC(O)CC(O)C1O	2-Deoxyhexopyranose
+pos_F4	CCCCCCCC/C=C\CCCCCCCC(=O)O	ZQPPMHVWECSIRJ-KTKRTIGZSA-N
+pos_G4	CCCCCCCCCCCCCCCC(=O)NCCO	Palmitoylethanolamide
+pos_H4	O=C(O)c1cc(O)c2ccccc2n1	Kynurenic Acid
+pos_A5	CCCCCCCCCCCC(=O)O	Lauric Acid
+pos_B5	CC12CCC(=O)C=C1CCC1C2C(O)CC2(C)C(C(=O)CO)CCC12	Pregn-4-ene-3,20-dione, 11,21-dihydroxy-, (11beta)-
+pos_C5	CC(=O)c1c(O)cc(O)cc1	2',4'-Dihydroxyacetophenone
+pos_D5	O=CC(O)C(O)C(O)C(O)COC1OC(CO)C(O)C(O)C1O	6-O-Hexopyranosylhexose
+pos_E5	NC(Cc1c[nH]c2ccc(O)cc12)C(=O)O	(+-)-5-Hydroxytryptophan
+pos_F5	CC12CC(=O)C3C(CCC4=CC(=O)CCC43C)C1CCC2=O	4-Androsten-3,11,17-trione
+pos_G5	O=C(O)c1cc(O)c2cccc(O)c2n1	Xanthurenic Acid
+pos_H5	CC12CCC(=O)C=C1CCC1C2CCC2(C)C1CCC2(O)C(=O)CO	17,21-Dihydroxypregn-4-ene-3,20-dione
+pos_A6	CC(=O)Oc1c2ccccc2c(OC(C)=O)c(C)c1	Acetomenaphthone
+pos_B6	NC(=O)c1ccc[n+]([O-])c1	Nicotinamide N-oxide
+pos_D6	O=c1c(O)c(-c2ccccc2)oc2c1cccc2	Flavonol
+pos_E6	CC(=O)NC1C(O)CC(O)(C(=O)O)OC1C(O)C(O)CO	SQVRNKJHWKZAKO-UHFFFAOYSA-N
+pos_F6	CC(=O)OC1CCC2C3CCC4=CC(=O)CCC4=C3C=CC12C	CMRJPMODSSEAPL-UHFFFAOYSA-N
+pos_G6	Cc1cn(C2CC(O)C(CO)O2)c(=O)[nH]c1=O	IQFYYKKMVGJFEH-UHFFFAOYSA-N
+pos_H6	O=C(O)CCc1c[nH]c2c1cccc2	GOLXRNDWAUTYKT-UHFFFAOYSA-N
+pos_A7	OCCc1c[nH]c2c1cccc2	MBBOMCVGYCRMEA-UHFFFAOYSA-N
+pos_B7	O=C(O)c1c[nH]c2c1cccc2	KMAKOBLIOCQGJP-UHFFFAOYSA-N
+pos_C7	Nc1nc(=O)[nH]cc1	OPTASPLRGRRNAP-UHFFFAOYSA-N
+pos_D7	O=C1OC2C(O)C(O)OC2C1O	OGLCQHRZUSEXNB-UHFFFAOYSA-N
+pos_E7	O=C(O)/C=C(/CC(=O)O)C(=O)O	cis-Aconitic acid
+pos_F7	CCCCCCCCC(=O)O	Nonanoic Acid
+pos_G7	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	Glycine, N-[(3alpha,5beta,7alpha,12alpha)-3,7,12-trihydroxy-24-oxocholan-24-yl]-
+pos_H7	Cc1c[nH]c2c1cccc2	Skatole
+pos_A8	COc1c(OC)c(OC)cc(/C=C/C(=O)O)c1	3,4,5-Trimethoxycinnamic acid
+pos_B8	C[Co+]N1/C2=C(/C)C3=N/C(=C\C4=N/C(=C(/C)C5=NC(C(CC(N)=O)C5(C)CCC(=O)NCC(C)OP(=O)([O-])OC5C(CO)OC(n6cnc7cc(C)c(C)cc76)C5O)C1(C)C(C)(CC(N)=O)C2CCC(N)=O)C(CCC(N)=O)C4(C)C)C(CCC(N)=O)C3(C)CC(N)=O	C63H91CoN13O14P
+pos_C8	CC(C)=CCC/C(C)=C/CC/C(C)=C/CC/C(C)=C/CC1=C(C)C(=O)c2c(cccc2)C1=O	Menatetrenone
+pos_D8	OCC1OC(OCC2OC(OCC3OC(OC4(CO)OC(CO)C(O)C4O)C(O)C(O)C3O)C(O)C(O)C2O)C(O)C(O)C1O	Stachyose hydrate
+pos_E8	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CC(O)C12C	2-[4-(3,7,12-trihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]ethanesulfonic acid
+pos_F8	C=CC1=C(C)c2cc3nc(cc4c(CCC(=O)O)c(C)c(cc5[nH]c(cc1n2)c(C)c5C=C)[nH]4)C(CCC(=O)O)=C3C	ZCFFYALKHPIRKJ-UHFFFAOYSA-N
+pos_G8	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	(5-(6-Aminopurin-9-yl)-3,4-dihydroxyoxolan-2-yl)methyl dihydrogen phosphate
+pos_H8	Cc1ncc(COP(=O)(O)O)c(C=O)c1O	NGVDGCNFYWLIFO-UHFFFAOYSA-N
+pos_A9	NCCc1ccccc1	BHHGXPLMPWCGHP-UHFFFAOYSA-N
+pos_B9	O=CO	BDAGIHXWWSANSR-UHFFFAOYSA-N
+pos_C9	CC(C)CCCC(C)C1CCC2C3=CC=C4CC(O)CCC4(C)C3CCC21C	UCTLRSWJYQTBFZ-UHFFFAOYSA-N
+pos_D9	CCCCCCC(O)C(=O)O	JKRDADVRIYVCCY-UHFFFAOYSA-N
+pos_E9	CC(=O)OC(CC(=O)O)C[N+](C)(C)C	RDHQFKQIGNGIED-UHFFFAOYSA-O
+pos_F9	O=c1ccn(C2CC(O)C(CO)O2)c(=O)[nH]1	MXHRCPNRJAMMIM-UHFFFAOYSA-N
+pos_G9	O=CC(O)C(O)C(O)CO	PYMYPHUHKUWMLA-UHFFFAOYSA-N
+pos_H9	O=Cc1ccccc1	Benzaldehyde
+pos_A10	NCCCCCN	VHRGRCVQAFMJIZ-UHFFFAOYSA-N
+pos_B10	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/CO)C(C)(C)CCC1	Retinol
+pos_C10	Cc1cc(O)c(O)cc1	4-Methylcatechol
+pos_D10	O=C(O)CNC(=O)c1ccccc1	Hippuric Acid
+pos_E10	O=C(O)Cc1cc(O)c(O)cc1	Dopac
+pos_F10	COc1c(O)ccc(CC(=O)O)c1	Homovanillic Acid
+pos_H10	CCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCC)OC(=O)CCCCCCCCC	Tricaprin
+pos_A11	O=C(O)CCCCCCCCC(=O)O	Sebacic Acid
+pos_B11	CCCCCCCCCCCCCCCCCC(=O)O	Stearic Acid
+pos_C11	O=C(O)CC(O)(CC(=O)O)C(=O)O	KRKNYBCHXYNGOX-UHFFFAOYSA-N
+pos_D11	OCC1OC(O)C(O)C(O)C1O	Hexose
+pos_E11	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	2-[4-(3,7-dihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]acetic acid
+pos_F11	CC(=O)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	AURFZBICLPNKBZ-UHFFFAOYSA-N
+pos_G11	O=C1CCC(C(=O)O)N1	ODHCTXKNWHHXJC-UHFFFAOYSA-N
+pos_H11	NCCCCN	KIDHWZJUCRJVML-UHFFFAOYSA-N
+pos_A2	O=C(O)c1ccc[nH]1	Pyrrole-2-Carboxylic Acid
+pos_B2	CNC(=NCCCC(N)C(=O)O)NC	2-amino-5-[(N,N'-dimethylcarbamimidoyl)amino]pentanoic acid
+pos_C2	Nc1c(C(=O)CC(N)C(=O)O)cccc1	Alanine, 3-anthraniloyl-, DL-
+pos_D2	CC12CCC(=O)C=C1CCC1C2C(=O)CC2(C)C1CCC2(O)C(=O)CO	17-Hydroxy-17-(2-hydroxyacetyl)-10,13-dimethyl-1,2,6,7,8,9,12,14,15,16-decahydrocyclopenta[a]phenanthrene-3,11-dione
+pos_E2	c1c[nH]cn1	Imidazole
+pos_F2	CC(C)(c1ccc(O)cc1)c1ccc(O)cc1	Bisphenol A
+pos_G2	O=Cc1ccc(O)cc1	4-Hydroxybenzaldehyde
+pos_H2	CC(N)=O	Acetamide
+pos_A3	CCOC(=O)C(=O)C(C)C(=O)OCC	Butanedioic acid, 2-methyl-3-oxo-, 1,4-diethyl ester
+pos_B3	COc1cccc(CC(=O)O)c1	LEGPZHPSIPPYIO-UHFFFAOYSA-N
+pos_C3	O=C(O)c1ccncc1	Isonicotinic Acid
+pos_D3	Cc1ccc(O)cc1	IWDCLRJOBJJRNH-UHFFFAOYSA-N
+pos_E3	Oc1ccccc1-c1ccccc1	LLEMOWNGBBNAJR-UHFFFAOYSA-N
+pos_F3	CC1(C)COC(=O)C1O	SERHXTVXHNVDKA-UHFFFAOYSA-N
+pos_G3	OCC1OC(O)C(O)C(O)C1O	Hexose
+pos_H3	COc1cccc(CCC(=O)O)c1	3-(m-Methoxyphenyl)propionic acid
+pos_A4	O=C(O)c1c(O)cccc1O	2,6-Dihydroxybenzoic Acid
+pos_B4	Nc1c(S(=O)(=O)O)cccc1	2-Aminobenzenesulfonic acid
+pos_C4	O=C1C=CC(=O)C=C1	Quinone
+pos_D4	Oc1ccc2ccccc2c1	2-Naphthol
+pos_E4	CC(O)C(C)O	OWBTYPJTUOEWEK-UHFFFAOYSA-N
+pos_F4	OCC(O)C(O)C(O)CO	HEBKCHPVOIAQTA-UHFFFAOYSA-N
+pos_G4	CC(C)CC(O)C(=O)O	(+-)-2-Hydroxyisocaproic acid
+pos_H4	O=CC(O)C(O)C(OC1OC(CO)C(O)C(O)C1O)C(O)CO	D-Glucose, 4-O-alpha-D-glucopyranosyl-
+pos_A5	O=C(O)CC(=O)CC(=O)O	OXTNCQMOKLOUAM-UHFFFAOYSA-N
+pos_B5	Cn1ccc(=O)n(C)c1=O	JSDBKAHWADVXFU-UHFFFAOYSA-N
+pos_C5	O=C(O)CNC(=O)Cc1ccccc1	UTYVDVLMYQPLQB-UHFFFAOYSA-N
+pos_D5	O=C(O)C(=O)c1ccccc1	FAQJJMHZNSSFSM-UHFFFAOYSA-N
+pos_E5	CCC(CC)C(=O)O	OXQGTIUCKGYOAA-UHFFFAOYSA-N
+pos_F5	O=C(O)C1CCC(O)CC1	HCFRWBBJISAZNK-UHFFFAOYSA-N
+pos_G5	COC(=O)CCCC(=O)O	IBMRTYCHDPMBFN-UHFFFAOYSA-N
+pos_H5	NC(=O)CCC(NC(=O)Cc1ccccc1)C(=O)O	JFLIEFSWGNOPJJ-UHFFFAOYSA-N
+pos_A6	Nc1nc(=O)n(C2OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C2O)cc1	PCDQPRRSZKQHHS-UHFFFAOYSA-N
+pos_B6	O=C(O)c1ccc(CO)o1	PCSKKIUURRTAEM-UHFFFAOYSA-N
+pos_C6	NC(Cc1cc(O)c(O)cc1)C(=O)O	WTDRDQBEARUVNC-UHFFFAOYSA-N
+pos_D6	CN(C)c1ncnc2c1[nH]cn2	BVIAOQMSVZHOJM-UHFFFAOYSA-N
+pos_E6	CC(CCC(=O)NCC(=O)O)C1CCC2C3CCC4CC(O)CCC4(C)C3CC(O)C12C	WVULKSPCQVQLCU-UHFFFAOYSA-N
+pos_F6	O=C(O)/C=C\C=C/C(=O)O	cis,cis-Muconic acid
+pos_G6	O=C(O)c1c2ccccc2ncc1	4-Quinolinecarboxylic acid
+pos_H6	O=C(O)CCCCc1ccccc1	Benzenepentanoic acid
+pos_A7	O=C(O)c1cocc1	3-Furoic acid
+pos_B7	Cc1c(O)c(C)c2CCC(C)(CCCC(C)CCCC(C)CCCC(C)C)Oc2c1C	DL-alpha-Tocopherol
+pos_C7	O=C(O)/C=C/c1c[nH]c2c1cccc2	3-Indoleacrylic acid
+pos_D7	C#CC(=O)O	Propiolic Acid
+pos_E7	CC(CCC(=O)O)C(=O)O	2-Methylglutaric Acid
+pos_F7	O=C1CC(C(=O)O)NC(=O)N1	(+-)-Dihydroorotic acid
+pos_G7	O=C(O)CC(=O)C(=O)O	Oxaloacetic Acid
+pos_H7	OCC(O)C(O)C(O)CO	HEBKCHPVOIAQTA-UHFFFAOYSA-N
+pos_A8	Cc1ncc(COP(=O)(O)O)c(C=O)c1O	NGVDGCNFYWLIFO-UHFFFAOYSA-N
+pos_B8	CC(C)(O)CC(=O)O	3-Hydroxyisovaleric acid
+pos_C8	O=c1[nH]cc(CO)c(=O)[nH]1	5-(Hydroxymethyl)uracil
+pos_D8	O=C(O)C(=O)Cc1ccccc1	Phenylpyruvic acid
+pos_E8	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=O)C(C)(C)CCC1	Retinal
+pos_F8	CC(C)=CCCC(C)(O)C1CC=C(C)CC1	alpha,4-Dimethyl-alpha-(4-methyl-3-penten-1-yl)-3-cyclohexene-1-methanol
+pos_G8	Cc1cn(C2OC(CO)C(O)C2O)c(=O)nc1N	4-Amino-5-methyl-1-pentofuranosyl-2(1H)-pyrimidinone
+pos_H8	CC(=O)C1=CCC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	VRRHHTISESGZFN-UHFFFAOYSA-N
+pos_A9	NC(=O)NCCC(=O)O	JSJWCHRYRHKBBW-UHFFFAOYSA-N
+pos_B9	CC(=O)OCC(N)C(=O)O	3-Acetyloxy-2-azaniumylpropanoate
+pos_C9	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	2-[4-(3,7-dihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]acetic acid
+pos_D9	O=C(O)CCCCCCCCCCCCCCC(=O)O	QQHJDPROMQRDLA-UHFFFAOYSA-N
+pos_E9	CC(C)C(=O)C(=O)O	QHKABHOOEWYVLI-UHFFFAOYSA-N
+pos_F9	O=C1CCCN1	HNJBEVLQSNELDL-UHFFFAOYSA-N
+pos_G9	O=C(O)Cc1c(O)cccc1	(2-Hydroxyphenyl)acetic acid
+pos_H9	NC(=O)C(N)Cc1c[nH]c2c1cccc2	2-Amino-3-(1H-indol-3-yl)propanamide
+pos_A10	Cc1cn(C2OC(CO)C(O)C2O)c(=O)[nH]c1=O	1-[3,4-Dihydroxy-5-(hydroxymethyl)oxolan-2-yl]-5-methylpyrimidine-2,4-dione
+pos_B10	O=C(O)c1cc(O)cc(O)c1	3,5-Dihydroxybenzoic Acid
+pos_C10	CCC(=O)C(C)C	2-Methyl-3-pentanone
+pos_D10	CCCCC/C=C/C(=O)O	trans-2-Octenoic acid
+pos_E10	C=CCC(C)C(=O)O	2-Methyl-4-pentenoic acid
+pos_F10	O=C(O)/C=C/C=C/C(=O)O	Muconic Acid
+pos_G10	O=C(O)C/C=C/CC(=O)O	trans-beta-Hydromuconic acid
+pos_H10	CC(C)CC(=O)NCC(=O)O	N-Isovaleroylglycine
+pos_A11	O=C1OC(C(O)CO)C(O)C1O	SXZYCXMUPBBULW-UHFFFAOYSA-N
+pos_B11	CN1CC(=O)NC1=O	RHYBFKMFHLPQPH-UHFFFAOYSA-N
+pos_C11	CCCCC/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)O	YZXBAPSDXZZRGB-DOFZRALJSA-N
+pos_D11	CC(=O)NCCCCCN	RMOIHHAKNOFHOE-UHFFFAOYSA-N
+pos_E11	O=[N+]([O-])c1ccc(O)cc1	BTJIUGUIPKRLHP-UHFFFAOYSA-N
+pos_F11	CNC	ROSDSFDQCJNGOL-UHFFFAOYSA-N
+pos_G11	CCCCC(C)=O	QQZOPKMRPOGIEB-UHFFFAOYSA-N
+pos_H11	Cc1c(O)cccc1	O-Cresol
+pos_A2	CSCCC(NC(C)=O)C(=O)O	N-Acetyl-DL-methionine
+pos_B2	CCCCO	1-Butanol
+pos_C2	NCCO	Ethanolamine
+pos_D2	O=C(O)c1ccccc1C(=O)O	Phthalic Acid
+pos_E2	Cc1c(C(=O)O)cccc1	2-Methylbenzoic acid
+pos_F2	COC(=O)CCN	Methyl beta-alanate
+pos_G2	CC(=O)CC(C)C	Methyl Isobutyl Ketone
+pos_H2	CN	Methylamine
+pos_A3	CCCCCCCCCCCCCCC(=O)O	Pentadecanoic Acid
+pos_B3	O=C1CCCCC1	Cyclohexanone
+pos_C3	O=C(O)CCC(=O)C(=O)O	2-Oxoglutaric Acid
+pos_D3	CC(C)CO	Isobutanol
+pos_E3	CC(=O)OCC1OC(OC(C)=O)C(OC(C)=O)C(OC(C)=O)C1OC(C)=O	beta-D-Galactopyranose pentaacetate
+pos_F3	Oc1c(Cl)cc(Cl)cc1	2,4-Dichlorophenol
+pos_G3	CCOC(=O)C(C)=O	Ethyl pyruvate
+pos_H3	CC(C)CC=O	YGHRJJRRZDOVPD-UHFFFAOYSA-N
+pos_A4	CC(=O)NC(CCC(=O)O)C(=O)O	RFMMMVDNIPUKGG-UHFFFAOYSA-N
+pos_B4	O=C(O)c1ncccc1	Picolinic acid
+pos_C4	CC(O)C(=O)O	JVTAAEKCZFNVCJ-UHFFFAOYSA-N
+pos_D4	O=C(O)c1ccc(C(=O)O)cc1	KKEYFWRCBNTPAC-UHFFFAOYSA-N
+pos_E4	O=C(O)c1ncccc1O	BRARRAHGNDUELT-UHFFFAOYSA-N
+pos_F4	NC(Cc1c[nH]c2c1cccc2)C(=O)O	QIVBCDIJIAJPQS-UHFFFAOYSA-N
+pos_G4	O=C(O)CCc1ccccc1	XMIIGOLPHOKFCH-UHFFFAOYSA-N
+pos_H4	CC(C)CCO	Isoamyl Alcohol
+pos_A5	Nc1nccc(=O)[nH]1	Isocytosine
+pos_B5	CC(=O)NC(C=O)C(O)C(O)C(O)CO	2-Acetamido-2-deoxyhexose
+pos_C5	CC(O)CO	Propylene Glycol
+pos_D5	NC(=O)NC(CC(=O)O)C(=O)O	Ureidosuccinic acid
+pos_E5	O=C(O)CCCCCCCCCCC(=O)O	Dodecanedioic Acid
+pos_F5	COc1ccc(CC(=O)O)cc1	4-Methoxyphenylacetic Acid
+pos_G5	CC(C)CCC(=O)O	Isocaproic acid
+pos_H5	O=C(O)C1CCCCC1	Cyclohexanecarboxylic acid
+pos_A6	N#CS[Na]	Sodium thiocyanate
+pos_B6	CC(C)(CC(=O)O)CC(=O)O	DUHQIGLHYXLKAE-UHFFFAOYSA-N
+pos_C6	CCCCCCCC(=O)O	WWZKQHOCKIZLMA-UHFFFAOYSA-N
+pos_D6	Cc1cc(C(=O)O)ccc1O	4-Hydroxy-3-methylbenzoic acid
+pos_E6	CNC(=N)N	Methylguanidine
+pos_F6	CSSSC	Dimethyl trisulfide
+pos_G6	CC(=O)NC(Cc1ccc(O)cc1)C(=O)O	N-Acetyl-DL-tyrosine
+pos_H6	O=C(O)c1ccc(C(=O)O)o1	2,5-Furandicarboxylic acid
+pos_A7	CC(C(=O)O)c1ccccc1	2-Phenylpropionic acid
+pos_B7	COc1cc2c(cc1)[nH]cc2CCN	5-Methoxytryptamine
+pos_C7	O=C(O)C(O)Cc1ccccc1	(+-)-3-Phenyllactic acid
+pos_D7	CCC(=O)C(=O)O	2-Oxobutanoic Acid
+pos_E7	O=C(O)CCCCCCCCCC(=O)O	Undecanedioic Acid
+pos_F7	CSCCC(=O)O	CAOMCZAIALVUPA-UHFFFAOYSA-N
+pos_G7	O=CC(O)C(O)C(O)C(O)C(=O)O	Galactopyranuronic acid, D-
+pos_H7	O=C(O)CCCCCCCCCCCCC(=O)O	Tetradecanedioic acid
+pos_A8	Cc1cc(O)cc2c1OC(C)(CCCC(C)CCCC(C)CCCC(C)C)CC2	2H-1-Benzopyran-6-ol, 3,4-dihydro-2,8-dimethyl-2-(4,8,12-trimethyltridecyl)-, [2R-[2R*(4R*,8R*)]]-
+pos_B8	NC(=O)C1=CN(C2OC(COP(=O)(O)OP(=O)(O)OCC3OC(n4cnc5c4ncnc5N)C(O)C3O)C(O)C2O)C=CC1	Dihydronicotinamide formycin dinucleotide
+pos_C8	CC12CCC3C(CCC4CC(O)CCC43C)C1CCC2=O	QGXBDMJGAMFCBF-UHFFFAOYSA-N
+pos_D8	CC(=O)NC(CCCNC(=N)N)C(=O)O	N2-Acetylarginine
+pos_E8	CC(CCC(=O)NCC(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	2-[4-(3,7-dihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]acetic acid
+pos_F8	CC(CC(=O)O)C(=O)O	Methylsuccinic acid
+pos_G8	NCCCCCN	VHRGRCVQAFMJIZ-UHFFFAOYSA-N
+pos_H8	NC(C=O)C(O)C(O)C(O)CO	FZHXIRIBWMQPQF-UHFFFAOYSA-N
+pos_A9	CCCCCCCC/C=C\CCCCCCCCCCCCCC(=O)O	GWHCXVQVJPWHRF-KTKRTIGZSA-N
+pos_B9	CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCC(=O)O	Doconexent
+pos_C9	CC/C=C\C/C=C\C/C=C\C/C=C\C/C=C\CCCC(=O)O	Icosapent
+pos_D9	COc1ccc(CC(=O)O)cc1O	BWXLCOBSWMQCGP-UHFFFAOYSA-N
+pos_E9	CC(CCC(=O)O)C1CCC2C3CC=C4CC(O)CCC4(C)C3CCC12C	HIAJCGFYHIANNA-UHFFFAOYSA-N
+pos_F9	CNC(CC(=O)O)C(=O)O	HOKKHZGPKSLGJE-UHFFFAOYSA-N
+pos_G9	O=C(O)C(O)c1ccccc1	IWYDHOAUDWTVEP-UHFFFAOYSA-N
+pos_H9	Nc1nc2c(ncn2C2CC(O)C(CO)O2)c(=O)[nH]1	YKBGVTZYEHREMT-UHFFFAOYSA-N
+pos_A10	Nc1ncnc2c1ncn2C1CC(O)C(CO)O1	5-(6-Aminopurin-9-Yl)-2-(Hydroxymethyl)Oxolan-3-Ol
+pos_B10	O=C(O)Cc1c(O)ccc(O)c1	Homogentisic Acid
+pos_C10	O=CCc1ccccc1	Phenylacetaldehyde
+pos_D10	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	(5-(6-Aminopurin-9-yl)-3,4-dihydroxyoxolan-2-yl)methyl dihydrogen phosphate
+pos_E10	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)O)C(O)C1O	Adenosine 5'-(trihydrogen pyrophosphate), sodium salt (1:3)
+pos_F10	O=c1[nH]c(=O)c2c([nH]1)n(C1OC(CO)C(O)C1O)cn2	9-beta-D-Ribofuranosylxanthine
+pos_G10	Cc1c[nH]c(=O)[nH]c1=O	Thymine
+pos_H10	O=C(O)/C=C/c1c[nH]cn1	Urocanic Acid
+pos_A11	O=c1ccn(C2OC(COP(=O)(O)O)C(O)C2O)c(=O)[nH]1	(5-(2,4-Dioxopyrimidin-1-yl)-3,4-dihydroxyoxolan-2-yl)methyl dihydrogen phosphate
+pos_B11	NCC(O)c1cc(O)c(O)cc1	1,2-Benzenediol, 4-(2-amino-1-hydroxyethyl)-
+pos_C11	COc1c(O)cc2CCC3C(CCC4(C)C(O)CCC34)c2c1	2-Methoxy-13-methyl-6,7,8,9,11,12,14,15,16,17-decahydrocyclopenta[a]phenanthrene-3,17-diol
+pos_D11	CCCCCC(O)/C=C/C1C(O)CC(=O)C1CCCCCCC(=O)O	7-[3-hydroxy-2-[(E)-3-hydroxyoct-1-enyl]-5-oxocyclopentyl]heptanoic acid
+pos_E11	C#CC1(O)CCC2C3CCc4cc(O)ccc4C3CCC21C	BFPYWIDHMRZLRN-UHFFFAOYSA-N
+pos_F11	CC(=O)OCC[N+](C)(C)C	OIPILFWXSMYKGL-UHFFFAOYSA-N
+pos_G11	O=C(O)/C=C/c1ccc(O)c(O)c1	QAIPRVGONGVQAS-DUXPYHPUSA-N
+pos_H11	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	MPDGHEJMBKOTSU-UHFFFAOYSA-N
+pos_A2	COc1cc(/C=C/C(=O)O)ccc1O	Ferulic Acid
+pos_B2	c1coc(CNc2ncnc3c2[nH]cn3)c1	Kinetin
+pos_C2	CC1(C)CC(C(=O)O)C2CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	10-hydroxy-2,2,6a,6b,9,9,12a-heptamethyl-3,4,4a,5,6,6a,7,8,8a,10,11,12,13,14b-tetradecahydro-1H-picene-4-carboxylic acid
+pos_D2	C=CC1(C)CC(=O)C2(O)C(C)(O1)C(OC(C)=O)C(O)C1C(C)(C)CCC(O)C12C	6,10,10b-Trihydroxy-3,4a,7,7,10a-pentamethyl-1-oxo-3-vinyldodecahydro-1H-benzo(f)chromen-5-yl acetate
+pos_E2	Oc1ccc(C2COc3cc(O)ccc3C2)cc1	4',7-Dihydroxy-3,4-dihydroisoflavone
+pos_F2	NCC(=O)CCC(=O)O	5-Aminolevulinic Acid
+pos_G2	C#CC1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3CCC21C	17-Hydroxypregn-4-en-20-yn-3-one
+pos_H2	COc1cc(C=O)ccc1O	Vanillin
+pos_A3	NCC(O)c1ccc(O)cc1	Octopamine
+pos_B3	O=C(/C=C/c1ccc(O)c(O)c1)OC(Cc1ccc(O)c(O)c1)C(=O)O	DOUMFZQKYFQNTF-ZZXKWVIFSA-N
+pos_C3	COc1cc(C(=O)O)cc(OC)c1O	JMSVCTWVEWCHDZ-UHFFFAOYSA-N
+pos_D3	COC(=O)c1cc(OC)c(O)cc1	BVWTXUYLKBHMOX-UHFFFAOYSA-N
+pos_E3	O=c1cc(-c2ccccc2)oc2c1cc(O)cc2	6-Hydroxyflavone
+pos_F3	NC(=O)c1c(N)[nH]cn1	DVNYTAVYBRSTGK-UHFFFAOYSA-N
+pos_G3	CC(CCC(=O)NCCS(=O)(=O)O)C1CCC2C3C(O)CC4CC(O)CCC4(C)C3CCC12C	2-[4-(3,7-dihydroxy-10,13-dimethyl-2,3,4,5,6,7,8,9,11,12,14,15,16,17-tetradecahydro-1H-cyclopenta[a]phenanthren-17-yl)pentanoylamino]ethanesulfonic acid
+pos_H3	CC(C)C(NC(=O)C(CC(=O)O)NC(=O)C(CCCCN)NC(=O)C(N)CCCNC(=N)N)C(=O)NC(Cc1ccc(O)cc1)C(=O)O	PSWFFKRAVBDQEG-UHFFFAOYSA-N
+pos_A4	O=c1ccc2c(cc(O)cc2)o1	Umbelliferone
+pos_B4	O=C(O)/C=C/c1ccccc1	Cinnamic Acid
+pos_C4	O=C(O)c1ccc(O)cc1	FJKROLUGYXJWQN-UHFFFAOYSA-N
+pos_D4	O=C/C=C/c1ccccc1	KJPRLNWUNMBNBZ-QPJJXVBHSA-N
+pos_E4	C[N+]1(C)CCCC1C(=O)[O-]	1,1-Dimethylpyrrolidin-1-Ium-2-Carboxylate
+pos_F4	O=C(O)CCC(=O)O	Succinic Acid
+pos_G4	O=C(O)CCc1ccc(O)cc1	3-(4-Hydroxyphenyl)propionic acid
+pos_H4	O=C(O)/C=C/CCCCCCCO	10-Hydroxy-2-decenoic acid
+pos_A5	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)C(=O)C(O)CC2(C)C)C(C)(C)CC(O)C1=O	3,3'-Dihydroxy-beta,beta-carotene-4,4'-dione
+pos_B5	COc1c(O)cccc1	Guaiacol
+pos_C5	Oc1c(O)c(O)ccc1	Pyrogallol
+pos_D5	O=C(O)C1(O)CC(O)C(O)C(O)C1	1,3,4,5-Tetrahydroxycyclohexanecarboxylic acid
+pos_E5	COc1ccc(-c2coc3c(ccc(OC)c3)c2=O)cc1	4',7-Dimethoxyisoflavone
+pos_F5	O=CC(NS(=O)(=O)O)C(O)C(O)C(O)CO	N-Sulfo-glucosamine sodium salt
+pos_G5	COc1c(OC)cc(CC(=O)O)cc1	WUAXWQRULBZETB-UHFFFAOYSA-N
+pos_H5	O=c1cc(-c2ccccc2)oc2c1cccc2	Flavone
+pos_A6	CCCCCCCCCCCCCCCCCCOCC(O)CO	Batyl Alcohol
+pos_B6	O=C(O)CCCCC1CCSS1	AGBQKNBQESQNJD-UHFFFAOYSA-N
+pos_C6	N=C(N)N	Guanidine
+pos_D6	OCC(O)C(O)CO	Butane-1,2,3,4-Tetrol
+pos_E6	CC(=O)NC(CCC(N)=O)C(=O)O	4-Carbamoyl-2-acetamidobutanoic acid
+pos_F6	O=C(O)c1c(O)cccc1	Salicylic Acid
+pos_G6	O=C(O)CCCCCCCC(=O)O	Azelaic Acid
+pos_H6	O=C1OC(CO)C(O)C(O)C1O	Aldono-1,5-lactone
+pos_A7	O=C(O)/C=C/c1ccc(O)cc1	P-Coumaric Acid
+pos_B7	O=C(O)Cc1c[nH]c2c1cccc2	Indole-3-Acetic Acid
+pos_C7	O=C(O)Cc1ccc(O)cc1	Hydroxyphenylacetic acid
+pos_D7	CC(C)=CCC/C(C)=C/CC/C(C)=C/CO	Farnesol
+pos_E7	O=C(O)c1c(O)c(O)ccc1	2,3-Dihydroxybenzoic Acid
+pos_F7	O=C(O)/C=C/C(=O)O	Fumaric Acid
+pos_G7	O=C(O)CCCCCCCC(O)C(O)CCCCCCO	9,10,16-Trihydroxyhexadecanoic acid
+pos_H7	O=C1OC(C(O)CO)C([O-])=C1O	2-(1,2-Dihydroxyethyl)-4-hydroxy-5-oxo-2,5-dihydrofuran-3-olate (non-preferred name)
+pos_A8	Cc1ncc(CSSCc2cnc(C)c(O)c2CO)c(CO)c1O	Pyritinol
+pos_B8	O=C(CO)C(O)C(O)C(O)CO	1,3,4,5,6-Pentahydroxyhexan-2-One
+pos_C8	CCCCCCCCCCCCCCCCCCCCCC(=O)O	Docosanoic Acid
+pos_D8	CCCCCCCC/C=C\CCCCCCCCCCCC(=O)O	Erucic Acid
+pos_E8	O=C(CO)C(O)C(O)C(O)CO	1,3,4,5,6-Pentahydroxyhexan-2-One
+pos_F8	CCCOC(=O)c1ccc(O)cc1	Propylparaben
+pos_G8	CC(=O)OCC(=O)C1(O)CCC2C3CCC4=CC(=O)CCC4(C)C3C(O)CC21C	11,17-Dihydroxy-3,20-dioxopregn-4-en-21-yl acetate
+pos_H8	CCCCCCCCCCCCCCCCCCCC(=O)O	Eicosanoic Acid
+pos_A9	NC(=O)Cc1c[nH]c2c1cccc2	Indole-3-acetamide
+pos_B9	CCCCC/C=C\C/C=C\C/C=C\CCCCC(=O)O	Gamma-Linolenic acid
+pos_C9	CC(CCC(=O)O)C1CCC2C3C(=O)CC4CC(=O)CCC4(C)C3CC(=O)C12C	3,7,12-Trioxocholan-24-oic acid
+pos_D9	CCCCC/C=C\C/C=C\CCCCCCCC(=O)O	Linoleic Acid
+pos_E9	CCCCCCCCCCCCCC(=O)OCC(O)CO	Glyceryl Myristate
+pos_F9	Cc1cn(C2CC(O)C(CO)O2)c(=O)nc1N	4-Amino-1-[4-hydroxy-5-(hydroxymethyl)tetrahydrofuran-2-yl]-5-methyl-pyrimidin-2-one
+pos_G9	COc1cccc(C(=O)O)c1	3-Methoxybenzoic Acid
+pos_H9	C[N+](C)(C)[O-]	Trimethylamine oxide
+pos_A10	O=C(O)CCCCCCCCCCCC(=O)O	DXNCZXXFRKPEPY-UHFFFAOYSA-N
+pos_B10	CCC(C(=O)O)c1ccccc1	OFJWFSNDPCAWDK-UHFFFAOYSA-N
+pos_C10	O=C(O)Cc1c[nH]cn1	PRJKNHOMHKJCEJ-UHFFFAOYSA-N
+pos_D10	CC(C)C(O)C(=O)O	(+-)-2-Hydroxyisovaleric acid
+pos_E10	CCCCCCCCCCCCC(=O)O	Tridecanoic acid
+pos_F10	OCC1OC(OC2C(CO)OC(OC3C(CO)OC(O)C(O)C3O)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G94390VI
+pos_G10	CCCCC/C=C\C/C=C\CCCCCCCC(=O)OCC(COC(=O)CCCCCCC/C=C\C/C=C\CCCCC)OC(=O)CCCCCCC/C=C\C/C=C\CCCCC	HBOQXIRUPVQLKX-BBWANDEASA-N
+pos_H10	CC(CCC(=O)O)CC(=O)O	SYEOWUNSTUDKGM-UHFFFAOYSA-N
+pos_A11	CCC(C)(O)C(=O)O	MBIQENSCDNJOIY-UHFFFAOYSA-N
+pos_B11	O=S(=O)([O-])CCO	SUMDYPCJJOFFON-UHFFFAOYSA-M
+pos_C11	CC(=O)CCC(=O)O	JOOXCMJARBKPKM-UHFFFAOYSA-N
+pos_D11	O=C(O)CCCCCCC(=O)O	TYFQFVWCELRYAO-UHFFFAOYSA-N
+pos_E11	O=C(O)C(O)C(O)C(=O)O	FEWJPZIEWOKRBE-UHFFFAOYSA-N
+pos_F11	CC(C)=CC(=O)O	3-Methyl-2-butenoic acid
+pos_G11	NOC=O	Amino Formate
+pos_H11	O=C(O)C(O)Cc1ccccc1	(+-)-3-Phenyllactic acid
+pos_A2	O=C(O)CO	Glycolic Acid
+pos_B2	COC(=O)Cc1c[nH]c2c1cccc2	Methyl indole-3-acetate
+pos_C2	O=C(O)c1cnc(O)cc1	6-Hydroxynicotinic acid
+pos_D2	O=C(O)CC(O)C(=O)O	Malic Acid
+pos_E2	O=C(O)c1c(O)cc(O)cc1	2,4-Dihydroxybenzoic Acid
+pos_F2	COc1ccccc1C(=O)O	2-Methoxybenzoic acid
+pos_G2	Oc1c(O)cccc1	Catechol
+pos_H2	CC(C)(O)C(=O)O	2-Hydroxyisobutyric acid
+pos_A3	CCc1ccc(O)cc1	4-Ethylphenol
+pos_B3	CCCCCCCC(=O)OCC(COC(=O)CCCCCCC)OC(=O)CCCCCCC	Tricaprylin
+pos_C3	O=CC(O)C(O)C(O)CO	PYMYPHUHKUWMLA-UHFFFAOYSA-N
+pos_D3	NCCS	Cysteamine
+pos_E3	NC(=O)c1c(O)cccc1	Salicylamide
+pos_F3	O=C(O)CC(O)C(=O)O	Malic Acid
+pos_G3	CN1C(=O)CCC1c1cnccc1	(+-)-Cotinine
+pos_H3	OCC1OC(OCC2OC(OC3(CO)OC(CO)C(O)C3O)C(O)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G65859HT
+pos_A4	O=C(CO)C(OC1OC(CO)C(O)C(O)C1O)C(O)C(O)CO	1,4,5,6-Tetrahydroxy-3-[3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]oxyhexan-2-one
+pos_B4	CCCCCCCCCCC(=O)O	Undecanoic Acid
+pos_C4	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5C(O)CC43C)C2C1C	8,10,11-Trihydroxy-9-(Hydroxymethyl)-1,2,6A,6B,9,12A-Hexamethyl-2,3,4,5,6,6A,7,8,8A,10,11,12,13,14B-Tetradecahydro-1H-Picene-4A-Carboxylic Acid
+pos_D4	O=C(O)/C=C/c1ccc(O)cc1	P-Coumaric Acid
+pos_E4	O=C1CC(c2cc(O)c(O)cc2)Oc2c1c(O)cc(O)c2	(+-)-Eriodictyol
+pos_F4	CCC(c1ccccc1)c1c(O)c2ccccc2oc1=O	DQDAYGNAKTZFIW-UHFFFAOYSA-N
+pos_G4	CC(C)CC(=O)O	Isovaleric Acid
+pos_H4	CCCC(=O)OC1(C(=O)CO)CCC2C3CCC4=CC(=O)CCC4(C)C3C(O)CC21C	[11-hydroxy-17-(2-hydroxyacetyl)-10,13-dimethyl-3-oxo-2,6,7,8,9,11,12,14,15,16-decahydro-1H-cyclopenta[a]phenanthren-17-yl] butanoate
+pos_A5	Oc1ccc(C2COc3c(ccc(O)c3)C2)cc1	ADFCQWZHKCXPAJ-UHFFFAOYSA-N
+pos_B5	NS(=O)(=O)c1cc2c(cc1Cl)NC(C1CC3C=CC1C3)NS2(=O)=O	BOCUKUHCLICSIY-UHFFFAOYSA-N
+pos_C5	COc1cc(C(O)C(=O)O)ccc1O	Vanillylmandelic Acid
+pos_D5	O=CC(O)C(O)C(OC1OC(CO)C(OC2OC(CO)C(OC3OC(CO)C(O)C(O)C3O)C(O)C2O)C(O)C1O)C(O)CO	Hex(?1-4)Hex(?1-4)Hex(?1-4)aldehydo-Hex
+pos_E5	COC1C(OC(C)=O)CC(=O)OC(C)C/C=C/C=C/C(O)C(C)CC(CC=O)C1OC1OC(C)C(OC2CC(C)(O)C(OC(=O)CC(C)C)C(C)O2)C(N(C)C)C1O	-2,4-dimethyltetrahydro-2H-pyran-3-yl 3-methylbutanoate
+pos_F5	CN1CCN(CCCN2c3c(cccc3)Sc3c2cc(C(F)(F)F)cc3)CC1	Trifluoperazine
+pos_G5	Nc1cc(Cl)c(NC2=NCCN2)c(Cl)c1	Apraclonidine
+pos_H5	CC(O)CC(=O)O	3-Hydroxybutyric Acid
+pos_A6	CCCCCCCCCCCCC/C=C/C(O)C(N)CO	(E)-2-aminooctadec-4-ene-1,3-diol
+pos_B6	CCCCCCCCCCCCCC(=O)OC(C)C	Isopropyl Myristate
+pos_C6	FCOC(C(F)(F)F)C(F)(F)F	Sevoflurane
+pos_D6	NC(=O)c1ccc[n+](C2OC(CO)C(O)C2O)c1	1-(|A-D-ribofuranosyl)-nicotinamide
+pos_E6	CCCCCCCCCCCCCC(=O)O	TUNFSRHWOTWDNC-UHFFFAOYSA-N
+pos_F6	COC1CC2CCC(C)C(O)(O2)C(=O)C(=O)N2CCCCC2C(=O)OC(C(C)CC2CCC(O)C(OC)C2)CC(=O)C(C)/C=C(\C)C(O)C(OC)C(=O)C(C)CC(C)/C=C/C=C/C=C/1C	QFJCIRLUMZQUOT-VITWRJIQSA-N
+pos_G6	CC(=O)OC12COC1CC(O)C1(C)C(=O)C(O)C3=C(C)C(OC(=O)C(O)C(NC(=O)OC(C)(C)C)c4ccccc4)CC(O)(C(OC(=O)c4ccccc4)C21)C3(C)C	ZDZOTLJHXYCWBA-UHFFFAOYSA-N
+pos_H6	O=c1[nH]cc(F)c(=O)[nH]1	GHASVSINZRGABV-UHFFFAOYSA-N
+pos_A7	CC1=C(O)C(=O)C=C2C1=CC=C1C2(C)CCC2(C)C3CC(C)(C(=O)O)CCC3(C)CCC12C	KQJSQWZMSAGSHN-UHFFFAOYSA-N
+pos_B7	S=c1nc[nH]c2c1[nH]cn2	GLVAUDGFNGKCSF-UHFFFAOYSA-N
+pos_C7	C=C1C(=O)OC2/C=C(\C)CC/C=C(\C)CCC12	HRYLQFBHBWLLLL-WTIVLTGYSA-N
+pos_D7	CC1=NN(c2ccccc2)C(=O)C1	Mci-186
+pos_E7	CC1C(=O)OC2C(O)C34C5CC(C(C)(C)C)C36C(OC(=O)C6O)OC4(C(=O)O5)C12O	Npc169089
+pos_F7	C=C1/C(=C\C=C2/CCCC3(C)C2CCC3C(C)CCCC(C)(C)O)CC(O)CC1O	(5Z)-5-[(2E)-2-[1-(6-hydroxy-6-methylheptan-2-yl)-7a-methyl-2,3,3a,5,6,7-hexahydro-1H-inden-4-ylidene]ethylidene]-4-methylidenecyclohexane-1,3-diol
+pos_G7	CC1C/C=C/C=C/C=C/C=C/C(OC2OC(C)C(O)C(N)C2O)CC2OC(O)(CC(O)CC3OC3/C=C/C(=O)O1)CC(O)C2C(=O)O	(8E,14E,16E,18E,20E)-22-[(3-amino-3,6-dideoxyhexopyranosyl)oxy]-1,3,26-trihydroxy-12-methyl-10-oxo-6,11,28-trioxatricyclo[22.3.1.0~5,7~]octacosa-8,14,16,18,20-pentaene-25-carboxylic acid
+pos_H7	Nc1ccc(O)c(C(=O)O)c1	5-Aminosalicylic Acid
+pos_A8	CC12C=CC(=O)C=C1CCC1C2C(O)CC2(C)C1CCC2(O)C(=O)CO	11,17,21-Trihydroxypregna-1,4-diene-3,20-dione
+pos_B8	CN(C)C1C(O)=C(C(N)=O)C(=O)C2(O)C(=O)C3=C(O)c4c(cccc4O)C(C)(O)C3C(O)C12	Oxydon
+pos_C8	Nc1nc(=S)c2c(nc[nH]2)[nH]1	Thioguanine
+pos_D8	COC(=O)Nc1nc2ccc([S+]([O-])c3ccccc3)cc2[nH]1	Oxfendazole
+pos_E8	O=c1c(-c2ccc(O)cc2)coc2cc(O)ccc12	Daidzein
+pos_F8	CCC(=O)OC1(C(=O)SCF)C(C)CC2C3CC(F)C4=CC(=O)C=CC4(C)C3(F)C(O)CC21C	WMWTYOKRWGGJOA-UHFFFAOYSA-N
+pos_G8	CC1C(=O)OC2CC34C5CC(C(C)(C)C)C36C(OC(=O)C6O)OC4(C(=O)O5)C21O	FPUXKXIZEIDQKW-UHFFFAOYSA-N
+pos_H8	O=C(OC1Cc2c(cc(O)cc2O)OC1c1cc(O)c(O)c(O)c1)c1cc(O)c(O)c(O)c1	WMBWREPUVVBILR-UHFFFAOYSA-N
+pos_A9	O=c1ccc2cc(OC3OC(CO)C(O)C(O)C3O)c(O)cc2o1	XHCADAYNFIFUHF-UHFFFAOYSA-N
+pos_B9	O=C1c2c(C(=O)c3c1cc(CO)cc3O)c(O)ccc2	YDQWDHRMZQUTBA-UHFFFAOYSA-N
+pos_C9	OCC1OC(Oc2ccc(O)cc2)C(O)C(O)C1O	BJRNKVDFDLYUGJ-UHFFFAOYSA-N
+pos_D9	CC(C)(C)C1(O)CC2OC(=O)CC23C(=O)OC2OC(=O)C(O)C231	MOLPUWBMSBJXER-UHFFFAOYSA-N
+pos_E9	O=C(/C=C/c1cc(O)c(O)cc1)OC1CC(O)(C(=O)O)CC(O)C1O	CWVRJTMFETXNAD-DUXPYHPUSA-N
+pos_F9	C=CC1CN2CCC1CC2C(O)c1ccnc2ccccc12	KMPWYEUPVWOPIM-UHFFFAOYSA-N
+pos_G9	CC1CCC2C(C)C(O)OC3OC4(C)CCC1C32OO4	BJDCWCLMFKKGEE-UHFFFAOYSA-N
+pos_H9	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(OC6OC(C(=O)O)C(O)C(O)C6OC6OC(C(=O)O)C(O)C(O)C6O)C(C)(C)C5CCC43C)C2C1	LPLVUJXQOOQHMX-UHFFFAOYSA-N
+pos_A10	CC(C)=CCCC(C)(OC1OC(COC2OCC(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	ZTQSADJAYQOCDD-UHFFFAOYSA-N
+pos_B10	COc1ccc(C2CC(=O)c3c(O)cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O2)cc1O	Hesperetin-7-Rutinoside
+pos_C10	OCc1c[nH]c2c1cccc2	Indole-3-Carbinol
+pos_D10	O=c1c(O)c(-c2ccc(O)cc2)oc2cc(O)cc(O)c12	Kaempferol
+pos_E10	CC1(C)OC2CC(=O)OCC23C1CC(=O)C1(C)C3CCC2(C)C(c3cocc3)OC(=O)C3OC321	Evodia fruit
+pos_F10	O=c1c(O)c(-c2cc(O)c(O)c(O)c2)oc2cc(O)cc(O)c12	Myricetin
+pos_G10	COc1c(OC)cc(-c2cc(=O)c3c(OC)c(OC)c(OC)c(OC)c3o2)cc1	Nobiletin
+pos_H10	O=C(CCc1ccc(O)cc1)c1c(O)cc(O)cc1O	VGEREEWJJVICBM-UHFFFAOYSA-N
+pos_A11	O=C(/C=C/C=C/c1cc2c(cc1)OCO2)N1CCCCC1	Piperine
+pos_B11	CC1OC(OCC2OC(Oc3c(-c4cc(O)c(O)cc4)oc4c(c(O)cc(O)c4)c3=O)C(O)C(O)C2O)C(O)C(O)C1O	IKGXIBQEEMLURG-UHFFFAOYSA-N
+pos_C11	C=CC(C)(O)CCC1C(C)(O)CCC2C(C)(C)CCCC21C	XVULBTBTFGYVRC-UHFFFAOYSA-N
+pos_D11	O=C(O)C1=CC(O)C(O)C(O)C1	JXOHGGNKMLTUBP-UHFFFAOYSA-N
+pos_E11	COc1cc(C2Oc3cc(C4Oc5cc(O)cc(O)c5C(=O)C4O)ccc3OC2CO)ccc1O	Silymarin
+pos_F11	COc1ccc(-c2cc(=O)c3c(OC)c(OC)c(OC)c(OC)c3o2)cc1	Tangeretin
+pos_G11	CC1OC(OCC2OC(Oc3c(-c4cc(OCCO)c(OCCO)cc4)oc4cc(OCCO)cc(O)c4c3=O)C(O)C(O)C2O)C(O)C(O)C1O	IYVFNTXFRYQLRP-UHFFFAOYSA-N
+pos_H11	CC1CC(C(=O)O)C2CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C	10-Hydroxy-1,2,6a,6b,9,9,12a-heptamethyl-1,2,3,4,4a,5,6,6a,7,8,8a,10,11,12,13,14b-hexadecahydropicene-4-carboxylic acid
+pos_A2	COc1cc(CCC(C)=O)ccc1O	Zingerone
+pos_B2	COc1ccc(-c2cc(=O)c3c(O)cc(O)cc3o2)cc1O	Diosmetin
+pos_C2	O=C1CC(c2ccc(O)cc2)Oc2cc(O)cc(O)c12	(+-)-Naringenin
+pos_D2	Cc1cc2c(C(=O)c3c(O)cccc3C2=O)c(O)c1	Chrysophanol
+pos_E2	COC(=O)C1=COC(O)C2C(CO)=CCC12	Methyl 1-hydroxy-7-(hydroxymethyl)-1,4a,5,7a-tetrahydrocyclopenta[c]pyran-4-carboxylate
+pos_F2	O=C(O)C1=COC(OC2OC(CO)C(O)C(O)C2O)C2C(CO)=CCC12	7-(Hydroxymethyl)-1-[3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]oxy-1,4a,5,7a-tetrahydrocyclopenta[c]pyran-4-carboxylic acid
+pos_G2	CC(C)(O)CCC(O)C(C)(O)C1CCC2(O)C3=CC(=O)C4CC(O)C(O)CC4(C)C3CCC12C	2,3,14,20,22,25-Hexahydroxycholest-7-en-6-one
+pos_H2	COC(=O)Nc1nc2c(cc(Sc3ccccc3)cc2)[nH]1	Fenbendazole
+pos_A3	COc1c(C)c2c(C(=O)OC2)c(O)c1C/C=C(\C)CCC(=O)O	HPNSFSBZBAHARI-RUDMXATFSA-N
+pos_B3	CCCCCCCCCCCCCCCC(=O)OCC(O)C1OC(=O)C(O)=C1O	QAQJMLQRFWZOBN-UHFFFAOYSA-N
+pos_C3	COC(=O)/C=C/C(=O)OC	LDCRTTXIJACKKU-ONEGZZNKSA-N
+pos_D3	CNc1ncnc2c1ncn2C1OC(CO)C(O)C1O	VQAYFKKCNSOZKM-UHFFFAOYSA-N
+pos_E3	C=C(C)C1CCC2(C(=O)O)CCC3(C)C(CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C12	QGJZLNKBHJESQX-UHFFFAOYSA-N
+pos_F3	CC1(C)C2CCC1(C)C(O)C2	DTGKSKDOIYIVQL-UHFFFAOYSA-N
+pos_G3	CC1CCC2(C(=O)OC3OC(COC4OC(CO)C(OC5OC(C)C(O)C(O)C5O)C(O)C4O)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5CCC43C)C2C1C	Npc29838
+pos_H3	COC(=O)Nc1nc2c(cccc2)[nH]1	TWFZGCMQGLPBSX-UHFFFAOYSA-N
+pos_A4	OCCc1ccc(O)cc1	Tyrosol
+pos_B4	CC1C(=O)OC2C(O)C34C5OC(=O)C3(OC3OC(=O)C(O)C34C(C(C)(C)C)C5O)C12O	ginkgolide-C
+pos_C4	CC1(C)OC(=O)C=CC2(C)C1CC(=O)C1(C)C2CCC2(C)C(c3cocc3)OC(=O)C3OC321	Casimirolide
+pos_D4	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OCC(O)C(O)C3O)CC12C	2-[1-[6-[4,5-dihydroxy-6-(hydroxymethyl)-3-(3,4,5-trihydroxytetrahydropyran-2-yl)oxy-tetrahydropyran-2-yl]oxy-3,12-dihydroxy-4,4,8,10,14-pentamethyl-2,3,5,6,7,9,11,12,13,15,16,17-dodecahydro-1H-cyclopenta[a]phenanthren-17-yl]-1,5-dimethyl-hex-4-enoxy]-6-(hydroxymethyl)tetrahydropyran-3,4,5-triol
+pos_E4	Cc1ccc(C(C)C)cc1O	Carvacrol
+pos_F4	C/C=C(\C)C(=O)O	Tiglic acid
+pos_G4	CC=C1C(=O)CC2C3CCC4=CC(=O)CCC4(C)C3CCC12C	Pregna-4,17-diene-3,16-dione
+pos_H4	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	Stevia rebaudiana, ext.
+pos_A5	C/C=C(/C)C(=O)O	2,3-Dimethylacrylic acid, (Z)-
+pos_B5	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(O)C1OC1OC(CO)C(O)C(O)C1O)C3	1-O-(13-((2-O-hexopyranosylhexopyranosyl)oxy)-18-oxokaur-16-en-18-yl)hexopyranose
+pos_C5	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)CC12C	Panax saponin C
+pos_D5	COc1cc2c(cc1OC1OC(CO)C(O)C(O)C1O)occ(-c1ccc(O)cc1)c2=O	4H-1-Benzopyran-4-one,7-(b-D-glucopyranosyloxy)-3-(4-hydroxyphenyl)-6-methoxy-
+pos_E5	OCCc1ccc(O)c(O)c1	Hydroxytyrosol
+pos_F5	C=C1C(=O)OC2CC3(C)CCCC(=C)C3CC12	Isohelenin
+pos_G5	CC(CCC1(O)OC2CC3C4CC=C5CC(OC6OC(CO)C(OC7OC(C)C(O)C(O)C7O)C(O)C6OC6OC(C)C(O)C(O)C6O)CCC5(C)C4CCC3(C)C2C1C)COC1OC(CO)C(O)C(O)C1O	beta-D-Glucopyranoside, (3beta,25R)-26-(beta-D-glucopyranosyloxy)-22-hydroxyfurost-5-en-3-yl O-6-deoxy-alpha-L-mannopyranosyl-(1->2)-O-(6-deoxy-alpha-L-mannopyranosyl-(1->4))-
+pos_H5	O=c1cc(-c2ccc(O)c(-c3c(O)cc(O)c4c3oc(-c3ccc(O)cc3)cc4=O)c2)oc2c1c(O)cc(O)c2	YUSWMAULDXZHPY-UHFFFAOYSA-N
+pos_A6	CC1CCC2(C(=O)OC3OC(COC4OC(CO)C(OC5OC(C)C(O)C(O)C5O)C(O)C4O)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(CO)C5C(O)CC43C)C2C1C	Npc277561
+pos_B6	COc1ccc(-c2cc(=O)c3c(cc(O)c(OC)c3O)o2)cc1OC	Eupatilin
+pos_C6	CC1(C)CCCC(C)(C2CCC3(C)C2C(O)CC2C4(C)CCC(O)C(C)(C)C4C(O)CC23C)O1	QFJUYMMIBFBOJY-UHFFFAOYSA-N
+pos_D6	C=C(C)C1CC=C(CO)CC1	Perillyl Alcohol
+pos_E6	OCc1ccc(O)cc1	4-Hydroxybenzyl Alcohol
+pos_F6	COc1cc(CO)ccc1O	Vanillyl alcohol
+pos_G6	COc1cc2c(cc1)c1ccnc(C)c1[nH]2	Harmine
+pos_H6	CC(C)C(C)C(O)C(O)C(C)C1CCC2C3COC(=O)C4CC(O)C(O)CC4(C)C3CCC12C	10-(3,4-Dihydroxy-5,6-dimethylheptan-2-yl)-5,6-dihydroxy-7a,9a-dimethylhexadecahydro-3H-benzo(c)indeno(5,4-e)oxepin-3-one
+pos_A7	CN1CCc2c(cc3OCOc3c2)C(=O)Cc2c(C1)c1c(cc2)OCO1	Protopine
+pos_B7	COc1c(O)ccc(CC2C(=O)OCC2Cc2ccc(OC)c(OC)c2)c1	l-Arctigenin
+pos_C7	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(=O)C(C)(C)C5CCC43C)C2C1C	MUCRYNWJQNHDJH-UHFFFAOYSA-N
+pos_D7	COc1c(O)ccc(CCC(=O)CC(=O)CCc2ccc(O)c(OC)c2)c1	Tetrahydrocurcumin
+pos_E7	COc1ccc(-c2cc(=O)c3c(cc(OC)cc3O)o2)cc1	5-Hydroxy-7,4'-dimethoxyflavone
+pos_F7	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3O)CC12C	YURJSTAIMNSZAE-UHFFFAOYSA-N
+pos_G7	CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	GZYPWOGIYAIIPV-UHFFFAOYSA-N
+pos_H7	O=C1CC(c2ccc(O)cc2)Oc2cc(O)ccc12	4',7-Dihydroxyflavanone
+pos_A8	O=C1CC(c2ccc(OC3OC(CO)C(O)C(O)C3O)cc2)Oc2c1ccc(O)c2	DEMKZLAVQYISIA-UHFFFAOYSA-N
+pos_B8	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	2-[2-[[17-[1,5-dimethyl-1-[3,4,5-trihydroxy-6-(hydroxymethyl)tetrahydropyran-2-yl]oxy-hex-4-enyl]-12-hydroxy-4,4,8,10,14-pentamethyl-2,3,5,6,7,9,11,12,13,15,16,17-dodecahydro-1H-cyclopenta[a]phenanthren-3-yl]oxy]-4,5-dihydroxy-6-(hydroxymethyl)tetrahydropyran-3-yl]oxy-6-(hydroxymethyl)tetrahydropyran-3,4,5-triol
+pos_C8	CCCCCCCCC(=O)NCc1cc(OC)c(O)cc1	RGOVYLWUIBMPGK-UHFFFAOYSA-N
+pos_D8	O=C1CC(c2ccccc2)Oc2c1c(O)cc(O)c2	URFCJEUYXNAHFI-UHFFFAOYSA-N
+pos_E8	CC1CC(=O)CC2CCC3C4CCC(O)C4(C)CCC3C12C	UXYRZJKIQKRJCF-UHFFFAOYSA-N
+pos_F8	O=C(O)CCc1ccc(O)cc1O	HMCMTJPPXSGYJY-UHFFFAOYSA-N
+pos_G8	CC1(C)C2CCC1(C)C(O)C2	DTGKSKDOIYIVQL-UHFFFAOYSA-N
+pos_H8	COc1c(OC(C)=O)ccc(C=O)c1	PZSJOBKRSVRODF-UHFFFAOYSA-N
+pos_A9	CC1(C)C2CCC1(C)C(O)C2	DTGKSKDOIYIVQL-UHFFFAOYSA-N
+pos_B9	C=C1CCC2OC2(C)CCC2C1CC2(C)C	4,12,12-Trimethyl-9-methylene-5-oxatricyclo(8.2.0.04,6)dodecane
+pos_C9	COC(=O)c1ccc(O)cc1	Methylparaben
+pos_D9	CC1=CC(=O)CC(C)(C)C1=O	Ketoisophorone
+pos_E9	Cc1c2ccc(C)c-2cc(C(C)C)cc1	Guaiazulene
+pos_F9	Clc1cc2c(cc1)C(=C1CCNCC1)c1c(cccn1)CC2	Desloratadine
+pos_G9	O=S(=O)(O)NC1CCCCC1	Cyclamate
+pos_H9	Cc1c(-c2ccc(S(N)(=O)=O)cc2)c(-c2ccccc2)no1	Valdecoxib
+pos_A10	COc1ccc(O)cc1	NWVVVBRKAWDGAB-UHFFFAOYSA-N
+pos_B10	CC(=O)OC/C=C(C)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C	QGNJRVVDBSJHIZ-QHLGVNSISA-N
+pos_C10	Cc1c(C(N)=O)cc([N+](=O)[O-])cc1[N+](=O)[O-]	Dinitolmide
+pos_D10	Nc1nc(NC2CC2)nc(N)n1	Cyromazine
+pos_E10	OCC1OC(OC2(CCl)OC(CCl)C(O)C2O)C(O)C(O)C1Cl	GlyTouCan:G56943XV
+pos_F10	COC(=O)N/N=C/c1[n+]([O-])c2c(cccc2)[n+]([O-])c1	N-[(E)-(1-hydroxy-4-oxido-quinoxalin-4-ium-2-ylidene)methyl]iminocarbamic acid methyl ester
+pos_G10	CC12CCC(O)CC1CCC1C2CC(O)C2(C)C(C3=CC(=O)OC3)CCC12O	3-(3,12,14-trihydroxy-10,13-dimethyl-1,2,3,4,5,6,7,8,9,11,12,15,16,17-tetradecahydrocyclopenta[a]phenanthren-17-yl)-2H-furan-5-one
+pos_A11	CCOC(=O)c1ccc(O)cc1	Ethylparaben
+pos_B11	CCOC(N)=O	Carbamic acid, ethyl ester
+pos_C11	CCOc1c(O)ccc(C=O)c1	Ethylvanillin
+pos_D11	CCCCCCc1c(O)cc(O)cc1	Hexylresorcinol
+pos_E11	Oc1cc(O)ccc1	Resorcinol
+pos_F11	CC(=O)OCC(COC(C)=O)OC(C)=O	Triacetin
+pos_G11	CCCCOC(=O)c1ccc(O)cc1	Butylparaben
+pos_H11	O=C(O)c1cc(O)c(O)c(O)c1	Gallic Acid
+pos_A2	C#CC1(O)CCC2C3CCC4=CC(=O)CCC4C3C(=C)CC21CC	13-ethyl-17-ethynyl-17-hydroxy-11-methylidene-1,2,6,7,8,9,10,11,12,13,14,15,16,17-tetradecahydro-3H-cyclopenta[a]phenanthren-3-one (non-preferred name)
+pos_B2	O=c1ccc2c(cc(O)c(O)c2)o1	Esculetin
+pos_C2	CC1CCC(C(C)C)C(O)C1	Menthol
+pos_D2	NC(=O)c1ccccc1	Benzamide
+pos_E2	Oc1cc2c(CC(O)C(c3cc(O)c(O)cc3)O2)c(O)c1	2-(3,4-dihydroxyphenyl)-3,4-dihydro-2H-1-benzopyran-3,5,7-triol
+pos_F2	Oc1cc2c(CC(O)C(c3cc(O)c(O)cc3)O2)c(O)c1	2-(3,4-dihydroxyphenyl)-3,4-dihydro-2H-1-benzopyran-3,5,7-triol
+pos_G2	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2OC2OC(C)C(O)C(O)C2O)C1O)C3	CHACNMULAGKUQN-UHFFFAOYSA-N
+pos_H2	CC(CC(=O)CC(C)C1CC(O)C2(C)C3=C(C(=O)CC12C)C1(C)CCC(=O)C(C)(C)C1CC3O)C(=O)O	DYOKDAQBNHPJFD-UHFFFAOYSA-N
+pos_A3	C=C(C)C1CCC2(CO)CCC3(C)C(CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C12	Lup-20(29)-ene-3beta,28-diol
+pos_B3	CC12CCC3C(CCC4CC(=O)CCC43C)C1CCC2O	NVKAWKQGWWIWPM-UHFFFAOYSA-N
+pos_C3	CC1=CC(=O)C(C(C)C)=CC1=O	KEQHJBNSCLWCAE-UHFFFAOYSA-N
+pos_D3	O=C(/C=C/c1ccc(O)cc1)c1ccccc1	PWWCDTYUYPOAIU-DHZHZOJOSA-N
+pos_E3	OCC1OC(OC2C(O)C(CO)OC2(CO)OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G17361TJ
+pos_F3	C=C1CC23CC1(O)CCC2C12C=CC(O)C(C)(C(=O)O1)C2C3C(=O)O	Gibberellin
+pos_G3	C/C=C/c1c(OC)cc(OC)c(OC)c1	Asarone
+pos_H3	COc1cc2c(cc1)c1c([nH]2)C(C)=NCC1	Harmaline
+pos_A4	COc1cc(O)c(C(C)=O)c(OC)c1	Xanthoxylin
+pos_B4	CC(=O)c1c(O)cc(O)cc1O	2',4',6'-Trihydroxyacetophenone
+pos_C4	CC(=O)OC1(C)CCC23CC1C(C)(C)C2CCC3C	Cedran-8-yl acetate
+pos_D4	Cc1cc2c(cc1)oc(=O)cc2	6-Methylcoumarin
+pos_E4	O=C1NS(=O)(=O)c2c1cccc2	Saccharin
+pos_F4	CC1(C)CC(=O)CC(C)(C)N1	2,2,6,6-Tetramethyl-4-piperidone
+pos_G4	CC(C)=CCC/C(C)=C/CC/C(C)=C/CC/C=C(\C)CC/C=C(\C)CCC=C(C)C	Squalene
+pos_H4	O=C(O)c1ccco1	SMNDYUVBFMFKNZ-UHFFFAOYSA-N
+pos_A5	C/C(=C\CNc1ncnc2c1nc[nH]2)CO	UZKQTCBAMSWPJD-FARCUNLSSA-N
+pos_B5	CCc1c2Cn3c(cc4c(COC(=O)C4(O)CC)c3=O)-c2nc2c1cc(O)cc2	FJHBVJOVLFPMQE-UHFFFAOYSA-N
+pos_C5	Cc1c(O)c(=O)cco1	XPCTZQVDEJYUGT-UHFFFAOYSA-N
+pos_D5	C=CC(C)(O)CCC=C(C)C	CDOSHBSSFJOMGT-UHFFFAOYSA-N
+pos_E5	CC/C=C\CC1=C(C)CCC1=O	Jasmone
+pos_F5	CC(C)=CCC/C(C)=C\CO	Nerol
+pos_G5	C/C=C/C=C/C(=O)O	Sorbic Acid
+pos_H5	CC(C)(C)c1c(O)ccc(O)c1	Tert-Butylhydroquinone
+pos_A6	CC(=O)OC1CC(=O)OC(C)(C)C2CC(=O)C3(C)C(CCC4(C)C(c5cocc5)OC(=O)C5OC543)C12C	1-(Acetyloxy)-1,2-dihydroobacunoic acid eta-lactone
+pos_B6	C=CCOC(Cn1ccnc1)c1ccc(Cl)cc1Cl	Imazalil
+pos_C6	COc1ccc(C=O)cc1	4-Methoxybenzaldehyde
+pos_D6	CC(C)c1ccc(C=O)cc1	Cuminaldehyde
+pos_E6	CC(C)c1ccc(CO)cc1	Cuminol
+pos_F6	CC(=O)OC/C=C(\C)CCC=C(C)C	HIGQPQRQIQDZMP-DHZHZOJOSA-N
+pos_G6	CCC1OC(=O)CC(O)C(C)C(OC2OC(C)C(OC3CC(C)(O)C(O)C(C)O3)C(N(C)C)C2O)C(CC=O)CC(C)C(=O)/C=C/C(C)=C/C1COC1OC(C)C(O)C(OC)C1OC	WBPYTXDJUQJLPQ-LLMNDNAOSA-N
+pos_H6	O=C(/C=C/c1ccc(O)cc1)C1=C(O)C(O)(C2OC(CO)C(O)C(O)C2O)C(=O)/C(=C\C2=C(O)C(O)(C3OC(CO)C(O)C(O)C3O)C(O)=C(C(=O)/C=C/c3ccc(O)cc3)C2=O)C1=O	WLYGSPLCNKYESI-HRYANCJSSA-N
+pos_A7	CCCCCC1C(=O)CCC1CC(=O)OC	KVWWIYGFBYDJQC-UHFFFAOYSA-N
+pos_B7	OCC1OC(OC2C(O)C(CO)OC2(CO)OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G17361TJ
+pos_C7	COc1cc2c(cc1)ccc(=O)o2	Methylumbelliferone
+pos_D7	CC1(C)CCCC2(C)C1CCC1(C)OCCC12	Cetalox
+pos_E7	CC12CCC(=O)C=C1C=CC1C2CCC2(C)C1CCC21CCC(=O)O1	Phanurane
+pos_F7	O=c1oc2cc(O)ccc2c2ccc(O)cc12	Urolithin A
+pos_G7	CCCCCC1=C(C)CCC1=O	Dihydrojasmone
+pos_H7	COc1c(O)ccc(C(=O)O)c1	Vanillic Acid
+pos_A8	C=CC(C)(O)CC/C=C(\C)CCC=C(C)C	Nerolidol
+pos_B8	CCCCCCCC/C=C\CCCCCCCC(=O)OCC	Ethyl Oleate
+pos_C8	CCCCCCCCCC=O	Decanal
+pos_D8	CC12CCC(C1)C(C)(C)C2O	Fenchol
+pos_E8	CC(C)C12CCC(C)(CC1)O2	1,4-Cineole
+pos_F8	OCC1=CC(O)C2C=COC(OC3OC(CO)C(O)C(O)C3O)C12	Rhinanthin
+pos_G8	O=C(O)C1=COC(OC2OC(CO)C(O)C(O)C2O)C2C1C=CC2(O)CO	Monotropeine
+pos_H8	Nc1ccc(O)cc1	4-Aminophenol
+pos_A9	O=C1C=CC(=O)c2c1cccc2O	Juglone
+pos_B9	O=c1c(O)c(-c2ccccc2)oc2c1c(O)cc(O)c2	Galangin
+pos_C9	CC(C)=CCC/C(C)=C/CO	Geraniol
+pos_D9	CCCCCCCC(=O)CCc1ccc(O)c(OC)c1	CZNLTCTYLMYLHL-UHFFFAOYSA-N
+pos_E9	CC(=O)OCc1ccccc1	QUKGYYKBILRGFE-UHFFFAOYSA-N
+pos_F9	CC(=O)OC/C=C/c1ccccc1	Cinnamyl Acetate
+pos_G9	CC(C)=CCCC(C)CC=O	Citronellal
+pos_H9	O=C(O)/C=C/c1cc(O)ccc1	3-coumaric acid, (E)-
+pos_A10	CC1=CCC2C(C1)C2(C)C	BQOFWKZOCNGFEC-UHFFFAOYSA-N
+pos_B10	CC1=CCC2CC1C2(C)C	GRWFGVWFFZKLTI-UHFFFAOYSA-N
+pos_C10	COC(=O)c1ccco1	HDJLSECJEQSPKW-UHFFFAOYSA-N
+pos_D10	CCN(CC)c1cc2c(cc1)c(-c1c(C(=O)O)cccc1)c1ccc(=[N+](CC)CC)cc-1o2	Xanthylium, 9-(2-carboxyphenyl)-3,6-bis(diethylamino)-
+pos_E10	CC(O)c1ccc(S(=O)(=O)NC(=O)NC2CCCCC2)cc1	Hydroxyhexamide
+pos_F10	C=CCc1cc(OC)c(OC)cc1	Methyleugenol
+pos_G10	CCCCCCCCCCCCCCCCCC(=O)OC	Methyl Stearate
+pos_H10	CCCCC/C=C\C/C=C\CCCCCCCC(=O)OC	Methyl linoleate
+pos_A11	OC/C=C/c1ccccc1	Cinnamyl Alcohol
+pos_B11	CCCCOC(=O)c1c(C(=O)O)cccc1	Monobutyl phthalate
+pos_C11	CC(=O)OCCC(C)CCC=C(C)C	Citronellyl Acetate
+pos_D11	OCCCc1ccc(O)cc1	3-(4-Hydroxyphenyl)propanol
+pos_E11	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(\C)C=O)C(C)(C)CCC1	beta-apo-8'-CAROTENAL
+pos_F11	COc1ccc(C(=O)/C=C/c2ccccc2)cc1	4'-Methoxychalcone
+pos_G11	C/C1=C\CC(C)(C)/C=C/C(=O)/C(C)=C/CC1	Zerumbone
+pos_H11	O=C(O)CC1CCCCC1	Cyclohexaneacetic acid
+pos_A2	CCOC(=O)CC(C)=O	Ethyl Acetoacetate
+pos_B2	CCCCC(C)CCC(=O)O	4-Methyloctanoic acid
+pos_C2	COC(=O)Cc1ccc(C(C)(C)C)cc1	Methyl p-tert-butylphenylacetate
+pos_D2	CCCCC(CC)CCC(=O)O	4-Ethyloctanoic acid
+pos_E2	CCCCOC(=O)CCCCCCCCC(=O)OCCCC	Dibutyl Sebacate
+pos_F2	N#CCc1c[nH]c2c1cccc2	Indole-3-acetonitrile
+pos_G2	C=C(C)C1CC=C(C)C(=O)C1	Carvone, (+-)-
+pos_H2	C=C1CC/C=C(\C)CCC2C1CC2(C)C	Caryophyllene,alpha + beta mixt.
+pos_A3	CC/C=C\CCO	3-Hexenol
+pos_B3	CCCCC(C)C(=O)O	2-Methylhexanoic Acid
+pos_C3	CCC(C)CC(=O)O	3-Methylpentanoic acid
+pos_D3	CCCCCC(C)C(=O)O	2-Methylheptanoic acid
+pos_E3	c1coc(Cn2cccc2)c1	1-Furfurylpyrrole
+pos_F3	CC1=CCC(O)(C(C)C)CC1	Terpinen-4-ol
+pos_G3	CCC(O)C(=O)O	2-Hydroxybutyric Acid
+pos_H3	O=C(O)CC(Cc1ccccc1)C(=O)O	Benzylsuccinic acid
+pos_A4	O=C(O)/C=C/CCCCCCCCC(=O)O	Traumatic Acid
+pos_B4	CC(C)=CCCC(C)CC=O	Citronellal
+pos_C4	NC(=O)CCCCC1CCSS1	Lipoamide
+pos_D4	C=CCSC	Allyl methyl sulfide
+pos_E4	CCOC(=O)CC(=O)OCC	Diethyl Malonate
+pos_F4	C=CCCCCCCCCCO	10-Undecen-1-ol
+pos_G4	C=CC(N)=O	Acrylamide
+pos_H4	O=C(O)c1cc2c(cccc2)[nH]1	Indole-2-carboxylic acid
+pos_A5	COC(=O)c1cccnc1	Methyl Nicotinate
+pos_B5	C1CCNC1	Pyrrolidine
+pos_C5	CC(=O)c1nccnc1	Acetylpyrazine
+pos_D5	CCCC(=O)OCC(COC(=O)CCC)OC(=O)CCC	Tributyrin
+pos_E5	CCC1CCC(=O)O1	gamma-Hexalactone
+pos_F5	C=CCCC(=O)O	4-Pentenoic acid
+pos_G5	C=C1CCC2CC1C2(C)C	Beta-Pinene
+pos_H5	O=C(O)CC(CC(=O)O)C(=O)O	1,2,3-Propanetricarboxylic acid
+pos_A6	CC1=CC(=O)C(C)O1	ASOSVCXGWPDUGN-UHFFFAOYSA-N
+pos_B6	COC(=O)C1CCCCC1	Methyl cyclohexanecarboxylate
+pos_C6	CCC/C=C/C=O	MBDOYVRWFFCFHM-SNAWJCMRSA-N
+pos_D6	CC(S)C(=O)O	PMNLUUOXGOOLSP-UHFFFAOYSA-N
+pos_E6	COc1cccc(OC)c1C(=O)O	MBIZFBDREVRUHY-UHFFFAOYSA-N
+pos_F6	CCCC(C)C=O	FTZILAQGHINQQR-UHFFFAOYSA-N
+pos_G6	Cc1cccc(O)c1	RLSSMJSEOOYNOY-UHFFFAOYSA-N
+pos_H6	CCc1c(O)c(=O)cco1	YIKYNHJUKRTCJL-UHFFFAOYSA-N
+pos_A7	O=C(O)CCc1cc(O)c(O)cc1	DZAUWHJDUNRCTF-UHFFFAOYSA-N
+pos_B7	COc1cc(/C=C/CO)ccc1O	JMFRWRFFLBVWSI-NSCUHMNNSA-N
+pos_C7	C/C=C/C(=O)C1=C(C)C=CCC1(C)C	POIARNZEYGURDG-FNORWQNLSA-N
+pos_D7	CC1(C(=O)O)CCC2(C)CCC3(C)C(=CC(=O)C4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1	MPDGHEJMBKOTSU-UHFFFAOYSA-N
+pos_E7	CCC/C=C1\OC(=O)c2c1cccc2	(Z)-Butylidenephthalide
+pos_F7	COc1cc(/C=C/C(=O)N2CCC=CC2=O)cc(OC)c1OC	Piperlongumine
+pos_G7	CCCCCCCCCCCCCCCc1cccc(O)c1C(=O)O	Anacardic Acid
+pos_H7	CC1=CC(=O)CC(C)(C)C1(O)/C=C/C(C)=C\C(=O)O	(+/-)-Abscisic acid
+pos_A8	CCC(=C(c1ccc(O)cc1)c1ccc(OCCN(C)C)cc1)c1ccccc1	4-(1-(4-(2-(Dimethylamino)ethoxy)phenyl)-2-phenyl-1-buten-1-yl)phenol
+pos_B8	C=CC(C)(C)c1cc(/C=C/C(=O)c2ccc(O)cc2)c(OC)cc1O	Licochalcone A
+pos_C8	O=C(CC1NCCCC1O)Cn1cnc2cc(Br)c(Cl)cc2c1=O	LVASCWIMLIKXLA-UHFFFAOYSA-N
+pos_D8	CC(=O)OC(C)(C)/C=C/C(=O)C(C)(O)C1C(O)CC2(C)C3CC=C4C(CC(O)C(=O)C4(C)C)C3(C)C(=O)CC12C	IXQKXEUSCPEQRD-OUKQBFOZSA-N
+pos_E8	C=C1C(=O)OC2CC3(C)CCCC(C)C3=CC12	PXOYOCNNSUAQNS-UHFFFAOYSA-N
+pos_F8	CC(O)C(O)C(O)C(O)C=O	PNNNRSAQSRJVSB-UHFFFAOYSA-N
+pos_G8	C=C(C)C1CC=C(/C=N/O)CC1	XCOJIVIDDFTHGB-YRNVUSSQSA-N
+pos_H8	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	RWXIFXNRCLMQCD-UHFFFAOYSA-N
+pos_A9	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	CKUVNOCSBYYHIS-UHFFFAOYSA-N
+pos_B9	C[n+]1cc2c3OCOc3ccc2c2c1c1cc3c(cc1cc2)OCO3	Sanguinarine
+pos_C9	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(O)C1OC(=O)/C=C/c1ccc(O)c(O)c1	UFCLZKMFXSILNL-FCXRPNKRSA-N
+pos_D9	CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C)C5CCC43C)C2C1	2,3-Dihydroxy-12-oleanen-28-oic acid
+pos_E9	O=C(/C=C/c1ccc(O)cc1)C1=C(O)C(O)(C2OC(CO)C(O)C(O)C2O)C(O)=C(C2OC(CO)C(O)C(O)C2O)C1=O	2,5-dihydroxy-6-[(E)-1-hydroxy-3-(4-hydroxyphenyl)prop-2-enylidene]-2,4-bis[3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]cyclohex-4-ene-1,3-dione
+pos_F9	C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1	Nookatone
+pos_G9	Cc1cc(O)c(C(=O)CCC(C)C)c(=O)o1	Pogostone
+pos_H9	O=c1cc(-c2cc(O)c(O)cc2)oc2c1c(O)cc(O)c2C1OC(CO)C(O)C(O)C1O	Npc48700
+pos_A10	OCC1OC(OC2(COC3(CO)OC(CO)C(O)C3O)OC(CO)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G19464BO
+pos_B10	COc1c(O)c2c(cc1O)occ(-c1ccc(O)cc1)c2=O	Tectorigenin
+pos_C10	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3O)CC12C	2-((3,12-dihydroxy-17-(2-hydroxy-6-methylhept-5-en-2-yl)-4,4,8,10,14-pentamethyl-2,3,5,6,7,9,11,12,13,15,16,17-dodecahydro-1H-cyclopenta(a)phenanthren-6-yl)oxy)-6-(hydroxymethyl)oxane-3,4,5-triol
+pos_D10	CC(C)=C1CCC(C)CC1=O	p-Menth-4(8)-en-3-one
+pos_E10	COc1ccc(/C=C/c2cc(O)cc(O)c2)cc1O	Rhapontigenin
+pos_F10	C/C1=C\CCC(C)C(=O)CC(C(C)C)C(=O)C1	(6E)-6,10-dimethyl-3-propan-2-ylcyclodec-6-ene-1,4-dione
+pos_G10	O=c1ccc2cc3c(occ3)c(O)c2o1	Xanthotoxol
+pos_H10	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(O)C1OC1OC(CO)C(O)C(O)C1O)C3	Steviobioside
+pos_A11	C=C(C)C1CCC2(C)CCC(=O)C(C)=C2C1	4,4a,5,6,7,8-Hexahydro-1,4a-dimethyl-7-(1-methylethenyl)-2(3H)-naphthalenone
+pos_B11	COc1c(O)c2c(cc1)CC1c3c-2c(OC)c(OC)cc3CCN1C	Luteanine
+pos_C11	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(O)C1OC(=O)/C=C/c1ccc(O)c(O)c1	UFCLZKMFXSILNL-FCXRPNKRSA-N
+pos_D11	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(O)(C(=O)O)CC(OC(=O)/C=C/c2cc(O)c(O)cc2)C1O	Dicaffeoyl quinic acid
+pos_E11	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(O)CC12C	XNGXWSFSJIQMNC-UHFFFAOYSA-N
+pos_F11	O=C(/C=C/c1ccc(O)c(O)c1)OC1C(O)CC(O)(C(=O)O)CC1O	Caffeoyl quinic acid (isomer of 831, 832, 833)
+pos_G11	O=C(/C=C/C=C/c1ccccc1)CCc1ccccc1	(4E,6E)-1,7-Diphenylhepta-4,6-Dien-3-One
+pos_H11	C=C(C)C1CC=C(C)CC1	XMGQYMWWDOXHJM-UHFFFAOYSA-N
+pos_A2	COC1C(O)C(O)C(O)C(O)C1O	DSCFFEYYQKSRSV-UHFFFAOYSA-N
+pos_B2	OCC1OC(OC2OC(CO)C(O)C(O)C2O)C(O)C(O)C1O	HDTRYLNUVZCQOY-UHFFFAOYSA-N
+pos_C2	CCOC(=O)/C=C/c1ccc(OC)cc1	DHNGCHLFKUPGPX-RMKNXTFCSA-N
+pos_D2	O=C(O)C(=O)O	MUBZPKHOEPUJKR-UHFFFAOYSA-N
+pos_E2	O=C(O)Cc1c2ccccc2ccc1	PRPINYUDVPFIRX-UHFFFAOYSA-N
+pos_F2	CC(=O)c1c(O)ccc(O)c1	WLDWSGZHNBANIO-UHFFFAOYSA-N
+pos_G2	CC(=O)c1ccccc1O	2'-Hydroxyacetophenone
+pos_H2	CC(C)=CCCC(C(=O)O)C1CCC2(C)C3=C(CCC12C)C1(C)CCC(=O)C(C)(C)C1CC3	Elemadienonic acid
+pos_A3	CC12CC(c3cocc3)OC13CC(OC3=O)C1C3CC(CC12)OC3=O	Diosbulbin B
+pos_B3	O=c1ccc2c(cc3occc3c2O)o1	Bergaptol
+pos_C3	COC1=CC(=O)OC(CCc2ccccc2)C1	Marindinin
+pos_D3	C=CCCCCCCCCC(=O)O	Undecylenic Acid
+pos_E3	CCCCCCCCCC(C)O	(+-)-2-Undecanol
+pos_F3	CC1CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1(C)O	1,10-Dihydroxy-1,2,6a,6b,9,9,12a-heptamethyl-2,3,4,5,6,6a,7,8,8a,10,11,12,13,14b-tetradecahydropicene-4a-carboxylic acid
+pos_G3	CC12CCC(C1)C(C)(C)C2=O	LHXDLQBQYFFVNW-UHFFFAOYSA-N
+pos_H3	CC(=O)OC1CCC2(C)C(CCC3(C)C2C(=O)C=C2C4C(C)C(C)CCC4(C)CCC23C)C1(C)C(=O)O	Acetyl-11-keto-beta-Boswellic Acid, Boswellia serrata
+pos_A4	COc1c(O)ccc(CNC(=O)CCCCCCC(C)C)c1	XJQPQKLURWNAAH-UHFFFAOYSA-N
+pos_B4	O=c1c(O)c(-c2c(O)cc(O)cc2)oc2c1c(O)cc(O)c2	Morin
+pos_C4	COc1c(O)ccc(-c2c(O)c(=O)c3c(cc(O)cc3O)o2)c1	IZQSVPBOUDKVDZ-UHFFFAOYSA-N
+pos_D4	COc1c(O)cc(-c2c(OC)c(=O)c3c(cc(OC)c(OC)c3O)o2)cc1	PJQLSMYMOKWUJG-UHFFFAOYSA-N
+pos_E4	CC(C)=CCCC(C)(OC1OC(CO)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	SWIROVJVGRGSPO-UHFFFAOYSA-N
+pos_F4	CC(C)=CCCC(C)(O)C1CCC2(C)C1C(O)CC1C3(C)CCC(O)C(C)(C)C3C(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)CC12C	AGBCLJAHARWNLA-UHFFFAOYSA-N
+pos_G4	COc1ccc(C2CC(=O)c3c(cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O)O2)cc1	RMCRQBAILCLJGU-UHFFFAOYSA-N
+pos_H4	Nc1cnc(NC(=O)c2ccc(C(F)(F)F)cc2)cc1	BTCFFMPDIBWZLF-UHFFFAOYSA-N
+pos_A5	OCC(O)CO	PEDCQBHIVMGVHV-UHFFFAOYSA-N
+pos_B5	COc1c(OC)cc(C=O)cc1	WJUFSDZVCOTFON-UHFFFAOYSA-N
+pos_C5	C[n+]1cc(C(=O)[O-])ccc1	WWNNZCOKKKDOPX-UHFFFAOYSA-N
+pos_D5	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	DRSKVOAJKLUMCL-UHFFFAOYSA-N
+pos_E5	C=C1CC23CCC4C(C)(C(=O)OC5OC(CO)C(O)C(O)C5OC5OC(CO)C(O)C(O)C5O)CCCC4(C)C2CCC1(OC1OC(CO)C(O)C(OC2OC(CO)C(O)C(O)C2O)C1OC1OC(CO)C(O)C(O)C1O)C3	[4,5-Dihydroxy-6-(hydroxymethyl)-3-[3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]oxyoxan-2-yl] 13-[5-hydroxy-6-(hydroxymethyl)-3,4-bis[[3,4,5-trihydroxy-6-(hydroxymethyl)oxan-2-yl]oxy]oxan-2-yl]oxy-5,9-dimethyl-14-methylidenetetracyclo[11.2.1.01,10.04,9]hexadecane-5-carboxylate
+pos_F5	C=C1CC23CCC4C(C)(C(=O)O)CCCC4(C)C2CCC1(O)C3	Kaur-16-EN-18-oic acid, 13-hydroxy-
+pos_G5	COc1ccc(CC2COC(=O)C2(O)Cc2cc(OC)c(OC3OC(CO)C(O)C(O)C3O)cc2)cc1OC	(-)-Tracheloside
+pos_H5	CC1=CC2C3C4C(=C(C)C3C13C1OC(=O)C(C)C1CCC(C)(O)C23)C1OC(=O)C(C)C1CCC4(C)O	12,17-Dihydroxy-3,8,12,17,21,25-hexamethyl-6,23-dioxaheptacyclo[13.9.2.01,16.02,14.04,13.05,9.020,24]hexacosa-3,25-diene-7,22-dione
+pos_A6	O=C(/C=C/c1ccc(O)c(O)c1)OC1CC(OC(=O)/C=C/c2ccc(O)c(O)c2)(C(=O)O)CC(O)C1O	Npc301382
+pos_B6	CC1=C2CC3CCC(C)C2(CC1=O)C3(C)C	4,10,11,11-Tetramethyltricyclo[5.3.1.0^{1,5}]undec-4-en-3-one
+pos_C6	CC1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(O)C(C)(C(=O)O)C5CCC43C)C2C1	2,3-Dihydroxy-4,6a,6b,11,11,14b-hexamethyl-1,2,3,4a,5,6,7,8,9,10,12,12a,14,14a-tetradecahydropicene-4,8a-dicarboxylic acid
+pos_D6	COc1c(-c2ccccc2)oc2c(c(O)cc(O)c2)c1=O	LYISDADPVOHJBJ-UHFFFAOYSA-N
+pos_E6	O=C(/C=C/c1cc(O)c(O)cc1)OC(C(=O)O)C(O)C(=O)O	(2R,3R)-2-[3-(3,4-Dihydroxyphenyl)prop-2-enoyloxy]-3-hydroxybutanedioic acid
+pos_F6	Cn1c(=O)[nH]c(=O)c2c1nc[nH]2	3-Methylxanthine
+pos_G6	COC(=O)/C=C/C(=O)O	Monomethyl Fumarate
+pos_H6	CCCCCCCCCC(=O)O	GHVNFZFCNZKVNT-UHFFFAOYSA-N
+pos_A7	COc1c(O)cc(CCC(=O)c2c(O)cc(OC3OC(CO)C(O)C(O)C3OC3OC(C)C(O)C(O)C3O)cc2O)cc1	ITVGXXMINPYUHD-UHFFFAOYSA-N
+pos_B7	COc1cc(O)cc(C2CC(=O)c3c(O)cc(OC4OC(CO)C(O)C(O)C4OC4OC(C)C(O)C(O)C4O)cc3O2)c1	TWAZWVPPDIUVOD-UHFFFAOYSA-N
+pos_C7	OCC(O)C(O)C(O)C(O)CO	FBPFZTCFMRRESA-UHFFFAOYSA-N
+pos_D7	COc1cc(OC)c(OC)cc1C=O	IAJBQAYHSQIQRE-UHFFFAOYSA-N
+pos_E7	C/C=C/c1ccc(OC)cc1	RUVINXPYWBROJD-ONEGZZNKSA-N
+pos_F7	O=CC(O)C(O)C(OC1OC(CO)C(O)C(O)C1O)C(O)CO	D-Glucose, 4-O-alpha-D-glucopyranosyl-
+pos_G7	CCCCCCCCCCCCCCCC(=O)OCC	XIRNKXNNONJFQO-UHFFFAOYSA-N
+pos_H7	COc1ccc(-c2cc(=O)c3c(cc(OC)cc3OC)o2)cc1	ZXJJBDHPUHUUHD-UHFFFAOYSA-N
+pos_A8	O=c1oc2c(ccc(O)c2)c2ccccc12	WXUQMTRHPNOXBV-UHFFFAOYSA-N
+pos_B8	Nc1ncnc2c1nc[nH]2	GFFGJBXGBJISGV-UHFFFAOYSA-N
+pos_C8	CC(=O)NCCc1c[nH]c2c1cc(O)cc2	MVAWJSIDNICKHF-UHFFFAOYSA-N
+pos_D8	CC(C)CC(=O)C(=O)O	BKAJNAXTPSGJCU-UHFFFAOYSA-N
+pos_E8	CC(=O)NC(CC(N)=O)C(=O)O	HXFOXFJUNFFYMO-UHFFFAOYSA-N
+pos_F8	O=C(O)/C(O)=C(\O)C(=O)O	Dihydroxyfumaric acid
+pos_G8	CC1=CC(=O)CC(C)(C)C1	Isophorone
+pos_H8	CCCCCCCCOC(C)=O	Octyl Acetate
+pos_A9	O=C(O)CC(=O)O	Malonic Acid
+pos_B9	O=C(O)/C=C\C(=O)O	Maleic Acid
+pos_C9	CSCCC(NC(C)=O)C(=O)O	N-Acetyl-DL-methionine
+pos_D9	CC/C=C/CC1C(=O)CCC1CC(=O)OC	GEWDNTWNSAZUDX-SNAWJCMRSA-N
+pos_E9	O=C(O)CCCCCCCCCCCO	12-Hydroxydodecanoic Acid
+pos_F9	O=C(O)/C=C(\CC(=O)O)C(=O)O	trans-Aconitic acid
+pos_G9	COC(=O)CC(C)=O	Methyl acetoacetate
+pos_H9	O=CC(=O)O	HHLFWLYXYJOTON-UHFFFAOYSA-N
+pos_A10	c1c[nH]nc1	WTKZEGDFNFYCGP-UHFFFAOYSA-N
+pos_B10	CC(=O)NC(C)C(=O)O	N-Acetyl-DL-alanine
+pos_C10	C=C(CC(=O)O)C(=O)O	LVHBHZANLOWSRM-UHFFFAOYSA-N
+pos_D10	Cc1cc2c(cc1C)[nH]cn2	LJUQGASMPRMWIW-UHFFFAOYSA-N
+pos_E10	CC(=O)NCC(=O)O	OKJIRPAQVSHGFK-UHFFFAOYSA-N
+pos_F10	O=C1CCCCO1	OZJPLYNZGCXSJM-UHFFFAOYSA-N
+pos_G10	O=CCC(O)C(O)CO	ASJSAQIRZKANQN-UHFFFAOYSA-N
+pos_H10	O=C1CCC(C(=O)O)N1	ODHCTXKNWHHXJC-UHFFFAOYSA-N
+pos_A11	Cc1ncc(C)nc1	2,5-Dimethylpyrazine
+pos_B11	CC(=O)NC(CC(C)C)C(=O)O	acetyl-DL-leucine
+pos_C11	Cc1ncc(CO)c(C=O)c1O	Pyridoxal
+pos_D11	CC(C)=CCO	3-Methyl-2-buten-1-OL
+pos_E11	O=CNCC(=O)O	Formylglycine
+pos_F11	CCC(O)C(=O)O	2-Hydroxybutyric Acid
+pos_G11	O=C(O)c1c[nH]c(=O)[nH]c1=O	1,2,3,4-Tetrahydro-2,4-dioxo-5-pyrimidinecarboxylic acid
+pos_H11	CC(=O)NC(C=O)C(O)C(O)C(O)CO	2-Acetamido-2-deoxyhexose
+pos_A2	O=C(O)C(O)C(O)C(=O)O	FEWJPZIEWOKRBE-UHFFFAOYSA-N
+pos_B2	NCC(O)c1ccccc1	Phenylethanolamine
+pos_C2	CC(=O)C(=O)O	LCTONWCANYUPML-UHFFFAOYSA-N
+pos_D2	O=C(O)CCCCCC(=O)O	WLJVNTCWHIRURA-UHFFFAOYSA-N
+pos_E2	O=C(O)CCCC(=O)O	JFCQEDHGNNZCLN-UHFFFAOYSA-N
+pos_F2	C/C(=C/C(=O)O)C(=O)O	Citraconic acid
+pos_G2	Nc1c2ncn(C3CC(O)C(COP(=O)(O)O)O3)c2ncn1	Adenosine, 5'-phosphoric acid
+pos_H2	Nc1nc(=O)n(C2CC(O)C(COP(=O)(O)O)O2)cc1	Cytidine 5'-(dihydrogen phosphate)
+pos_A3	O=CC(O)C(O)C(O)C(O)C(=O)O	Galactopyranuronic acid, D-
+pos_B3	c1cc(C2=NCCC2)cnc1	Myosmine
+pos_C3	CCOP(=O)(O)OCC	Diethyl phosphate
+pos_D3	CC/C=C\CCOC(=O)CCCCC	3-Hexenyl hexanoate, (3Z)-
+pos_E3	CC(=O)NC(CCCNC(=N)N)C(=O)O	N2-Acetylarginine
+pos_F3	OC1C2COC(O2)C(O)C1O	6,8-Dioxabicyclo[3.2.1]octane-2,3,4-triol
+pos_G3	CC(O)CC(=O)O	3-Hydroxybutyric Acid
+pos_H3	CNC(=O)c1cccnc1	N'-Methylnicotinamide
+pos_A4	O=C(O)CNC(=O)c1cccnc1	Nicotinuric Acid
+pos_B4	CCCCC(O)C(=O)O	2-Hydroxyhexanoic acid
+pos_C4	O=C(O)Cc1c[nH]c2ccccc12	SEOVTRFCIGRIMH-UHFFFAOYSA-N
+pos_D4	NC(CS(=O)(=O)O)C(=O)O	XVOYSCVBGLVSOL-UHFFFAOYSA-N
+pos_E4	CSCCC(NC=O)C(=O)O	PYUSHNKNPOHWEZ-UHFFFAOYSA-N
+pos_F4	O=C1OC(C(O)CO)C(=O)C1=O	SBJKKFFYIZUCET-UHFFFAOYSA-N
+pos_G4	NC(=O)/C=C\C(=O)O	FSQQTNAZHBEJLS-UPHRSURJSA-N
+pos_H4	NC(C=O)C(O)C(O)C(O)CO	FZHXIRIBWMQPQF-UHFFFAOYSA-N
+pos_A5	CC(O)C(C)O	OWBTYPJTUOEWEK-UHFFFAOYSA-N
+pos_B5	OC1COC(O)CO1	Glycolaldehyde dimer
+pos_C5	NC(CO)Cc1cnc[nH]1	Histidinol
+pos_D5	O=CC(O)C(O)C(O)CO	PYMYPHUHKUWMLA-UHFFFAOYSA-N
+pos_E5	O=C(O)CCc1ccccc1O	Melilotic acid
+pos_F5	CCCCCC/C=C\CCCCCCCC(=O)O	Palmitoleic Acid
+pos_G5	CCCCCCCCCCC/C=C/CCCCC(=O)O	trans-6-Octadecenoic acid
+pos_H5	COC1OC(CO)C(O)C(O)C1O	beta-D-Galactopyranoside, methyl
+pos_A6	CN1CC(O)=NC1=N	2-Amino-1-methylimidazolin-4-one
+pos_A6	NCCc1c[nH]c2ccc(O)cc12	QZAYGJVTTNCVMB-UHFFFAOYSA-N
+pos_B6	CC(CC(=O)O)CC(=O)O	3-Methylglutaric acid
+pos_C6	CC(=O)OCC(N)C(=O)O	3-Acetyloxy-2-azaniumylpropanoate
+pos_E6	CCCCCCCCCCCCCCCCCCCCCCC(=O)O	XEZVDURJDFGERA-UHFFFAOYSA-N
+pos_F6	CC(=O)CC(=O)O	WDJHALXBUFZDSR-UHFFFAOYSA-N
+pos_G6	Nc1c(C(=O)O)cccc1O	WJXSWCUQABXPFS-UHFFFAOYSA-N
+pos_H6	O=C(O)CP(=O)(O)O	XUYJLQHKOGNDPB-UHFFFAOYSA-N
+pos_A7	CCCCCCCC/C=C/CCCCCCCC(=O)O	ZQPPMHVWECSIRJ-MDZDMXLPSA-N
+pos_B7	CC(=O)NCCCC(=O)O	UZTFMUBKZQVKLK-UHFFFAOYSA-N
+pos_C7	CCCCC(CC)COC(=O)c1ccccc1C(=O)OCC(CC)CCCC	BJQHLKABXJIVAM-UHFFFAOYSA-N
+pos_D7	O=C1OC(C(O)CO)C(O)C1O	SXZYCXMUPBBULW-UHFFFAOYSA-N
+pos_E7	O=C(O)C(O)c1ccccc1	IWYDHOAUDWTVEP-UHFFFAOYSA-N
+pos_F7	O=C(O)Cc1cccc(O)c1	3'-Hydroxyphenylacetic acid
+pos_G7	CC(O)c1ccccc1	1-Phenylethanol
+pos_H7	CCOC(=O)CC(=O)O	Monoethyl malonate
+pos_A8	CC(=O)NC1C(O)OC(CO)C(O)C1O	N-Acetyl-Hexosamine
+pos_B8	NC(CCC(=O)NC(CSSCC(NC(=O)CCC(N)C(=O)O)C(=O)NCC(=O)O)C(=O)NCC(=O)O)C(=O)O	5,5'-(Disulfanediylbis((3-((carboxymethyl)amino)-3-oxopropane-1,2-diyl)azanediyl))bis(2-amino-5-oxopentanoic acid)
+pos_C8	C=CC1=C(C)C2=N/C1=C\c1c(C)c(C=C)c3n1[Fe](Cl)n1/c(c(C)c(CCC(=O)O)/c1=C/C1=N/C(=C\3)C(C)=C1CCC(=O)O)=C\2	BTIJJDXEELBZFS-NCVRDGRQSA-K
+pos_D8	c1cc2c(cc1)[nH]cc2	Indole
+pos_E8	Oc1ncccc1	UBQKCCHYAOITMY-UHFFFAOYSA-N
+pos_F8	Nc1c(O)ccc(C(=O)O)c1	MRBKRZAPGUCWOS-UHFFFAOYSA-N
+pos_G8	CC(=O)NC(Cc1ccccc1)C(=O)O	CBQJSKKFNMDLON-UHFFFAOYSA-N
+pos_H8	OCc1cc(O)ccc1	3-Hydroxybenzyl alcohol
+pos_A9	O=C(O)c1ccc2ccccc2c1O	SJJCQDRGABAVBB-UHFFFAOYSA-N
+pos_B9	O=C(O)c1ccc2ccccc2n1	Quinaldic Acid
+pos_C9	O=C(O)c1cccc(O)c1	3-Hydroxybenzoic Acid
+pos_D9	Nc1ncnc2c1ncn2C1OC(CSCCC(N)C(=O)O)C(O)C1O	ZJUKTBDSGOFHSH-UHFFFAOYSA-N
+pos_E9	CC1(C)CCC2(C(=O)OC3OC(CO)C(O)C(O)C3O)CCC3(C)C(=CCC4C5(C)CCC(OC6OC(C(=O)O)C(O)C(O)C6OC6OC(CO)C(O)C(O)C6O)C(C)(C)C5CCC43C)C2C1	CID 12302914
+pos_F9	O=CC(O)C(O)C(OC1OC(CO)C(OC2OC(CO)C(OC3OC(CO)C(OC4OC(CO)C(O)C(O)C4O)C(O)C3O)C(O)C2O)C(O)C1O)C(O)CO	FJCUPROCOFFUSR-UHFFFAOYSA-N
+pos_G9	COC(=O)C1(C)CCC2(C(=O)O)CCC3(C)C(=CCC4C5(C)CC(O)C(OC6OCC(OC7OC(CO)C(O)C(O)C7O)C(O)C6O)C(C)(CO)C5CCC43C)C2C1	ZMXKPCHQLHYTHY-UHFFFAOYSA-N
+pos_H9	CC(C)=CCCC(C)(OC1OC(COC2OC(CO)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	JDCPEKQWFDWQLI-UHFFFAOYSA-N
+pos_A10	CCCCCc1ccco1	YVBAUDVGOFCUSG-UHFFFAOYSA-N
+pos_B10	CCCCCCCCCCCO	1-Undecanol
+pos_A2	NC(=O)CCC(N)C(=O)O	DL-Glutamine
+pos_B2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	Phycoerythrin
+pos_C2	CCCC(=O)[O-]	Butyrate
+pos_D2	NCCS(=O)(=O)O	Taurine
+pos_E2	COC1OC(COS(=O)(=O)O)C(O)C(OC2OC(C(=O)O)C(C)C(O)C2O)C1NC(C)=O	6-[3-Acetamido-5-hydroxy-2-methoxy-6-(sulfooxymethyl)oxan-4-yl]oxy-4,5-dihydroxy-3-methyloxane-2-carboxylic acid
+pos_F2	NC(=O)c1ccc[n+](C2OC(COP(=O)([O-])OP(=O)(O)OCC3OC(n4cnc5c(N)ncnc54)C(O)C3O)C(O)C2O)c1	beta-Nicotinamide adenine dinucleotide
+pos_G2	CN1CC(=O)NC1=N	2-Amino-1-methylimidazolin-4-one
+pos_H2	N=C(N)NCCCC(N)C(=O)O	ODKSFYDXXFIFQN-UHFFFAOYSA-N
+pos_A3	Cc1ncc(C[n+]2csc(CCO)c2C)c(N)n1	JZRWCGZRTZMZEH-UHFFFAOYSA-N
+pos_B3	C[N+](C)(C)CCOP(=O)(O)OP(=O)([O-])OCC1OC(n2ccc(N)nc2=O)C(O)C1O	RZZPDXZPRHQOCG-UHFFFAOYSA-N
+pos_C3	CCC(C)C(N)C(=O)O	2-Amino-3-methylpentanoic acid
+pos_D3	CC(C)CC(N)C(=O)O	DL-leucine
+pos_E3	NC(=O)NCCCC(N)C(=O)O	Citrulline, (+-)-
+pos_F3	C[Se]CCC(N)C(=O)O	DL-selenomethionine
+pos_G3	NC(Cc1c[nH]cn1)C(=O)O	DL-histidine
+pos_H3	O=C([O-])C(O)C(O)C(O)C(O)CO	CID 4134252
+pos_A4	NC(CCC(=O)NC(CS)C(=O)NCC(=O)O)C(=O)O	2-Azaniumyl-5-((1-(Carboxymethylamino)-1-Oxo-3-Sulfanylpropan-2-Yl)Amino)-5-Oxopentanoate
+pos_B4	NCCCC(N)C(=O)O	2,5-Diaminopentanoic Acid
+pos_C4	NCCCC(=O)O	Gamma-Aminobutyric Acid
+pos_D4	CNCC(=O)O	Sarcosine
+pos_E4	OCC1OC(OC2C(CO)OC(O)C(O)C2O)C(O)C(O)C1O	GlyTouCan:G06348JD
+pos_F4	CN(CC(=O)O)C(=N)NP(=O)(O)O	DRBBFCLWYRJSJZ-UHFFFAOYSA-N
+pos_G4	NCC(=O)NCC(=O)O	YMAWOPBAYDPSLA-UHFFFAOYSA-N
+pos_H4	NCC(=O)O	DHMQDGOQFOQNFH-UHFFFAOYSA-N
+pos_A5	CC(O)C(N)C(=O)O	AYFVYJQAPQTCCC-UHFFFAOYSA-N
+pos_B5	N=C(N)NCCCCN	QYPPJABKJHAVHS-UHFFFAOYSA-N
+pos_C5	C[N+](C)(C)CCOP(=O)([O-])OCC(O)CO	SUHOQUVVVLNYQR-UHFFFAOYSA-N
+pos_D5	Cc1cc2c(cc1C)n(CC(O)C(O)C(O)COP(=O)(O)O)c1nc(=O)[nH]c(=O)c-1n2	FVTCRASFADXXNN-UHFFFAOYSA-N
+pos_E5	O=C1OC(C(O)CO)C(O)=C1OP(=O)(O)O	MIJPAVRNWPDMOR-UHFFFAOYSA-N
+pos_F5	NC(=O)NCCCC(N)C(=O)O	Citrulline, (+-)-
+pos_G5	NC(COP(=O)(O)O)C(=O)O	dl-O-Phosphoserine
+pos_H5	CC(C)(CO)C(O)C(=O)NCCC(=O)NCCSSCCNC(=O)CCNC(=O)C(O)C(C)(C)CO	N-[3-[2-[2-[3-[(2,4-dihydroxy-3,3-dimethylbutanoyl)amino]propanoylamino]ethyldisulfanyl]ethylamino]-3-oxopropyl]-2,4-dihydroxy-3,3-dimethylbutanamide
+pos_A6	NCCC(=O)NC(Cc1c[nH]cn1)C(=O)O	Beta-Alanylhistidine
+pos_B6	NC(=O)c1ccc[n+](C2OC(COP(=O)([O-])O)C(O)C2O)c1	beta-NM;NMN
+pos_C6	N=C(N)NCCCCC(N)C(=O)O	L-Lysine, N6-(aminoiminomethyl)-
+pos_D6	NCCCNCCCCNCCCN	PFNFFQXMRSDOHW-UHFFFAOYSA-N
+pos_E6	NCCC(=O)O	Beta-Alanine
+pos_F6	NC(=O)CC(N)C(=O)O	DCXYFEDJOCDNAF-UHFFFAOYSA-N
+pos_G6	CN(CC(=O)O)C(=N)N	CVSVTCORWBXHQV-UHFFFAOYSA-N
+pos_A7	CC(C)C(N)C(=O)O	DL-valine
+pos_B7	O=C(O)C1CCCN1	proline dl-form
+pos_C7	NCCCCC(N)C(=O)O	Lysine, DL-
+pos_D7	CC(N)C(=O)O	DL-alanine
+pos_E7	NC(CC(=O)O)C(=O)O	(+-)-Aspartic Acid
+pos_F7	CSCCC(N)C(=O)O	(+-)-Methionine
+pos_G7	N=C(N)NCCCC(N)C(=O)O	ODKSFYDXXFIFQN-UHFFFAOYSA-N
+pos_H7	NC(CS)C(=O)O	XUJNEKJLAYXESH-UHFFFAOYSA-N
+pos_A8	O=C(O)C1CC(O)CN1	4-Hydroxyproline
+pos_B8	O=C(O)C1CCCN1	proline dl-form
+pos_C8	Cc1c(N)[nH]c(=O)nc1	LRSASMSXMSNRBT-UHFFFAOYSA-N
+pos_D8	CN(CC(=O)O)C(=N)N	CVSVTCORWBXHQV-UHFFFAOYSA-N
+pos_E8	NC(Cc1cc(I)c(O)cc1)C(=O)O	3-Iodo-DL-tyrosine
+pos_F8	CC(C)CC(NC(=O)CN)C(=O)O	N-Glycyl-DL-leucine
+pos_G8	CN(C)CC(=O)O	FFDGPVCHZBVARC-UHFFFAOYSA-N
+pos_H8	NC(Cc1cc(O)ccc1)C(=O)O	3-Tyrosine, DL-
+pos_A9	CC(=O)NCCCCC(N)C(=O)O	6-Acetamido-2-azaniumylhexanoate
+pos_B9	NCCCCCCCC(=O)O	8-Aminooctanoic acid
+pos_C9	Cc1ncc(C[n+]2csc(CCOP(=O)(O)OP(=O)(O)O)c2C)c(N)n1	Thiamine diphosphate
+pos_D9	O=c1[nH]cnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	[[(2R,5R)-3,4-Dihydroxy-5-(6-oxo-1H-purin-9-yl)oxolan-2-yl]methoxy-hydroxyphosphoryl] phosphono hydrogen phosphate
+pos_E9	NC(Cc1cc(Cl)c(O)cc1)C(=O)O	3-chlorotyrosine, DL-
+pos_F9	N=C(N)NCCCCC(N)C(=O)O	L-Lysine, N6-(aminoiminomethyl)-
+pos_G9	CC(=O)NC(CCCN)C(=O)O	N-Acetyl-ornithine
+pos_H9	CC(C)C(NC(=O)CN)C(=O)O	Glycylvaline
+pos_A10	NC(=O)NCCCCC(N)C(=O)O	2-Amino-6-ureidohexanoic acid
+pos_B10	NC(C(=O)O)C(=O)O	JINBYESILADKFW-UHFFFAOYSA-N
+pos_C10	NCC(=O)N1CCCC1C(=O)O	KZNQNBZMBZJQJO-UHFFFAOYSA-N
+pos_D10	CC(CN)C(=O)O	QCHPKSFMDHPSNR-UHFFFAOYSA-N
+pos_E10	N=C(N)NCCCC(=O)O	TUHVEAJXIMEOSA-UHFFFAOYSA-N
+pos_F10	CC(C)C(N)CC(=O)O	GLUJNGJDHCTUJY-UHFFFAOYSA-N
+pos_G10	CC(C)CC(N)C(=O)NC(C)C(=O)O	HSQGMTRYSIHDAC-UHFFFAOYSA-N
+pos_H10	CCC(N)C(=O)O	QWCKQJZIFLGMSD-UHFFFAOYSA-N
+pos_A11	NC(CO)C(=O)O	DL-Serine
+pos_B11	NC(CCC(=O)O)C(=O)O	WHUUTDBJXJRKMK-UHFFFAOYSA-N
+pos_C11	CC(C)(N)C(=O)O	FUOOLUPWFVMBKG-UHFFFAOYSA-N
+pos_D11	O=C(COP(=O)(O)O)C(O)C(O)C(O)COP(=O)(O)O	XPYBSIWDXQFNMH-UHFFFAOYSA-N
+pos_E11	O=C(O)C1CCCCN1	HXEACLLIILLPRG-UHFFFAOYSA-N
+pos_F11	Nc1nc(=O)c2c([nH]1)n(C1OC(COP(=O)(O)O)C(O)C1O)cn2	RQFCJASXJCIDSX-UHFFFAOYSA-N
+pos_G11	O=C(O[Ca]OC(=O)C(O)C(O)CO)C(O)C(O)CO	ZJXGOFZGZFVRHK-UHFFFAOYSA-L
+pos_H11	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	Phytate
+pos_A2	O=C(O)C1CCCCN1	HXEACLLIILLPRG-UHFFFAOYSA-N
+pos_B2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)O)C(O)C1O	Adenosine 5'-(trihydrogen pyrophosphate), sodium salt (1:3)
+pos_C2	CCCC(N)C(=O)O	DL-norvaline
+pos_D2	NC(=O)c1ccc[n+](C2OC(COP(=O)(O)OP(=O)([O-])OCC3OC(n4cnc5c4ncnc5N)C(OP(=O)(O)O)C3O)C(O)C2O)c1	C21H28N7O17P3
+pos_E2	NCCOP(=O)(O)O	Phosphoethanolamine
+pos_F2	NC(CO)C(=O)O	DL-Serine
+pos_G2	O=c1ccn(C2OC(COP(=O)(O)O)C(O)C2O)c(=O)[nH]1	(5-(2,4-Dioxopyrimidin-1-yl)-3,4-dihydroxyoxolan-2-yl)methyl dihydrogen phosphate
+pos_H2	Nc1ncnc2c1ncn2C1OC(COP(=O)(O)OP(=O)(O)OP(=O)(O)O)C(O)C1O	Phycoerythrin
+pos_A3	NC(=O)CCC(N)C(=O)O	DL-Glutamine
+pos_B3	O=C(O)C1C2CCC(O2)C1C(=O)O	3,6-endo-Oxohexahydrophthalic acid
+pos_C3	O=C(O[Ca]OC(=O)C(O)C(O)C(O)C(O)C(O)CO)C(O)C(O)C(O)C(O)C(O)CO	FATUQANACHZLRT-UHFFFAOYSA-L
+pos_D3	NCCCS(=O)(=O)O	Tramiprosate
+pos_E3	Nc1nc(O)c2c(n1)NCC(CNc1ccc(C(=O)NC(CCC(=O)O)C(=O)O)cc1)N2C=O	VVIAGPKUTFNRDU-UHFFFAOYSA-N
+pos_F3	O=C(CO)C(O)C(O)C(O)CO	1,3,4,5,6-Pentahydroxyhexan-2-One
+pos_G3	Cn1cncc1CC(NC(=O)CCN)C(=O)O	beta-Ala-3-methyl-His
+pos_H3	CCC(N)C(=O)O	QWCKQJZIFLGMSD-UHFFFAOYSA-N
+pos_A4	CC(C)CC(NC(=O)C(COC(C)(C)C)NC(=O)C(Cc1ccc(O)cc1)NC(=O)C(CO)NC(=O)C(Cc1c[nH]c2ccccc12)NC(=O)C(Cc1cnc[nH]1)NC(=O)C1CCC(=O)N1)C(=O)NC(CCCN=C(N)N)C(=O)N1CCCC1C(=O)NNC(N)=O	BLCLNMBMMGCOAS-UHFFFAOYSA-N
+pos_B4	CC12CCC3c4c(cc(OC(=O)N(CCCl)CCCl)cc4)CCC3C1CCC2OP(=O)(O)O	ADFOJJHRTBFFOF-UHFFFAOYSA-N
+pos_C4	NCCCNCCCCNCCCN	PFNFFQXMRSDOHW-UHFFFAOYSA-N
+pos_D4	Nc1nc(=O)n(C2OC(CO)C(O)C2O)cc1	UHDGCWIWMRVCDJ-UHFFFAOYSA-N
+pos_E4	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	Phytate
+pos_F4	NC(=O)CCC(N)C(=O)O	DL-Glutamine
+pos_G4	C[N+](C)(C)CCOP(=O)([O-])OP(=O)(O)OCC1OC(n2ccc(N)nc2=O)C(O)C1O	RZZPDXZPRHQOCG-UHFFFAOYSA-N
+pos_H4	CC(N)C(=O)NC(CCC(N)=O)C(=O)O	HJCMDXDYPOUFDY-UHFFFAOYSA-N
+pos_A5	OC1C(O)C(O)C(O)C(O)C1O	CDAISMWEOUEBRE-UHFFFAOYSA-N
+pos_B5	O=C(O)CN(CCO)CCO	FSVCELGFZIQNCK-UHFFFAOYSA-N
+pos_D5	CCC(C)C1NC(=O)C(Cc2ccc(O)cc2)NC(=O)C(N)CSSCC(C(=O)N2CCCC2C(=O)NC(CC(C)C)C(=O)NCC(N)=O)NC(=O)C(CC(N)=O)NC(=O)C(CCC(N)=O)NC1=O	1-(19-Amino-7-(2-Amino-2-Oxoethyl)-10-(3-Amino-3-Oxopropyl)-13-Butan-2-Yl-16-((4-Hydroxyphenyl)Methyl)-6,9,12,15,18-Pentaoxo-1,2-Dithia-5,8,11,14,17-Pentazacycloicosane-4-Carbonyl)-N-(1-((2-Amino-2-Oxoethyl)Amino)-4-Methyl-1-Oxopentan-2-Yl)Pyrrolidine-2-Carboxamide
+pos_E5	*OC1OC(C(=O)O)C(OC2OC(CO)C(O)C(O*)C2NC(C)=O)C(O)C1O	""
+pos_F5	CC(N)C(=O)O	DL-alanine
+pos_G5	NCC(O)CCC(N)C(=O)O	DL-5-Hydroxylysine
+pos_H5	Cc1ncc(C[n+]2csc(CCOP(=O)(O)O)c2C)c(N)n1	3-[(4-Amino-2-methyl-5-pyrimidinyl)methyl]-4-methyl-5-[2-(phosphonooxy)ethyl]thiazolium
+pos_A6	O=C(O)C(O)(O)C(=O)O	Dihydroxymalonic acid
+pos_B6	O=C([O-])C(O)C(O)C(O)C(O)C(=O)O	CID 18921314
+pos_C6	NCCC(N)C(=O)O	2,4-Diaminobutyric acid
+pos_D6	O=C(O)CC(C(=O)O)C(O)C(=O)O	Isocitric Acid
+pos_E6	CSCCC(O)C(=O)O[Ca]OC(=O)C(O)CCSC	2-Hydroxy-4-(methylthio)butyric acid calcium salt, >=99.0% (NT)
+pos_F6	NC(Cc1cnc[nH]1)C(=O)O	DL-histidine
+pos_G6	NC(CCO)C(=O)O	UKAUYVFTDYCKQA-UHFFFAOYSA-N
+pos_H6	NC1(C(=O)O)CC1	PAJPWUMXBYXFCZ-UHFFFAOYSA-N
+pos_A7	Cc1cn(C2CC(O)C(COP(=O)(O)O)O2)c(=O)[nH]c1=O	(3-Hydroxy-5-(5-methyl-2,4-dioxopyrimidin-1-yl)oxolan-2-yl)methyl dihydrogen phosphate
+pos_B7	Cn1cncc1CC(NC(=O)CCN)C(=O)O	beta-Ala-3-methyl-His
+pos_C7	O=P(O)(O)OC1C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C(OP(=O)(O)O)C1OP(=O)(O)O	Phytate
+pos_D7	O=c1[nH]cnc2c1ncn2C1OC(COP(=O)(O)O)C(O)C1O	9-(5-O-Phosphonopentofuranosyl)-1,9-dihydro-6H-purin-6-one
+pos_E7	NCCP(=O)(O)O	(2-Aminoethyl)phosphonic acid
+pos_F7	C=C(OP(=O)(O)O)C(=O)O	Phosphoenolpyruvate
+pos_G7	CC(=O)NC(CCCCN)C(=O)O	N2-Acetyl-DL-lysine
+pos_H7	C[n+]1cccc(C(N)=O)c1	LDHMAVIPBRSVRG-UHFFFAOYSA-O
+pos_A8	C[N+](C)(C)CCOP(=O)([O-])O	Phosphorylcholine
+pos_B8	O=C(O)C1CC(O)CN1	4-Hydroxyproline
+pos_C8	O=c1ccn(C2OC(COP(=O)(O)OP(=O)(O)O)C(O)C2O)c(=O)[nH]1	XCCTYIAWTASOJW-UHFFFAOYSA-N
+pos_A2	O=c1[nH]cnc2c1[nH]cn2	Hypoxanthine
+pos_B2	Nc1nc(=O)c2c(ncc(CNc3ccc(C(=O)NC(CCC(=O)O)C(=O)O)cc3)n2)[nH]1	OVBPIULPVIDEAO-UHFFFAOYSA-N
+pos_C2	C=CC1=C(C)/C(=C/c2c(C)c(CCC(=O)O)c(Cc3c(CCC(=O)O)c(C)c(/C=C4\NC(=O)C(C)=C4C=C)[nH]3)[nH]2)NC1=O	BPYKTIZUTYGOLE-IFADSCNNSA-N
+pos_D2	CC(C)CCCC(C)C1CCC2C3CCC4CC(O)CCC4(C)C3CCC12C	QYIXCDOBOSTCEI-UHFFFAOYSA-N
+pos_E2	CC(O)C(O)c1nc2c(nc1)[nH]c(N)nc2=O	Pterin H B2
+pos_F2	CC1=C(/C=C/C(C)=C/C=C/C(C)=C/C=C/C=C(C)/C=C/C=C(C)/C=C/C2=C(C)CCCC2(C)C)C(C)(C)CCC1	Beta-Carotene
+pos_G2	CCCCCCCCCCCCCC(=O)OCC(COC(=O)CCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCC	Trimyristin
+pos_H2	O=c1oc2c(O)c(O)cc3c2c2c(oc3=O)c(O)c(O)cc12	Ellagic Acid
+pos_A3	CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNCC3)cc21	Norfloxacin
+pos_B3	CC(N)(Cc1cc(O)c(O)cc1)C(=O)O	CJCSPKMFHVPWAR-UHFFFAOYSA-N
+pos_C3	Cc1c(CCN2CCC(c3noc4c3ccc(F)c4)CC2)c(=O)n2CCCC(O)c2n1	Paliperidone
+pos_D3	CN1C(C(=O)Nc2ncccc2)=C(O)c2c(cc(Cl)s2)S1(=O)=O	Lornoxicam
+pos_E3	COc1c(O)cc(-c2cc(=O)c3c(cc(OC4OC(COC5OC(C)C(O)C(O)C5O)C(O)C(O)C4O)cc3O)o2)cc1	Diosmetin 7-rutinoside
+pos_F3	CCN1CCN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)CC1	Enrofloxacin
+pos_G3	C1N2CN3CN1CN(C2)C3	Hexamethylenetetramine
+pos_H3	CC1(C)SC2C(N)C(=O)N2C1C(=O)O	6-Amino-3,3-dimethyl-7-oxo-4-thia-1-azabicyclo(3.2.0)heptane-2-carboxylic acid
+pos_A4	CCCCCCCCCCCCCCCCCCCCCCCCCCCCO	1-Octacosanol
+pos_B4	CC(C)=CCCC(C)(OC1OC(COC2OCC(O)C(O)C2O)C(O)C(O)C1O)C1CCC2(C)C1C(O)CC1C3(C)CCC(OC4OC(CO)C(O)C(O)C4OC4OC(CO)C(O)C(O)C4O)C(C)(C)C3CCC12C	2-[4,5-dihydroxy-6-(hydroxymethyl)-2-[[12-hydroxy-4,4,8,10,14-pentamethyl-17-[6-methyl-2-[3,4,5-trihydroxy-6-[(3,4,5-trihydroxyoxan-2-yl)oxymethyl]oxan-2-yl]oxyhept-5-en-2-yl]-2,3,5,6,7,9,11,12,13,15,16,17-dodecahydro-1H-cyclopenta[a]phenanthren-3-yl]oxy]oxan-3-yl]oxy-6-(hydroxymethyl)oxane-3,4,5-triol
+pos_C4	CC1CCC2(CO)CCC3(C)C(=CCC4C5(C)CCC(O)C(C)(C)C5CCC43C)C2C1C	Urs-12-ene-3,28-diol, (3beta)-
+pos_D4	CC(=O)C1CCC2C3CCC4CC(=O)CCC4(C)C3CCC12C	XMRPGKVKISIQBV-UHFFFAOYSA-N
+pos_E4	CCCCCCCCCCCCCCCC(=O)OC/C=C(C)/C=C/C=C(C)/C=C/C1=C(C)CCCC1(C)C	VYGQUTWHTHXGQB-FFHKNEKCSA-N
+pos_A2	NC(Cc1ccccc1)C(=O)O	Dl-Phenylalanine
+pos_B2	*OC1OC(C(=O)O)C(OC2OC(CO)C(O)C(*)C2NC(C)=O)C(O)C1O	""
