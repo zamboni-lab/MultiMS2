@@ -1,608 +1,604 @@
 position	smiles	name
-_Plate_1_Column_1_	CNCCC1=CNC2=CC=CC=C12	zzz
-_Plate_1_Column_1_	NC1=CC=NC(=O)N1	zzz
-_Plate_1_Column_1_	C[N+](C)(C)C[C@H](CC([O-])=O)OC(=O)CCCC(O)=O	zzz
-_Plate_1_Column_1_	C[C@H](CCC(O)=NCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C	zzz
-_Plate_1_Column_1_	C[C@H](O)C(O)=O	zzz
-_Plate_1_Column_1_	OC(=O)CCCCCCC(O)=O	zzz
-_Plate_1_Column_1_	OC(C(CC(O)=O)C(O)=O)C(O)=O	zzz
-_Plate_1_Column_2_	OC(=O)\C=C/C1=CC=C(O)C(O)=C1	zzz
-_Plate_1_Column_2_	C(C[Se][Se]CCN)N	zzz
-_Plate_1_Column_2_	NCC1=CC=CC=C1	zzz
-_Plate_1_Column_2_	CC(C)=CCC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC1=C(C)C(=O)C2=CC=CC=C2C1=O	zzz
-_Plate_1_Column_2_	CC(C)=CCO[P@](O)(=O)OP(O)(O)=O	zzz
-_Plate_1_Column_2_	N[C@@H](CC1=CC=CC=C1)C(O)=O	zzz
-_Plate_1_Column_2_	NCCC1=CC=C(O)C=C1	zzz
-_Plate_1_Column_3_	N[C@@H](CCC(=O)N[C@@H](CS)C(=O)NCC(O)=O)C(O)=O	zzz
-_Plate_1_Column_3_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_1_Column_3_	CC(C)CCC[C@@H](C)CCC[C@@H](C)CCC\C(C)=C\CC1=C(C)C(=O)C2=C(C=CC=C2)C1=O	zzz
-_Plate_1_Column_3_	NCCS(O)(=O)=O	zzz
-_Plate_1_Column_3_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(O)=O)N1C=CC(=O)NC1=O	zzz
-_Plate_1_Column_3_	N[C@@H](CC1=CC=C(O)C=C1)C(O)=O	zzz
-_Plate_1_Column_3_	OCC(OP(O)(O)=O)C(O)=O	zzz
-_Plate_1_Column_4_	OC1=NC=NC2=C1NC=N2	zzz
-_Plate_1_Column_4_	CC(=O)OCC(=O)C1(CCC2C1(CC(C3C2CCC4=CC(=O)CCC34C)O)C)O	zzz
-_Plate_1_Column_4_	CC(=O)N[C@@H](CC(O)=O)C(O)=O	zzz
-_Plate_1_Column_4_	CCC(=O)C(O)=O	zzz
-_Plate_1_Column_4_	OC(=O)[C@@H]1CCCN1	zzz
-_Plate_1_Column_4_	OCC(CO)OP(O)(O)=O	zzz
-_Plate_1_Column_4_	NCCC(O)=O	zzz
-_Plate_1_Column_5_	[H][C@@]12CC[C@@](O)(C(=O)CO)[C@@]1(C)C[C@H](O)[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	zzz
-_Plate_1_Column_5_	O[C@@H]([C@H](O)C(O)=O)C(O)=O	zzz
-_Plate_1_Column_5_	COC1=CC=CC=C1O	zzz
-_Plate_1_Column_5_	CC\C=C/C[C@@H]1[C@@H](CC(=O)OC)CCC1=O	zzz
-_Plate_1_Column_5_	C[C@@H](O)[C@H](N)C(O)=O	zzz
-_Plate_1_Column_5_	C\C(\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C)=C/C=C/C=C(\C)/C=C/C=C(\C)/C=C/C1=C(C)CCCC1(C)C	zzz
-_Plate_1_Column_5_	CC(C)[C@H](N)C(O)=O	zzz
-_Plate_1_Column_6_	CSC1=NC=NC2=C1NC=N2	zzz
-_Plate_1_Column_6_	CC(=O)N[C@@H](CO)C(O)=O	zzz
-_Plate_1_Column_6_	[H][C@@]1(C)NCCC2=CC(O)=C(O)C=C12	zzz
-_Plate_1_Column_6_	NC(N)=S	zzz
-_Plate_1_Column_6_	OC[C@H]1OC(=O)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_1_Column_6_	O[C@H]1C[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	zzz
-_Plate_1_Column_6_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	zzz
-_Plate_1_Column_7_	N1C=NC2=C1C=NC=N2	zzz
-_Plate_1_Column_7_	OC(=O)C1=CN=CC=C1	zzz
-_Plate_1_Column_7_	N[C@@H](CCSC[C@H](N)C(O)=O)C(O)=O	zzz
-_Plate_1_Column_7_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](CO)[C@@H](O)[C@H]1O	zzz
-_Plate_1_Column_7_	OC[C@H](O)[C@H](O)CO	zzz
-_Plate_1_Column_7_	N1C=CC2=C1C=CC=C2	zzz
-_Plate_1_Column_7_	OC(CC1=CC=C(O)C=C1)C(O)=O	zzz
-_Plate_1_Column_8_	[H][C@@]1(O)O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]1NC(C)=O	zzz
-_Plate_1_Column_8_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CNC2=O	zzz
-_Plate_1_Column_8_	CC(=O)C=O	zzz
-_Plate_1_Column_8_	N[C@@H](CCCN=C(N)N)C(O)=O	zzz
-_Plate_1_Column_8_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(=O)NC1=O	zzz
-_Plate_1_Column_8_	N[C@@H](CS)C(=O)NCC(O)=O	zzz
-_Plate_1_Column_8_	CC1=C(O)C(CN)=C(CO)C=N1	zzz
-_Plate_1_Column_9_	CC(=O)NCC(O)=O	zzz
-_Plate_1_Column_9_	OC[C@@H](O)[C@@H](O)[C@H](O)[C@@H](O)C(O)=O	zzz
-_Plate_1_Column_9_	[H][C@@](COC(=O)CCCCCCCCCCCCCCC)(COP(O)(=O)OCCN)OC(=O)CCCCCCCCCCCCCCC	zzz
-_Plate_1_Column_9_	CCCCCCC(O)=O	zzz
-_Plate_1_Column_9_	[H][C@@]12CC[C@@H](O)[C@@]1(C)CC[C@]1([H])C3=C(CC[C@@]21[H])C=C(O)C=C3	zzz
-_Plate_1_Column_9_	CCCCCCCCCCCC(=O)O[C@H](CC([O-])=O)C[N+](C)(C)C	zzz
-_Plate_1_Column_9_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](COP(O)(O)=O)O1	zzz
-_Plate_1_Column_10_	CC1=NC=C(CO)C(CO)=C1O	zzz
-_Plate_1_Column_10_	NC1=NC=NC2=C1N=CN2[C@H]1C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O1	zzz
-_Plate_1_Column_10_	NCCO	zzz
-_Plate_1_Column_10_	O=C1NC2=C(NC=N2)C(=O)N1	zzz
-_Plate_1_Column_10_	C[N+](C)(C)CCO	zzz
-_Plate_1_Column_10_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(=O)O[C@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]3O)[C@@H](O)[C@H]2O)C(=O)N1	zzz
-_Plate_1_Column_10_	OC(=O)\C=C\C(O)=O	zzz
-_Plate_1_Column_11_	[H][C@@](CC1=CN=CN1)(NC(=O)[C@]1([H])CCC(=O)N1)C(=O)N1CCC[C@@]1([H])C(N)=O	zzz
-_Plate_1_Column_11_	CC[C@H](C)[C@H](N)C(O)=O	zzz
-_Plate_1_Column_11_	NC1=NC(=O)C2=C(N1)N=CN2	zzz
-_Plate_1_Column_11_	CSCC[C@H](NC=O)C(O)=O	zzz
-_Plate_1_Column_11_	NC(=O)C1=CN=CC=C1	zzz
-_Plate_1_Column_11_	C(C1C(C(C(C(O1)O)N)O)O)O	zzz
-_Plate_1_Column_11_	NC(=O)C1=CC=C[N+](=C1)[C@@H]1O[C@H](COP(O)([O-])=O)[C@@H](O)[C@H]1O	zzz
-_Plate_1_Column_12_	C1=C(C(=O)NC(=O)N1)C(=O)O	zzz
-_Plate_1_Column_12_	C[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C(N)N=CN=C12	zzz
-_Plate_1_Column_12_	O[C@@H]1O[C@@H]2[C@@H](O)C(=O)O[C@@H]2[C@H]1O	zzz
-_Plate_1_Column_12_	CC1=C(C2=CC3=NC(=CC4=C(C(=C([N-]4)C=C5C(=C(C(=N5)C=C1[N-]2)C(C)SCC(C(=O)NC)N)C)C(C)SCC(C(=O)NC)N)C)C(=C3CCC(=O)O)C)CCC(=O)O.[Fe+2]	zzz
-_Plate_1_Column_12_	CCCCCCSCC(C(=O)NCC(=O)O)NC(=O)CCC(C(=O)O)N	zzz
-_Plate_1_Column_12_	NCCCC[C@H](N)C(O)=O	zzz
-_Plate_1_Column_12_	CN1C=NC=C1CCN	zzz
-_Plate_2_Column_1_	OCC(=O)COP(O)(O)=O	zzz
-_Plate_2_Column_1_	NCCCCCN	zzz
-_Plate_2_Column_1_	CN1C=NC2=C1C(=O)N(C)C(=O)N2	zzz
-_Plate_2_Column_1_	CN1C=NC2=C(N=CN2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C1=N	zzz
-_Plate_2_Column_1_	[H][C@@]12CC[C@](O)(C(=O)CO)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	zzz
-_Plate_2_Column_1_	CC1=CNC(=O)NC1=O	zzz
-_Plate_2_Column_1_	C1=CC(=C[N+](=C1)C2C(C(C(O2)COP(=O)([O-])OP(=O)(O)OCC3C(C(C(O3)N4C=NC5=C(N=CN=C54)N)OP(=O)(O)O)O)O)O)C(=O)O	zzz
-_Plate_2_Column_1_	CC(=O)N[C@H]1C(O)O[C@H](CO)[C@@H](O)[C@@H]1O	zzz
-_Plate_2_Column_2_	CCCCCCCCCCCCCCCCCCCC(O)=O	zzz
-_Plate_2_Column_2_	NCCC1=CNC2=CC=CC=C12	zzz
-_Plate_2_Column_2_	C(CCN=C(N)N)CN.OS(=O)(=O)O	zzz
-_Plate_2_Column_2_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O2)C(=O)N1	zzz
-_Plate_2_Column_2_	NCCCN	zzz
-_Plate_2_Column_2_	OC[C@H](O)[C@@H](O)[C@@H](O)[C@H](O)CO	zzz
-_Plate_2_Column_2_	CC(=O)NCCCNCCCCNCCCN	zzz
-_Plate_2_Column_2_	CC(=CCNC1=NC=NC2=C1NC=N2)C	zzz
-_Plate_2_Column_3_	OC[C@H]1O[C@H](C[C@@H]1O)N1C=CC(=O)NC1=O	zzz
-_Plate_2_Column_3_	OC(COP(O)(O)=O)C(O)=O	zzz
-_Plate_2_Column_3_	CC(C)(N)C(O)=O	zzz
-_Plate_2_Column_3_	N[C@H]1C(O)O[C@H](CO)[C@@H](O)[C@@H]1O	zzz
-_Plate_2_Column_3_	OC(=O)CC1=CC=C(O)C=C1	zzz
-_Plate_2_Column_3_	N[C@@H](CCO)C(O)=O	zzz
-_Plate_2_Column_3_	NC[C@H](O)C1=CC=C(O)C=C1	zzz
-_Plate_2_Column_3_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(O)=O)OC([C@@H]1O)N1C=NC2=C1NC=NC2=O	zzz
-_Plate_2_Column_4_	CCCCCCCCC(O)=O	zzz
-_Plate_2_Column_4_	OC(=O)C1=CC(=O)NC(=O)N1	zzz
-_Plate_2_Column_4_	C[N+]1=CC=CC(=C1)C(N)=O	zzz
-_Plate_2_Column_4_	OC(=O)\C=C\C1=CNC=N1	zzz
-_Plate_2_Column_4_	NC1(CC1)C(O)=O	zzz
-_Plate_2_Column_4_	CNC(CCC(=O)O)C(=O)O	zzz
-_Plate_2_Column_4_	N[C@@H](CCC(N)=O)C(O)=O	zzz
-_Plate_2_Column_4_	CCCCCCCCCCCCCCCC(=O)O[C@H](CC(O)=O)C[N+](C)(C)C	zzz
-_Plate_2_Column_5_	OC1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@H]1O	zzz
-_Plate_2_Column_5_	CC(CN)C(O)=O	zzz
-_Plate_2_Column_5_	OC[C@H]1O[C@H](OP(O)(O)=O)[C@H](O)[C@@H](O)[C@H]1O	zzz
-_Plate_2_Column_5_	OC(=O)C1=CC(=O)C2=CC=CC=C2N1	zzz
-_Plate_2_Column_5_	O[C@H](COP(O)(O)=O)C=O	zzz
-_Plate_2_Column_5_	CCCCCCCC\C=C\CCCCCCCC(O)=O	zzz
-_Plate_2_Column_5_	CC(=O)NCCC1=CNC2=C1C=C(O)C=C2	zzz
-_Plate_2_Column_5_	COC1=CC(=CC=C1O)C(O)CN	zzz
-_Plate_2_Column_6_	C1[C@H]([C@@H]([C@@H](C(O1)(CO)O)O)O)O	zzz
-_Plate_2_Column_6_	OCC(O)CO	zzz
-_Plate_2_Column_6_	OC(=O)C1CCC(=O)N1	zzz
-_Plate_2_Column_6_	OC1=CC=CC=C1O	zzz
-_Plate_2_Column_6_	NC1=NC(=O)N(C=C1)C1O[C@H](CO)[C@H]2OP(O)(=O)O[C@@H]12	zzz
-_Plate_2_Column_6_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=C(O)N=C2O	zzz
-_Plate_2_Column_6_	NC1=C2NC=NC2=NC=N1	zzz
-_Plate_2_Column_6_	O=P([O-])(OP(O)(OCC1C(O)C(O)C(N2C=NC3=C2NC=NC3=O)O1)=O)OCC(O4)C(O)C(O)C4[N+]5=CC=CC(C(N)=O)=C5	zzz
-_Plate_2_Column_7_	C[C@](O)(CC(O)=O)CC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N	zzz
-_Plate_2_Column_7_	NC1=NC2=C(N=C(CNC3=CC=C(C=C3)C(=O)N[C@@H](CCC(O)=O)C(O)=O)CN2)C(=O)N1	zzz
-_Plate_2_Column_7_	CC1=CC2=C(C=C1C)N=CN2	zzz
-_Plate_2_Column_7_	CC(=O)NCCCC(O)=O	zzz
-_Plate_2_Column_7_	NCCCNCCCN	zzz
-_Plate_2_Column_7_	C[C@H](O)[C@H](O)C1=NC2=C(NC1)NC(N)=NC2=O	zzz
-_Plate_2_Column_7_	CN1C=NC(C[C@H](N)C(O)=O)=C1	zzz
-_Plate_2_Column_7_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](COP(O)(=O)OP(O)(O)=O)O1	zzz
-_Plate_2_Column_7_	N[C@@H](CCSC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C(N)N=CN=C12)C(O)=O	zzz
-_Plate_2_Column_8_	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C	zzz
-_Plate_2_Column_8_	NCCP(O)(O)=O	zzz
-_Plate_2_Column_8_	O[C@@H]1C[C@@](O)(C[C@@H](O)[C@H]1O)C(O)=O	zzz
-_Plate_2_Column_8_	OC(=O)C\C(=C/C(O)=O)C(O)=O	zzz
-_Plate_2_Column_8_	CC(O)(CC(O)=O)CC(O)=O	zzz
-_Plate_2_Column_8_	CC1=CN([C@H]2C[C@H](O)[C@@H](CO)O2)C(=O)NC1=O	zzz
-_Plate_2_Column_8_	CCCCCCCCCCCCCCCCC(O)=O	zzz
-_Plate_2_Column_8_	COC1=C(O)C=CC(\C=C\C(O)=O)=C1	zzz
-_Plate_2_Column_9_	NC(CCSSCCC(N)C(O)=O)C(O)=O	zzz
-_Plate_2_Column_9_	OC(=O)C1=C(O)C=CC(O)=C1	zzz
-_Plate_2_Column_9_	COC(=O)CC(C)=O	zzz
-_Plate_2_Column_9_	O[C@H](C(O)=O)C1=CC=CC=C1	zzz
-_Plate_2_Column_9_	O[C@H]1[C@@H](O)[C@@H](OP(O)(=O)OP(O)(O)=O)O[C@@H]1COP(O)(O)=O	zzz
-_Plate_2_Column_9_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_2_Column_9_	C[N+]1=CC(=CC=C1)C([O-])=O	zzz
-_Plate_2_Column_9_	N[C@H]1[C@H](O)O[C@H](COS(O)(=O)=O)[C@@H](O)[C@@H]1O	zzz
-_Plate_2_Column_10_	CN1C=NC2=C1C(=O)NC(=O)N2C	zzz
-_Plate_2_Column_10_	CC(=O)N[C@@H](CS)C(O)=O	zzz
-_Plate_2_Column_10_	C[C@@H]1NC(=O)N[C@@H]1CCCCCC(O)=O	zzz
-_Plate_2_Column_10_	CC\C=C/C\C=C/C\C=C/C\C=C/C\C=C/CCCC(O)=O	zzz
-_Plate_2_Column_10_	OC(=O)[C@@H]1CCCCN1	zzz
-_Plate_2_Column_10_	CN[C@H](CC(O)=O)C(O)=O	zzz
-_Plate_2_Column_10_	CC(C)CCC[C@@H](C)CCC[C@@H](C)CCC[C@]1(C)CCC2=C(O1)C(C)=C(C)C(O)=C2C	zzz
-_Plate_2_Column_10_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	zzz
-_Plate_2_Column_11_	C[N+](C)(C)C[C@H](O)CC([O-])=O	zzz
-_Plate_2_Column_11_	CC1=C(SC=[N+]1CC2=CN=C(N=C2N)C)CCO[P@@](O)(OP([O-])(O)=O)=O	zzz
-_Plate_2_Column_11_	OC(=O)CCC(O)=O	zzz
-_Plate_2_Column_11_	C[C@H](O)[C@H](N)C(O)=O	zzz
-_Plate_2_Column_11_	NCCOP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(N)=NC1=O	zzz
-_Plate_2_Column_11_	OC[C@H]1O[C@H](O)[C@H](O)[C@@H](O)[C@H]1O	zzz
-_Plate_2_Column_11_	OC(=O)C=O	zzz
-_Plate_2_Column_11_	O[C@@H](C(O)=O)C1=CC=CC=C1	zzz
-_Plate_2_Column_12_	O[C@H]1CN[C@@H](C1)C(O)=O	zzz
-_Plate_2_Column_12_	OC[C@H]1OC(OP(O)(O)=O)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_2_Column_12_	OC(=O)CCCC(O)=O	zzz
-_Plate_2_Column_12_	NC(CC1=CNC2=CC=CC=C12)C(N)=O	zzz
-_Plate_2_Column_12_	OCC1=CC=CC=C1	zzz
-_Plate_2_Column_12_	[H][C@@](O)(CO)[C@@]([H])(O)[C@]([H])(O)C=O	zzz
-_Plate_2_Column_12_	OC(=O)C1CC(=O)NC(=O)N1	zzz
-_Plate_2_Column_12_	OC(=O)CCCC(=O)C(O)=O	zzz
-_Plate_3_Column_1_	NCCCCN	zzz
-_Plate_3_Column_1_	[H][C@@]1(CC[C@@]2([H])C3=CC=C4C[C@@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCCC(C)C	zzz
-_Plate_3_Column_1_	CCCCCCCCCCCC(O)=O	zzz
-_Plate_3_Column_1_	NCCC1=CC=C(O)C(O)=C1	zzz
-_Plate_3_Column_1_	NCCCCNCCCN	zzz
-_Plate_3_Column_1_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_3_Column_1_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(O)=O)O2)C(=O)N1	zzz
-_Plate_3_Column_2_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](CO)O2)C(=O)N1	zzz
-_Plate_3_Column_2_	CCCCCCCCCCCCCC(=O)OCC(CO)O	zzz
-_Plate_3_Column_2_	OCCCCCCCCCCCC(O)=O	zzz
-_Plate_3_Column_2_	CC1=NC=C(COP(O)(O)=O)C(C=O)=C1O	zzz
-_Plate_3_Column_2_	CC(C)C[C@H](NC(C)=O)C(O)=O	zzz
-_Plate_3_Column_2_	CCCC[C@H](N)C(O)=O	zzz
-_Plate_3_Column_2_	OC(=O)C1=CC=CC=N1	zzz
-_Plate_3_Column_3_	OC(=O)CCCCC(O)=O	zzz
-_Plate_3_Column_3_	C[C@@H](N)C(O)=O	zzz
-_Plate_3_Column_3_	CC(=O)OC(CC([O-])=O)C[N+](C)(C)C	zzz
-_Plate_3_Column_3_	OC(=O)CC1=CNC2=CC=C(O)C=C12	zzz
-_Plate_3_Column_3_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCCCCCCCC)[C@H](C)CCCC(C)C	zzz
-_Plate_3_Column_3_	CC(=O)N[C@@H]1[C@@H](O)[C@H](O)[C@@H](CO)O[C@@H]1OP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(=O)NC1=O	zzz
-_Plate_3_Column_3_	OC[C@H]1O[C@H](O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_3_Column_4_	COC(=O)C1=CC(OC)=C(O)C=C1	zzz
-_Plate_3_Column_4_	CC(O)(CCO)CC(O)=O	zzz
-_Plate_3_Column_4_	[H][C@@]1(OC(=O)C(=O)C1=O)[C@@H](O)CO	zzz
-_Plate_3_Column_4_	N[C@@H](CCC[C@H](N)C(O)=O)C(O)=O	zzz
-_Plate_3_Column_4_	C[N+](C)(CCOP([O-])(O)=O)C	zzz
-_Plate_3_Column_4_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	zzz
-_Plate_3_Column_4_	O=C1NC=CC(=O)N1	zzz
-_Plate_3_Column_5_	CCCCC\C=C/C\C=C/C\C=C/CCCCC(O)=O	zzz
-_Plate_3_Column_5_	OC[C@H](O)[C@H](O)[C@H](O)CO	zzz
-_Plate_3_Column_5_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	zzz
-_Plate_3_Column_5_	N[C@@H](CC1=CNC2=C1C=C(O)C=C2)C(O)=O	zzz
-_Plate_3_Column_5_	NC(CCCC(O)=O)C(O)=O	zzz
-_Plate_3_Column_5_	OC[C@@H](O)C(O)=O	zzz
-_Plate_3_Column_5_	NCCC1=CNC2=CC=C(O)C=C12	zzz
-_Plate_3_Column_6_	C1=CC=C2C(=C1)C(=CC=N2)C(=O)O	zzz
-_Plate_3_Column_6_	OC[C@H]1O[C@H](OP(O)(=O)OP(O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N2C=CC(=O)NC2=O)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_3_Column_6_	CC(C)(O)C(O)=O	zzz
-_Plate_3_Column_6_	OC[C@H]1OC(O)[C@H](O)[C@@H]1O	zzz
-_Plate_3_Column_6_	CC(O)=NC1C(OP(O)(=O)OP(O)(=O)OCC2OC(C(O)C2O)N2C=CC(O)=NC2=O)OC(CO)C(O)C1O	zzz
-_Plate_3_Column_6_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(=O)O[C@H]2O[C@@H]([C@@H](O)[C@H](O)[C@H]2O)C(O)=O)O[C@H]([C@@H]1O)N1C=CC(=O)NC1=O	zzz
-_Plate_3_Column_6_	NC(=N)NCC(O)=O	zzz
-_Plate_3_Column_7_	CC(=O)C(C)=O	zzz
-_Plate_3_Column_7_	CS(=N)(=O)CCC(N)C(O)=O	zzz
-_Plate_3_Column_7_	O[C@@H]([C@@H](O)[C@H](O)C(O)=O)[C@@H](O)C(O)=O	zzz
-_Plate_3_Column_7_	O[C@@H]1[C@@H](COP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1NC(=O)NC2=O	zzz
-_Plate_3_Column_7_	OC[C@@H](O)COP(O)(O)=O	zzz
-_Plate_3_Column_7_	COC(=O)CCCC(=O)O	zzz
-_Plate_3_Column_7_	OC[C@@H]1OC(O)[C@@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_3_Column_8_	N[C@@H](COP(O)(O)=O)C(O)=O	zzz
-_Plate_3_Column_8_	CC1=NC=C(CO)C(C=O)=C1O	zzz
-_Plate_3_Column_8_	NC1=C2N=CN([C@@H]3O[C@H](CO[P@](O)(=O)O[P@](O)(=O)O[C@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)[C@@H](O)[C@H]3O)C2=NC=N1	zzz
-_Plate_3_Column_8_	O[C@H]1[C@H](O)[C@](O)(COP(O)(O)=O)O[C@@H]1COP(O)(O)=O	zzz
-_Plate_3_Column_8_	N[C@@H](CS)C(O)=O	zzz
-_Plate_3_Column_8_	CCCCCCCCCC(O)=O	zzz
-_Plate_3_Column_8_	N[C@@H](CCC\N=C(/N)N(C)C)C(O)=O	zzz
-_Plate_3_Column_9_	CCC[C@@H](N)C(O)=O	zzz
-_Plate_3_Column_9_	CC\C=C/C\C=C/C\C=C/C\C=C/C\C=C/C\C=C/CCC(O)=O	zzz
-_Plate_3_Column_9_	[H][C@](N)(CC1=CN=CN1C)C(O)=O	zzz
-_Plate_3_Column_9_	[H][C@@]12CC[C@H]([C@H](C)CCC=C(C)C)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CC=C2C[C@@H](O)CC[C@]12C	zzz
-_Plate_3_Column_9_	OC(=O)CC1=C(O)C=CC(O)=C1	zzz
-_Plate_3_Column_9_	OC(=O)CCCCCCCCC(O)=O	zzz
-_Plate_3_Column_9_	"
-NC(=N)NCCCC(O)=O"	zzz
-_Plate_3_Column_10_	CC(=O)OCC[N+](C)(C)C	zzz
-_Plate_3_Column_10_	OC(=O)C(=C)OP(O)(O)=O	zzz
-_Plate_3_Column_10_	"NCC1=C(CC(O)=O)C(CCC(O)=O)=CN1
-NCC1=C(CC(O)=O)C(CCC(O)=O)=CN1"	zzz
-_Plate_3_Column_10_	CC[C@H](NC(=O)CC[C@H](N)C(O)=O)C(=O)NCC(O)=O	zzz
-_Plate_3_Column_10_	NCCOP(O)(O)=O	zzz
-_Plate_3_Column_10_	N[C@H](CO)CC1=CN=CN1	zzz
-_Plate_3_Column_10_	NCCS(O)=O	zzz
-_Plate_3_Column_11_	CN1C2=C(NC=N2)C(=O)N(C)C1=O	zzz
-_Plate_3_Column_11_	OC[C@H]1O[C@H](O[C@H]2[C@H](O)[C@H](O)[C@@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_3_Column_11_	NC(=O)C1=C[N+](=CC=C1)[C@@H]1O[C@H](COP([O-])(=O)OP(O)(=O)OC[C@H]2O[C@H]([C@H](OP(O)(O)=O)[C@@H]2O)N2C=NC3=C2N=CN=C3N)[C@@H](O)[C@H]1O	zzz
-_Plate_3_Column_11_	[H][C@@]1(CC[C@@]2(C)C3=C(CC[C@]12C)[C@@]1(C)CC[C@H](O)C(C)(C)[C@]1([H])CC3)[C@H](C)CCC=C(C)C	zzz
-_Plate_3_Column_11_	O[C@@H]([C@H](O)[C@@H](O)C(O)=O)[C@H](O)C(O)=O	zzz
-_Plate_3_Column_11_	OS(=O)(=O)OC1=CNC2=CC=CC=C12	zzz
-_Plate_3_Column_11_	OC[C@H]1O[C@](O)(CO)[C@@H](O)[C@H](O)[C@@H]1O	zzz
-_Plate_3_Column_12_	CCOC(=O)C(C)C(=O)C(=O)OCC	zzz
-_Plate_3_Column_12_	C1=CC(=C(C=C1CC(C(=O)O)N)[N+](=O)[O-])O	zzz
-_Plate_3_Column_12_	OC[C@H]1O[C@H](O[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N2C=CC(=O)NC2=O)[C@H](O)[C@@H](O)[C@H]1O	zzz
-_Plate_3_Column_12_	CC(O)C1=CC=CC=C1	zzz
-_Plate_3_Column_12_	[H][C@@]12CC[C@H]([C@H](C)CCC(O)=O)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CCC2C[C@H](O)CC[C@]12C	zzz
-_Plate_3_Column_12_	O=C1NC2=C(N1)C(=O)NC(=O)N2	zzz
-_Plate_3_Column_12_	NC1=NC=NC2=C1N=CN2[C@H]1C[C@H](O)[C@@H](COP(O)(O)=O)O1	zzz
-_Plate_4_Column_1_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](CO)O1	zzz
-_Plate_4_Column_1_	CCCCCCCCCCCCCCCC(=O)OC\C=C(/C)\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C	zzz
-_Plate_4_Column_1_	OC(=O)[C@@H](CC1=CC(O)=C(O)C=C1)OC(=O)\C=C\C1=CC(O)=C(O)C=C1	zzz
-_Plate_4_Column_1_	O[C@H]1O[C@@H]([C@@H](O)[C@H](O)[C@H]1O)C(O)=O	zzz
-_Plate_4_Column_1_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)N1	zzz
-_Plate_4_Column_1_	NC(COP(O)(O)=O)C(O)=O	zzz
-_Plate_4_Column_1_	CC(C)=CCC\C(C)=C/CC\C(C)=C\CC\C=C(/C)CC\C=C(/C)CCC=C(C)C	zzz
-_Plate_4_Column_2_	CC(=O)N[C@@H](CC1=CC=CC=C1)C(O)=O	zzz
-_Plate_4_Column_2_	CC1=C(CCO)SC=[N+]1CC1=C(N)N=C(C)N=C1	zzz
-_Plate_4_Column_2_	[H][C@@]1(CO)OC(O)[C@@]([H])(O)[C@@]([H])(O)[C@@]1([H])O	zzz
-_Plate_4_Column_2_	CC(=O)N[C@@H](CC1=CNC2=C1C=CC=C2)C(O)=O	zzz
-_Plate_4_Column_2_	C(CS)C(C(=O)O)N	zzz
-_Plate_4_Column_2_	COC1=CC2=C(NC=C2CCNC(C)=O)C=C1	zzz
-_Plate_4_Column_2_	"O[C@H]1C[C@@H](O[C@@H]1COP(O)(O)=O)N1C=CC(=O)NC1=O	
-O[C@H]1C[C@@H](O[C@@H]1COP(O)(O)=O)N1C=CC(=O)NC1=O"	zzz
-_Plate_4_Column_3_	CC(=O)N[C@@H](CC(N)=O)C(O)=O	zzz
-_Plate_4_Column_3_	NC1CCSC1=O	zzz
-_Plate_4_Column_3_	COC1=CC(CC(N)C(O)=O)=CC=C1O	zzz
-_Plate_4_Column_3_	C\C(CC(O)=O)=C/C(O)=O	zzz
-_Plate_4_Column_3_	C1=CC=C(C(=C1)N)S(=O)(=O)O	zzz
-_Plate_4_Column_3_	OC(=O)\C=C\C1=CC=CC=C1	zzz
-_Plate_4_Column_3_	C[N+](C)(C)CCCC[C@H](N)C([O-])=O	zzz
-_Plate_4_Column_4_	CC(=O)N[C@H]1[C@H](O)O[C@H](CO)[C@H](O)[C@@H]1O	zzz
-_Plate_4_Column_4_	OC[C@@H](O)[C@H](O)CO	zzz
-_Plate_4_Column_4_	N[C@@H](CC(=O)C1=CC=CC=C1N)C(O)=O	zzz
-_Plate_4_Column_4_	O[C@@H]1O[C@@H]([C@H](O)[C@H](O)[C@H]1O)C(O)=O	zzz
-_Plate_4_Column_4_	CN(CC(O)=O)C(=N)NP(O)(O)=O	zzz
-_Plate_4_Column_4_	CCC(C(O)=O)C(O)=O	zzz
-_Plate_4_Column_4_	CCCCCCCC\C=C/CCCCCCCCCCCC(O)=O	zzz
-_Plate_4_Column_5_	C1=CN=C2C(=N1)C(=O)NC(=O)N2	zzz
-_Plate_4_Column_5_	NC(=O)NCCC(O)=O	zzz
-_Plate_4_Column_5_	C[C@@H](O)CC(O)=O	zzz
-_Plate_4_Column_5_	CC(C)(COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N)C(O)C(=O)NCCC(=O)NCCS	zzz
-_Plate_4_Column_5_	OC[C@@]1(O)OC[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_4_Column_5_	OCC(O)C1=CC(O)=C(O)C=C1	zzz
-_Plate_4_Column_5_	OC(CC1=CC=C(O)C=C1)C(O)=O	zzz
-_Plate_4_Column_6_	CC(=O)OP(O)(O)=O	zzz
-_Plate_4_Column_6_	NC[C@H](O)CC[C@H](N)C(O)=O	zzz
-_Plate_4_Column_6_	OC(=O)CC1=CN=CN1	zzz
-_Plate_4_Column_6_	OC(=O)C(=O)C(O)=O	zzz
-_Plate_4_Column_6_	NC(=O)C1=C(N)N(C=N1)[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_4_Column_6_	OC[C@H]1O[C@@H](O[C@H]2[C@H](O)[C@@H](O)[C@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_4_Column_6_	C1(C(C(OC(C1O)O)C(=O)O)O)O	zzz
-_Plate_4_Column_7_	C[C@H](NC(C)=O)C(O)=O	zzz
-_Plate_4_Column_7_	NC[C@H](O)C1=CC(O)=C(O)C=C1	zzz
-_Plate_4_Column_7_	CC(C)=CCC\C(C)=C\COP(O)(=O)OP(O)(O)=O	zzz
-_Plate_4_Column_7_	C(C(=O)O)NC=O	zzz
-_Plate_4_Column_7_	OC[C@@H](O)[C@H](O)CC(=O)C(O)=O	zzz
-_Plate_4_Column_7_	OC[C@@H](O)[C@@H](O)[C@H](O)CC=O	zzz
-_Plate_4_Column_8_	O[C@@H]1[C@@H](COP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1N=CNC2=O	zzz
-_Plate_4_Column_8_	CCCCCCCC\C=C/CCCCCCCCCCCCCC(O)=O	zzz
-_Plate_4_Column_8_	NC1=C2N=CN([C@H]3C[C@H](O)[C@@H](CO)O3)C2=NC=N1	zzz
-_Plate_4_Column_8_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_4_Column_8_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CCC4=CC(=O)CC[C@]4(C)[C@@]3([H])[C@@]([H])(O)C[C@]12C)C(=O)CO	zzz
-_Plate_4_Column_8_	[H][C@@]12CC[C@](O)(C(=O)CO)[C@@]1(C)CC(=O)[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	zzz
-_Plate_4_Column_8_	[H]C(COC(=O)CCCCCCCCCCCCC)(COC(=O)CCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCC	zzz
-_Plate_4_Column_9_	CC(C)(CO)C(O)C(=O)NCCC(O)=O	zzz
-_Plate_4_Column_9_	NC1=C2N=CN([C@@H]3O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]3O)C2=NC=N1	zzz
-_Plate_4_Column_9_	NC(CS(O)(=O)=O)C(O)=O	zzz
-_Plate_4_Column_9_	C(COC(=O)CCC(=O)O)C(C(=O)O)N	zzz
-_Plate_4_Column_9_	N[C@@H](CC(O)=O)C(O)=O	zzz
-_Plate_4_Column_9_	OC(=O)CC(=O)C(O)=O	zzz
-_Plate_4_Column_9_	NCCS	zzz
-_Plate_4_Column_10_	[H]C12CC[C@H]([C@H](C)CCCC(C)(C)O)[C@@]1(C)CCC1([H])[C@@]2([H])CC=C2C[C@@H](O)CC[C@]12C	zzz
-_Plate_4_Column_10_	C1=CC=C2N=CC=CC2=C1	zzz
-_Plate_4_Column_10_	OC(=O)C(=O)CS	zzz
-_Plate_4_Column_10_	OC(=O)CCCCCC(O)=O	zzz
-_Plate_4_Column_10_	CCCCCCCC(O)=O	zzz
-_Plate_4_Column_10_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1N=CN=C2O	zzz
-_Plate_4_Column_10_	C1=CC(=CC=C1C(C(=O)O)N)O	zzz
-_Plate_4_Column_11_	N[C@@H](CC(N)=O)C(O)=O	zzz
-_Plate_4_Column_11_	CC1=C2NC=C3C2=C(C2=CNC4=C(C)C(=O)C(=O)C3=C24)C(=O)C1=O	zzz
-_Plate_4_Column_11_	COC1=C(OC)C(=O)C(C\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CCC=C(C)C)=C(C)C1=O	zzz
-_Plate_4_Column_11_	C[N+](C)(CCCC([O-])=O)C	zzz
-_Plate_4_Column_11_	C1CCOC(=O)C1	zzz
-_Plate_4_Column_11_	OC(=O)C1=CN=C(O)C=C1	zzz
-_Plate_4_Column_11_	[H][C@]1(CCCN1C(C)=O)C(O)=O	zzz
-_Plate_4_Column_12_	CNCC(O)=O	zzz
-_Plate_4_Column_12_	C1=CC(=O)NC(=C1)O	zzz
-_Plate_4_Column_12_	O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@H](O)[C@@H]1O	zzz
-_Plate_4_Column_12_	NC1=NC(=O)C2=C(NC[C@H](CNC3=CC=C(C=C3)C(=O)NC(CCC(O)=O)C(O)=O)N2)N1	zzz
-_Plate_4_Column_12_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_4_Column_12_	N[C@@H](CS(=O)=O)C(O)=O	zzz
-_Plate_4_Column_12_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	zzz
-_Plate_5_Column_1_	C(C(C(=O)O)O)(C(=O)O)O	zzz
-_Plate_5_Column_1_	CCCCCCCCCCCCCCCCCCCCCCC(O)=O	zzz
-_Plate_5_Column_1_	NC1=C2N=CN([C@@H]3O[C@H](COP(O)(O)=O)[C@@H](OP(O)(O)=O)[C@H]3O)C2=NC=N1	zzz
-_Plate_5_Column_1_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CC[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(=O)NCCS(O)(=O)=O	zzz
-_Plate_5_Column_1_	C1C(OCC(O1)O)O	zzz
-_Plate_5_Column_1_	OC(=O)CC1=CC=C(O)C(O)=C1	zzz
-_Plate_5_Column_1_	N[C@@H](CC1=CNC=N1)C(O)=O	zzz
-_Plate_5_Column_1_	CN(C)C1=CC=C(C=C1)N	zzz
-_Plate_5_Column_2_	O[C@@H]1CC(=C[C@@H](O)[C@H]1O)C(O)=O	zzz
-_Plate_5_Column_2_	OC[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)CO	zzz
-_Plate_5_Column_2_	[H][C@](N)(CC1=CC(I)=C(O)C(I)=C1)C(O)=O	zzz
-_Plate_5_Column_2_	OC1=CC=CC=C1	zzz
-_Plate_5_Column_2_	NC(C1=C[N+]([C@@H]2O[C@@H]([C@H]([C@H]2O)O)COP([O-])(OP(O)(OC[C@H]3O[C@@H](N4C=NC5=C4N=CN=C5N)[C@@H]([C@@H]3O)O)=O)=O)=CC=C1)=O	zzz
-_Plate_5_Column_2_	CCCCCCCCCCCCCC(O)=O	zzz
-_Plate_5_Column_2_	OCC(=O)[C@@H](O)[C@H](O)[C@H](O)COP(O)(O)=O	zzz
-_Plate_5_Column_2_	CC(=O)N[C@H]1[C@H](N)O[C@H](CO)[C@@H](O)[C@@H]1O	zzz
-_Plate_5_Column_3_	NC(=O)NC1NC(=O)NC1=O	zzz
-_Plate_5_Column_3_	O[C@H](CC(O)=O)C(O)=O	zzz
-_Plate_5_Column_3_	OC(=O)\C=C/C(O)=O	zzz
-_Plate_5_Column_3_	OC(=O)CP(O)(O)=O	zzz
-_Plate_5_Column_3_	C1=C(C=C(C=C1N)O)C(=O)O	zzz
-_Plate_5_Column_3_	COC(CCCN)=O	zzz
-_Plate_5_Column_3_	NC(CC1=CC(I)=C(OC2=CC=C(O)C=C2)C(I)=C1)C(O)=O	zzz
-_Plate_5_Column_3_	CC(O)C(C)=O	zzz
-_Plate_5_Column_4_	N[C@H]1[C@@H](O)O[C@H](COP(O)(O)=O)[C@@H](O)[C@@H]1O	zzz
-_Plate_5_Column_4_	CCCCC(O)=O	zzz
-_Plate_5_Column_4_	CN(C)C	zzz
-_Plate_5_Column_4_	OC(=O)C(O)=O	zzz
-_Plate_5_Column_4_	C1=CN=CN=C1	zzz
-_Plate_5_Column_4_	"
-C\C(=C\C(O)=O)C(O)=O"	zzz
-_Plate_5_Column_4_	N[C@H]1C(O)O[C@H](CO)[C@H](O)[C@@H]1O	zzz
-_Plate_5_Column_4_	OC(=O)C(=O)CC1=CNC2=CC=CC=C12	zzz
-_Plate_5_Column_5_	OC(=O)C1=CC=C(O)C=C1	zzz
-_Plate_5_Column_5_	CCC(O)=O	zzz
-_Plate_5_Column_5_	NC1=CC=C(C=C1)C(O)=O	zzz
-_Plate_5_Column_5_	OC(=O)C1=CC=CC(O)=C1O	zzz
-_Plate_5_Column_5_	OC(=O)C1=CC(O)=C(O)C=C1	zzz
-_Plate_5_Column_5_	CCCCC\C=C/C\C=C/CCCCCCCC(O)=O	zzz
-_Plate_5_Column_5_	O[C@@H]1CC(=CC(=O)[C@H]1O)C(O)=O	zzz
-_Plate_5_Column_5_	CC(=O)OCC(=O)C1CCC2C1(CCC3C2CCC4=CC(=O)CCC34C)C	zzz
-_Plate_5_Column_6_	N[C@H](CC1=CNC2=CC=CC=C12)C(O)=O	zzz
-_Plate_5_Column_6_	CN1C=NC2=C1C(=O)N(C)C(=O)N2C	zzz
-_Plate_5_Column_6_	OCC(O)C=O	zzz
-_Plate_5_Column_6_	OC(=O)C=C	zzz
-_Plate_5_Column_6_	N[C@@H](CSSC[C@H](N)C(O)=O)C(O)=O	zzz
-_Plate_5_Column_6_	NC1=C(O)C=CC=C1C(O)=O	zzz
-_Plate_5_Column_6_	OC1=CC=C(C=O)C=C1	zzz
-_Plate_5_Column_6_	C1=CC(=C(C=C1C(=O)O)N)O	zzz
-_Plate_5_Column_7_	[H][C@@]12COP(O)(=O)O[C@@]1([H])[C@@H](O)[C@@H](O2)N1C=NC2=C1N=CN=C2N	zzz
-_Plate_5_Column_7_	[H][C@]1(CCCN1C)C1=CC=CN=C1	zzz
-_Plate_5_Column_7_	CC(=O)CC(O)=O	zzz
-_Plate_5_Column_7_	OCCC1=CNC2=CC=CC=C12	zzz
-_Plate_5_Column_7_	CC1(C)COC(=O)C1O	zzz
-_Plate_5_Column_7_	OC(=O)C(=O)CC1=CC=C(O)C=C1	zzz
-_Plate_5_Column_7_	OC(=O)CCC1=CC=CC=C1O	zzz
-_Plate_5_Column_7_	OC(C(O)=O)C1=CC=C(O)C(O)=C1	zzz
-_Plate_5_Column_8_	CC(C)=CCO	zzz
-_Plate_5_Column_8_	[H][C@@]12CC[C@H](C(C)=O)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CC=C2CC(CC[C@]12C)OS(O)(=O)=O	zzz
-_Plate_5_Column_8_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(O)=O	zzz
-_Plate_5_Column_8_	C[C@@H]1OC(O)[C@@H](O)[C@H](O)[C@@H]1O	zzz
-_Plate_5_Column_8_	NC(=N)N[C@@H](CC(O)=O)C(O)=O	zzz
-_Plate_5_Column_8_	NCCC1=CNC=N1	zzz
-_Plate_5_Column_8_	COC1=C(O)C=CC(CCN)=C1	zzz
-_Plate_5_Column_8_	CCC(C)C=O	zzz
-_Plate_5_Column_9_	C1=CC(=CC(=C1)O)C=O	zzz
-_Plate_5_Column_9_	CC(C)CC(=O)C(=O)O	zzz
-_Plate_5_Column_9_	NCCC[C@H](N)C(O)=O	zzz
-_Plate_5_Column_9_	OCC(O)=O	zzz
-_Plate_5_Column_9_	CSCCC(O)C(O)=O	zzz
-_Plate_5_Column_9_	COC1C(C(C(C(O1)CO)O)O)O	zzz
-_Plate_5_Column_9_	CC1=C(C=C)\C(NC1=O)=C\C1=C(C)C(CCC(O)=O)=C(N1)\C=C1/N\C(=C\C2=NC(=O)C(C=C)=C2C)C(C)=C1CCC(O)=O	zzz
-_Plate_5_Column_9_	CCCCCCCCCCCCCCCC(=O)OC[C@H](COP([O-])(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCCCCCCCC	zzz
-_Plate_5_Column_10_	OC(=O)C1=NC2=C(O)C=CC=C2C(O)=C1	zzz
-_Plate_5_Column_10_	CC(C)C(O)=O	zzz
-_Plate_5_Column_10_	[H][C@]12CS[C@@H](CCCCC(O)=O)[C@@]1([H])NC(=O)N2	zzz
-_Plate_5_Column_10_	NCC(O)C1=CC=CC=C1	zzz
-_Plate_5_Column_10_	C(CCCCC(=O)O)CCCCO	zzz
-_Plate_5_Column_10_	O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@@H](O)C(O)=O	zzz
-_Plate_5_Column_10_	OC(=O)C1=NC2=CC=CC=C2C=C1	zzz
-_Plate_5_Column_10_	CCCC(O)=O	zzz
-_Plate_5_Column_11_	CC(C)C=NO	zzz
-_Plate_5_Column_11_	OCC1=CC=CC(O)=C1	zzz
-_Plate_5_Column_11_	CC(=O)NC(CCSC)C(=O)O	zzz
-_Plate_5_Column_11_	CC1=C(CCOP(O)([O-])=O)SC=[N+]1CC1=CN=C(C)N=C1N	zzz
-_Plate_5_Column_11_	OC(O)=C(O)C(=O)C(O)=O	zzz
-_Plate_5_Column_11_	NC1=NC2=C(N=CN2[C@@H]2O[C@@H]3COP(O)(=O)O[C@H]3[C@H]2O)C(=O)N1	zzz
-_Plate_5_Column_11_	N[C@@H](CO)C(O)=O	zzz
-_Plate_5_Column_11_	N[C@@H](CCC(O)=O)C(O)=O	zzz
-_Plate_5_Column_12_	OC[C@H]1O[C@@H](OC2=CNC3=C2C=CC=C3)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_5_Column_12_	[H][C@@]1(OC(=O)C(O)=C1O)[C@@H](O)CO	zzz
-_Plate_5_Column_12_	CC(=O)N[C@@H]1[C@@H](O)C[C@](O)(O[C@H]1[C@H](O)[C@H](O)CO)C(O)=O	zzz
-_Plate_5_Column_12_	C1=CC=C(C(=C1)N)O	zzz
-_Plate_5_Column_12_	CC[C@H](O)C(O)=O	zzz
-_Plate_5_Column_12_	OC(=O)CC1=CNC2=C1C=CC=C2	zzz
-_Plate_5_Column_12_	NC1=NC2=NC=CN=C2C(=O)N1	zzz
-_Plate_5_Column_12_	NC[C@H](N)C(O)=O	zzz
-_Plate_6_Column_1_	OC1=CC=CC=N1	zzz
-_Plate_6_Column_1_	O=CCC1=CC=CC=C1	zzz
-_Plate_6_Column_1_	CC(=O)NC(CCC(O)=O)C(O)=O	zzz
-_Plate_6_Column_1_	OC(=O)CCC(=O)C(O)=O	zzz
-_Plate_6_Column_1_	CC1C2=CC=CC=C2NC1=O	zzz
-_Plate_6_Column_1_	OC[C@H](O)[C@@H](O)[C@H](O)[C@H](O)CO	zzz
-_Plate_6_Column_1_	C\C=C\C=C\C(O)=O	zzz
-_Plate_6_Column_2_	NCC(=O)CCC(O)=O	zzz
-_Plate_6_Column_2_	CCC(C)C(=O)C(O)=O	zzz
-_Plate_6_Column_2_	CC(=O)C1=C(O)C=C(O)C=C1	zzz
-_Plate_6_Column_2_	NC=O	zzz
-_Plate_6_Column_2_	CN1C=NC(N)=C2N=CN=C12	zzz
-_Plate_6_Column_2_	OC[C@H](O)C(O)[C@H](O)CO	zzz
-_Plate_6_Column_2_	C(=CC(=O)O)C(=O)N	zzz
-_Plate_6_Column_3_	NC(CC(=O)C1=C(N)C(O)=CC=C1)C(O)=O	zzz
-_Plate_6_Column_3_	CC1=CC=C(O)C(O)=C1	zzz
-_Plate_6_Column_3_	CC1=C(C=C)\C(NC1=O)=C\C1=C(C)C(CCC(O)=O)=C(CC2=C(CCC(O)=O)C(C)=C(N2)\C=C2/NC(=O)C(C=C)=C2C)N1	zzz
-_Plate_6_Column_3_	C[C@]12C[C@H](O)C3C(CCC4C[C@H](O)CC[C@]34C)C1CC[C@]2(O)C(=O)CO	zzz
-_Plate_6_Column_3_	OCC(=O)C(O)=O	zzz
-_Plate_6_Column_3_	C[C@@H]1OC(O)[C@H](O)[C@H](O)[C@H]1O	zzz
-_Plate_6_Column_3_	OC[C@H]1O[C@@](CO)(O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	zzz
-_Plate_6_Column_4_	OCCNCCO	zzz
-_Plate_6_Column_4_	O=C1CCNC(=O)N1	zzz
-_Plate_6_Column_4_	CC(C(O)=O)C(O)=O	zzz
-_Plate_6_Column_4_	CCOC(=O)CC(O)=O	zzz
-_Plate_6_Column_4_	NC(=O)OP(O)(O)=O	zzz
-_Plate_6_Column_4_	CSC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CN=C2N	zzz
-_Plate_6_Column_4_	N[C@@H](CC1=CC(O)=C(O)C=C1)C(O)=O	zzz
-_Plate_6_Column_5_	OC(=O)C1=CC(O)=CC=C1	zzz
-_Plate_6_Column_5_	OC(=O)C1=CC=CN1	zzz
-_Plate_6_Column_5_	COC(=O)CC1=CNC2=C1C=CC=C2	zzz
-_Plate_6_Column_5_	COC1=CC(CC(O)=O)=CC=C1O	zzz
-_Plate_6_Column_5_	NCCC1=C(O)C=C(O)C(O)=C1	zzz
-_Plate_6_Column_5_	OC(=O)CC(O)=O	zzz
-_Plate_6_Column_5_	OC(=O)CCCCCCCC(O)=O	zzz
-_Plate_6_Column_6_	COCCO	zzz
-_Plate_6_Column_6_	N[C@@H](CC1=CC(I)=C(OC2=CC(I)=C(O)C(I)=C2)C(I)=C1)C(O)=O	zzz
-_Plate_6_Column_6_	CNC(N)=N	zzz
-_Plate_6_Column_6_	O=CCC1=CNC2=CC=CC=C12	zzz
-_Plate_6_Column_6_	CC(=O)C(O)=O	zzz
-_Plate_6_Column_6_	O[C@@H]1COC(O)[C@H](O)[C@H]1O	zzz
-_Plate_6_Column_6_	O[C@H]1CN[C@H](C1)C(O)=O	zzz
-_Plate_6_Column_7_	CC(=O)NCCCCN	zzz
-_Plate_6_Column_7_	OC(=O)C1=CC(O)=CC=C1O	zzz
-_Plate_6_Column_7_	COC1=C(O)C=CC(=C1)[C@H](O)C(O)=O	zzz
-_Plate_6_Column_7_	COC1=C(C=CC(=C1)C(CO)O)O	zzz
-_Plate_6_Column_7_	OC(=O)[C@@H]1CCC(=O)N1	zzz
-_Plate_6_Column_7_	OC(=O)CCC=O	zzz
-_Plate_6_Column_7_	C1C(C(C(C(O1)(CO)O)O)O)O	zzz
-_Plate_6_Column_8_	CC(=O)NC(CCCCN)C(O)=O	zzz
-_Plate_6_Column_8_	COC1=CC(C=O)=CC=C1O	zzz
-_Plate_6_Column_8_	OC1=CC=C(O)C=C1	zzz
-_Plate_6_Column_8_	OC(=O)CC1=CC=CC(O)=C1	zzz
-_Plate_6_Column_8_	CC1=C(N)NC(=O)N=C1	zzz
-_Plate_6_Column_8_	NCCCC(O)=O	zzz
-_Plate_6_Column_8_	O=CC1=CC=CC=C1	zzz
-_Plate_6_Column_9_	CC(=C)CCOP(O)(=O)OP(O)(O)=O	zzz
-_Plate_6_Column_9_	CSCC[C@H](N)C(O)=O	zzz
-_Plate_6_Column_9_	CC(CCC(O)=O)C(O)=O	zzz
-_Plate_6_Column_9_	CC1=NC=C(CO)C(C(O)=O)=C1O	zzz
-_Plate_6_Column_9_	CC(C)=CC(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N	zzz
-_Plate_6_Column_9_	CN1C=NC=C1C[C@H](NC(=O)CCN)C(O)=O	zzz
-_Plate_6_Column_9_	CC1=CC2=C(C=C1C)N=C3C(=N2)C(=O)NC(=O)N3	zzz
-_Plate_6_Column_10_	C[N+](C)(C)CC([O-])=O	zzz
-_Plate_6_Column_10_	CCCCCCCCCCCCCCCCCC(O)=O	zzz
-_Plate_6_Column_10_	C[C@@H](O)[C@@H](C)O	zzz
-_Plate_6_Column_10_	C1=CNN=C1	zzz
-_Plate_6_Column_10_	OC[C@H]1O[C@@](CO)(OC2O[C@H](COC3O[C@H](CO)[C@H](O)[C@H](O)[C@H]3O)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	zzz
-_Plate_6_Column_10_	NC1=CC=CC=C1	zzz
-_Plate_6_Column_10_	CC1=C(C)C=C2N(C[C@H](O)[C@H](O)[C@H](O)CO)C3=NC(=O)NC(=O)C3=NC2=C1	zzz
-_Plate_6_Column_11_	C(C(C(=O)O)O)(C(=O)C(=O)O)C(=O)O	zzz
-_Plate_6_Column_11_	OC[C@H]1O[C@H](O)[C@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_6_Column_11_	OC(=O)C1=CC=CC=C1O	zzz
-_Plate_6_Column_11_	NC(=O)C1=CC=CC=C1O	zzz
-_Plate_6_Column_11_	NC1=NC=NC2=C1N=CN2C1OC(CO)C2OP(O)(=O)OC12	zzz
-_Plate_6_Column_11_	C1=CC(=O)NC1=O	zzz
-_Plate_6_Column_11_	C(C1C(C(C(C(O1)OCC2C(C(C(O2)(CO)O)O)O)O)O)O)O	zzz
-_Plate_6_Column_12_	CC(C(=O)O)C(CC(=O)O)(C(=O)O)O	zzz
-_Plate_6_Column_12_	OC[C@H]1O[C@H](OC[C@H]2OC(O)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@@H](O)[C@H]1O	zzz
-_Plate_6_Column_12_	C[S+](CC[C@H](N)C(O)=O)C[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CN=C2N	zzz
-_Plate_6_Column_12_	NC(CSCC(O)=O)C(O)=O	zzz
-_Plate_6_Column_12_	NC1=C2N=CN(C3OC(COP(O)(=O)OP(O)(=O)OCC4OC(O)C(O)C4O)C(O)C3O)C2=NC=N1	zzz
-_Plate_6_Column_12_	OC[C@H]1OC(O)[C@@H](O)[C@@H](O)[C@@H]1O	zzz
-_Plate_6_Column_12_	CNC[C@H](O)C1=CC=C(O)C(O)=C1	zzz
-_Plate_7_Column_1_	[H][C@@]1(CC[C@@]2([H])\C(CCC[C@]12C)=C\C=C1\C[C@@H](O)CCC1=C)[C@H](C)\C=C\[C@H](C)C(C)C	zzz
-_Plate_7_Column_1_	CCCCCC(O)=O	zzz
-_Plate_7_Column_1_	CCCCCCCCCCCCCCCC(O)=O	zzz
-_Plate_7_Column_1_	CC(C)C[C@H](N)C(O)=O	zzz
-_Plate_7_Column_1_	OC(=O)CC1=CNC2=C1C=CC=C2	zzz
-_Plate_7_Column_1_	C1CCC(C(C1)O)O	zzz
-_Plate_7_Column_1_	CN(CC(O)=O)C(N)=N	zzz
-_Plate_7_Column_2_	CCCCCCCCCCCCCCCCCC(=O)N[C@@H]([C@@H](/C=C/CCCCCCCCCCCCC)O)C(O)OOP(=O)(O)OCC[N+](C)(C)C	zzz
-_Plate_7_Column_2_	C\C(\C=C\C1=C(C)CCCC1(C)C)=C/C=C/C(/C)=C/C(O)=O	zzz
-_Plate_7_Column_2_	C(C(C1C(C(C(=O)O1)O)O)O)O	zzz
-_Plate_7_Column_2_	CCCCCCCCCCCCCCC[C@@H](O)[C@@H](N)CO	zzz
-_Plate_7_Column_2_	CC(O)(CC(O)=O)C(O)=O	zzz
-_Plate_7_Column_2_	CC(=O)OC[C@H](N)C(O)=O	zzz
-_Plate_7_Column_2_	O=C1CCCC1	zzz
-_Plate_7_Column_3_	OC(=O)\C=C\C1=CC=C(O)C=C1	zzz
-_Plate_7_Column_3_	O[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@@H]1O	zzz
-_Plate_7_Column_3_	NCCCNCCCCNCCCN	zzz
-_Plate_7_Column_3_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](CO)[C@@H](O)[C@H]1O	zzz
-_Plate_7_Column_3_	OP(O)(=O)OC1C(OP(O)(O)=O)C(OP(O)(O)=O)C(OP(O)(O)=O)C(OP(O)(O)=O)C1OP(O)(O)=O	zzz
-_Plate_7_Column_3_	OC[C@H]1O[C@@](CO)(O[C@H]2O[C@H](CO[C@H]3O[C@H](CO[C@H]4O[C@H](CO)[C@H](O)[C@H](O)[C@H]4O)[C@H](O)[C@H](O)[C@H]3O)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	zzz
-_Plate_7_Column_3_	[H][C@@]12CC[C@H]([C@H](C)CCC(O)=O)[C@@]1(C)[C@@H](O)C[C@@]1([H])[C@@]2([H])CC[C@]2([H])C[C@H](O)CC[C@]12C	zzz
-_Plate_7_Column_4_	[H][C@@](C)(NC)C(O)=O	zzz
-_Plate_7_Column_4_	CCOC(=O)CCNC(=O)N	zzz
-_Plate_7_Column_4_	OC[C@H]1O[C@@H](O[C@H]2[C@H](O)[C@@H](O)[C@@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@H]1O	zzz
-_Plate_7_Column_4_	CC1=CN([C@H]2C[C@H](O)[C@@H](COP(O)(O)=O)O2)C(=O)NC1=O	zzz
-_Plate_7_Column_4_	N[C@@H](CCCNC(N)=O)C(O)=O	zzz
-_Plate_7_Column_4_	CCCCC(CC)COC(=O)C1=CC=CC=C1C(=O)OCC(CC)CCCC	zzz
-_Plate_7_Column_5_	NC1=NC(=O)C2=NC(CNC3=CC=C(C=C3)C(=O)N[C@@H](CCC(O)=O)C(O)=O)=CN=C2N1	zzz
-_Plate_7_Column_5_	C[N+](C)(C)CCOP([O-])(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(N)=NC1=O	zzz
-_Plate_7_Column_5_	C[C@H](N)C(O)=O	zzz
-_Plate_7_Column_5_	NCCC(=O)N[C@@H](CC1=CN=CN1)C(O)=O	zzz
-_Plate_7_Column_5_	OC(=O)C1=CC=CN=C1C(O)=O	zzz
-_Plate_7_Column_5_	CC1=CN=C(C)C=N1	zzz
-_Plate_7_Column_6_	CCCCCCCC\C=C/CCCCCCCC(=O)O[C@H]1CC[C@@]2(C)C(=CC[C@@]3([H])[C@]4([H])CC[C@]([H])([C@H](C)CCCC(C)C)[C@@]4(C)CC[C@]23[H])C1	zzz
-_Plate_7_Column_6_	C[C@]1(O)CCOC(=O)C1	zzz
-_Plate_7_Column_6_	OC(=O)C1=CC=CC=C1	zzz
-_Plate_7_Column_6_	C(C(C(C(C(C(=O)O)N)O)O)O)O	zzz
-_Plate_7_Column_6_	CC1=CN([C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OC3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)O2)C(=O)NC1=O	zzz
-_Plate_7_Column_6_	NC(=O)C1=CN(C=CC1)[C@H]1O[C@@H](COP(O)(=O)OP(O)(=O)OC[C@@H]2O[C@@H]([C@@H](OP(O)(O)=O)[C@H]2O)N2C=NC3=C(N)N=CN=C23)[C@H](O)[C@@H]1O	zzz
-_Plate_7_Column_7_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(O)=O	zzz
-_Plate_7_Column_7_	OC(=O)CC(O)(CC(O)=O)C(O)=O	zzz
-_Plate_7_Column_7_	CC1=CC2=C(C=C1C)N(C[C@H](O)[C@H](O)[C@H](O)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC3=C1N=CN=C3N)C1=NC(=O)NC(=O)C1=N2	zzz
-_Plate_7_Column_7_	CCCCCCCCC=CCCCCCCCC(=O)OCC(CO)O	zzz
-_Plate_7_Column_7_	[H][C@](CO)(COC(=O)CCCCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCCCC	zzz
-_Plate_7_Column_7_	CCCCCCCCCC(=O)OCC(COP(=O)([O-])OCC[N+](C)(C)C)OC(=O)CCCCCCCCC	zzz
-_Plate_7_Column_8_	CCCCCCCCCCC/C=C\CCCCC(O)=O	zzz
-_Plate_7_Column_8_	C([C@H]([C@H](C(=O)COP(=O)(O)O)O)O)OP(=O)(O)O	zzz
-_Plate_7_Column_8_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(O)=O)O2)C(=O)N1	zzz
-_Plate_7_Column_8_	CC(CC(O)=O)CC(O)=O	zzz
-_Plate_7_Column_8_	C\C(=C/CO)\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C	zzz
-_Plate_7_Column_8_	OC[C@@H]1O[C@H](O)C[C@H]1O	zzz
-_Plate_7_Column_9_	NCCC[C@@H](N)C(O)=O	zzz
-_Plate_7_Column_9_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(=O)NCC(O)=O	zzz
-_Plate_7_Column_9_	OC(=O)CC(=C)C(O)=O	zzz
-_Plate_7_Column_9_	CO[C@@H]1[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)[C@H]1O	zzz
-_Plate_7_Column_9_	CCCCCCCCCC(=O)C	zzz
-_Plate_7_Column_9_	CCCCCCCC\C=C/CCCCCCCC(O)=O	zzz
-_Plate_7_Column_10_	CC1=CC2=C(C=C1C)N(C=N2)C3[C@@H]([C@@H]([C@H](O3)CO)OP(=O)([O-])O[C@H](C)CNC(=O)CC[C@@]4([C@H]([C@@H]5[C@]6([C@@]([C@@H](/C(=C(/C7=N/C(=C\C8=N/C(=C(\C4=N5)/C)/[C@H](C8(C)C)CCC(=O)N)/[C@H]([C@]7(C)CC(=O)N)CCC(=O)N)\C)/[N-]6)CCC(=O)N)(C)CC(=O)N)C)CC(=O)N)C)O.[C-]#N.[Co+3]	zzz
-_Plate_7_Column_10_	CN1CC(=O)NC1=N	zzz
-_Plate_7_Column_10_	CCOC(=O)CC1=CNC2=CC=CC=C21	zzz
-_Plate_7_Column_10_	OC(=O)CNC(=O)C1=CC=CC=C1	zzz
-_Plate_7_Column_10_	C1=CC=C2C(=C1)C=CC(=C2O)C(=O)O	zzz
-_Plate_7_Column_10_	OC[C@H](O)C(O)[C@@H](O)CO	zzz
-_Plate_7_Column_11_	N[C@@H](CC1=CC(I)=C(OC2=CC=C(O)C(I)=C2)C(I)=C1)C(O)=O	zzz
-_Plate_7_Column_11_	NC(=O)CCCCC1CCSS1	zzz
-_Plate_7_Column_11_	CCCCCCCCCCCCCCCCO	zzz
-_Plate_7_Column_11_	NCCCCC(O)=O	zzz
-_Plate_7_Column_11_	O[C@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	zzz
-_Plate_7_Column_11_	[H]C(COC(=O)CCCCCCCCCCCCCCC)(COC(=O)CCCCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCCCC	zzz
-_Plate_7_Column_12_	CC1=C(CCC(O)=O)/C2=C/C3=N/C(=C\C4=C(C)C(C=C)=C(N4)/C=C4\N=C(\C=C\1/N\2)C(C=C)=C4C)/C(C)=C3CCC(O)=O	zzz
-_Plate_7_Column_12_	CCCCCC\C=C/CCCCCCCC(O)=O	zzz
-_Plate_7_Column_12_	NCC(O)=O	zzz
-_Plate_7_Column_12_	CC(=O)OC1=CC=CC(=C1)O	zzz
-_Plate_7_Column_12_	OC(=O)C(=O)CC1=CC=CC=C1	zzz
-_Plate_7_Column_12_	O=C\C=C\C1=CC=CC=C1	zzz
+_Plate_1_Column_1_	CNCCC1=CNC2=CC=CC=C12	Methyltryptamine
+_Plate_1_Column_1_	NC1=CC=NC(=O)N1	Cytosine
+_Plate_1_Column_1_	C[N+](C)(C)C[C@H](CC([O-])=O)OC(=O)CCCC(O)=O	Car(DC5:0)
+_Plate_1_Column_1_	C[C@H](CCC(O)=NCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C	Glycocholic Acid
+_Plate_1_Column_1_	C[C@H](O)C(O)=O	L-Lactic Acid
+_Plate_1_Column_1_	OC(=O)CCCCCCC(O)=O	Suberic acid
+_Plate_1_Column_1_	OC(C(CC(O)=O)C(O)=O)C(O)=O	Isocitric Acid
+_Plate_1_Column_2_	OC(=O)\C=C/C1=CC=C(O)C(O)=C1	QAIPRVGONGVQAS-RQOWECAXSA-N
+_Plate_1_Column_2_	C(C[Se][Se]CCN)N	QNGIKJLVQNCRRC-UHFFFAOYSA-N
+_Plate_1_Column_2_	NCC1=CC=CC=C1	WGQKYBSKWIADBV-UHFFFAOYSA-N
+_Plate_1_Column_2_	CC(C)=CCC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC\C(C)=C\CC1=C(C)C(=O)C2=CC=CC=C2C1=O	PFRQBZFETXBLTP-RCIYGOBDSA-N
+_Plate_1_Column_2_	CC(C)=CCO[P@](O)(=O)OP(O)(O)=O	CBIDRCWHNCKSTO-UHFFFAOYSA-N
+_Plate_1_Column_2_	N[C@@H](CC1=CC=CC=C1)C(O)=O	L-Phenylalanine
+_Plate_1_Column_2_	NCCC1=CC=C(O)C=C1	DZGWFCGJZKJUFP-UHFFFAOYSA-N
+_Plate_1_Column_3_	N[C@@H](CCC(=O)N[C@@H](CS)C(=O)NCC(O)=O)C(O)=O	Glutathione
+_Plate_1_Column_3_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	PCDQPRRSZKQHHS-XVFCMESISA-N
+_Plate_1_Column_3_	CC(C)CCC[C@@H](C)CCC[C@@H](C)CCC\C(C)=C\CC1=C(C)C(=O)C2=C(C=CC=C2)C1=O	Phylloquinone
+_Plate_1_Column_3_	NCCS(O)(=O)=O	Taurine
+_Plate_1_Column_3_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(O)=O)N1C=CC(=O)NC1=O	Uridine Monophosphate
+_Plate_1_Column_3_	N[C@@H](CC1=CC=C(O)C=C1)C(O)=O	L-Tyrosine
+_Plate_1_Column_3_	OCC(OP(O)(O)=O)C(O)=O	2-Phosphoglyceric Acid
+_Plate_1_Column_4_	OC1=NC=NC2=C1NC=N2	Hypoxanthine
+_Plate_1_Column_4_	CC(=O)OCC(=O)C1(CCC2C1(CC(C3C2CCC4=CC(=O)CCC34C)O)C)O	ALEXXDVDDISNDU-UHFFFAOYSA-N
+_Plate_1_Column_4_	CC(=O)N[C@@H](CC(O)=O)C(O)=O	N-Acetyl-L-Aspartic Acid
+_Plate_1_Column_4_	CCC(=O)C(O)=O	2-Oxobutanoic Acid
+_Plate_1_Column_4_	OC(=O)[C@@H]1CCCN1	L-Proline
+_Plate_1_Column_4_	OCC(CO)OP(O)(O)=O	beta-Glycerophosphate
+_Plate_1_Column_4_	NCCC(O)=O	Beta-Alanine
+_Plate_1_Column_5_	[H][C@@]12CC[C@@](O)(C(=O)CO)[C@@]1(C)C[C@H](O)[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	"(8S,9S,10R,11S,13S,14S,17S)-11,17-dihydroxy-17-(2-hydroxyacetyl)-10,13-dimethyl-2,6,7,8,9,11,12,14,15,16-decahydro-1H-cyclopenta[a]phenanthren-3-one"
+_Plate_1_Column_5_	O[C@@H]([C@H](O)C(O)=O)C(O)=O	D-Tartaric acid
+_Plate_1_Column_5_	COC1=CC=CC=C1O	LHGVFZTZFXWLCP-UHFFFAOYSA-N
+_Plate_1_Column_5_	CC\C=C/C[C@@H]1[C@@H](CC(=O)OC)CCC1=O	GEWDNTWNSAZUDX-WQMVXFAESA-N
+_Plate_1_Column_5_	C[C@@H](O)[C@H](N)C(O)=O	L-Threonine
+_Plate_1_Column_5_	C\C(\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C)=C/C=C/C=C(\C)/C=C/C=C(\C)/C=C/C1=C(C)CCCC1(C)C	OENHQHLEOONYIE-JLTXGRSLSA-N
+_Plate_1_Column_5_	CC(C)[C@H](N)C(O)=O	KZSNJWFQEVHDMF-BYPYZUCNSA-N
+_Plate_1_Column_6_	CSC1=NC=NC2=C1NC=N2	6-Methylmercaptopurine
+_Plate_1_Column_6_	CC(=O)N[C@@H](CO)C(O)=O	JJIHLJJYMXLCOY-BYPYZUCNSA-N
+_Plate_1_Column_6_	[H][C@@]1(C)NCCC2=CC(O)=C(O)C=C12	IBRKLUSXDYATLG-LURJTMIESA-N
+_Plate_1_Column_6_	NC(N)=S	UMGDCJDMYOKAJW-UHFFFAOYSA-N
+_Plate_1_Column_6_	OC[C@H]1OC(=O)[C@H](O)[C@@H](O)[C@@H]1O	PHOQVHQSTUBQQK-SQOUGZDYSA-N
+_Plate_1_Column_6_	O[C@H]1C[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	Deoxyuridine Triphosphate
+_Plate_1_Column_6_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	Guanosine Diphosphate
+_Plate_1_Column_7_	N1C=NC2=C1C=NC=N2	Purine
+_Plate_1_Column_7_	OC(=O)C1=CN=CC=C1	Nicotinic Acid
+_Plate_1_Column_7_	N[C@@H](CCSC[C@H](N)C(O)=O)C(O)=O	L-Cystathionine
+_Plate_1_Column_7_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](CO)[C@@H](O)[C@H]1O	Cytidine
+_Plate_1_Column_7_	OC[C@H](O)[C@H](O)CO	Erythritol
+_Plate_1_Column_7_	N1C=CC2=C1C=CC=C2	SIKJAQJRHWYJAI-UHFFFAOYSA-N
+_Plate_1_Column_7_	OC(CC1=CC=C(O)C=C1)C(O)=O	(+-)-3-(4-Hydroxyphenyl)lactic acid
+_Plate_1_Column_8_	[H][C@@]1(O)O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]1NC(C)=O	OVRNDRQMDRJTHS-OZRXBMAMSA-N
+_Plate_1_Column_8_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CNC2=O	UGQMRVRMYYASKQ-KQYNXXCUSA-N
+_Plate_1_Column_8_	CC(=O)C=O	Methylglyoxal
+_Plate_1_Column_8_	N[C@@H](CCCN=C(N)N)C(O)=O	L-Arginine
+_Plate_1_Column_8_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(=O)NC1=O	Uridine
+_Plate_1_Column_8_	N[C@@H](CS)C(=O)NCC(O)=O	ZUKPVRWZDMRIEO-VKHMYHEASA-N
+_Plate_1_Column_8_	CC1=C(O)C(CN)=C(CO)C=N1	Pyridoxamine
+_Plate_1_Column_9_	CC(=O)NCC(O)=O	Acetylglycine
+_Plate_1_Column_9_	OC[C@@H](O)[C@@H](O)[C@H](O)[C@@H](O)C(O)=O	Gluconic Acid
+_Plate_1_Column_9_	[H][C@@](COC(=O)CCCCCCCCCCCCCCC)(COP(O)(=O)OCCN)OC(=O)CCCCCCCCCCCCCCC	"1,2-Dipalmitoyl-sn-glycero-3-phosphoethanolamine"
+_Plate_1_Column_9_	CCCCCCC(O)=O	Heptanoic Acid
+_Plate_1_Column_9_	[H][C@@]12CC[C@@H](O)[C@@]1(C)CC[C@]1([H])C3=C(CC[C@@]21[H])C=C(O)C=C3	alpha-Estradiol
+_Plate_1_Column_9_	CCCCCCCCCCCC(=O)O[C@H](CC([O-])=O)C[N+](C)(C)C	Lauroyllevocarnitine
+_Plate_1_Column_9_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](COP(O)(O)=O)O1	2'-Deoxycytidine-5'-Monophosphate
+_Plate_1_Column_10_	CC1=NC=C(CO)C(CO)=C1O	LXNHXLLTXMVWPM-UHFFFAOYSA-N
+_Plate_1_Column_10_	NC1=NC=NC2=C1N=CN2[C@H]1C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O1	SUYVUBYJARFZHO-RRKCRQDMSA-N
+_Plate_1_Column_10_	NCCO	Ethanolamine
+_Plate_1_Column_10_	O=C1NC2=C(NC=N2)C(=O)N1	LRFVTYWOQMYALW-UHFFFAOYSA-N
+_Plate_1_Column_10_	C[N+](C)(C)CCO	OEYIOHPDSNJKLS-UHFFFAOYSA-N
+_Plate_1_Column_10_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(=O)O[C@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@@H]3O)[C@@H](O)[C@H]2O)C(=O)N1	GDP-mannose
+_Plate_1_Column_10_	OC(=O)\C=C\C(O)=O	Fumaric Acid
+_Plate_1_Column_11_	[H][C@@](CC1=CN=CN1)(NC(=O)[C@]1([H])CCC(=O)N1)C(=O)N1CCC[C@@]1([H])C(N)=O	Protirelin
+_Plate_1_Column_11_	CC[C@H](C)[C@H](N)C(O)=O	L-Isoleucine
+_Plate_1_Column_11_	NC1=NC(=O)C2=C(N1)N=CN2	Guanine
+_Plate_1_Column_11_	CSCC[C@H](NC=O)C(O)=O	N-Formylmethionine
+_Plate_1_Column_11_	NC(=O)C1=CN=CC=C1	Nicotinamide
+_Plate_1_Column_11_	C(C1C(C(C(C(O1)O)N)O)O)O	2-Amino-2-Deoxy-Hexose
+_Plate_1_Column_11_	NC(=O)C1=CC=C[N+](=C1)[C@@H]1O[C@H](COP(O)([O-])=O)[C@@H](O)[C@H]1O	DAYLJWODMCOQEW-TURQNECASA-N
+_Plate_1_Column_12_	C1=C(C(=O)NC(=O)N1)C(=O)O	"1,2,3,4-Tetrahydro-2,4-dioxo-5-pyrimidinecarboxylic acid"
+_Plate_1_Column_12_	C[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C(N)N=CN=C12	5'-Deoxyadenosine
+_Plate_1_Column_12_	O[C@@H]1O[C@@H]2[C@@H](O)C(=O)O[C@@H]2[C@H]1O	"(2R,3R,3aR,6R,6aR)-2,3,6-trihydroxy-3,3a,6,6a-tetrahydro-2H-furo[3,2-b]furan-5-one"
+_Plate_1_Column_12_	CC1=C(C2=CC3=NC(=CC4=C(C(=C([N-]4)C=C5C(=C(C(=N5)C=C1[N-]2)C(C)SCC(C(=O)NC)N)C)C(C)SCC(C(=O)NC)N)C)C(=C3CCC(=O)O)C)CCC(=O)O.[Fe+2]	WFVBWSTZNVJEAY-UHFFFAOYSA-L
+_Plate_1_Column_12_	CCCCCCSCC(C(=O)NCC(=O)O)NC(=O)CCC(C(=O)O)N	HXJDWCWJDCOHDG-UHFFFAOYSA-N
+_Plate_1_Column_12_	NCCCC[C@H](N)C(O)=O	KDXKERNSBIXSRK-YFKPBYRVSA-N
+_Plate_1_Column_12_	CN1C=NC=C1CCN	CPAGZVLINCPJEH-UHFFFAOYSA-N
+_Plate_2_Column_1_	OCC(=O)COP(O)(O)=O	Dihydroxyacetone Phosphate
+_Plate_2_Column_1_	NCCCCCN	Cadaverine
+_Plate_2_Column_1_	CN1C=NC2=C1C(=O)N(C)C(=O)N2	Paraxanthine
+_Plate_2_Column_1_	CN1C=NC2=C(N=CN2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C1=N	1-Methyladenosine
+_Plate_2_Column_1_	[H][C@@]12CC[C@](O)(C(=O)CO)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	11-Deoxycortisol
+_Plate_2_Column_1_	CC1=CNC(=O)NC1=O	Thymine
+_Plate_2_Column_1_	C1=CC(=C[N+](=C1)C2C(C(C(O2)COP(=O)([O-])OP(=O)(O)OCC3C(C(C(O3)N4C=NC5=C(N=CN=C54)N)OP(=O)(O)O)O)O)O)C(=O)O	Nicotinic acid adenine dinucleotide phosphate sodium salt
+_Plate_2_Column_1_	CC(=O)N[C@H]1C(O)O[C@H](CO)[C@@H](O)[C@@H]1O	OVRNDRQMDRJTHS-RTRLPJTCSA-N
+_Plate_2_Column_2_	CCCCCCCCCCCCCCCCCCCC(O)=O	VKOBVWXKNCXXDE-UHFFFAOYSA-N
+_Plate_2_Column_2_	NCCC1=CNC2=CC=CC=C12	Tryptamine
+_Plate_2_Column_2_	C(CCN=C(N)N)CN.OS(=O)(=O)O	PTAYFGHRDOMJGC-UHFFFAOYSA-N
+_Plate_2_Column_2_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O2)C(=O)N1	HAAZLUGHYHWQIW-KVQBGUIXSA-N
+_Plate_2_Column_2_	NCCCN	"1,3-Propanediamine"
+_Plate_2_Column_2_	OC[C@H](O)[C@@H](O)[C@@H](O)[C@H](O)CO	Galactitol
+_Plate_2_Column_2_	CC(=O)NCCCNCCCCNCCCN	N1-Acetylspermine
+_Plate_2_Column_2_	CC(=CCNC1=NC=NC2=C1NC=N2)C	Isopentenyladenine
+_Plate_2_Column_3_	OC[C@H]1O[C@H](C[C@@H]1O)N1C=CC(=O)NC1=O	Deoxyuridine
+_Plate_2_Column_3_	OC(COP(O)(O)=O)C(O)=O	3-Phosphoglycerate
+_Plate_2_Column_3_	CC(C)(N)C(O)=O	Aminoisobutyric acid
+_Plate_2_Column_3_	N[C@H]1C(O)O[C@H](CO)[C@@H](O)[C@@H]1O	D-Glucosamine
+_Plate_2_Column_3_	OC(=O)CC1=CC=C(O)C=C1	Hydroxyphenylacetic acid
+_Plate_2_Column_3_	N[C@@H](CCO)C(O)=O	L-Homoserine
+_Plate_2_Column_3_	NC[C@H](O)C1=CC=C(O)C=C1	(R)-Octopamine
+_Plate_2_Column_3_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(O)=O)OC([C@@H]1O)N1C=NC2=C1NC=NC2=O	"[({[(2R,3S,4R)-3,4-dihydroxy-5-(6-oxo-6,9-dihydro-3H-purin-9-yl)oxolan-2-yl]methoxy}(hydroxy)phosphoryl)oxy]phosphonic acid"
+_Plate_2_Column_4_	CCCCCCCCC(O)=O	FBUKVWPVBMHYJY-UHFFFAOYSA-N
+_Plate_2_Column_4_	OC(=O)C1=CC(=O)NC(=O)N1	Orotic Acid
+_Plate_2_Column_4_	C[N+]1=CC=CC(=C1)C(N)=O	1-Methylnicotinamide
+_Plate_2_Column_4_	OC(=O)\C=C\C1=CNC=N1	Urocanic Acid
+_Plate_2_Column_4_	NC1(CC1)C(O)=O	1-Aminocyclopropane-1-carboxylic acid
+_Plate_2_Column_4_	CNC(CCC(=O)O)C(=O)O	N-methylglutamic acid
+_Plate_2_Column_4_	N[C@@H](CCC(N)=O)C(O)=O	L-Glutamine
+_Plate_2_Column_4_	CCCCCCCCCCCCCCCC(=O)O[C@H](CC(O)=O)C[N+](C)(C)C	Tocris-0609
+_Plate_2_Column_5_	OC1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@H]1O	Glucose 6-phosphate
+_Plate_2_Column_5_	CC(CN)C(O)=O	Beta-Aminoisobutyric Acid
+_Plate_2_Column_5_	OC[C@H]1O[C@H](OP(O)(O)=O)[C@H](O)[C@@H](O)[C@H]1O	Alpha-D-Galactose-1-Phosphate
+_Plate_2_Column_5_	OC(=O)C1=CC(=O)C2=CC=CC=C2N1	Kynurenic Acid
+_Plate_2_Column_5_	O[C@H](COP(O)(O)=O)C=O	Triose phosphate
+_Plate_2_Column_5_	CCCCCCCC\C=C\CCCCCCCC(O)=O	Elaidic Acid
+_Plate_2_Column_5_	CC(=O)NCCC1=CNC2=C1C=C(O)C=C2	N-Acetylserotonin
+_Plate_2_Column_5_	COC1=CC(=CC=C1O)C(O)CN	(+-)-Normetanephrine
+_Plate_2_Column_6_	C1[C@H]([C@@H]([C@@H](C(O1)(CO)O)O)O)O	D-Tagatose
+_Plate_2_Column_6_	OCC(O)CO	Glycerol
+_Plate_2_Column_6_	OC(=O)C1CCC(=O)N1	Pyrrolidone carboxylic acid
+_Plate_2_Column_6_	OC1=CC=CC=C1O	Catechol
+_Plate_2_Column_6_	NC1=NC(=O)N(C=C1)C1O[C@H](CO)[C@H]2OP(O)(=O)O[C@@H]12	"Cytidine 2',3'-cyclic phosphate"
+_Plate_2_Column_6_	OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=C(O)N=C2O	Xanthosine
+_Plate_2_Column_6_	NC1=C2NC=NC2=NC=N1	Adenine
+_Plate_2_Column_6_	O=P([O-])(OP(O)(OCC1C(O)C(O)C(N2C=NC3=C2NC=NC3=O)O1)=O)OCC(O4)C(O)C(O)C4[N+]5=CC=CC(C(N)=O)=C5	"[5-(3-carbamoylpyridin-1-ium-1-yl)-3,4-dihydroxyoxolan-2-yl]methyl [[3,4-dihydroxy-5-(6-oxo-1H-purin-9-yl)oxolan-2-yl]methoxy-hydroxyphosphoryl] phosphate"
+_Plate_2_Column_7_	C[C@](O)(CC(O)=O)CC(=O)SCCNC(=O)CCNC(=O)[C@H](O)C(C)(C)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N	HMG-CoA
+_Plate_2_Column_7_	NC1=NC2=C(N=C(CNC3=CC=C(C=C3)C(=O)N[C@@H](CCC(O)=O)C(O)=O)CN2)C(=O)N1	OZRNSSUDZOLUSN-LBPRGKRZSA-N
+_Plate_2_Column_7_	CC1=CC2=C(C=C1C)N=CN2	"5,6-Dimethylbenzimidazole"
+_Plate_2_Column_7_	CC(=O)NCCCC(O)=O	4-Acetamidobutyric acid
+_Plate_2_Column_7_	NCCCNCCCN	Bis(3-aminopropyl)amine
+_Plate_2_Column_7_	C[C@H](O)[C@H](O)C1=NC2=C(NC1)NC(N)=NC2=O	"7,8-Dihydro-L-biopterin"
+_Plate_2_Column_7_	CN1C=NC(C[C@H](N)C(O)=O)=C1	1-Methyl-L-histidine
+_Plate_2_Column_7_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](COP(O)(=O)OP(O)(O)=O)O1	dCDP
+_Plate_2_Column_7_	N[C@@H](CCSC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C(N)N=CN=C12)C(O)=O	Adenosylhomocysteine
+_Plate_2_Column_8_	C[C@H](CCC(O)=O)[C@H]1CC[C@H]2[C@@H]3[C@H](O)C[C@@H]4C[C@H](O)CC[C@]4(C)[C@H]3C[C@H](O)[C@]12C	Cholic Acid
+_Plate_2_Column_8_	NCCP(O)(O)=O	(2-Aminoethyl)phosphonic acid
+_Plate_2_Column_8_	O[C@@H]1C[C@@](O)(C[C@@H](O)[C@H]1O)C(O)=O	Quinate
+_Plate_2_Column_8_	OC(=O)C\C(=C/C(O)=O)C(O)=O	GTZCVFVGUGFEME-HNQUOIGGSA-N
+_Plate_2_Column_8_	CC(O)(CC(O)=O)CC(O)=O	3-Hydroxy-3-methylglutaric acid
+_Plate_2_Column_8_	CC1=CN([C@H]2C[C@H](O)[C@@H](CO)O2)C(=O)NC1=O	IQFYYKKMVGJFEH-XLPZGREQSA-N
+_Plate_2_Column_8_	CCCCCCCCCCCCCCCCC(O)=O	KEMQGTRYUADPNZ-UHFFFAOYSA-N
+_Plate_2_Column_8_	COC1=C(O)C=CC(\C=C\C(O)=O)=C1	KSEBMYQBYZTDHS-HWKANZROSA-N
+_Plate_2_Column_9_	NC(CCSSCCC(N)C(O)=O)C(O)=O	ZTVZLYBCZNMWCF-UHFFFAOYSA-N
+_Plate_2_Column_9_	OC(=O)C1=C(O)C=CC(O)=C1	WXTMDXOMEHJXQO-UHFFFAOYSA-N
+_Plate_2_Column_9_	COC(=O)CC(C)=O	WRQNANDWMGAFTP-UHFFFAOYSA-N
+_Plate_2_Column_9_	O[C@H](C(O)=O)C1=CC=CC=C1	IWYDHOAUDWTVEP-ZETCQYMHSA-N
+_Plate_2_Column_9_	O[C@H]1[C@@H](O)[C@@H](OP(O)(=O)OP(O)(O)=O)O[C@@H]1COP(O)(O)=O	PQGCEDQWHSBAJP-TXICZTDVSA-N
+_Plate_2_Column_9_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	IERHLVCPSMICTF-XVFCMESISA-N
+_Plate_2_Column_9_	C[N+]1=CC(=CC=C1)C([O-])=O	Trigonelline
+_Plate_2_Column_9_	N[C@H]1[C@H](O)O[C@H](COS(O)(=O)=O)[C@@H](O)[C@@H]1O	Glucosamine 6-sulfate
+_Plate_2_Column_10_	CN1C=NC2=C1C(=O)NC(=O)N2C	Theobromine
+_Plate_2_Column_10_	CC(=O)N[C@@H](CS)C(O)=O	N-Acetyl-L-Cysteine
+_Plate_2_Column_10_	C[C@@H]1NC(=O)N[C@@H]1CCCCCC(O)=O	Desthiobiotin
+_Plate_2_Column_10_	CC\C=C/C\C=C/C\C=C/C\C=C/C\C=C/CCCC(O)=O	Icosapent
+_Plate_2_Column_10_	OC(=O)[C@@H]1CCCCN1	"Pipecolic acid, (-)-"
+_Plate_2_Column_10_	CN[C@H](CC(O)=O)C(O)=O	Nmda
+_Plate_2_Column_10_	CC(C)CCC[C@@H](C)CCC[C@@H](C)CCC[C@]1(C)CCC2=C(O1)C(C)=C(C)C(O)=C2C	Vitamin E
+_Plate_2_Column_10_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	PGAVKCOVUIYSFO-XVFCMESISA-N
+_Plate_2_Column_11_	C[N+](C)(C)C[C@H](O)CC([O-])=O	(-)-Carnitine
+_Plate_2_Column_11_	CC1=C(SC=[N+]1CC2=CN=C(N=C2N)C)CCO[P@@](O)(OP([O-])(O)=O)=O	AYEKOFBPNLCAJY-UHFFFAOYSA-N
+_Plate_2_Column_11_	OC(=O)CCC(O)=O	Succinic Acid
+_Plate_2_Column_11_	C[C@H](O)[C@H](N)C(O)=O	"Allothreonine, L-"
+_Plate_2_Column_11_	NCCOP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(N)=NC1=O	CDP-Ethanolamine
+_Plate_2_Column_11_	OC[C@H]1O[C@H](O)[C@H](O)[C@@H](O)[C@H]1O	alpha-D-Galactopyranose
+_Plate_2_Column_11_	OC(=O)C=O	Glyoxylic Acid
+_Plate_2_Column_11_	O[C@@H](C(O)=O)C1=CC=CC=C1	(-)-Mandelic acid
+_Plate_2_Column_12_	O[C@H]1CN[C@@H](C1)C(O)=O	L-Hydroxyproline
+_Plate_2_Column_12_	OC[C@H]1OC(OP(O)(O)=O)[C@H](O)[C@@H](O)[C@@H]1O	D-glucopyranose 1-phosphate
+_Plate_2_Column_12_	OC(=O)CCCC(O)=O	Glutaric Acid
+_Plate_2_Column_12_	NC(CC1=CNC2=CC=CC=C12)C(N)=O	2-Amino-3-(1H-indol-3-yl)propanamide
+_Plate_2_Column_12_	OCC1=CC=CC=C1	WVDDGKGOMKODPV-UHFFFAOYSA-N
+_Plate_2_Column_12_	[H][C@@](O)(CO)[C@@]([H])(O)[C@]([H])(O)C=O	PYMYPHUHKUWMLA-WDCZJNDASA-N
+_Plate_2_Column_12_	OC(=O)C1CC(=O)NC(=O)N1	UFIVEPVSAGBUSI-UHFFFAOYSA-N
+_Plate_2_Column_12_	OC(=O)CCCC(=O)C(O)=O	FGSBNBBHOZHUBO-UHFFFAOYSA-N
+_Plate_3_Column_1_	NCCCCN	KIDHWZJUCRJVML-UHFFFAOYSA-N
+_Plate_3_Column_1_	[H][C@@]1(CC[C@@]2([H])C3=CC=C4C[C@@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCCC(C)C	UCTLRSWJYQTBFZ-DDPQNLDTSA-N
+_Plate_3_Column_1_	CCCCCCCCCCCC(O)=O	POULHZVOKOAJMA-UHFFFAOYSA-N
+_Plate_3_Column_1_	NCCC1=CC=C(O)C(O)=C1	VYFYYTLLBUKUHU-UHFFFAOYSA-N
+_Plate_3_Column_1_	NCCCCNCCCN	ATHGHQPFGPMSJY-UHFFFAOYSA-N
+_Plate_3_Column_1_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	ZKHQWZAMYRWXGA-KQYNXXCUSA-N
+_Plate_3_Column_1_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(O)=O)O2)C(=O)N1	2'-Deoxyguanosine-5'-Diphosphate
+_Plate_3_Column_2_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](CO)O2)C(=O)N1	Deoxyguanosine
+_Plate_3_Column_2_	CCCCCCCCCCCCCC(=O)OCC(CO)O	Glyceryl Myristate
+_Plate_3_Column_2_	OCCCCCCCCCCCC(O)=O	12-Hydroxydodecanoic Acid
+_Plate_3_Column_2_	CC1=NC=C(COP(O)(O)=O)C(C=O)=C1O	Pyridoxal 5'-phosphate
+_Plate_3_Column_2_	CC(C)C[C@H](NC(C)=O)C(O)=O	N-Acetyl-L-leucine
+_Plate_3_Column_2_	CCCC[C@H](N)C(O)=O	Caprine
+_Plate_3_Column_2_	OC(=O)C1=CC=CC=N1	Picolinic acid
+_Plate_3_Column_3_	OC(=O)CCCCC(O)=O	Adipic Acid
+_Plate_3_Column_3_	C[C@@H](N)C(O)=O	D-Alanine
+_Plate_3_Column_3_	CC(=O)OC(CC([O-])=O)C[N+](C)(C)C	RDHQFKQIGNGIED-UHFFFAOYSA-N
+_Plate_3_Column_3_	OC(=O)CC1=CNC2=CC=C(O)C=C12	DUUGKQCEGZLZNO-UHFFFAOYSA-N
+_Plate_3_Column_3_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CC=C4C[C@H](CC[C@]4(C)[C@@]3([H])CC[C@]12C)OC(=O)CCCCCCCCCCCCCCC)[C@H](C)CCCC(C)C	BBJQPKLGPMQWBU-JADYGXMDSA-N
+_Plate_3_Column_3_	CC(=O)N[C@@H]1[C@@H](O)[C@H](O)[C@@H](CO)O[C@@H]1OP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(=O)NC1=O	Uridine-Diphosphate-N-Acetylglucosamine
+_Plate_3_Column_3_	OC[C@H]1O[C@H](O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@H](O)[C@@H](O)[C@@H]1O	Trehalose
+_Plate_3_Column_4_	COC(=O)C1=CC(OC)=C(O)C=C1	Methyl Vanillate
+_Plate_3_Column_4_	CC(O)(CCO)CC(O)=O	Mevalonic Acid
+_Plate_3_Column_4_	[H][C@@]1(OC(=O)C(=O)C1=O)[C@@H](O)CO	Dehydroascorbic Acid
+_Plate_3_Column_4_	N[C@@H](CCC[C@H](N)C(O)=O)C(O)=O	"L,L-Diaminopimelic acid"
+_Plate_3_Column_4_	C[N+](C)(CCOP([O-])(O)=O)C	Phosphorylcholine
+_Plate_3_Column_4_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	Guanosine Monophosphate
+_Plate_3_Column_4_	O=C1NC=CC(=O)N1	Uracil
+_Plate_3_Column_5_	CCCCC\C=C/C\C=C/C\C=C/CCCCC(O)=O	Gamma-Linolenic acid
+_Plate_3_Column_5_	OC[C@H](O)[C@H](O)[C@H](O)CO	"(2S,4R)-Pentane-1,2,3,4,5-Pentol"
+_Plate_3_Column_5_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]2O)C(=O)N1	Guanosine Triphosphate
+_Plate_3_Column_5_	N[C@@H](CC1=CNC2=C1C=C(O)C=C2)C(O)=O	Oxitriptan
+_Plate_3_Column_5_	NC(CCCC(O)=O)C(O)=O	Alpha-Aminoadipic Acid
+_Plate_3_Column_5_	OC[C@@H](O)C(O)=O	RBNPOMFGQQGHHO-UWTATZPHSA-N
+_Plate_3_Column_5_	NCCC1=CNC2=CC=C(O)C=C12	QZAYGJVTTNCVMB-UHFFFAOYSA-N
+_Plate_3_Column_6_	C1=CC=C2C(=C1)C(=CC=N2)C(=O)O	VQMSRUREDGBWKT-UHFFFAOYSA-N
+_Plate_3_Column_6_	OC[C@H]1O[C@H](OP(O)(=O)OP(O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N2C=CC(=O)NC2=O)[C@H](O)[C@@H](O)[C@@H]1O	HSCJRCZFDFQWRP-JZMIEXBBSA-N
+_Plate_3_Column_6_	CC(C)(O)C(O)=O	BWLBGMIXKSTLSX-UHFFFAOYSA-N
+_Plate_3_Column_6_	OC[C@H]1OC(O)[C@H](O)[C@@H]1O	HMFHBZSHGGEWLO-SOOFDHNKSA-N
+_Plate_3_Column_6_	CC(O)=NC1C(OP(O)(=O)OP(O)(=O)OCC2OC(C(O)C2O)N2C=CC(O)=NC2=O)OC(CO)C(O)C1O	Uridine diphosphate-N-acetylgalactosamine
+_Plate_3_Column_6_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(=O)O[C@H]2O[C@@H]([C@@H](O)[C@H](O)[C@H]2O)C(O)=O)O[C@H]([C@@H]1O)N1C=CC(=O)NC1=O	Udp-glucuronic acid
+_Plate_3_Column_6_	NC(=N)NCC(O)=O	Guanidinoacetic Acid
+_Plate_3_Column_7_	CC(=O)C(C)=O	Butanedione
+_Plate_3_Column_7_	CS(=N)(=O)CCC(N)C(O)=O	DL-Methionine-DL-sulfoximine
+_Plate_3_Column_7_	O[C@@H]([C@@H](O)[C@H](O)C(O)=O)[C@@H](O)C(O)=O	Galactaric acid
+_Plate_3_Column_7_	O[C@@H]1[C@@H](COP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1NC(=O)NC2=O	5'-Xanthylic acid
+_Plate_3_Column_7_	OC[C@@H](O)COP(O)(O)=O	sn-Glycerol 3-phosphate
+_Plate_3_Column_7_	COC(=O)CCCC(=O)O	Monomethyl glutarate
+_Plate_3_Column_7_	OC[C@@H]1OC(O)[C@@H](O)[C@@H](O)[C@@H]1O	WQZGKKKJIJFFOK-QRXFDPRISA-N
+_Plate_3_Column_8_	N[C@@H](COP(O)(O)=O)C(O)=O	BZQFBWGGLXLEPQ-REOHCLBHSA-N
+_Plate_3_Column_8_	CC1=NC=C(CO)C(C=O)=C1O	Pyridoxal
+_Plate_3_Column_8_	NC1=C2N=CN([C@@H]3O[C@H](CO[P@](O)(=O)O[P@](O)(=O)O[C@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)[C@@H](O)[C@H]3O)C2=NC=N1	ADP-Glucose
+_Plate_3_Column_8_	O[C@H]1[C@H](O)[C@](O)(COP(O)(O)=O)O[C@@H]1COP(O)(O)=O	"Fructose-1,6-Diphosphate"
+_Plate_3_Column_8_	N[C@@H](CS)C(O)=O	L-(+)-Cysteine
+_Plate_3_Column_8_	CCCCCCCCCC(O)=O	Decanoic Acid
+_Plate_3_Column_8_	N[C@@H](CCC\N=C(/N)N(C)C)C(O)=O	"N,N-Dimethylarginine"
+_Plate_3_Column_9_	CCC[C@@H](N)C(O)=O	D-Norvaline
+_Plate_3_Column_9_	CC\C=C/C\C=C/C\C=C/C\C=C/C\C=C/C\C=C/CCC(O)=O	Doconexent
+_Plate_3_Column_9_	[H][C@](N)(CC1=CN=CN1C)C(O)=O	3-Methyl-L-Histidine
+_Plate_3_Column_9_	[H][C@@]12CC[C@H]([C@H](C)CCC=C(C)C)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CC=C2C[C@@H](O)CC[C@]12C	AVSXSVCZWQODGV-DPAQBDIFSA-N
+_Plate_3_Column_9_	OC(=O)CC1=C(O)C=CC(O)=C1	Homogentisic Acid
+_Plate_3_Column_9_	OC(=O)CCCCCCCCC(O)=O	Sebacic Acid
+_Plate_3_Column_9_	NC(=N)NCCCC(O)=O	gamma-Guanidinobutyric acid
+_Plate_3_Column_10_	CC(=O)OCC[N+](C)(C)C	Acetylcholine
+_Plate_3_Column_10_	OC(=O)C(=C)OP(O)(O)=O	Phosphoenolpyruvate
+_Plate_3_Column_10_	NCC1=C(CC(O)=O)C(CCC(O)=O)=CN1	QSHWIQZFGQKFMA-UHFFFAOYSA-N
+_Plate_3_Column_10_	CC[C@H](NC(=O)CC[C@H](N)C(O)=O)C(=O)NCC(O)=O	Ophthalmic acid
+_Plate_3_Column_10_	NCCOP(O)(O)=O	Phosphoethanolamine
+_Plate_3_Column_10_	N[C@H](CO)CC1=CN=CN1	ZQISRDCJNBUVMM-YFKPBYRVSA-N
+_Plate_3_Column_10_	NCCS(O)=O	VVIUBCNYACGLLV-UHFFFAOYSA-N
+_Plate_3_Column_11_	CN1C2=C(NC=N2)C(=O)N(C)C1=O	ZFXYFBGIUFBOJW-UHFFFAOYSA-N
+_Plate_3_Column_11_	OC[C@H]1O[C@H](O[C@H]2[C@H](O)[C@H](O)[C@@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@@H]1O	D-Maltose
+_Plate_3_Column_11_	NC(=O)C1=C[N+](=CC=C1)[C@@H]1O[C@H](COP([O-])(=O)OP(O)(=O)OC[C@H]2O[C@H]([C@H](OP(O)(O)=O)[C@@H]2O)N2C=NC3=C2N=CN=C3N)[C@@H](O)[C@H]1O	XJLXINKUBYWONI-NNYOXOHSSA-N
+_Plate_3_Column_11_	[H][C@@]1(CC[C@@]2(C)C3=C(CC[C@]12C)[C@@]1(C)CC[C@H](O)C(C)(C)[C@]1([H])CC3)[C@H](C)CCC=C(C)C	Lanosterol
+_Plate_3_Column_11_	O[C@@H]([C@H](O)[C@@H](O)C(O)=O)[C@H](O)C(O)=O	Glucaric Acid
+_Plate_3_Column_11_	OS(=O)(=O)OC1=CNC2=CC=CC=C12	BXFFHSIDQOFMLE-UHFFFAOYSA-N
+_Plate_3_Column_11_	OC[C@H]1O[C@](O)(CO)[C@@H](O)[C@H](O)[C@@H]1O	beta-D-sedoheptulopyranose
+_Plate_3_Column_12_	CCOC(=O)C(C)C(=O)C(=O)OCC	"Butanedioic acid, 2-methyl-3-oxo-, 1,4-diethyl ester"
+_Plate_3_Column_12_	C1=CC(=C(C=C1CC(C(=O)O)N)[N+](=O)[O-])O	3-Nitro-DL-tyrosine
+_Plate_3_Column_12_	OC[C@H]1O[C@H](O[P@@](O)(=O)O[P@@](O)(=O)OC[C@H]2O[C@H]([C@H](O)[C@@H]2O)N2C=CC(=O)NC2=O)[C@H](O)[C@@H](O)[C@H]1O	Udp-Galactose
+_Plate_3_Column_12_	CC(O)C1=CC=CC=C1	1-Phenylethanol
+_Plate_3_Column_12_	[H][C@@]12CC[C@H]([C@H](C)CCC(O)=O)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CCC2C[C@H](O)CC[C@]12C	3a-Hydroxycholanoic acid
+_Plate_3_Column_12_	O=C1NC2=C(N1)C(=O)NC(=O)N2	LEHOTFFKMJEONL-UHFFFAOYSA-N
+_Plate_3_Column_12_	NC1=NC=NC2=C1N=CN2[C@H]1C[C@H](O)[C@@H](COP(O)(O)=O)O1	KHWCHTKSEGGWEX-RRKCRQDMSA-N
+_Plate_4_Column_1_	NC1=NC(=O)N(C=C1)[C@H]1C[C@H](O)[C@@H](CO)O1	CKTSBUTUHBMZGZ-SHYZEUOFSA-N
+_Plate_4_Column_1_	CCCCCCCCCCCCCCCC(=O)OC\C=C(/C)\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C	VYGQUTWHTHXGQB-FFHKNEKCSA-N
+_Plate_4_Column_1_	OC(=O)[C@@H](CC1=CC(O)=C(O)C=C1)OC(=O)\C=C\C1=CC(O)=C(O)C=C1	Rosmarinic Acid
+_Plate_4_Column_1_	O[C@H]1O[C@@H]([C@@H](O)[C@H](O)[C@H]1O)C(O)=O	AEMOLEFTQBMNLQ-WAXACMCWSA-N
+_Plate_4_Column_1_	NC1=NC2=C(N=CN2[C@@H]2O[C@H](CO)[C@@H](O)[C@H]2O)C(=O)N1	Guanosine
+_Plate_4_Column_1_	NC(COP(O)(O)=O)C(O)=O	BZQFBWGGLXLEPQ-UHFFFAOYSA-N
+_Plate_4_Column_1_	CC(C)=CCC\C(C)=C/CC\C(C)=C\CC\C=C(/C)CC\C=C(/C)CCC=C(C)C	"(6Z,10E,14E,18E)-2,6,10,15,19,23-hexamethyltetracosa-2,6,10,14,18,22-hexaene"
+_Plate_4_Column_2_	CC(=O)N[C@@H](CC1=CC=CC=C1)C(O)=O	CBQJSKKFNMDLON-JTQLQIEISA-N
+_Plate_4_Column_2_	CC1=C(CCO)SC=[N+]1CC1=C(N)N=C(C)N=C1	Thiamine
+_Plate_4_Column_2_	[H][C@@]1(CO)OC(O)[C@@]([H])(O)[C@@]([H])(O)[C@@]1([H])O	L-Allopyranose
+_Plate_4_Column_2_	CC(=O)N[C@@H](CC1=CNC2=C1C=CC=C2)C(O)=O	N-Acetyl-L-tryptophan
+_Plate_4_Column_2_	C(CS)C(C(=O)O)N	(+-)-Homocysteine
+_Plate_4_Column_2_	COC1=CC2=C(NC=C2CCNC(C)=O)C=C1	Melatonin
+_Plate_4_Column_2_	O[C@H]1C[C@@H](O[C@@H]1COP(O)(O)=O)N1C=CC(=O)NC1=O	JSRLJPSBLDHEIO-SHYZEUOFSA-N
+_Plate_4_Column_3_	CC(=O)N[C@@H](CC(N)=O)C(O)=O	N-Acetylasparagine
+_Plate_4_Column_3_	NC1CCSC1=O	"Homocysteine thiolactone, DL-"
+_Plate_4_Column_3_	COC1=CC(CC(N)C(O)=O)=CC=C1O	3-Methoxy-dl-tyrosine
+_Plate_4_Column_3_	C\C(CC(O)=O)=C/C(O)=O	3-Methylglutaconic acid
+_Plate_4_Column_3_	C1=CC=C(C(=C1)N)S(=O)(=O)O	2-Aminobenzenesulfonic acid
+_Plate_4_Column_3_	OC(=O)\C=C\C1=CC=CC=C1	WBYWAXJHAXSJNI-VOTSOKGWSA-N
+_Plate_4_Column_3_	C[N+](C)(C)CCCC[C@H](N)C([O-])=O	MXNRLFUSFKVQSK-QMMMGPOBSA-N
+_Plate_4_Column_4_	CC(=O)N[C@H]1[C@H](O)O[C@H](CO)[C@H](O)[C@@H]1O	OVRNDRQMDRJTHS-JAJWTYFOSA-N
+_Plate_4_Column_4_	OC[C@@H](O)[C@H](O)CO	UNXHWFMMPAWVPI-QWWZWVQMSA-N
+_Plate_4_Column_4_	N[C@@H](CC(=O)C1=CC=CC=C1N)C(O)=O	Kynurenine
+_Plate_4_Column_4_	O[C@@H]1O[C@@H]([C@H](O)[C@H](O)[C@H]1O)C(O)=O	Pectin
+_Plate_4_Column_4_	CN(CC(O)=O)C(=N)NP(O)(O)=O	N-methyl-N-(N-phosphonocarbamimidoyl)glycine
+_Plate_4_Column_4_	CCC(C(O)=O)C(O)=O	Ethylmalonic acid
+_Plate_4_Column_4_	CCCCCCCC\C=C/CCCCCCCCCCCC(O)=O	Erucic Acid
+_Plate_4_Column_5_	C1=CN=C2C(=N1)C(=O)NC(=O)N2	Lumazine
+_Plate_4_Column_5_	NC(=O)NCCC(O)=O	N-carbamoyl-beta-alanine
+_Plate_4_Column_5_	C[C@@H](O)CC(O)=O	"3-Hydroxybutanoic acid, (R)-"
+_Plate_4_Column_5_	CC(C)(COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N)C(O)C(=O)NCCC(=O)NCCS	RGJOEKWQDUBAIZ-DRCCLKDXSA-N
+_Plate_4_Column_5_	OC[C@@]1(O)OC[C@H](O)[C@@H](O)[C@@H]1O	alpha-L-sorbopyranose
+_Plate_4_Column_5_	OCC(O)C1=CC(O)=C(O)C=C1	"3,4-Dihydroxyphenylethyleneglycol"
+_Plate_4_Column_5_	OC(CC1=CC=C(O)C=C1)C(O)=O	JVGVDSSUAVXRDY-UHFFFAOYSA-N
+_Plate_4_Column_6_	CC(=O)OP(O)(O)=O	Acetyl phosphate
+_Plate_4_Column_6_	NC[C@H](O)CC[C@H](N)C(O)=O	L-Hydroxylysine
+_Plate_4_Column_6_	OC(=O)CC1=CN=CN1	1H-Imidazole-5-acetic acid
+_Plate_4_Column_6_	OC(=O)C(=O)C(O)=O	Mesoxalic acid
+_Plate_4_Column_6_	NC(=O)C1=C(N)N(C=N1)[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	AICA Ribotide
+_Plate_4_Column_6_	OC[C@H]1O[C@@H](O[C@H]2[C@H](O)[C@@H](O)[C@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@@H]1O	D-Cellobiose
+_Plate_4_Column_6_	C1(C(C(OC(C1O)O)C(=O)O)O)O	Hexuronic Acid
+_Plate_4_Column_7_	C[C@H](NC(C)=O)C(O)=O	N-Acetyl-L-alanine
+_Plate_4_Column_7_	NC[C@H](O)C1=CC(O)=C(O)C=C1	Norepinephrine
+_Plate_4_Column_7_	CC(C)=CCC\C(C)=C\COP(O)(=O)OP(O)(O)=O	Geranyl Diphosphate
+_Plate_4_Column_7_	C(C(=O)O)NC=O	Formylglycine
+_Plate_4_Column_7_	OC[C@@H](O)[C@H](O)CC(=O)C(O)=O	2-Keto-3-deoxy-D-gluconic acid
+_Plate_4_Column_7_	OC[C@@H](O)[C@@H](O)[C@H](O)CC=O	2-Deoxyglucose
+_Plate_4_Column_8_	O[C@@H]1[C@@H](COP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1N=CNC2=O	Inosinic Acid
+_Plate_4_Column_8_	CCCCCCCC\C=C/CCCCCCCCCCCCCC(O)=O	Nervonic Acid
+_Plate_4_Column_8_	NC1=C2N=CN([C@H]3C[C@H](O)[C@@H](CO)O3)C2=NC=N1	Deoxyadenosine
+_Plate_4_Column_8_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	5'-Adp
+_Plate_4_Column_8_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CCC4=CC(=O)CC[C@]4(C)[C@@]3([H])[C@@]([H])(O)C[C@]12C)C(=O)CO	Corticosterone
+_Plate_4_Column_8_	[H][C@@]12CC[C@](O)(C(=O)CO)[C@@]1(C)CC(=O)[C@@]1([H])[C@@]2([H])CCC2=CC(=O)CC[C@]12C	Cortisone
+_Plate_4_Column_8_	[H]C(COC(=O)CCCCCCCCCCCCC)(COC(=O)CCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCC	Trimyristin
+_Plate_4_Column_9_	CC(C)(CO)C(O)C(=O)NCCC(O)=O	(+-)-Pantothenic acid
+_Plate_4_Column_9_	NC1=C2N=CN([C@@H]3O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]3O)C2=NC=N1	Adenosine Monophosphate
+_Plate_4_Column_9_	NC(CS(O)(=O)=O)C(O)=O	XVOYSCVBGLVSOL-UHFFFAOYSA-N
+_Plate_4_Column_9_	C(COC(=O)CCC(=O)O)C(C(=O)O)N	"Homoserine, O-succinyl-"
+_Plate_4_Column_9_	N[C@@H](CC(O)=O)C(O)=O	CKLJMWTZIZZHCS-REOHCLBHSA-N
+_Plate_4_Column_9_	OC(=O)CC(=O)C(O)=O	Oxaloacetic Acid
+_Plate_4_Column_9_	NCCS	Cysteamine
+_Plate_4_Column_10_	[H]C12CC[C@H]([C@H](C)CCCC(C)(C)O)[C@@]1(C)CCC1([H])[C@@]2([H])CC=C2C[C@@H](O)CC[C@]12C	25-Hydroxycholest-5-en-3-ol
+_Plate_4_Column_10_	C1=CC=C2N=CC=CC2=C1	Quinoline
+_Plate_4_Column_10_	OC(=O)C(=O)CS	Mercaptopyruvic acid
+_Plate_4_Column_10_	OC(=O)CCCCCC(O)=O	Pimelic Acid
+_Plate_4_Column_10_	CCCCCCCC(O)=O	Octanoic Acid
+_Plate_4_Column_10_	O[C@@H]1[C@@H](COP(O)(=O)OP(O)(=O)OP(O)(O)=O)O[C@H]([C@@H]1O)N1C=NC2=C1N=CN=C2O	Inosine Triphosphate
+_Plate_4_Column_10_	C1=CC(=CC=C1C(C(=O)O)N)O	4-Hydroxyphenylglycine
+_Plate_4_Column_11_	N[C@@H](CC(N)=O)C(O)=O	(-)-Asparagine
+_Plate_4_Column_11_	CC1=C2NC=C3C2=C(C2=CNC4=C(C)C(=O)C(=O)C3=C24)C(=O)C1=O	Melanins
+_Plate_4_Column_11_	COC1=C(OC)C(=O)C(C\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CC\C=C(/C)CCC=C(C)C)=C(C)C1=O	ACTIUHUUMQJHFO-UPTCCGCDSA-N
+_Plate_4_Column_11_	C[N+](C)(CCCC([O-])=O)C	JHPNVNIEXXLNTR-UHFFFAOYSA-N
+_Plate_4_Column_11_	C1CCOC(=O)C1	OZJPLYNZGCXSJM-UHFFFAOYSA-N
+_Plate_4_Column_11_	OC(=O)C1=CN=C(O)C=C1	BLHCMGRVFXRYRN-UHFFFAOYSA-N
+_Plate_4_Column_11_	[H][C@]1(CCCN1C(C)=O)C(O)=O	GNMSLDIYJOSUSW-LURJTMIESA-N
+_Plate_4_Column_12_	CNCC(O)=O	FSYKKLYZXJSNPZ-UHFFFAOYSA-N
+_Plate_4_Column_12_	C1=CC(=O)NC(=C1)O	"2,6-Dihydroxypyridine"
+_Plate_4_Column_12_	O[C@H]1[C@H](O)[C@@H](O)[C@H](O)[C@H](O)[C@@H]1O	An inositol
+_Plate_4_Column_12_	NC1=NC(=O)C2=C(NC[C@H](CNC3=CC=C(C=C3)C(=O)NC(CCC(O)=O)C(O)=O)N2)N1	(6S)-tetrahydrofolate
+_Plate_4_Column_12_	NC1=NC(=O)N(C=C1)[C@@H]1O[C@H](COP(O)(=O)OP(O)(O)=O)[C@@H](O)[C@H]1O	Cytidine Diphosphate
+_Plate_4_Column_12_	N[C@@H](CS(=O)=O)C(O)=O	3-sulfino-L-alanine(1-)
+_Plate_4_Column_12_	O[C@H]1[C@@H](O)[C@@H](O[C@@H]1COP(O)(=O)OP(O)(O)=O)N1C=CC(=O)NC1=O	Uridine Diphosphate
+_Plate_5_Column_1_	C(C(C(=O)O)O)(C(=O)O)O	"2,3-Dihydroxybutanedioic Acid"
+_Plate_5_Column_1_	CCCCCCCCCCCCCCCCCCCCCCC(O)=O	Tricosanoic Acid
+_Plate_5_Column_1_	NC1=C2N=CN([C@@H]3O[C@H](COP(O)(O)=O)[C@@H](OP(O)(O)=O)[C@H]3O)C2=NC=N1	"Adenosine 3',5'-diphosphate"
+_Plate_5_Column_1_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])CC[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(=O)NCCS(O)(=O)=O	QBYUNVOYXHFVKC-GBURMNQMSA-N
+_Plate_5_Column_1_	C1C(OCC(O1)O)O	ATFVTAOSZBVGHC-UHFFFAOYSA-N
+_Plate_5_Column_1_	OC(=O)CC1=CC=C(O)C(O)=C1	Dopac
+_Plate_5_Column_1_	N[C@@H](CC1=CNC=N1)C(O)=O	HNDVDQJCIGZPNO-YFKPBYRVSA-N
+_Plate_5_Column_1_	CN(C)C1=CC=C(C=C1)N	BZORFPDSXLZWJF-UHFFFAOYSA-N
+_Plate_5_Column_2_	O[C@@H]1CC(=C[C@@H](O)[C@H]1O)C(O)=O	JXOHGGNKMLTUBP-HSUXUTPPSA-N
+_Plate_5_Column_2_	OC[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)CO	FBPFZTCFMRRESA-KVTDHHQDSA-N
+_Plate_5_Column_2_	[H][C@](N)(CC1=CC(I)=C(O)C(I)=C1)C(O)=O	NYPYHUZRZVSYKL-ZETCQYMHSA-N
+_Plate_5_Column_2_	OC1=CC=CC=C1	ISWSIDIOOBJBQZ-UHFFFAOYSA-N
+_Plate_5_Column_2_	NC(C1=C[N+]([C@@H]2O[C@@H]([C@H]([C@H]2O)O)COP([O-])(OP(O)(OC[C@H]3O[C@@H](N4C=NC5=C4N=CN=C5N)[C@@H]([C@@H]3O)O)=O)=O)=CC=C1)=O	BAWFJGJZGIEFAR-NNYOXOHSSA-N
+_Plate_5_Column_2_	CCCCCCCCCCCCCC(O)=O	Myristic Acid
+_Plate_5_Column_2_	OCC(=O)[C@@H](O)[C@H](O)[C@H](O)COP(O)(O)=O	Fructose 6-phosphate
+_Plate_5_Column_2_	CC(=O)N[C@H]1[C@H](N)O[C@H](CO)[C@@H](O)[C@@H]1O	"beta-D-erythro-Hexopyranos-2-ulose, 1,6-anhydro-3-deoxy-4-O-(phenylmethyl)-, dimethyl acetal"
+_Plate_5_Column_3_	NC(=O)NC1NC(=O)NC1=O	Allantoin
+_Plate_5_Column_3_	O[C@H](CC(O)=O)C(O)=O	D-Malic acid
+_Plate_5_Column_3_	OC(=O)\C=C/C(O)=O	Maleic Acid
+_Plate_5_Column_3_	OC(=O)CP(O)(O)=O	Phosphonoacetic Acid
+_Plate_5_Column_3_	C1=C(C=C(C=C1N)O)C(=O)O	QPEJHSFTZVMSJH-UHFFFAOYSA-N
+_Plate_5_Column_3_	COC(CCCN)=O	KVQGGLZHHFGHPU-UHFFFAOYSA-N
+_Plate_5_Column_3_	NC(CC1=CC(I)=C(OC2=CC=C(O)C=C2)C(I)=C1)C(O)=O	ZHSOTLOTTDYIIK-UHFFFAOYSA-N
+_Plate_5_Column_3_	CC(O)C(C)=O	Acetoin
+_Plate_5_Column_4_	N[C@H]1[C@@H](O)O[C@H](COP(O)(O)=O)[C@@H](O)[C@@H]1O	Glucosamine 6-Phosphate
+_Plate_5_Column_4_	CCCCC(O)=O	Pentanoic Acid
+_Plate_5_Column_4_	CN(C)C	Trimethylamine
+_Plate_5_Column_4_	OC(=O)C(O)=O	Oxalic Acid
+_Plate_5_Column_4_	C1=CN=CN=C1	Pyrimidine
+_Plate_5_Column_4_	C\C(=C\C(O)=O)C(O)=O	Citraconic acid
+_Plate_5_Column_4_	N[C@H]1C(O)O[C@H](CO)[C@H](O)[C@@H]1O	D-Galactosamine
+_Plate_5_Column_4_	OC(=O)C(=O)CC1=CNC2=CC=CC=C12	Indole-3-pyruvic acid
+_Plate_5_Column_5_	OC(=O)C1=CC=C(O)C=C1	4-Hydroxybenzoic Acid
+_Plate_5_Column_5_	CCC(O)=O	Propionic Acid
+_Plate_5_Column_5_	NC1=CC=C(C=C1)C(O)=O	ALYNCZNDIQEVRV-UHFFFAOYSA-N
+_Plate_5_Column_5_	OC(=O)C1=CC=CC(O)=C1O	"2,3-Dihydroxybenzoic Acid"
+_Plate_5_Column_5_	OC(=O)C1=CC(O)=C(O)C=C1	YQUVCSBJEUQKSH-UHFFFAOYSA-N
+_Plate_5_Column_5_	CCCCC\C=C/C\C=C/CCCCCCCC(O)=O	Linoleic Acid
+_Plate_5_Column_5_	O[C@@H]1CC(=CC(=O)[C@H]1O)C(O)=O	SLWWJZMPHJJOPH-PHDIDXHHSA-N
+_Plate_5_Column_5_	CC(=O)OCC(=O)C1CCC2C1(CCC3C2CCC4=CC(=O)CCC34C)C	VPGRYOFKCNULNK-UHFFFAOYSA-N
+_Plate_5_Column_6_	N[C@H](CC1=CNC2=CC=CC=C12)C(O)=O	QIVBCDIJIAJPQS-SECBINFHSA-N
+_Plate_5_Column_6_	CN1C=NC2=C1C(=O)N(C)C(=O)N2C	RYYVLZVUVIJVGH-UHFFFAOYSA-N
+_Plate_5_Column_6_	OCC(O)C=O	MNQZXJOMYWMBOU-UHFFFAOYSA-N
+_Plate_5_Column_6_	OC(=O)C=C	NIXOWILDQLNWCW-UHFFFAOYSA-N
+_Plate_5_Column_6_	N[C@@H](CSSC[C@H](N)C(O)=O)C(O)=O	(-)-Cystine
+_Plate_5_Column_6_	NC1=C(O)C=CC=C1C(O)=O	3-Hydroxyanthranilic Acid
+_Plate_5_Column_6_	OC1=CC=C(C=O)C=C1	4-Hydroxybenzaldehyde
+_Plate_5_Column_6_	C1=CC(=C(C=C1C(=O)O)N)O	3-Amino-4-hydroxybenzoic acid
+_Plate_5_Column_7_	[H][C@@]12COP(O)(=O)O[C@@]1([H])[C@@H](O)[C@@H](O2)N1C=NC2=C1N=CN=C2N	Camp
+_Plate_5_Column_7_	[H][C@]1(CCCN1C)C1=CC=CN=C1	Nicotine
+_Plate_5_Column_7_	CC(=O)CC(O)=O	Acetoacetic Acid
+_Plate_5_Column_7_	OCCC1=CNC2=CC=CC=C12	Tryptophol
+_Plate_5_Column_7_	CC1(C)COC(=O)C1O	(+-)-Pantolactone
+_Plate_5_Column_7_	OC(=O)C(=O)CC1=CC=C(O)C=C1	4-Hydroxyphenylpyruvic Acid
+_Plate_5_Column_7_	OC(=O)CCC1=CC=CC=C1O	Melilotic acid
+_Plate_5_Column_7_	OC(C(O)=O)C1=CC=C(O)C(O)=C1	"(+-)-3,4-Dihydroxymandelic acid"
+_Plate_5_Column_8_	CC(C)=CCO	3-Methyl-2-buten-1-OL
+_Plate_5_Column_8_	[H][C@@]12CC[C@H](C(C)=O)[C@@]1(C)CC[C@@]1([H])[C@@]2([H])CC=C2CC(CC[C@]12C)OS(O)(=O)=O	Pregn-5-en-20-on-3b-yl sulfurate
+_Plate_5_Column_8_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(O)=O	RUDATBOHQWOJDD-BSWAIDMHSA-N
+_Plate_5_Column_8_	C[C@@H]1OC(O)[C@@H](O)[C@H](O)[C@@H]1O	SHZGCJCMOBCMKK-DHVFOXMCSA-N
+_Plate_5_Column_8_	NC(=N)N[C@@H](CC(O)=O)C(O)=O	VVHOUVWJCQOYGG-REOHCLBHSA-N
+_Plate_5_Column_8_	NCCC1=CNC=N1	Histamine
+_Plate_5_Column_8_	COC1=C(O)C=CC(CCN)=C1	3-Methoxytyramine
+_Plate_5_Column_8_	CCC(C)C=O	2-Methylbutanal
+_Plate_5_Column_9_	C1=CC(=CC(=C1)O)C=O	3-Hydroxybenzaldehyde
+_Plate_5_Column_9_	CC(C)CC(=O)C(=O)O	4-Methyl-2-oxovaleric acid
+_Plate_5_Column_9_	NCCC[C@H](N)C(O)=O	L-(-)-Ornithine
+_Plate_5_Column_9_	OCC(O)=O	Glycolic Acid
+_Plate_5_Column_9_	CSCCC(O)C(O)=O	alpha-Hydroxy-gamma-methylmercaptobutyric acid
+_Plate_5_Column_9_	COC1C(C(C(C(O1)CO)O)O)O	"beta-D-Galactopyranoside, methyl"
+_Plate_5_Column_9_	CC1=C(C=C)\C(NC1=O)=C\C1=C(C)C(CCC(O)=O)=C(N1)\C=C1/N\C(=C\C2=NC(=O)C(C=C)=C2C)C(C)=C1CCC(O)=O	Biliverdin
+_Plate_5_Column_9_	CCCCCCCCCCCCCCCC(=O)OC[C@H](COP([O-])(=O)OCC[N+](C)(C)C)OC(=O)CCCCCCCCCCCCCCC	Colfosceril Palmitate
+_Plate_5_Column_10_	OC(=O)C1=NC2=C(O)C=CC=C2C(O)=C1	FBZONXHGGPHHIY-UHFFFAOYSA-N
+_Plate_5_Column_10_	CC(C)C(O)=O	KQNPFQTWMSNSAP-UHFFFAOYSA-N
+_Plate_5_Column_10_	[H][C@]12CS[C@@H](CCCCC(O)=O)[C@@]1([H])NC(=O)N2	YBJHBAHKTGYVGT-ZKWXMUAHSA-N
+_Plate_5_Column_10_	NCC(O)C1=CC=CC=C1	Phenylethanolamine
+_Plate_5_Column_10_	C(CCCCC(=O)O)CCCCO	10-Hydroxydecanoic Acid
+_Plate_5_Column_10_	O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@@H](O)C(O)=O	6-Phosphogluconic Acid
+_Plate_5_Column_10_	OC(=O)C1=NC2=CC=CC=C2C=C1	Quinaldic Acid
+_Plate_5_Column_10_	CCCC(O)=O	Butyric Acid
+_Plate_5_Column_11_	CC(C)C=NO	"Propanal, 2-methyl-, oxime"
+_Plate_5_Column_11_	OCC1=CC=CC(O)=C1	3-Hydroxybenzyl alcohol
+_Plate_5_Column_11_	CC(=O)NC(CCSC)C(=O)O	N-Acetyl-DL-methionine
+_Plate_5_Column_11_	CC1=C(CCOP(O)([O-])=O)SC=[N+]1CC1=CN=C(C)N=C1N	Thiamine Monophosphate
+_Plate_5_Column_11_	OC(O)=C(O)C(=O)C(O)=O	BZCOSCNPHJNQBP-UHFFFAOYSA-N
+_Plate_5_Column_11_	NC1=NC2=C(N=CN2[C@@H]2O[C@@H]3COP(O)(=O)O[C@H]3[C@H]2O)C(=O)N1	Cgmp
+_Plate_5_Column_11_	N[C@@H](CO)C(O)=O	MTCFGRXMJLQNBG-REOHCLBHSA-N
+_Plate_5_Column_11_	N[C@@H](CCC(O)=O)C(O)=O	WHUUTDBJXJRKMK-VKHMYHEASA-N
+_Plate_5_Column_12_	OC[C@H]1O[C@@H](OC2=CNC3=C2C=CC=C3)[C@H](O)[C@@H](O)[C@@H]1O	XVARCVCWNFACQC-RKQHYHRCSA-N
+_Plate_5_Column_12_	[H][C@@]1(OC(=O)C(O)=C1O)[C@@H](O)CO	CIWBSHSKHKDKBQ-JLAZNSOCSA-N
+_Plate_5_Column_12_	CC(=O)N[C@@H]1[C@@H](O)C[C@](O)(O[C@H]1[C@H](O)[C@H](O)CO)C(O)=O	SQVRNKJHWKZAKO-PFQGKNLYSA-N
+_Plate_5_Column_12_	C1=CC=C(C(=C1)N)O	CDAWCLOXVUBKRW-UHFFFAOYSA-N
+_Plate_5_Column_12_	CC[C@H](O)C(O)=O	(S)-2-Hydroxybutyric acid
+_Plate_5_Column_12_	OC(=O)CC1=CNC2=C1C=CC=C2	Indole-3-Acetic Acid
+_Plate_5_Column_12_	NC1=NC2=NC=CN=C2C(=O)N1	Pterin
+_Plate_5_Column_12_	NC[C@H](N)C(O)=O	"L-alpha,beta-Diaminopropionic acid"
+_Plate_6_Column_1_	OC1=CC=CC=N1	2-Pyridone
+_Plate_6_Column_1_	O=CCC1=CC=CC=C1	Phenylacetaldehyde
+_Plate_6_Column_1_	CC(=O)NC(CCC(O)=O)C(O)=O	N-acetylglutamic acid
+_Plate_6_Column_1_	OC(=O)CCC(=O)C(O)=O	2-Oxoglutaric Acid
+_Plate_6_Column_1_	CC1C2=CC=CC=C2NC1=O	3-Methyloxindole
+_Plate_6_Column_1_	OC[C@H](O)[C@@H](O)[C@H](O)[C@H](O)CO	FBPFZTCFMRRESA-JGWLITMVSA-N
+_Plate_6_Column_1_	C\C=C\C=C\C(O)=O	Sorbic Acid
+_Plate_6_Column_2_	NCC(=O)CCC(O)=O	ZGXJTSGNIOSYLO-UHFFFAOYSA-N
+_Plate_6_Column_2_	CCC(C)C(=O)C(O)=O	JVQYSWDUAOAHFM-UHFFFAOYSA-N
+_Plate_6_Column_2_	CC(=O)C1=C(O)C=C(O)C=C1	SULYEHHGGXARJS-UHFFFAOYSA-N
+_Plate_6_Column_2_	NC=O	Formamide
+_Plate_6_Column_2_	CN1C=NC(N)=C2N=CN=C12	3-Methyladenine
+_Plate_6_Column_2_	OC[C@H](O)C(O)[C@H](O)CO	"(2S,4R)-Pentane-1,2,3,4,5-Pentol"
+_Plate_6_Column_2_	C(=CC(=O)O)C(=O)N	4-Amino-4-oxobut-2-enoic acid
+_Plate_6_Column_3_	NC(CC(=O)C1=C(N)C(O)=CC=C1)C(O)=O	3-Hydroxykynurenine
+_Plate_6_Column_3_	CC1=CC=C(O)C(O)=C1	4-Methylcatechol
+_Plate_6_Column_3_	CC1=C(C=C)\C(NC1=O)=C\C1=C(C)C(CCC(O)=O)=C(CC2=C(CCC(O)=O)C(C)=C(N2)\C=C2/NC(=O)C(C=C)=C2C)N1	Bilirubin
+_Plate_6_Column_3_	C[C@]12C[C@H](O)C3C(CCC4C[C@H](O)CC[C@]34C)C1CC[C@]2(O)C(=O)CO	"2-Hydroxy-1-(3,11,17-trihydroxy-10,13-dimethyl-hexadecahydro-cyclopenta[a]phenanthren-17-yl)-ethanone"
+_Plate_6_Column_3_	OCC(=O)C(O)=O	HHDDCCUIIUWNGJ-UHFFFAOYSA-N
+_Plate_6_Column_3_	C[C@@H]1OC(O)[C@H](O)[C@H](O)[C@H]1O	L-Rhamnose
+_Plate_6_Column_3_	OC[C@H]1O[C@@](CO)(O[C@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	CZMRCDWAGMRECN-UGDNZRGBSA-N
+_Plate_6_Column_4_	OCCNCCO	ZBCBWPMODOFKDW-UHFFFAOYSA-N
+_Plate_6_Column_4_	O=C1CCNC(=O)N1	Dihydrouracil
+_Plate_6_Column_4_	CC(C(O)=O)C(O)=O	ZIYVHBGGAOATLY-UHFFFAOYSA-N
+_Plate_6_Column_4_	CCOC(=O)CC(O)=O	HGINADPHJQTSKN-UHFFFAOYSA-N
+_Plate_6_Column_4_	NC(=O)OP(O)(O)=O	FFQKYPRQEYGKAF-UHFFFAOYSA-N
+_Plate_6_Column_4_	CSC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CN=C2N	WUUGFSXJNOTRMR-IOSLPCCCSA-N
+_Plate_6_Column_4_	N[C@@H](CC1=CC(O)=C(O)C=C1)C(O)=O	WTDRDQBEARUVNC-LURJTMIESA-N
+_Plate_6_Column_5_	OC(=O)C1=CC(O)=CC=C1	IJFXRHURBJZNAO-UHFFFAOYSA-N
+_Plate_6_Column_5_	OC(=O)C1=CC=CN1	WRHZVMBBRYBTKZ-UHFFFAOYSA-N
+_Plate_6_Column_5_	COC(=O)CC1=CNC2=C1C=CC=C2	KTHADMDGDNYQRX-UHFFFAOYSA-N
+_Plate_6_Column_5_	COC1=CC(CC(O)=O)=CC=C1O	QRMZSPFSDQBLIX-UHFFFAOYSA-N
+_Plate_6_Column_5_	NCCC1=C(O)C=C(O)C(O)=C1	DIVDFFZHCJEHGG-UHFFFAOYSA-N
+_Plate_6_Column_5_	OC(=O)CC(O)=O	OFOBLEOULBTSOW-UHFFFAOYSA-N
+_Plate_6_Column_5_	OC(=O)CCCCCCCC(O)=O	Azelaic Acid
+_Plate_6_Column_6_	COCCO	2-Methoxyethanol
+_Plate_6_Column_6_	N[C@@H](CC1=CC(I)=C(OC2=CC(I)=C(O)C(I)=C2)C(I)=C1)C(O)=O	Thyroxine
+_Plate_6_Column_6_	CNC(N)=N	Methylguanidine
+_Plate_6_Column_6_	O=CCC1=CNC2=CC=CC=C12	Indole-3-acetaldehyde
+_Plate_6_Column_6_	CC(=O)C(O)=O	Pyruvic Acid
+_Plate_6_Column_6_	O[C@@H]1COC(O)[C@H](O)[C@H]1O	D-Xylose
+_Plate_6_Column_6_	O[C@H]1CN[C@H](C1)C(O)=O	Cis-4-Hydroxy-D-Proline
+_Plate_6_Column_7_	CC(=O)NCCCCN	KLZGKIDSEJWEDW-UHFFFAOYSA-N
+_Plate_6_Column_7_	OC(=O)C1=CC(O)=CC=C1O	WXTMDXOMEHJXQO-UHFFFAOYSA-N
+_Plate_6_Column_7_	COC1=C(O)C=CC(=C1)[C@H](O)C(O)=O	CGQCWMIAEPEHNQ-QMMMGPOBSA-N
+_Plate_6_Column_7_	COC1=C(C=CC(=C1)C(CO)O)O	Methoxyhydroxyphenylglycol
+_Plate_6_Column_7_	OC(=O)[C@@H]1CCC(=O)N1	ODHCTXKNWHHXJC-VKHMYHEASA-N
+_Plate_6_Column_7_	OC(=O)CCC=O	4-Oxobutanoic acid
+_Plate_6_Column_7_	C1C(C(C(C(O1)(CO)O)O)O)O	LKDRXBCSQODPBY-UHFFFAOYSA-N
+_Plate_6_Column_8_	CC(=O)NC(CCCCN)C(O)=O	N2-Acetyl-DL-lysine
+_Plate_6_Column_8_	COC1=CC(C=O)=CC=C1O	Vanillin
+_Plate_6_Column_8_	OC1=CC=C(O)C=C1	Hydroquinone
+_Plate_6_Column_8_	OC(=O)CC1=CC=CC(O)=C1	3'-Hydroxyphenylacetic acid
+_Plate_6_Column_8_	CC1=C(N)NC(=O)N=C1	5-Methylcytosine
+_Plate_6_Column_8_	NCCCC(O)=O	Gamma-Aminobutyric Acid
+_Plate_6_Column_8_	O=CC1=CC=CC=C1	Benzaldehyde
+_Plate_6_Column_9_	CC(=C)CCOP(O)(=O)OP(O)(O)=O	Isopentenyl diphosphate
+_Plate_6_Column_9_	CSCC[C@H](N)C(O)=O	L-Methionine
+_Plate_6_Column_9_	CC(CCC(O)=O)C(O)=O	2-Methylglutaric Acid
+_Plate_6_Column_9_	CC1=NC=C(CO)C(C(O)=O)=C1O	4-Pyridoxic Acid
+_Plate_6_Column_9_	CC(C)=CC(=O)SCCNC(=O)CCNC(=O)C(O)C(C)(C)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1OP(O)(O)=O)N1C=NC2=C1N=CN=C2N	"S-[2-[3-[[4-[[[(2R,3S,4R,5R)-5-(6-aminopurin-9-yl)-4-hydroxy-3-phosphonooxyoxolan-2-yl]methoxy-hydroxyphosphoryl]oxy-hydroxyphosphoryl]oxy-2-hydroxy-3,3-dimethylbutanoyl]amino]propanoylamino]ethyl] 3-methylbut-2-enethioate"
+_Plate_6_Column_9_	CN1C=NC=C1C[C@H](NC(=O)CCN)C(O)=O	Anserine
+_Plate_6_Column_9_	CC1=CC2=C(C=C1C)N=C3C(=N2)C(=O)NC(=O)N3	Lumichrome
+_Plate_6_Column_10_	C[N+](C)(C)CC([O-])=O	Betaine
+_Plate_6_Column_10_	CCCCCCCCCCCCCCCCCC(O)=O	Stearic Acid
+_Plate_6_Column_10_	C[C@@H](O)[C@@H](C)O	"(2R,3R)-Butanediol"
+_Plate_6_Column_10_	C1=CNN=C1	Pyrazole
+_Plate_6_Column_10_	OC[C@H]1O[C@@](CO)(OC2O[C@H](COC3O[C@H](CO)[C@H](O)[C@H](O)[C@H]3O)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	GlyTouCan:G32129SC
+_Plate_6_Column_10_	NC1=CC=CC=C1	Aniline
+_Plate_6_Column_10_	CC1=C(C)C=C2N(C[C@H](O)[C@H](O)[C@H](O)CO)C3=NC(=O)NC(=O)C3=NC2=C1	Riboflavin
+_Plate_6_Column_11_	C(C(C(=O)O)O)(C(=O)C(=O)O)C(=O)O	3-Oxalomalic acid
+_Plate_6_Column_11_	OC[C@H]1O[C@H](O)[C@H](O)[C@@H](O)[C@@H]1O	Alpha-D-Glucose
+_Plate_6_Column_11_	OC(=O)C1=CC=CC=C1O	Salicylic Acid
+_Plate_6_Column_11_	NC(=O)C1=CC=CC=C1O	Salicylamide
+_Plate_6_Column_11_	NC1=NC=NC2=C1N=CN2C1OC(CO)C2OP(O)(=O)OC12	"Adenosine 2',3'-cyclic phosphate"
+_Plate_6_Column_11_	C1=CC(=O)NC1=O	Maleimide
+_Plate_6_Column_11_	C(C1C(C(C(C(O1)OCC2C(C(C(O2)(CO)O)O)O)O)O)O)O	GlyTouCan:G22135OT
+_Plate_6_Column_12_	CC(C(=O)O)C(CC(=O)O)(C(=O)O)O	2-Methylcitric acid
+_Plate_6_Column_12_	OC[C@H]1O[C@H](OC[C@H]2OC(O)[C@H](O)[C@@H](O)[C@@H]2O)[C@H](O)[C@@H](O)[C@H]1O	Melibiose
+_Plate_6_Column_12_	C[S+](CC[C@H](N)C(O)=O)C[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC2=C1N=CN=C2N	S-adenosyl-L-methionine
+_Plate_6_Column_12_	NC(CSCC(O)=O)C(O)=O	S-(Carboxymethyl)cysteine
+_Plate_6_Column_12_	NC1=C2N=CN(C3OC(COP(O)(=O)OP(O)(=O)OCC4OC(O)C(O)C4O)C(O)C3O)C2=NC=N1	SRNWOUGRCWSEMX-UHFFFAOYSA-N
+_Plate_6_Column_12_	OC[C@H]1OC(O)[C@@H](O)[C@@H](O)[C@@H]1O	D-Mannose
+_Plate_6_Column_12_	CNC[C@H](O)C1=CC=C(O)C(O)=C1	UCTWMZQNUQWSLP-VIFPVBQESA-N
+_Plate_7_Column_1_	[H][C@@]1(CC[C@@]2([H])\C(CCC[C@]12C)=C\C=C1\C[C@@H](O)CCC1=C)[C@H](C)\C=C\[C@H](C)C(C)C	MECHNRXZTMCUDQ-RKHKHRCZSA-N
+_Plate_7_Column_1_	CCCCCC(O)=O	Hexanoic Acid
+_Plate_7_Column_1_	CCCCCCCCCCCCCCCC(O)=O	Palmitic Acid
+_Plate_7_Column_1_	CC(C)C[C@H](N)C(O)=O	L-Leucine
+_Plate_7_Column_1_	OC(=O)CC1=CNC2=C1C=CC=C2	Indole-3-Acetic Acid
+_Plate_7_Column_1_	C1CCC(C(C1)O)O	"1,2-Cyclohexanediol"
+_Plate_7_Column_1_	CN(CC(O)=O)C(N)=N	Creatine
+_Plate_7_Column_2_	CCCCCCCCCCCCCCCCCC(=O)N[C@@H]([C@@H](/C=C/CCCCCCCCCCCCC)O)C(O)OOP(=O)(O)OCC[N+](C)(C)C	Sphingomyelin (bovine)
+_Plate_7_Column_2_	C\C(\C=C\C1=C(C)CCCC1(C)C)=C/C=C/C(/C)=C/C(O)=O	Retinoic Acid
+_Plate_7_Column_2_	C(C(C1C(C(C(=O)O1)O)O)O)O	"5-(1,2-Dihydroxy-ethyl)-3,4-dihydroxy-dihydro-furan-2-one"
+_Plate_7_Column_2_	CCCCCCCCCCCCCCC[C@@H](O)[C@@H](N)CO	Sphinganine
+_Plate_7_Column_2_	CC(O)(CC(O)=O)C(O)=O	(+-)-Citramalic acid
+_Plate_7_Column_2_	CC(=O)OC[C@H](N)C(O)=O	O-Acetyl-L-serine
+_Plate_7_Column_2_	O=C1CCCC1	Cyclopentanone
+_Plate_7_Column_3_	OC(=O)\C=C\C1=CC=C(O)C=C1	P-Coumaric Acid
+_Plate_7_Column_3_	O[C@@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H](O)[C@@H]1O	beta-D-mannose 6-phosphate
+_Plate_7_Column_3_	NCCCNCCCCNCCCN	Spermine
+_Plate_7_Column_3_	NC1=NC=NC2=C1N=CN2[C@@H]1O[C@H](CO)[C@@H](O)[C@H]1O	Adenosine
+_Plate_7_Column_3_	OP(O)(=O)OC1C(OP(O)(O)=O)C(OP(O)(O)=O)C(OP(O)(O)=O)C(OP(O)(O)=O)C1OP(O)(O)=O	Phytate
+_Plate_7_Column_3_	OC[C@H]1O[C@@](CO)(O[C@H]2O[C@H](CO[C@H]3O[C@H](CO[C@H]4O[C@H](CO)[C@H](O)[C@H](O)[C@H]4O)[C@H](O)[C@H](O)[C@H]3O)[C@@H](O)[C@H](O)[C@H]2O)[C@@H](O)[C@@H]1O	Stachyose
+_Plate_7_Column_3_	[H][C@@]12CC[C@H]([C@H](C)CCC(O)=O)[C@@]1(C)[C@@H](O)C[C@@]1([H])[C@@]2([H])CC[C@]2([H])C[C@H](O)CC[C@]12C	KXGVEGMKQFWNSR-LLQZFEROSA-N
+_Plate_7_Column_4_	[H][C@@](C)(NC)C(O)=O	GDFAOVXKHJXLEI-VKHMYHEASA-N
+_Plate_7_Column_4_	CCOC(=O)CCNC(=O)N	BYCFJYNUBNQNIY-UHFFFAOYSA-N
+_Plate_7_Column_4_	OC[C@H]1O[C@@H](O[C@H]2[C@H](O)[C@@H](O)[C@@H](O)O[C@@H]2CO)[C@H](O)[C@@H](O)[C@H]1O	alpha-D-lactose
+_Plate_7_Column_4_	CC1=CN([C@H]2C[C@H](O)[C@@H](COP(O)(O)=O)O2)C(=O)NC1=O	GYOZYWVXFNDGLU-XLPZGREQSA-N
+_Plate_7_Column_4_	N[C@@H](CCCNC(N)=O)C(O)=O	RHGKLRLOHDJJDR-BYPYZUCNSA-N
+_Plate_7_Column_4_	CCCCC(CC)COC(=O)C1=CC=CC=C1C(=O)OCC(CC)CCCC	Di(2-ethylhexyl) phthalate
+_Plate_7_Column_5_	NC1=NC(=O)C2=NC(CNC3=CC=C(C=C3)C(=O)N[C@@H](CCC(O)=O)C(O)=O)=CN=C2N1	Folic Acid
+_Plate_7_Column_5_	C[N+](C)(C)CCOP([O-])(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=CC(N)=NC1=O	Citicoline
+_Plate_7_Column_5_	C[C@H](N)C(O)=O	L-Alanine
+_Plate_7_Column_5_	NCCC(=O)N[C@@H](CC1=CN=CN1)C(O)=O	Carnosine
+_Plate_7_Column_5_	OC(=O)C1=CC=CN=C1C(O)=O	Quinolinic Acid
+_Plate_7_Column_5_	CC1=CN=C(C)C=N1	"2,5-Dimethylpyrazine"
+_Plate_7_Column_6_	CCCCCCCC\C=C/CCCCCCCC(=O)O[C@H]1CC[C@@]2(C)C(=CC[C@@]3([H])[C@]4([H])CC[C@]([H])([C@H](C)CCCC(C)C)[C@@]4(C)CC[C@]23[H])C1	Cholesteryl Oleate
+_Plate_7_Column_6_	C[C@]1(O)CCOC(=O)C1	JYVXNLLUYHCIIH-LURJTMIESA-N
+_Plate_7_Column_6_	OC(=O)C1=CC=CC=C1	WPYMKLBDIGXBTP-UHFFFAOYSA-N
+_Plate_7_Column_6_	C(C(C(C(C(C(=O)O)N)O)O)O)O	"2-Amino-3,4,5,6-tetrahydroxyhexanoic acid"
+_Plate_7_Column_6_	CC1=CN([C@H]2C[C@H](O)[C@@H](COP(O)(=O)OP(O)(=O)OC3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)O2)C(=O)NC1=O	dTDP-D-glucose
+_Plate_7_Column_6_	NC(=O)C1=CN(C=CC1)[C@H]1O[C@@H](COP(O)(=O)OP(O)(=O)OC[C@@H]2O[C@@H]([C@@H](OP(O)(O)=O)[C@H]2O)N2C=NC3=C(N)N=CN=C23)[C@H](O)[C@@H]1O	Dihydrocodehydrogenase II
+_Plate_7_Column_7_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(O)=O	Ursodeoxycholic Acid
+_Plate_7_Column_7_	OC(=O)CC(O)(CC(O)=O)C(O)=O	Citric Acid
+_Plate_7_Column_7_	CC1=CC2=C(C=C1C)N(C[C@H](O)[C@H](O)[C@H](O)COP(O)(=O)OP(O)(=O)OC[C@H]1O[C@H]([C@H](O)[C@@H]1O)N1C=NC3=C1N=CN=C3N)C1=NC(=O)NC(=O)C1=N2	Flavin Adenine Dinucleotide
+_Plate_7_Column_7_	CCCCCCCCC=CCCCCCCCC(=O)OCC(CO)O	RZRNAYUHWVFMIP-UHFFFAOYSA-N
+_Plate_7_Column_7_	[H][C@](CO)(COC(=O)CCCCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCCCC	JEJLGIQLPYYGEE-XIFFEERXSA-N
+_Plate_7_Column_7_	CCCCCCCCCC(=O)OCC(COP(=O)([O-])OCC[N+](C)(C)C)OC(=O)CCCCCCCCC	"1,2-Didecanoylphosphatidylcholine"
+_Plate_7_Column_8_	CCCCCCCCCCC/C=C\CCCCC(O)=O	Petroselinic Acid
+_Plate_7_Column_8_	C([C@H]([C@H](C(=O)COP(=O)(O)O)O)O)OP(=O)(O)O	"Ribulose 1,5-bisphosphate"
+_Plate_7_Column_8_	NC1=NC2=C(N=CN2[C@H]2C[C@H](O)[C@@H](COP(O)(O)=O)O2)C(=O)N1	LTFMZDNNPPEQNG-KVQBGUIXSA-N
+_Plate_7_Column_8_	CC(CC(O)=O)CC(O)=O	3-Methylglutaric acid
+_Plate_7_Column_8_	C\C(=C/CO)\C=C\C=C(/C)\C=C\C1=C(C)CCCC1(C)C	Retinol
+_Plate_7_Column_8_	OC[C@@H]1O[C@H](O)C[C@H]1O	2-Deoxy-beta-L-erythro-pentofuranose
+_Plate_7_Column_9_	NCCC[C@@H](N)C(O)=O	D-Ornithine
+_Plate_7_Column_9_	[H][C@@]1(CC[C@@]2([H])[C@]3([H])[C@H](O)C[C@]4([H])C[C@H](O)CC[C@]4(C)[C@@]3([H])CC[C@]12C)[C@H](C)CCC(=O)NCC(O)=O	Glycochenodeoxycholic Acid
+_Plate_7_Column_9_	OC(=O)CC(=C)C(O)=O	Itaconic acid
+_Plate_7_Column_9_	CO[C@@H]1[C@@H](O)[C@@H](O)[C@H](O)[C@H](O)[C@H]1O	"Ononitol, (+)-"
+_Plate_7_Column_9_	CCCCCCCCCC(=O)C	2-Undecanone
+_Plate_7_Column_9_	CCCCCCCC\C=C/CCCCCCCC(O)=O	Oleic Acid
+_Plate_7_Column_10_	CC1=CC2=C(C=C1C)N(C=N2)C3[C@@H]([C@@H]([C@H](O3)CO)OP(=O)([O-])O[C@H](C)CNC(=O)CC[C@@]4([C@H]([C@@H]5[C@]6([C@@]([C@@H](/C(=C(/C7=N/C(=C\C8=N/C(=C(\C4=N5)/C)/[C@H](C8(C)C)CCC(=O)N)/[C@H]([C@]7(C)CC(=O)N)CCC(=O)N)\C)/[N-]6)CCC(=O)N)(C)CC(=O)N)C)CC(=O)N)C)O.[C-]#N.[Co+3]	"cobalt(3+);[(2R,3S,4R)-5-(5,6-dimethylbenzimidazol-1-yl)-4-hydroxy-2-(hydroxymethyl)oxolan-3-yl] [(2R)-1-[3-[(1R,2R,3R,7S,12S,13S,17S,18S,19R)-2,13,18-tris(2-amino-2-oxoethyl)-7,12,17-tris(3-amino-3-oxopropyl)-3,5,8,8,13,15,18,19-octamethyl-2,7,12,17-tetrahydro-1H-corrin-21-id-3-yl]propanoylamino]propan-2-yl] phosphate;cyanide"
+_Plate_7_Column_10_	CN1CC(=O)NC1=N	2-Amino-1-methylimidazolin-4-one
+_Plate_7_Column_10_	CCOC(=O)CC1=CNC2=CC=CC=C21	Ethyl 1H-indole-3-acetate
+_Plate_7_Column_10_	OC(=O)CNC(=O)C1=CC=CC=C1	Hippuric Acid
+_Plate_7_Column_10_	C1=CC=C2C(=C1)C=CC(=C2O)C(=O)O	1-Hydroxy-2-naphthoic acid
+_Plate_7_Column_10_	OC[C@H](O)C(O)[C@@H](O)CO	L-Arabitol
+_Plate_7_Column_11_	N[C@@H](CC1=CC(I)=C(OC2=CC=C(O)C(I)=C2)C(I)=C1)C(O)=O	Liothyronine
+_Plate_7_Column_11_	NC(=O)CCCCC1CCSS1	Lipoamide
+_Plate_7_Column_11_	CCCCCCCCCCCCCCCCO	Cetyl Alcohol
+_Plate_7_Column_11_	NCCCCC(O)=O	JJMDCOVWQOJGCB-UHFFFAOYSA-N
+_Plate_7_Column_11_	O[C@H]1O[C@H](COP(O)(O)=O)[C@@H](O)[C@H]1O	KTVPXOYAKDPRHY-AIHAYLRMSA-N
+_Plate_7_Column_11_	[H]C(COC(=O)CCCCCCCCCCCCCCC)(COC(=O)CCCCCCCCCCCCCCC)OC(=O)CCCCCCCCCCCCCCC	PVNIQBQSYATKKL-UHFFFAOYSA-N
+_Plate_7_Column_12_	CC1=C(CCC(O)=O)/C2=C/C3=N/C(=C\C4=C(C)C(C=C)=C(N4)/C=C4\N=C(\C=C\1/N\2)C(C=C)=C4C)/C(C)=C3CCC(O)=O	"3-[18-(2-Carboxyethyl)-7,12-bis(ethenyl)-3,8,13,17-tetramethyl-21,23-dihydroporphyrin-2-yl]propanoic acid"
+_Plate_7_Column_12_	CCCCCC\C=C/CCCCCCCC(O)=O	Palmitoleic Acid
+_Plate_7_Column_12_	NCC(O)=O	DHMQDGOQFOQNFH-UHFFFAOYSA-N
+_Plate_7_Column_12_	CC(=O)OC1=CC=CC(=C1)O	Acetylresorcinol
+_Plate_7_Column_12_	OC(=O)C(=O)CC1=CC=CC=C1	Phenylpyruvic acid
+_Plate_7_Column_12_	O=C\C=C\C1=CC=CC=C1	Cinnamaldehyde
