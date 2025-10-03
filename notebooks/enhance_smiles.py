@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -18,7 +18,6 @@ with app.setup:
     import marimo as mo
     import math
     import csv
-    from typing import List
     from simple_parsing import ArgumentParser
     from rdkit import Chem
     from rdkit.Chem import Descriptors
@@ -51,12 +50,14 @@ with app.setup:
 
     settings = parse_args()
 
+
 @app.function
 def smiles_to_mol(smiles):
     try:
         return Chem.MolFromSmiles(smiles)
     except Exception:
         return None
+
 
 @app.function
 def mol_to_formula(mol):
@@ -65,12 +66,14 @@ def mol_to_formula(mol):
     except Exception:
         return ""
 
-@app.function    
+
+@app.function
 def mol_to_mass(mol):
     try:
         return Descriptors.ExactMolWt(mol)
     except Exception:
         return float('nan')
+
 
 @app.function
 def mol_to_canonical_smiles(mol):
@@ -79,12 +82,14 @@ def mol_to_canonical_smiles(mol):
     except Exception:
         return ""
 
+
 @app.function
 def mol_to_inchi(mol):
     try:
         return Chem.MolToInchi(mol)
     except Exception:
         return ""
+
 
 @app.function
 def mol_to_inchikey(mol):
@@ -93,12 +98,14 @@ def mol_to_inchikey(mol):
     except Exception:
         return ""
 
+
 @app.function
 def smiles_to_selfies(smiles):
     try:
         return selfies.encoder(smiles)
     except Exception:
         return ""
+
 
 @app.function
 def smiles_to_enhanced(settings: "Settings"):
@@ -112,7 +119,7 @@ def smiles_to_enhanced(settings: "Settings"):
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(f"Processing batch {batch_idx} of {num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total} SMILES)")
         batch = smiles_list[batch_start:batch_start + settings.batch_size]
-        
+
         # Step: Process each SMILES
         for smi in batch:
             mol = smiles_to_mol(smi)
@@ -144,8 +151,9 @@ def smiles_to_enhanced(settings: "Settings"):
             writer.writerow(row)
     return f"Processed {total} SMILES. Output: {settings.output_tsv}"
 
+
 @app.cell
-def show_settings(settings):
+def show_settings():
     mo.md(f"""
     ## SMILES to Enhanced Structure Metadata Batch Resolver Settings
 
@@ -157,11 +165,14 @@ def show_settings(settings):
 
     **Note**: This converts to SELFIES, computes neutral mass, formula, and generates canonical SMILES, InChI, and InChIKey.
     """)
+    return
+
 
 @app.cell
 def run_smiles_to_enhanced():
-    results = smiles_to_enhanced(settings)
-    return results
+    smiles_to_enhanced(settings)
+    return
+
 
 if __name__ == "__main__":
     app.run()

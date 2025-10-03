@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -85,6 +85,7 @@ with app.setup:
 
     settings = parse_args()
 
+
 @app.function
 def zenodo_batch_download(settings: "Settings"):
     output_dir = settings.output_dir
@@ -113,8 +114,9 @@ def zenodo_batch_download(settings: "Settings"):
         results.append(msg)
     return "\n".join(results)
 
+
 @app.cell
-def show_settings(settings):
+def show_settings():
     mo.md(f"""
     ## Zenodo Batch Downloader Settings
 
@@ -125,11 +127,14 @@ def show_settings(settings):
 
     Use `zenodo_batch_download(settings)` below to download all files with hash checking.
     """)
+    return
+
 
 @app.cell
 def download_all():
-    results = zenodo_batch_download(settings)
-    return results
+    zenodo_batch_download(settings)
+    return
+
 
 if __name__ == "__main__":
     app.run()

@@ -11,7 +11,7 @@
 
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -58,18 +58,19 @@ with app.setup:
 
     settings = parse_args()
 
+
 @app.function
 def get_batch_record_titles(cids: List[int]) -> Dict[int, str]:
     """Fetch record titles for multiple CIDs in one batch request."""
     if not cids:
         return {}
-    
+
     cid_map = {}
     try:
         cid_string = ",".join(map(str, cids))
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid_string}/description/JSON"
         response = requests.get(url, timeout=30)
-        
+
         if response.status_code == 200:
             data = response.json()
             if 'InformationList' in data and 'Information' in data['InformationList']:
@@ -78,8 +79,9 @@ def get_batch_record_titles(cids: List[int]) -> Dict[int, str]:
                         cid_map[info['CID']] = info['Title']
     except Exception as e:
         print(f"Warning: Batch title fetch failed: {e}")
-    
+
     return cid_map
+
 
 @app.function
 def smiles_to_names(settings: "Settings"):
@@ -93,7 +95,7 @@ def smiles_to_names(settings: "Settings"):
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(f"Processing batch {batch_idx} of {num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total} SMILES)")
         batch = smiles_list[batch_start:batch_start + settings.batch_size]
-        
+
         # Step 1: Get compounds from PubChem (by SMILES)
         try:
             compounds = pcp.get_compounds(batch, namespace="smiles")
@@ -106,16 +108,16 @@ def smiles_to_names(settings: "Settings"):
                     time.sleep(settings.sleep_time)
                 except Exception:
                     compounds.append(None)
-        
+
         # Step 2: Collect CIDs from compounds
         cids = [cmpd.cid for cmpd in compounds if cmpd and hasattr(cmpd, 'cid')]
-        
+
         # Step 3: Batch fetch titles for all CIDs
         cid_to_title = {}
         if cids:
             cid_to_title = get_batch_record_titles(cids)
             time.sleep(settings.sleep_time)  # rate limit after title fetch
-        
+
         # Step 4: Map results
         for smi, cmpd in zip(batch, compounds):
             if cmpd is None:
@@ -135,9 +137,9 @@ def smiles_to_names(settings: "Settings"):
                 name = cmpd.inchikey
             else:
                 name = "NOT_FOUND"
-            
+
             out_rows.append((smi, name))
-        
+
         time.sleep(settings.sleep_time)  # between batches
 
     with open(settings.output_tsv, "w", newline="") as outfile:
@@ -146,8 +148,9 @@ def smiles_to_names(settings: "Settings"):
         writer.writerows(out_rows)
     return f"Processed {total} SMILES. Output: {settings.output_tsv}"
 
+
 @app.cell
-def show_settings(settings):
+def show_settings():
     mo.md(f"""
     ## SMILES to Record Name/InChIKey Batch Resolver Settings
 
@@ -160,11 +163,14 @@ def show_settings(settings):
 
     **Note**: This now uses batch requests to fetch record titles efficiently. If no PubChem record is found, the InChIKey is generated using RDKit.
     """)
+    return
+
 
 @app.cell
 def run_smiles_to_names():
     results = smiles_to_names(settings)
-    return results
+    return
+
 
 if __name__ == "__main__":
     app.run()
