@@ -1,0 +1,153 @@
+{
+  "library": {
+    "name": "MultiMS2",
+    "identifier": "MultiMS2",
+    "description": "MultiMS2 library from multiple compound libraries",
+    "publication": "10.00000/TODO"
+  },
+  "mass_spectrometer": {
+    "description": "ZenoTOF 7600",
+    "manufacturer": "Sciex",
+    "model": "ZenoTOF 7600",
+    "ionization_mode": "HESI",
+    "resolutions": {
+      "MS1": 000000, // TODO
+      "MS2": 000000, // TODO
+    },
+    "fragmentation_types": [
+      "CID",
+      "EAD"
+    ]
+  },
+  "sample_introduction": {
+    "method": "dual pump flow injection",
+    "manufacturer": "Agilent",
+    "model": "TODO",
+    "column": {
+      "name": "",
+      "manufacturer": "",
+      "usp_code": "",
+      "length": "",
+      "inner_diameter": "",
+      "particle_size": "",
+      "pore_size": "",
+      "temperature": "",
+      "separation_mode": ""
+    },
+    "mobile_phase": {
+      "gradient": {
+        "mix_type": "isocratic",
+        "flow_type": "constant",
+        "steps": [
+          {
+            "time": 0.0,
+            "flow_rate": 000000, // TODO
+            "flow_rate_unit": "ml/min",
+            "components": [
+              {"id": "A", "percentage": 000000}, // TODO
+              {"id": "B", "percentage": 000000} // TODO
+            ]
+          }
+        ]
+      },
+      "components": [
+        {
+          "id": "A",
+          "solvents": [
+            {
+              "name": "H2O",
+              "amount": 000, // TODO
+              "unit": "percent",
+              "pH": 0.00, // TODO
+            },
+            {
+              "name": "formic acid",
+              "amount": 0.1,
+              "unit": "percent",
+              "pH": 0.00, // TODO
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "solvents": [
+            {
+              "name": "TODO",
+              "amount": 100,
+              "unit": "percent"
+            },
+            {
+              "name": "formic acid",
+              "amount": 0.1,
+              "unit": "percent"
+            }
+          ]
+        }
+      ]
+    },
+  },
+  "data_repositories": [
+    {
+      "name": "MassIVE",
+      "accession_id": [
+        "MSV000099369"
+      ]
+    },
+    {
+      "name": "Zenodo",
+      "accession_id": [
+        "10.5281/zenodo.17250693",
+        "TODO" // MGFs
+      ]
+    }
+  ],
+  "compound_libraries": [
+    {
+      "name": "MSMLS TODO",
+      "identifier": "MSMLS",
+      "distributor": "TODO",
+      "catalog_number": "TODO",
+      "url": "TODO",
+      "description": "",
+      "source": "commercial/purified/TODO"
+    },
+    {
+      "name": "NEXUS TODO",
+      "identifier": "NEXUS",
+      "distributor": "TODO",
+      "catalog_number": "TODO",
+      "url": "TODO",
+      "description": "",
+      "source": "commercial/purified/TODO"
+    },
+    {
+      "name": "SELLECK",
+      "identifier": "SELLECK",
+      "distributor": "TODO",
+      "catalog_number": "",
+      "url": "",
+      "description": "",
+      "source": "commercial/purified/TODO"
+    }
+  ],
+  "people": [
+    {
+      "name": "Adriano Rutz",
+      "role": "Conceptualization, Data curation, Methodology, Software, Validation, Visualization",
+      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
+      "contact": "rutz@imsb.biol.ethz.ch"
+    },
+    {
+      "name": "Mario S. P. Correia",
+      "role": "Investigation, Validation",
+      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
+      "contact": "povoacorreia@imsb.biol.ethz.ch"
+    },
+    {
+      "name": "Nicola Zamboni",
+      "role": "Conceptualization, Funding acquisition, Methodology, Project administration, Resources, Supervision",
+      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
+      "contact": "zamboni@imsb.biol.ethz.ch"
+    }
+  ]
+}
