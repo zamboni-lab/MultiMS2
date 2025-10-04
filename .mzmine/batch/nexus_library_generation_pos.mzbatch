@@ -339,13 +339,13 @@
         <parameter name="Export format">mgf</parameter>
         <parameter name="MS level filter" selected="MS2, level = 2">3</parameter>
         <parameter name="Metadata">
-            <parameter name="description"/>
-            <parameter name="Dataset ID"/>
+            <parameter name="description"/>NEXUS</parameter>
+            <parameter name="Dataset ID"/>MSV000099369</parameter>
             <parameter name="INSTRUMENT_NAME">ZENOTOF7600</parameter>
             <parameter name="INSTRUMENT">qTof</parameter>
             <parameter name="Ion mobility">NONE</parameter>
             <parameter name="IONSOURCE">DI-ESI</parameter>
-            <parameter name="ACQUISITION">Crude</parameter>
+            <parameter name="ACQUISITION">Commercial</parameter>
             <parameter name="ACQUISITION_METHOD"/>
             <parameter name="PI">NZamboni</parameter>
             <parameter name="DATACOLLECTOR">MPovoa</parameter>
