@@ -1,24 +1,303 @@
-# MultiMS2
+# MultiMS2: A Multi-Energy, Multi-Fragmentation Spectral Library
 
-## Introduction
+## Overview
 
-TODO
+MultiMS2 is a comprehensive, rigorously curated mass spectrometry spectral library designed to address critical gaps in metabolomics research. This library provides high-quality MS/MS spectra across:
 
-### Initial conversion
+- **Multiple fragmentation methods**: Collision-Induced Dissociation (CID) and Electron-Activated Dissociation (EAD)
+- **Multiple collision energies**: 20, 40, and 60 eV for CID; 12, 16, and 24 eV for EAD
+- **Both ionization modes**: Positive and negative
+- **Diverse chemical space**: Three curated compound collections (NEXUS, Selleck, MSMLS)
 
-This step is described here for transparency.
+### Why MultiMS2?
 
-#### `.wiff` to `.mzML`
+Confident metabolite identification relies on high-quality reference spectral libraries, yet most existing resources suffer from significant limitations:
 
-```shell
-docker run -it --rm \
--v .:/data \
-proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses \
-wine msconvert "*.wiff" \
---ignoreUnknownInstrumentError
+- **Limited fragmentation diversity**: Predominantly CID spectra, with EAD spectra remaining scarce despite their structural value
+- **Restricted energy ranges**: Single or limited collision energy coverage
+- **Narrow acquisition conditions**: Limited applicability across varied analytical workflows
+- **Machine learning constraints**: Insufficient diversity for training robust, generalizable models
+
+MultiMS2 addresses these challenges by providing a curated resource that:
+
+- Enables reliable metabolite annotation across diverse experimental conditions
+- Supports development of generalizable machine learning models for spectrum prediction and structure elucidation
+- Facilitates comparative fragmentation studies between CID and EAD
+- Accelerates innovation in computational metabolomics
+
+## Data Availability
+
+The complete dataset is publicly available through:
+
+- **Zenodo**: [https://doi.org/10.5281/zenodo.17250693](https://doi.org/10.5281/zenodo.17250693)
+- **MassIVE**: [https://doi.org/10.25345/C5GQ6RF85](https://doi.org/10.25345/C5GQ6RF85)
+
+## Installation & Setup
+
+### Prerequisites
+
+- [mzmine 3+](https://mzmine.github.io/)
+- [UV package manager](https://github.com/astral-sh/uv)
+- [Docker](https://www.docker.com/) (for initial conversion only)
+
+### Quick Start
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/MultiMS2.git
+cd MultiMS2
 ```
 
-#### Profile to centroided spectra
+2. **Download spectral data from Zenodo**
+```bash
+uv run python notebooks/get_mzmls_from_zenodo.py
+```
+
+3. **Configure mzmine batch files**
+
+Update the metadata file path in `.mzmine/batch/*.mzbatch`:
+```xml
+<parameter name="Database file">
+    <current_file>/path/to/your/local/msmls_metadata_neg.tsv</current_file>
+</parameter>
+```
+
+## Usage
+
+### Spectral Extraction with mzmine
+
+The library generation uses mzmine batch processing for consistent, reproducible spectral extraction. Below are the commands for all library combinations:
+
+#### NEXUS Library
+
+**Negative Mode:**
+
+```bash
+# CID at different energies
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_cid_20/*.mzML" \
+  -o "scratch/nexus_neg_cid_20"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_cid_40/*.mzML" \
+  -o "scratch/nexus_neg_cid_40"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_cid_60/*.mzML" \
+  -o "scratch/nexus_neg_cid_60"
+
+# EAD at different energies
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_ead_12/*.mzML" \
+  -o "scratch/nexus_neg_ead_12"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_ead_16/*.mzML" \
+  -o "scratch/nexus_neg_ead_16"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_neg_ead_24/*.mzML" \
+  -o "scratch/nexus_neg_ead_24"
+```
+
+**Positive Mode:**
+
+```bash
+# CID at different energies
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_cid_20/*.mzML" \
+  -o "scratch/nexus_pos_cid_20"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_cid_40/*.mzML" \
+  -o "scratch/nexus_pos_cid_40"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_cid_60/*.mzML" \
+  -o "scratch/nexus_pos_cid_60"
+
+# EAD at different energies
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_ead_12/*.mzML" \
+  -o "scratch/nexus_pos_ead_12"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_ead_16/*.mzML" \
+  -o "scratch/nexus_pos_ead_16"
+
+mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" \
+  -i "scratch/nexus_mzml_centroided_pos_ead_24/*.mzML" \
+  -o "scratch/nexus_pos_ead_24"
+```
+
+#### Selleck Library
+
+**Negative Mode:**
+
+```bash
+# CID energies
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_cid_20/*.mzML" \
+  -o "scratch/selleck_neg_cid_20"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_cid_40/*.mzML" \
+  -o "scratch/selleck_neg_cid_40"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_cid_60/*.mzML" \
+  -o "scratch/selleck_neg_cid_60"
+
+# EAD energies
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_ead_12/*.mzML" \
+  -o "scratch/selleck_neg_ead_12"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_ead_16/*.mzML" \
+  -o "scratch/selleck_neg_ead_16"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_neg_ead_24/*.mzML" \
+  -o "scratch/selleck_neg_ead_24"
+```
+
+**Positive Mode:**
+
+```bash
+# CID energies
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_cid_20/*.mzML" \
+  -o "scratch/selleck_pos_cid_20"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_cid_40/*.mzML" \
+  -o "scratch/selleck_pos_cid_40"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_cid_60/*.mzML" \
+  -o "scratch/selleck_pos_cid_60"
+
+# EAD energies
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_ead_12/*.mzML" \
+  -o "scratch/selleck_pos_ead_12"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_ead_16/*.mzML" \
+  -o "scratch/selleck_pos_ead_16"
+
+mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
+  -i "scratch/selleck_mzml_centroided_pos_ead_24/*.mzML" \
+  -o "scratch/selleck_pos_ead_24"
+```
+
+#### MSMLS Library
+
+**Negative Mode:**
+
+```bash
+# CID energies
+mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/20/*.mzML" \
+  -o "scratch/msmls_neg_cid_20"
+
+mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/40/*.mzML" \
+  -o "scratch/msmls_neg_cid_40"
+
+mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/60/*.mzML" \
+  -o "scratch/msmls_neg_cid_60"
+
+# EAD energies (note: 12 eV not available)
+mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/16/*.mzML" \
+  -o "scratch/msmls_neg_ead_16"
+
+mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/24/*.mzML" \
+  -o "scratch/msmls_neg_ead_24"
+```
+
+**Positive Mode:**
+
+```bash
+# CID energies (note: 20 eV not available)
+mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/40/*.mzML" \
+  -o "scratch/msmls_pos_cid_40"
+
+mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/60/*.mzML" \
+  -o "scratch/msmls_pos_cid_60"
+
+# EAD energies (note: 12 eV not available)
+mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/16/*.mzML" \
+  -o "scratch/msmls_pos_ead_16"
+
+mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
+  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/24/*.mzML" \
+  -o "scratch/msmls_pos_ead_24"
+```
+
+**Performance Note:** For optimal performance, consider copying files to a fast local disk before processing to avoid slow network I/O.
+
+### Quality Control and Validation
+
+TODO: Add details on QC steps, including manual inspection and software tools used.
+
+#### Adduct Assignment and Chimeric Spectrum Detection
+
+Spectral quality is assessed using MGF_validator to ensure accurate adduct assignments and identify chimeric spectra (spectra containing fragments from multiple co-eluting compounds).
+
+*Documentation in progress*
+
+#### MS-BUDDY Molecular Formula Annotation
+
+MS-BUDDY provides molecular formula annotation and structural validation:
+
+```bash
+for f in /Volumes/T7/data/zeno_lib_v2/spectra/*.mgf; do
+    base=$(basename "$f" .mgf)
+    outdir="/Volumes/T7/data/zeno_lib_v2/msbuddy/${base}"
+    mkdir -p "$outdir"
+    uv run msbuddy -mgf "$f" -ms qtof -p -n_cpu 12 -d -hal -o "$outdir"
+done
+```
+
+**Parameters:**
+
+- `-mgf`: Input MGF spectral file
+- `-ms qtof`: Specifies QTOF instrument type
+- `-p`: Positive mode
+- `-n_cpu 12`: Use 12 CPU cores for parallel processing
+- `-d`: Enable detailed output
+- `-hal`: Consider halogen atoms in formula generation
+- `-o`: Output directory
+
+## Data Processing Pipeline (here for reference)
+
+### Initial Data Conversion
+
+The following steps document the complete data processing workflow from raw instrument files to curated spectral libraries.
+
+#### Step 1: Convert `.wiff` to `.mzML`
+
+Raw AB SCIEX `.wiff` files are converted to open-format `.mzML` using ProteoWizard:
+
+```bash
+docker run -it --rm \
+  -v .:/data \
+  proteowizard/pwiz-skyline-i-agree-to-the-vendor-licenses \
+  wine msconvert "*.wiff" \
+  --ignoreUnknownInstrumentError
+```
+
+#### Step 2: Profile to Centroided Spectra
+
+Profile mode spectra are converted to centroided format using CentroidR:
 
 ```r
 files <- "/Volumes/T7/data/7600/ms2_libraries" |>
@@ -32,137 +311,55 @@ files |>
   )
 ```
 
-The results have been archived on Zenodo (<https://doi.org/10.5281/zenodo.17250693>) and on MassIVE (<https://doi.org/10.25345/C5GQ6RF85>).
+**Note:** These preprocessing steps have already been completed for the publicly available datasets on Zenodo and MassIVE.
 
-TODO PRIVATE FOR NOW
+## Library Contents
 
-## Use
+### Compound Collections
 
-### Download the files from Zenodo
+- **NEXUS**: Diverse natural product and drug-like compounds
+- **Selleck**: Bioactive compound library focused on drug discovery
+- **MSMLS**: Metabolomics Standards Library compounds
 
-```shell
-uv run python notebooks/get_mzmls_from_zenodo.py
-```
+### Spectral Coverage
 
-### Extraction
+| Collection | Ionization | Fragmentation | Energies Available |
+|------------|------------|---------------|-------------------|
+| NEXUS | Positive | CID | 20, 40, 60 eV |
+| NEXUS | Positive | EAD | 12, 16, 24 eV |
+| NEXUS | Negative | CID | 20, 40, 60 eV |
+| NEXUS | Negative | EAD | 12, 16, 24 eV |
+| Selleck | Positive | CID | 20, 40, 60 eV |
+| Selleck | Positive | EAD | 12, 16, 24 eV |
+| Selleck | Negative | CID | 20, 40, 60 eV |
+| Selleck | Negative | EAD | 12, 16, 24 eV |
+| MSMLS | Positive | CID | 40, 60 eV* |
+| MSMLS | Positive | EAD | 16, 24 eV* |
+| MSMLS | Negative | CID | 20, 40, 60 eV |
+| MSMLS | Negative | EAD | 16, 24 eV* |
 
-TODO small intro
+Some energy levels not available for certain MSMLS conditions
 
-There are very few things that need to be manually adjusted when not working locally:
+## Applications
 
-* In `.mzmine/batch`, change
+MultiMS2 enables:
 
-```
-<parameter name="Database file">
-            <current_file>/Users/adrutz/Documents/lab/Zeno/msmls_metadata_neg.tsv</current_file>
-```
+1. **Metabolite Annotation**: High-confidence identification through multi-energy spectral matching
+2. **Machine Learning Development**: Training data for spectrum prediction and structure elucidation models
+3. **Fragmentation Studies**: Comparative analysis of CID vs. EAD fragmentation patterns
+4. **Method Development**: Reference spectra for optimizing MS/MS acquisition parameters
+5. **Quality Assessment**: Benchmarking datasets for evaluating annotation algorithms
 
-to a local path where the metadata file will have been copied (mzmine does not allow to pass a path for that object for now)
+## Citation
 
-* Eventually, to avoid slow disk reading issues, copy the files to a fast disk.
+If you use MultiMS2 in your research, please cite:
 
-```shell
-# NEXUS
+TODO
 
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/cid/20/*.mzML" -o "spectra/nexus_neg_cid_20"
+## License
 
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/cid/40/*.mzML" -o "spectra/nexus_neg_cid_40"
+*TODO License information to be added*
 
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/cid/60/*.mzML" -o "spectra/nexus_neg_cid_60"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/ead/12/*.mzML" -o "spectra/nexus_neg_ead_12"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/ead/16/*.mzML" -o "spectra/nexus_neg_ead_16"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/neg/ead/24/*.mzML" -o "spectra/nexus_neg_ead_24"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/cid/20/*.mzML" -o "spectra/nexus_pos_cid_20"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/cid/40/*.mzML" -o "spectra/nexus_pos_cid_40"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/cid/60/*.mzML" -o "spectra/nexus_pos_cid_60"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/ead/12/*.mzML" -o "spectra/nexus_pos_ead_12"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/ead/16/*.mzML" -o "spectra/nexus_pos_ead_16"
-
-mzmine -b ".mzmine/batch/nexus_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/nexus/mzml/centroided/pos/ead/24/*.mzML" -o "spectra/nexus_pos_ead_24"
-
-# SELLECK
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/cid/20/*.mzML" -o "spectra/selleck_neg_cid_20"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/cid/40/*.mzML" -o "spectra/selleck_neg_cid_40"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/cid/60/*.mzML" -o "spectra/selleck_neg_cid_60"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/ead/12/*.mzML" -o "spectra/selleck_neg_ead_12"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/ead/16/*.mzML" -o "spectra/selleck_neg_ead_16"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/neg/ead/24/*.mzML" -o "spectra/selleck_neg_ead_24"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/cid/20/*.mzML" -o "spectra/selleck_pos_cid_20"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/cid/40/*.mzML" -o "spectra/selleck_pos_cid_40"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/cid/60/*.mzML" -o "spectra/selleck_pos_cid_60"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/ead/12/*.mzML" -o "spectra/selleck_pos_ead_12"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/ead/16/*.mzML" -o "spectra/selleck_pos_ead_16"
-
-mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/selleck/mzml/centroided/pos/ead/24/*.mzML" -o "spectra/selleck_pos_ead_24"
-
-# MSMLS
-
-mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/20/*.mzML" -o "spectra/msmls_neg_cid_20"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/40/*.mzML" -o "spectra/msmls_neg_cid_40"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/60/*.mzML" -o "spectra/msmls_neg_cid_60"
-
-# Not found
-# mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/12/*.mzML" -o "spectra/msmls_neg_ead_12"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/16/*.mzML" -o "spectra/msmls_neg_ead_16"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/24/*.mzML" -o "spectra/msmls_neg_ead_24"
-
-# Not found
-# mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/20/*.mzML" -o "spectra/msmls_pos_cid_20"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/40/*.mzML" -o "spectra/msmls_pos_cid_40"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/60/*.mzML" -o "spectra/msmls_pos_cid_60"
-
-# Not found
-# mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/12/*.mzML" -o "spectra/msmls_pos_ead_12"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/16/*.mzML" -o "spectra/msmls_pos_ead_16"
-
-mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/24/*.mzML" -o "spectra/msmls_pos_ead_24"
-```
-
-### Validation
-
-#### Adducts and chimerism curation
-
-TODO MGF_validator
-
-#### BUDDY
-
-TODO small intro
-
-```shell
-for f in /Volumes/T7/data/zeno_lib_v2/spectra/*.mgf; do
-    base=$(basename "$f" .mgf)
-    outdir="/Volumes/T7/data/zeno_lib_v2/msbuddy/${base}"
-    mkdir -p "$outdir"
-    uv run msbuddy -mgf "$f" -ms qtof -p -n_cpu 12 -d -hal -o "$outdir"
-done
-```
-
-This should be it!
+## Acknowledgments
 
 TODO
