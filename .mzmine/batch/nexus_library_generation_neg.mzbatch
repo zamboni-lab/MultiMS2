@@ -344,9 +344,9 @@
             <parameter name="Chimeric spectra">flag</parameter>
         </parameter>
         <parameter name="Quality parameters">
-            <parameter name="Minimum number of signals" selected="true">3</parameter>
+            <parameter name="Minimum number of signals" selected="false">3</parameter>
             <parameter name="Minimum explained signals (%)" selected="false">0.4</parameter>
-            <parameter name="Minimum explained intensity (%)" selected="true">0.4</parameter>
+            <parameter name="Minimum explained intensity (%)" selected="false">0.4</parameter>
             <parameter name="Formula m/z tolerance">
                 <absolutetolerance>0.002</absolutetolerance>
                 <ppmtolerance>5.0</ppmtolerance>
