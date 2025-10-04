@@ -282,8 +282,8 @@
         <parameter name="Export format">mgf</parameter>
         <parameter name="MS level filter" selected="MS2, level = 2">3</parameter>
         <parameter name="Metadata">
-            <parameter name="description"/>SELLECK</parameter>
-            <parameter name="Dataset ID"/>MSV000099369</parameter>
+            <parameter name="description">SELLECK</parameter>
+            <parameter name="Dataset ID">MSV000099369</parameter>
             <parameter name="INSTRUMENT_NAME">ZENOTOF7600</parameter>
             <parameter name="INSTRUMENT">qTof</parameter>
             <parameter name="Ion mobility">NONE</parameter>
