@@ -130,26 +130,26 @@
             <parameter name="Spectrum type">ANY</parameter>
         </parameter>
         <parameter name="m/z tolerance (scan-to-scan)">
-            <absolutetolerance>0.01</absolutetolerance>
-            <ppmtolerance>20.0</ppmtolerance>
+            <absolutetolerance>0.002</absolutetolerance>
+            <ppmtolerance>5.0</ppmtolerance>
         </parameter>
         <parameter name="Suffix">msn trees</parameter>
     </batchstep>
     <batchstep method="io.github.mzmine.modules.dataprocessing.id_localcsvsearch.LocalCSVDatabaseSearchModule" module_name="Local compound database search" parameter_version="2">
         <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
         <parameter name="Database file">
-            <current_file>/Users/adrutz/Documents/lab/Zeno/nexus_metadata_neg.tsv</current_file>
-            <last_file>/Users/adrutz/Documents/lab/Zeno/nexus_metadata_neg.tsv</last_file>
+            <current_file>/Users/adrutz/Git/MultiMS2/metadata/nexus_metadata_neg.tsv</current_file>
+            <last_file>/Users/adrutz/Git/MultiMS2/metadata/nexus_metadata_neg.tsv</last_file>
         </parameter>
         <parameter name="Field separator">\t</parameter>
         <parameter name="Columns">
-            <importtype column="neutral mass" datatype="io.github.mzmine.datamodel.features.types.numbers.NeutralMassType" selected="false"/>
+            <importtype column="mass" datatype="io.github.mzmine.datamodel.features.types.numbers.NeutralMassType" selected="true"/>
             <importtype column="mz" datatype="io.github.mzmine.datamodel.features.types.numbers.PrecursorMZType" selected="false"/>
             <importtype column="rt" datatype="io.github.mzmine.datamodel.features.types.numbers.RTType" selected="false"/>
-            <importtype column="formula" datatype="io.github.mzmine.datamodel.features.types.annotations.formula.FormulaType" selected="false"/>
+            <importtype column="molecular_formula" datatype="io.github.mzmine.datamodel.features.types.annotations.formula.FormulaType" selected="true"/>
             <importtype column="smiles" datatype="io.github.mzmine.datamodel.features.types.annotations.SmilesStructureType" selected="true"/>
-            <importtype column="inchi" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIStructureType" selected="false"/>
-            <importtype column="inchi key" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIKeyStructureType" selected="false"/>
+            <importtype column="inchi" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIStructureType" selected="true"/>
+            <importtype column="inchikey" datatype="io.github.mzmine.datamodel.features.types.annotations.InChIKeyStructureType" selected="true"/>
             <importtype column="name" datatype="io.github.mzmine.datamodel.features.types.annotations.CompoundNameType" selected="true"/>
             <importtype column="CCS" datatype="io.github.mzmine.datamodel.features.types.numbers.CCSType" selected="false"/>
             <importtype column="mobility" datatype="io.github.mzmine.datamodel.features.types.numbers.MobilityType" selected="false"/>
@@ -170,16 +170,16 @@
             <importtype column="internal_id" datatype="io.github.mzmine.datamodel.features.types.identifiers.InternalIdType" selected="false"/>
         </parameter>
         <parameter name="m/z tolerance">
-            <absolutetolerance>0.005</absolutetolerance>
-            <ppmtolerance>10.0</ppmtolerance>
+            <absolutetolerance>0.002</absolutetolerance>
+            <ppmtolerance>5.0</ppmtolerance>
         </parameter>
         <parameter name="Retention time tolerance" selected="false" unit="MINUTES">9999999.0</parameter>
         <parameter name="Mobility time tolerance" selected="false">0.01</parameter>
         <parameter name="CCS tolerance (%)" selected="false">0.05</parameter>
         <parameter name="Use isotope matcher" selected="true">
             <parameter name="Isotope m/z tolerance">
-                <absolutetolerance>0.001</absolutetolerance>
-                <ppmtolerance>20.0</ppmtolerance>
+                <absolutetolerance>0.002</absolutetolerance>
+                <ppmtolerance>5.0</ppmtolerance>
             </parameter>
             <parameter name="Minimum isotope intensity (%)">0.05</parameter>
             <parameter name="Minimum isotope score">0.0</parameter>
@@ -296,12 +296,12 @@
             <parameter name="IONMODE" selected="false">Negative</parameter>
         </parameter>
         <parameter name="Intensity normalization" scientific="false">no_normalization</parameter>
-        <parameter name="Merge &amp; select fragment scans" selected_item="simple_merged">
+        <parameter name="Merge &amp; select fragment scans" selected_item="input_scans">
             <module name="simple_merged">
                 <parameter name="Presets">representative_msn_trees</parameter>
                 <parameter name="Merging m/z tolerance">
                     <absolutetolerance>0.002</absolutetolerance>
-                    <ppmtolerance>10.0</ppmtolerance>
+                    <ppmtolerance>5.0</ppmtolerance>
                 </parameter>
             </module>
             <module name="preset_merged">
@@ -334,7 +334,7 @@
         <parameter name="Handle chimeric spectra" selected="true">
             <parameter name="Target ion m/z tolerance">
                 <absolutetolerance>0.002</absolutetolerance>
-                <ppmtolerance>10.0</ppmtolerance>
+                <ppmtolerance>5.0</ppmtolerance>
             </parameter>
             <parameter name="Precursor m/z isolation tolerance">
                 <absolutetolerance>0.6</absolutetolerance>
@@ -344,98 +344,12 @@
             <parameter name="Chimeric spectra">flag</parameter>
         </parameter>
         <parameter name="Quality parameters">
-            <parameter name="Minimum number of signals" selected="true">2</parameter>
+            <parameter name="Minimum number of signals" selected="true">3</parameter>
             <parameter name="Minimum explained signals (%)" selected="false">0.4</parameter>
-            <parameter name="Minimum explained intensity (%)" selected="false">0.4</parameter>
+            <parameter name="Minimum explained intensity (%)" selected="true">0.4</parameter>
             <parameter name="Formula m/z tolerance">
                 <absolutetolerance>0.002</absolutetolerance>
-                <ppmtolerance>10.0</ppmtolerance>
-            </parameter>
-            <parameter name="Export explained signals only">false</parameter>
-            <parameter name="Match compound and feature list name">false</parameter>
-        </parameter>
-        <parameter name="Advanced" selected="false">
-            <parameter name="Compact USI (limited compatibility)">false</parameter>
-        </parameter>
-    </batchstep>
-    <batchstep method="io.github.mzmine.modules.io.spectraldbsubmit.batch.LibraryBatchGenerationModule" module_name="Batch spectral library generation" parameter_version="2">
-        <parameter name="Feature lists" type="BATCH_LAST_FEATURELISTS"/>
-        <parameter name="Export file">
-            <current_file>/Users/adrutz/Documents/lab/Zeno/{}.msp</current_file>
-            <last_file>/Users/adrutz</last_file>
-        </parameter>
-        <parameter name="Export format">msp</parameter>
-        <parameter name="MS level filter" selected="MS2, level = 2">3</parameter>
-        <parameter name="Metadata">
-            <parameter name="description"/>
-            <parameter name="Dataset ID"/>
-            <parameter name="INSTRUMENT_NAME">ZENOTOF7600</parameter>
-            <parameter name="INSTRUMENT">qTof</parameter>
-            <parameter name="Ion mobility">NONE</parameter>
-            <parameter name="IONSOURCE">DI-ESI</parameter>
-            <parameter name="ACQUISITION">Crude</parameter>
-            <parameter name="ACQUISITION_METHOD"/>
-            <parameter name="PI">NZamboni</parameter>
-            <parameter name="DATACOLLECTOR">MPovoa</parameter>
-            <parameter name="DATACURATOR">ARutz</parameter>
-            <parameter name="POLARITY">Negative</parameter>
-            <parameter name="IONMODE" selected="false">Negative</parameter>
-        </parameter>
-        <parameter name="Intensity normalization" scientific="false">no_normalization</parameter>
-        <parameter name="Merge &amp; select fragment scans" selected_item="simple_merged">
-            <module name="simple_merged">
-                <parameter name="Presets">representative_msn_trees</parameter>
-                <parameter name="Merging m/z tolerance">
-                    <absolutetolerance>0.002</absolutetolerance>
-                    <ppmtolerance>10.0</ppmtolerance>
-                </parameter>
-            </module>
-            <module name="preset_merged">
-                <parameter name="Presets">representative_scans</parameter>
-                <parameter name="Merging m/z tolerance">
-                    <absolutetolerance>0.008</absolutetolerance>
-                    <ppmtolerance>25.0</ppmtolerance>
-                </parameter>
-                <parameter name="Merge">
-                    <selected>Across samples</selected>
-                </parameter>
-                <parameter name="Intensity merge mode">MAXIMUM</parameter>
-            </module>
-            <module name="input_scans">
-                <parameter name="Select input scans">all_scans</parameter>
-            </module>
-            <module name="advanced">
-                <parameter name="Merging options">
-                    <selected>Across energies</selected>
-                    <selected>Across samples</selected>
-                </parameter>
-                <parameter name="m/z tolerance">
-                    <absolutetolerance>0.008</absolutetolerance>
-                    <ppmtolerance>25.0</ppmtolerance>
-                </parameter>
-                <parameter name="Intensity merge mode">MAXIMUM</parameter>
-                <parameter name="Also include input scans">none</parameter>
-            </module>
-        </parameter>
-        <parameter name="Handle chimeric spectra" selected="true">
-            <parameter name="Target ion m/z tolerance">
-                <absolutetolerance>0.002</absolutetolerance>
-                <ppmtolerance>10.0</ppmtolerance>
-            </parameter>
-            <parameter name="Precursor m/z isolation tolerance">
-                <absolutetolerance>0.6</absolutetolerance>
                 <ppmtolerance>5.0</ppmtolerance>
-            </parameter>
-            <parameter name="Minimum precursor purity (%)">0.75</parameter>
-            <parameter name="Chimeric spectra">flag</parameter>
-        </parameter>
-        <parameter name="Quality parameters">
-            <parameter name="Minimum number of signals" selected="true">2</parameter>
-            <parameter name="Minimum explained signals (%)" selected="false">0.4</parameter>
-            <parameter name="Minimum explained intensity (%)" selected="false">0.4</parameter>
-            <parameter name="Formula m/z tolerance">
-                <absolutetolerance>0.002</absolutetolerance>
-                <ppmtolerance>10.0</ppmtolerance>
             </parameter>
             <parameter name="Export explained signals only">false</parameter>
             <parameter name="Match compound and feature list name">false</parameter>
