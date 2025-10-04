@@ -314,16 +314,16 @@
                 <modification_type selected="true">
                     <subpart charge="0" mass_difference="46.005479" mol_formula="CHOOH" name="HFA" type="CLUSTER"/>
                 </modification_type>
-                <modification_type selected="true">
+                <modification_type selected="false">
                     <subpart charge="0" mass_difference="60.021129" mol_formula="CH3COOH" name="HAc" type="CLUSTER"/>
                 </modification_type>
                 <modification_type selected="true">
                     <subpart charge="0" mass_difference="32.026215" mol_formula="CH3OH" name="MeOH" type="CLUSTER"/>
                 </modification_type>
-                <modification_type selected="true">
+                <modification_type selected="false">
                     <subpart charge="0" mass_difference="41.026549" mol_formula="CH3CN" name="ACN" type="CLUSTER"/>
                 </modification_type>
-                <modification_type selected="true">
+                <modification_type selected="false">
                     <subpart charge="0" mass_difference="60.058064" mol_formula="C3H8O" name="IsoProp" type="CLUSTER"/>
                 </modification_type>
             </parameter>

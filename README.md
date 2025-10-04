@@ -199,24 +199,24 @@ mzmine -b ".mzmine/batch/selleck_library_generation_pos.mzbatch" \
 ```bash
 # CID energies
 mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/20/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_neg_cid_20/*.mzML" \
   -o "scratch/msmls_neg_cid_20"
 
 mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/40/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_neg_cid_40/*.mzML" \
   -o "scratch/msmls_neg_cid_40"
 
 mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/cid/60/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_neg_cid_60/*.mzML" \
   -o "scratch/msmls_neg_cid_60"
 
 # EAD energies (note: 12 eV not available)
 mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/16/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_neg_ead_16/*.mzML" \
   -o "scratch/msmls_neg_ead_16"
 
 mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/neg/ead/24/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_neg_ead_24/*.mzML" \
   -o "scratch/msmls_neg_ead_24"
 ```
 
@@ -225,20 +225,20 @@ mzmine -b ".mzmine/batch/msmls_library_generation_neg.mzbatch" \
 ```bash
 # CID energies (note: 20 eV not available)
 mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/40/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_pos_cid_40/*.mzML" \
   -o "scratch/msmls_pos_cid_40"
 
 mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/cid/60/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_pos_cid_60/*.mzML" \
   -o "scratch/msmls_pos_cid_60"
 
 # EAD energies (note: 12 eV not available)
 mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/16/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_pos_ead_16/*.mzML" \
   -o "scratch/msmls_pos_ead_16"
 
 mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
-  -i "../7600/ms2_libraries/msmls/mzml/centroided/pos/ead/24/*.mzML" \
+  -i "scratch/msmls_mzml_centroided_pos_ead_24/*.mzML" \
   -o "scratch/msmls_pos_ead_24"
 ```
 
