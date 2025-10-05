@@ -23,8 +23,8 @@ with app.setup:
     @dataclass
     class Settings:
         input: str = field(default="scratch/filtered_spectra.mgf", metadata={"help": "Path to input MGF file"})
-        output: str | None = field(default="scratch/valid_spectra.mgf", metadata={"help": "Path to write valid spectra MGF"})
-        invalid_out: str | None = field(default="scratch/invalid_spectra.mgf", metadata={"help": "Path to write invalid spectra MGF"})
+        output: str | None = field(default="scratch/validated_spectra.mgf", metadata={"help": "Path to write validated spectra MGF"})
+        invalid_out: str | None = field(default="scratch/invalidated_spectra.mgf", metadata={"help": "Path to write invalidated spectra MGF"})
         stats: bool = field(default=True, metadata={"help": "Print summary statistics when run as script"})
 
     parser = ArgumentParser()

@@ -301,6 +301,20 @@ uv run python notebooks/validate_losses.py
 
 From the 54,996 filtered spectra, 48,766 were validated and 6,230 discarded.
 
+#### SELFIES addition
+
+At this point, SELFIES can be added and unique feature IDs attributed using:
+
+```bash
+uv run python notebooks/consolidate_spectra.py
+```
+
+At the end:
+
+* 3,035 unique compounds were recorded in 
+  * 18,610 unique compound-adduct-fragmentation-energy modalities for a total of 
+    * 48,766 spectra
+
 #### MS-BUDDY Molecular Formula Annotation
 
 MS-BUDDY provides molecular formula annotation and structural validation:
