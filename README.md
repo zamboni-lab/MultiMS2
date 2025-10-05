@@ -327,23 +327,15 @@ At the end:
 MS-BUDDY provides molecular formula annotation to further structural validation:
 
 ```bash
-for f in /Volumes/T7/data/zeno_lib_v2/spectra/*.mgf; do
-    base=$(basename "$f" .mgf)
-    outdir="/Volumes/T7/data/zeno_lib_v2/msbuddy/${base}"
-    mkdir -p "$outdir"
-    uv run msbuddy -mgf "$f" -ms qtof -p -n_cpu 12 -d -hal -o "$outdir"
-done
+uv run msbuddy \
+-mgf "scratch/consolidated_spectra.mgf" \  # Input MGF spectral file
+-ms qtof \                                 # Specifies QTOF instrument type
+-p \                                       # Parallel mode
+-n_cpu 12 \                                # Use 12 CPU
+-d \                                       # Enable detailed output
+-hal \                                     # Consider halogen atoms in formula generation
+-o "scratch/msbuddy"                       # Output directory
 ```
-
-**Parameters:**
-
-- `-mgf`: Input MGF spectral file
-- `-ms qtof`: Specifies QTOF instrument type
-- `-p`: Positive mode
-- `-n_cpu 12`: Use 12 CPU cores for parallel processing
-- `-d`: Enable detailed output
-- `-hal`: Consider halogen atoms in formula generation
-- `-o`: Output directory
 
 ## Data Processing Pipeline (here for reference)
 
