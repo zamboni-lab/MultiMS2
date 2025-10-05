@@ -25,32 +25,37 @@ app = marimo.App(width="full")
 
 with app.setup:
     import logging
+    import os
     import time
-    import tmap as tm
+    from concurrent.futures import ProcessPoolExecutor
+
+    import marimo as mo
     import matplotlib.colors as mcolors
-    import polars as pl
     import numpy as np
+    import polars as pl
     import scipy.stats as ss
+    import selfies as sf
+    import tmap as tm
     from cmcrameri import cm
+    from datasketch import MinHash, MinHashLSHForest
     from faerun import Faerun
+    from map4 import MAP4
     from molzip import ZipKNNGraph
     from rdkit import Chem
-    from tqdm import tqdm
     from tol_colors import high_contrast
-    import selfies as sf
-    from datasketch import MinHash, MinHashLSHForest
-    from map4 import MAP4
-    import marimo as mo
-    import os
-    from concurrent.futures import ProcessPoolExecutor
+    from tqdm import tqdm
 
     logging.basicConfig(
         format="%(asctime)s - %(levelname)s - %(message)s",
         level=logging.INFO,
     )
 
-    # --- MSP/MGF Parsing (Optimized) ---
+    # ========================================
+    # File Parsing
+    # ========================================
+
     def parse_msp_smiles(path):
+        """Parse SMILES from MSP format files."""
         smiles = []
         with open(path, "r", buffering=1024 * 1024) as f:
             content = f.read()
@@ -63,6 +68,7 @@ with app.setup:
         return smiles
 
     def parse_mgf_smiles(path):
+        """Parse SMILES from MGF format files."""
         smiles = []
         with open(path, "r", buffering=1024 * 1024) as f:
             content = f.read()
@@ -74,9 +80,16 @@ with app.setup:
                         break
         return smiles
 
-    # --- Parallel descriptor computation ---
+    # ========================================
+    # Molecular Descriptor Computation
+    # ========================================
+
     def process_molecule_batch(smiles_batch):
-        """Process a batch of SMILES in parallel"""
+        """
+        Process a batch of SMILES strings to compute molecular descriptors.
+
+        Returns tuple of (hac, c_frac, ring_atom_frac, largest_ring_size, inchikey, selfies).
+        """
         results = []
         for smiles in smiles_batch:
             mol = Chem.MolFromSmiles(smiles)
@@ -93,7 +106,6 @@ with app.setup:
             except Exception:
                 inchikey = None
 
-            # Convert to SELFIES
             try:
                 selfies_str = sf.encoder(smiles)
             except (sf.EncoderError, Exception):
@@ -101,12 +113,10 @@ with app.setup:
 
             results.append(
                 (
-                    size,  # hac
-                    n_c / size if size else 0,  # c_frac
-                    n_ring_atoms / size if size else 0,  # ring_atom_frac
-                    max(
-                        (len(s) for s in Chem.GetSymmSSSR(mol)), default=0
-                    ),  # largest_ring
+                    size,
+                    n_c / size if size else 0,
+                    n_ring_atoms / size if size else 0,
+                    max((len(ring) for ring in Chem.GetSymmSSSR(mol)), default=0),
                     inchikey,
                     selfies_str,
                 )
@@ -114,11 +124,14 @@ with app.setup:
         return results
 
     def compute_descriptors_and_conversions(smiles_list, n_workers=None):
-        """Parallel computation of descriptors, mols, and SELFIES"""
+        """
+        Parallel computation of molecular descriptors and conversions.
+
+        Returns: (hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies)
+        """
         if n_workers is None:
             n_workers = min(os.cpu_count() or 4, 8)
 
-        # Split into batches
         batch_size = max(100, len(smiles_list) // (n_workers * 4))
         batches = [
             smiles_list[i : i + batch_size]
@@ -157,7 +170,11 @@ with app.setup:
         return hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies
 
     def convert_smiles_to_mols(smiles_list):
-        """Convert SMILES to RDKit mol objects, tracking valid indices"""
+        """
+        Convert SMILES to RDKit mol objects.
+
+        Returns: (mols, valid_indices)
+        """
         mols = []
         valid_indices = []
         for i, smi in enumerate(smiles_list):
@@ -165,33 +182,38 @@ with app.setup:
             if mol is not None:
                 mols.append(mol)
                 valid_indices.append(i)
-        logging.info(
-            f"Successfully converted {len(mols)}/{len(smiles_list)} SMILES to mols"
-        )
+
+        if len(mols) < len(smiles_list):
+            logging.warning(
+                f"Failed to convert {len(smiles_list) - len(mols)} SMILES to mol objects"
+            )
+
         return mols, valid_indices
 
-    # --- Edge computation functions ---
+    # ========================================
+    # Edge Computation
+    # ========================================
+
     def compute_molzip_edges(string_list, k=10):
-        """Compute edges using MolZip on any string representation"""
+        """Compute molecular similarity edges using MolZip compression."""
         t0 = time.perf_counter()
         zg = ZipKNNGraph()
         edge_list = zg.fit_predict(string_list, k=k)
         elapsed = time.perf_counter() - t0
+        logging.info(f"MolZip computed {len(edge_list)} edges in {elapsed:.2f}s")
         return edge_list, elapsed
 
     def compute_map4_edges(mols, k=5, n_perm=128):
-        """Compute edges using MAP4 fingerprints on mol objects"""
+        """Compute molecular similarity edges using MAP4 fingerprints and MinHash LSH."""
         t0 = time.perf_counter()
         calc = MAP4(dimensions=2048, radius=2, include_duplicated_shingles=False)
 
         fps = calc.calculate_many(mols)
 
-        # Create MinHashes
         minhashes = []
         for fp in fps:
             m = MinHash(num_perm=n_perm)
-            nonzero_bits = np.nonzero(fp)[0]
-            for bit in nonzero_bits:
+            for bit in np.nonzero(fp)[0]:
                 m.update(str(bit).encode("utf8"))
             minhashes.append(m)
 
@@ -208,9 +230,15 @@ with app.setup:
                     edge_list.append((i, n, 1.0))
 
         elapsed = time.perf_counter() - t0
+        logging.info(f"MAP4 computed {len(edge_list)} edges in {elapsed:.2f}s")
         return edge_list, elapsed
 
+    # ========================================
+    # TMAP Layout and Visualization
+    # ========================================
+
     def compute_tmap_layout(edge_list, n_nodes):
+        """Compute 2D layout from edge list using TMAP."""
         cfg = tm.LayoutConfiguration()
         cfg.node_size = 1.5
         cfg.mmm_repeats = 2
@@ -221,10 +249,12 @@ with app.setup:
         return x, y, s, t
 
     def visualize_tmap(x, y, s, t, descriptors, group_idx, df, filepath="tmap_out"):
+        """Create interactive TMAP visualization using Faerun."""
         c_frac = np.array([v if v is not None else 0.0 for v in descriptors["c_frac"]])
         c_frac_ranked = ss.rankdata(
-            c_frac / (max(c_frac) if np.any(c_frac) else 1.0)
+            c_frac / (np.max(c_frac) if np.any(c_frac) else 1.0)
         ) / len(df)
+
         f = Faerun(view="front", coords=False, clear_color="#ffffff")
         hc_colors = [
             high_contrast.blue,
@@ -270,22 +300,41 @@ with app.setup:
             color="#e6e6e6",
         )
 
-        # Split directory and filename for proper file paths
         directory = os.path.dirname(filepath) or "."
         filename = os.path.basename(filepath)
         f.plot(filename, template="smiles", path=directory)
-        logging.info(f"Saved TMAP as {os.path.join(directory, filename)}.html")
+        logging.info(f"Saved TMAP: {os.path.join(directory, filename)}.html")
+
+    # ========================================
+    # Utilities
+    # ========================================
 
     def choose_k(n_samples, method_name="Method", max_k=10):
+        """Choose k parameter based on dataset size."""
         k = max(3, int(np.sqrt(n_samples)))
         k = min(k, max_k)
-        logging.info(f"{method_name}: choosing k={k} for {n_samples} molecules")
+        logging.info(f"{method_name}: k={k} for {n_samples} molecules")
         return k
+
+    def filter_by_indices(df, indices, descriptors, group_idx):
+        """Filter dataframe, descriptors, and group indices by valid indices."""
+        df_filtered = df[indices]
+        group_idx_filtered = [group_idx[i] for i in indices]
+        descriptors_filtered = {
+            key: [values[i] for i in indices] for key, values in descriptors.items()
+        }
+        return df_filtered, group_idx_filtered, descriptors_filtered
+
+
+# ========================================
+# Main Pipeline
+# ========================================
 
 
 @app.function
 def run_pipeline():
-    # Hardcoded file paths and their group names
+    """Main pipeline for generating TMAPs from spectral library files."""
+
     sources = [
         ("LIBGEN", "scratch/ead.msp"),
         ("LIBGEN", "scratch/hcd.msp"),
@@ -294,15 +343,18 @@ def run_pipeline():
         ("MULTIMS2", "scratch/consolidated_spectra.mgf"),
     ]
 
+    # Parse input files
     records = []
     for group, path in sources:
         if not os.path.exists(path):
             logging.warning(f"File not found: {path}")
             continue
+
         if path.endswith(".mgf"):
             smiles = parse_mgf_smiles(path)
         else:
             smiles = parse_msp_smiles(path)
+
         for smi in smiles:
             records.append(
                 {
@@ -313,14 +365,15 @@ def run_pipeline():
             )
 
     if not records:
-        return mo.md("No SMILES records found in the provided files.")
+        return mo.md("**Error:** No SMILES records found in the provided files.")
+
+    logging.info(f"Loaded {len(records)} SMILES records from {len(sources)} sources")
     df = pl.DataFrame(records)
 
-    # --- Deduplicate SMILES early to minimize computation ---
+    # Deduplicate and compute descriptors
     df_unique = df.unique(subset=["smiles"])
     smiles_unique = df_unique["smiles"].to_list()
 
-    # Parallel computation: descriptors, mols, and SELFIES all at once
     hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies = (
         compute_descriptors_and_conversions(smiles_unique)
     )
@@ -336,13 +389,15 @@ def run_pipeline():
         ]
     )
 
-    # Remove molecules without valid inchikey and selfies
+    # Filter valid molecules
     df_unique = df_unique.filter(
-      pl.col("inchikey").is_not_null() &
-      pl.col("selfies").is_not_null()
-      )
+        pl.col("inchikey").is_not_null() & pl.col("selfies").is_not_null()
+    )
+    logging.info(
+        f"Retained {len(df_unique)} molecules with valid InChIKeys and SELFIES"
+    )
 
-    # --- Merge back to full records ---
+    # Merge back to full records
     df = df.join(
         df_unique.select(
             [
@@ -359,7 +414,7 @@ def run_pipeline():
         how="inner",
     )
 
-    # --- Build group logic ---
+    # Build group assignments
     group_map = df.group_by("inchikey").agg(
         pl.col("source_group").unique().alias("groups")
     )
@@ -375,6 +430,7 @@ def run_pipeline():
         group_map.select(["inchikey", "group"]), on="inchikey", how="inner"
     )
 
+    # Prepare coloring data
     unique_groups = sorted(df_unique_inchikeys["group"].unique().to_list())
     group_to_idx = {g: i for i, g in enumerate(unique_groups)}
     group_idx = [group_to_idx[g] for g in df_unique_inchikeys["group"].to_list()]
@@ -391,39 +447,22 @@ def run_pipeline():
     # ============================================
     # TMAP 1: MolZip on SELFIES
     # ============================================
+    logging.info("=" * 50)
+    logging.info("Computing TMAP 1: MolZip on SELFIES")
+    logging.info("=" * 50)
+
     selfies_list = df_unique_inchikeys["selfies"].to_list()
-    # Filter out molecules that failed SELFIES conversion
     valid_selfies_indices = [i for i, s in enumerate(selfies_list) if s is not None]
     valid_selfies = [selfies_list[i] for i in valid_selfies_indices]
 
     if valid_selfies:
-        logging.info(
-            f"MolZip SELFIES: Using {len(valid_selfies)}/{len(selfies_list)} valid SELFIES"
-        )
-
         k_selfies = choose_k(len(valid_selfies), "MolZip SELFIES")
         edge_list_selfies, t_selfies = compute_molzip_edges(valid_selfies, k=k_selfies)
         timings["MolZip_SELFIES"] = t_selfies
 
-        # Map edges back to original indices
-        edge_list_selfies_mapped = [
-            (valid_selfies_indices[i], valid_selfies_indices[j], w)
-            for i, j, w in edge_list_selfies
-        ]
-
-        # Filter dataframe and descriptors
-        df_selfies = df_unique_inchikeys[valid_selfies_indices]
-        group_idx_selfies = [group_idx[i] for i in valid_selfies_indices]
-        descriptors_selfies = {
-            "hac": [descriptors["hac"][i] for i in valid_selfies_indices],
-            "c_frac": [descriptors["c_frac"][i] for i in valid_selfies_indices],
-            "ring_atom_frac": [
-                descriptors["ring_atom_frac"][i] for i in valid_selfies_indices
-            ],
-            "largest_ring_size": [
-                descriptors["largest_ring_size"][i] for i in valid_selfies_indices
-            ],
-        }
+        df_selfies, group_idx_selfies, descriptors_selfies = filter_by_indices(
+            df_unique_inchikeys, valid_selfies_indices, descriptors, group_idx
+        )
 
         x_sf, y_sf, s_sf, t_sf = compute_tmap_layout(
             edge_list_selfies, len(valid_selfies)
@@ -439,11 +478,15 @@ def run_pipeline():
             "scratch/tmap_molzip_selfies",
         )
     else:
-        logging.warning("No valid SELFIES found, skipping MolZip SELFIES TMAP")
+        logging.error("No valid SELFIES found, skipping MolZip SELFIES TMAP")
 
     # ============================================
     # TMAP 2: MAP4
     # ============================================
+    logging.info("=" * 50)
+    logging.info("Computing TMAP 2: MAP4 on molecular fingerprints")
+    logging.info("=" * 50)
+
     smiles_list = df_unique_inchikeys["smiles"].to_list()
     mols, valid_mol_indices = convert_smiles_to_mols(smiles_list)
 
@@ -452,25 +495,9 @@ def run_pipeline():
         edge_list_map4, t_map4 = compute_map4_edges(mols, k=k_map4)
         timings["MAP4"] = t_map4
 
-        # Map edges back to original indices
-        edge_list_map4_mapped = [
-            (valid_mol_indices[i], valid_mol_indices[j], w)
-            for i, j, w in edge_list_map4
-        ]
-
-        # Filter dataframe and descriptors
-        df_map4 = df_unique_inchikeys[valid_mol_indices]
-        group_idx_map4 = [group_idx[i] for i in valid_mol_indices]
-        descriptors_map4 = {
-            "hac": [descriptors["hac"][i] for i in valid_mol_indices],
-            "c_frac": [descriptors["c_frac"][i] for i in valid_mol_indices],
-            "ring_atom_frac": [
-                descriptors["ring_atom_frac"][i] for i in valid_mol_indices
-            ],
-            "largest_ring_size": [
-                descriptors["largest_ring_size"][i] for i in valid_mol_indices
-            ],
-        }
+        df_map4, group_idx_map4, descriptors_map4 = filter_by_indices(
+            df_unique_inchikeys, valid_mol_indices, descriptors, group_idx
+        )
 
         x_map4, y_map4, s_map4, t_map4 = compute_tmap_layout(edge_list_map4, len(mols))
         visualize_tmap(
@@ -484,18 +511,28 @@ def run_pipeline():
             "scratch/tmap_map4",
         )
     else:
-        logging.warning("No valid mols found, skipping MAP4 TMAP")
+        logging.error("No valid mols found, skipping MAP4 TMAP")
 
-    timing_md = "\n".join([f"- **{k}**: {v:.2f} s" for k, v in timings.items()])
+    # Summary
+    timing_md = "\n".join([f"- **{k}**: {v:.2f}s" for k, v in timings.items()])
+
     return mo.md(
         f"""
-        ## TMAPs Computed and Saved
-
+        ## TMAPs Generated Successfully
+        
+        ### Output Files
         - **MolZip on SELFIES**: `scratch/tmap_molzip_selfies.html`
         - **MAP4 on fingerprints**: `scratch/tmap_map4.html`
-
-        ### Runtime Benchmark (seconds)
+        
+        ### Dataset Summary
+        - Total records loaded: {len(records):,}
+        - Unique molecules: {len(df_unique):,}
+        - Groups: {', '.join(unique_groups)}
+        
+        ### Runtime Benchmark
         {timing_md}
+        
+        Open the HTML files in your browser for interactive exploration.
         """
     )
 
