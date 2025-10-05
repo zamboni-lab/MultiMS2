@@ -328,13 +328,13 @@ MS-BUDDY provides molecular formula annotation to further structural validation:
 
 ```bash
 uv run msbuddy \
--mgf "scratch/consolidated_spectra.mgf" \  # Input MGF spectral file
--ms qtof \                                 # Specifies QTOF instrument type
--p \                                       # Parallel mode
--n_cpu 12 \                                # Use 12 CPU
--d \                                       # Enable detailed output
--hal \                                     # Consider halogen atoms in formula generation
--o "scratch/msbuddy"                       # Output directory
+-mgf "scratch/consolidated_spectra.mgf" \
+-ms qtof \
+-parallel \
+-batch_size 100 \
+-details \
+-halogen \
+-output "scratch/msbuddy"
 ```
 
 ## Data Processing Pipeline (here for reference)

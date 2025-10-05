@@ -1,6 +1,0 @@
-for f in /Volumes/T7/data/zeno_lib_v2/spectra/*.mgf; do
-    base=$(basename "$f" .mgf)
-    outdir="/Volumes/T7/data/zeno_lib_v2/msbuddy/${base}"
-    mkdir -p "$outdir"
-    uv run msbuddy -mgf "$f" -ms qtof -p -n_cpu 12 -d -hal -o "$outdir"
-done
