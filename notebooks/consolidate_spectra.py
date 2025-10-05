@@ -10,11 +10,14 @@
 # Fallback marimo import to allow CLI use without notebook environment
 try:
     import marimo  # type: ignore
+
     app = marimo.App(width="full")
 except Exception:  # noqa: BLE001
+
     class _DummyApp:
         def function(self, f):
             return f
+
     app = _DummyApp()
 
 with app.setup:  # noqa: SIM117
@@ -33,7 +36,9 @@ with app.setup:  # noqa: SIM117
         )
         output_mgf: str = field(
             default="scratch/consolidated_spectra.mgf",
-            metadata={"help": "Path to write the consolidated MGF with reassigned FEATURE_IDs."},
+            metadata={
+                "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs."
+            },
         )
         add_selfies: bool = field(
             default=True,
@@ -50,6 +55,7 @@ with app.setup:  # noqa: SIM117
     def parse_args():
         try:
             import marimo as mo  # type: ignore
+
             if mo.running_in_notebook():
                 return Settings()
         except Exception:
@@ -58,9 +64,11 @@ with app.setup:  # noqa: SIM117
 
     settings = parse_args()
 
+
 # ---------------- Internal Utilities ---------------- #
 class SpectrumBlock:
     """Container for one MGF spectrum block."""
+
     __slots__ = (
         "file_path",
         "lines",
@@ -88,6 +96,7 @@ class SpectrumBlock:
         self.feature_line_idx = feature_line_idx
         self.smiles_line_idx = smiles_line_idx
         self.selfies_line_idx = selfies_line_idx
+
 
 NUMERIC_LINE_RE = re.compile(r"^\s*(\d+\.?\d*(?:[eE][+-]?\d+)?)\s+\d")
 
@@ -161,6 +170,7 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order on
                 finalize()
     finalize()
     return blocks
+
 
 # ---------------- Core Processing ---------------- #
 @app.function
@@ -239,12 +249,22 @@ def assign_feature_ids(settings: "Settings"):
         else:
             insert_pos = 1 if len(block.lines) > 1 else len(block.lines)
             block.lines.insert(insert_pos, f"FEATURE_ID={fid}\n")
-            if block.smiles_line_idx is not None and block.smiles_line_idx >= insert_pos:
+            if (
+                block.smiles_line_idx is not None
+                and block.smiles_line_idx >= insert_pos
+            ):
                 block.smiles_line_idx += 1
-            if block.selfies_line_idx is not None and block.selfies_line_idx >= insert_pos:
+            if (
+                block.selfies_line_idx is not None
+                and block.selfies_line_idx >= insert_pos
+            ):
                 block.selfies_line_idx += 1
         # Optional SELFIES insertion
-        if settings.add_selfies and block.smiles_line_idx is not None and block.selfies_line_idx is None:
+        if (
+            settings.add_selfies
+            and block.smiles_line_idx is not None
+            and block.selfies_line_idx is None
+        ):
             smi_line = block.lines[block.smiles_line_idx].strip()
             try:
                 smi = smi_line.split("=", 1)[1].strip()
@@ -252,7 +272,10 @@ def assign_feature_ids(settings: "Settings"):
                     sf = selfies.encoder(smi)
                     insert_after = block.smiles_line_idx + 1
                     block.lines.insert(insert_after, f"SELFIES={sf}\n")
-                    if block.feature_line_idx is not None and block.feature_line_idx > block.smiles_line_idx:
+                    if (
+                        block.feature_line_idx is not None
+                        and block.feature_line_idx > block.smiles_line_idx
+                    ):
                         block.feature_line_idx += 1
             except Exception:
                 pass
@@ -278,6 +301,7 @@ def assign_feature_ids(settings: "Settings"):
         "output_mgf": settings.output_mgf if not settings.dry_run else None,
         "dry_run": settings.dry_run,
     }
+
 
 # ------------- CLI entry ------------- #
 if __name__ == "__main__":
