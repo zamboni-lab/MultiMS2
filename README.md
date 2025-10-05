@@ -53,11 +53,12 @@ cd MultiMS2
 uv run python notebooks/get_mzmls_from_zenodo.py
 ```
 
-TODO add unzip
+TODO add unzip step
 
 3. **Configure mzmine batch files**
 
 Update the metadata file path in `.mzmine/batch/*.mzbatch`:
+
 ```xml
 <parameter name="Database file">
     <current_file>/path/to/your/local/msmls_metadata_neg.tsv</current_file>
@@ -67,6 +68,8 @@ Update the metadata file path in `.mzmine/batch/*.mzbatch`:
 ## Usage
 
 ### Spectral Extraction with mzmine
+
+TODO CITE MZMINE
 
 The library generation uses mzmine batch processing for consistent, reproducible spectral extraction. Below are the commands for all library combinations:
 
@@ -265,7 +268,7 @@ uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/Mu
 uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_60_batch_library.mgf CID 60.0
 ```
 
-#### Modalities and quality filtering
+#### Modalities and Quality Filtering
 
 After this, spectra from all sub-libraries and modalities are concatenated by running:
 
@@ -290,7 +293,7 @@ min_signals_ratio = 0.4
 This led to 54,996 spectra over the 164,371 initially extracted.
 (Both `all` and `filtered` MGF are exported)
 
-#### Adduct Assignment check
+#### Adduct Assignment Check
 
 An additional check is performed to chemically validate numerically found adducts/losses.
 In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the compound contains hydroxyls, and so on.
@@ -301,7 +304,11 @@ uv run python notebooks/validate_losses.py
 
 From the 54,996 filtered spectra, 48,766 were validated and 6,230 discarded.
 
-#### SELFIES addition
+TODO CITE RDKit
+
+#### SELFIES Addition
+
+TODO CITE SELFIES
 
 At this point, SELFIES can be added and unique feature IDs attributed using:
 
@@ -317,7 +324,7 @@ At the end:
 
 #### MS-BUDDY Molecular Formula Annotation
 
-MS-BUDDY provides molecular formula annotation and structural validation:
+MS-BUDDY provides molecular formula annotation to further structural validation:
 
 ```bash
 for f in /Volumes/T7/data/zeno_lib_v2/spectra/*.mgf; do
