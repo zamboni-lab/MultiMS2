@@ -53,6 +53,8 @@ cd MultiMS2
 uv run python notebooks/get_mzmls_from_zenodo.py
 ```
 
+TODO add unzip
+
 3. **Configure mzmine batch files**
 
 Update the metadata file path in `.mzmine/batch/*.mzbatch`:
@@ -246,24 +248,51 @@ mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
 
 ### Quality Control and Validation
 
+#### Metadata
+
 Because of an issue during `.mzML` file conversion, `COLLISION_ENERGY` and `FRAGMENTATION_METHOD` are missing from negative CID files.
 To fix it, run:
 
 ```bash
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_20_batch_library.mgf CID 20.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_40_batch_library.mgf CID 40.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_60_batch_library.mgf CID 60.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_20_batch_library.mgf CID 20.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_40_batch_library.mgf CID 40.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_60_batch_library.mgf CID 60.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_20_batch_library.mgf CID 20.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_40_batch_library.mgf CID 40.0
-uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_60_batch_library.mgf CID 60.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_60_batch_library.mgf CID 60.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_60_batch_library.mgf CID 60.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_60_batch_library.mgf CID 60.0
 ```
 
-TODO: Add details on QC steps, including manual inspection and software tools used.
+#### Modalities and quality filtering
 
-#### Adduct Assignment and Chimeric Spectrum Detection
+After this, spectra from all sub-libraries and modalities are concatenated by running:
+
+```bash
+uv run python notebooks/filter_spectra_consistent.py
+```
+
+Only the spectra complying to the following rules are kept:
+
+```python
+# Thresholds
+min_precursor_height = 1000.0
+min_precursor_purity = 0.9
+min_signals = 3
+min_explained_intensity = 0.4
+min_explained_signals = 0.05
+min_modalities = 3
+min_intensity_ratio = 0.8
+min_signals_ratio = 0.4
+```
+
+This led to 54,996 spectra over the 164,371 initially extracted.
+(Both `all` and `filtered` MGF are exported)
+
+#### Adduct Assignment check
+
+TODO
 
 Spectral quality is assessed using MGF_validator to ensure accurate adduct assignments and identify chimeric spectra (spectra containing fragments from multiple co-eluting compounds).
 
