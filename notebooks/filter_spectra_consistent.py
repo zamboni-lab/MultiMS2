@@ -32,15 +32,21 @@ with app.setup:
         )
         output_tsv: str = field(
             default="scratch/spectra_metadata.tsv",
-            metadata={"help": "TSV output file for spectrum metadata (not aggregated)."},
+            metadata={
+                "help": "TSV output file for spectrum metadata (not aggregated)."
+            },
         )
         output_mgf_all: str = field(
             default="scratch/all_spectra.mgf",
-            metadata={"help": "MGF output file for all spectra (concatenated, unfiltered)."},
+            metadata={
+                "help": "MGF output file for all spectra (concatenated, unfiltered)."
+            },
         )
         output_mgf_final: str = field(
             default="scratch/filtered_spectra.mgf",
-            metadata={"help": "MGF output file for spectra passing all post-metadata filters."},
+            metadata={
+                "help": "MGF output file for spectra passing all post-metadata filters."
+            },
         )
 
     parser = ArgumentParser()
@@ -55,6 +61,7 @@ with app.setup:
 
     settings = parse_args()
 
+
 @app.function
 def export_full_and_final_filtered(
     settings: Settings,
@@ -67,7 +74,11 @@ def export_full_and_final_filtered(
     If output files already exist, they are removed before writing.
     """
     # Remove output files if they exist
-    for out_path in [settings.output_tsv, settings.output_mgf_all, settings.output_mgf_final]:
+    for out_path in [
+        settings.output_tsv,
+        settings.output_mgf_all,
+        settings.output_mgf_final,
+    ]:
         if os.path.exists(out_path):
             print(f"Removing existing output: {out_path}")
             os.remove(out_path)
@@ -118,9 +129,14 @@ def export_full_and_final_filtered(
         all_keys = set()
         for r in rows:
             all_keys.update(r.keys())
-        columns = ["mgf_filename"] + sorted([k for k in all_keys if k != "mgf_filename"])
+        columns = ["mgf_filename"] + sorted(
+            [k for k in all_keys if k != "mgf_filename"]
+        )
         flat_rows = [
-            {col: str(r.get(col, "")) if r.get(col, "") is not None else "" for col in columns}
+            {
+                col: str(r.get(col, "")) if r.get(col, "") is not None else ""
+                for col in columns
+            }
             for r in rows
         ]
         df = pl.DataFrame(flat_rows)
@@ -163,11 +179,23 @@ def export_full_and_final_filtered(
 
     print("Filtering now...")
     df_clean = df_dis.filter(
-        (pl.col("feature_ms1_height").cast(pl.Float64, strict=False) >= min_precursor_height) &
-        (pl.col("precursor_purity").cast(pl.Float64, strict=False) >= min_precursor_purity) &
-        (pl.col("num_peaks").cast(pl.Int64, strict=False) >= min_signals) &
-        (pl.col("quality_explained_intensity").cast(pl.Float64, strict=False) >= min_explained_intensity) &
-        (pl.col("quality_explained_signals").cast(pl.Float64, strict=False) >= min_explained_signals)
+        (
+            pl.col("feature_ms1_height").cast(pl.Float64, strict=False)
+            >= min_precursor_height
+        )
+        & (
+            pl.col("precursor_purity").cast(pl.Float64, strict=False)
+            >= min_precursor_purity
+        )
+        & (pl.col("num_peaks").cast(pl.Int64, strict=False) >= min_signals)
+        & (
+            pl.col("quality_explained_intensity").cast(pl.Float64, strict=False)
+            >= min_explained_intensity
+        )
+        & (
+            pl.col("quality_explained_signals").cast(pl.Float64, strict=False)
+            >= min_explained_signals
+        )
     ).unique()
     print(df_clean)
 
@@ -179,35 +207,47 @@ def export_full_and_final_filtered(
     group_cols = ["adduct", "connectivity"]
 
     # --- MODALITIES COUNT LOGIC ---
-    modalities = (
-        df_clean
-        .unique(subset=["adduct", "collision_energy", "fragmentation_method", "inchi_aux", "connectivity"])
+    modalities = df_clean.unique(
+        subset=[
+            "adduct",
+            "collision_energy",
+            "fragmentation_method",
+            "inchi_aux",
+            "connectivity",
+        ]
     )
-    modalities_n = (
-        modalities
-        .group_by(group_cols)
-        .agg(n=pl.len())
-    )
+    modalities_n = modalities.group_by(group_cols).agg(n=pl.len())
     modalities = modalities.join(modalities_n, on=group_cols)
     modalities = modalities.filter(pl.col("n") >= min_modalities)
     modalities = modalities.unique(subset=["adduct", "connectivity", "inchi_aux"])
 
-    df_fin = df_clean.join(modalities, on=["adduct", "connectivity", "inchi_aux"], how="inner", suffix="_joined")
+    df_fin = df_clean.join(
+        modalities,
+        on=["adduct", "connectivity", "inchi_aux"],
+        how="inner",
+        suffix="_joined",
+    )
     # Remove any duplicated columns from join, keep only original names (except 'n' which is needed)
-    cols_to_drop = [col for col in df_fin.columns if col.endswith("_joined") and col != "n"]
+    cols_to_drop = [
+        col for col in df_fin.columns if col.endswith("_joined") and col != "n"
+    ]
     if cols_to_drop:
         df_fin = df_fin.drop(cols_to_drop)
     print(df_fin)
 
     group_cols2 = ["adduct", "collision_energy", "fragmentation_method", "inchi_aux"]
-    df_grouped = (
-        df_fin
-        .group_by(group_cols2)
-        .agg([
-            pl.col("quality_explained_intensity").cast(pl.Float64, strict=False).max().alias("qual_int_max"),
-            pl.col("quality_explained_signals").cast(pl.Float64, strict=False).max().alias("qual_sig_max"),
-            pl.len().alias("n_spe")
-        ])
+    df_grouped = df_fin.group_by(group_cols2).agg(
+        [
+            pl.col("quality_explained_intensity")
+            .cast(pl.Float64, strict=False)
+            .max()
+            .alias("qual_int_max"),
+            pl.col("quality_explained_signals")
+            .cast(pl.Float64, strict=False)
+            .max()
+            .alias("qual_sig_max"),
+            pl.len().alias("n_spe"),
+        ]
     )
     print(df_grouped)
     df_fin2 = df_fin.join(df_grouped, on=group_cols2, how="left", suffix="_joined2")
@@ -216,17 +256,25 @@ def export_full_and_final_filtered(
     if cols_to_drop2:
         df_fin2 = df_fin2.drop(cols_to_drop2)
     print(df_fin2)
-    df_final = (
-        df_fin2
-        .filter(
-            (pl.col("quality_explained_intensity").cast(pl.Float64, strict=False) >= min_intensity_ratio * pl.col("qual_int_max")) &
-            (pl.col("quality_explained_signals").cast(pl.Float64, strict=False) >= min_signals_ratio * pl.col("qual_sig_max"))
+    df_final = df_fin2.filter(
+        (
+            pl.col("quality_explained_intensity").cast(pl.Float64, strict=False)
+            >= min_intensity_ratio * pl.col("qual_int_max")
         )
-        .unique()
-    )
+        & (
+            pl.col("quality_explained_signals").cast(pl.Float64, strict=False)
+            >= min_signals_ratio * pl.col("qual_sig_max")
+        )
+    ).unique()
     print(df_final)
 
-    spectrum_key_cols = ["collision_energy", "description", "fragmentation_method", "inchi_aux", "spectrum_id"]
+    spectrum_key_cols = [
+        "collision_energy",
+        "description",
+        "fragmentation_method",
+        "inchi_aux",
+        "spectrum_id",
+    ]
     keep_keys = set(
         tuple(df_final.get_column(col)[i] for col in spectrum_key_cols)
         for i in range(df_final.height)
@@ -247,10 +295,12 @@ def export_full_and_final_filtered(
         f"final spectra to {settings.output_mgf_final}"
     )
 
+
 @app.cell
 def run_app():
     export_full_and_final_filtered(settings)
     return
+
 
 if __name__ == "__main__":
     app.run()

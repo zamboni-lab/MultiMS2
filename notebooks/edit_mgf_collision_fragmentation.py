@@ -3,11 +3,12 @@ import os
 import argparse
 import re
 
+
 def process_mgf(input_path, frag_method, coll_energy, output_path=None):
     if output_path is None:
         output_path = input_path
 
-    with open(input_path, 'r') as fin:
+    with open(input_path, "r") as fin:
         lines = fin.readlines()
 
     new_lines = []
@@ -69,15 +70,28 @@ def process_mgf(input_path, frag_method, coll_energy, output_path=None):
         new_lines.append(line)
         i += 1
 
-    with open(output_path, 'w') as fout:
+    with open(output_path, "w") as fout:
         fout.writelines(new_lines)
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files.')
-    parser.add_argument('mgf_path', help='Input MGF file path')
-    parser.add_argument('frag_method', help='Fragmentation method to use if missing or invalid')
-    parser.add_argument('coll_energy', help='Collision energy (float or list for COLLISION_ENERGY, e.g. 20.0)')
-    parser.add_argument('export_path', nargs='?', default=None, help='Export path (optional, default: overwrite input)')
+    parser = argparse.ArgumentParser(
+        description="Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files."
+    )
+    parser.add_argument("mgf_path", help="Input MGF file path")
+    parser.add_argument(
+        "frag_method", help="Fragmentation method to use if missing or invalid"
+    )
+    parser.add_argument(
+        "coll_energy",
+        help="Collision energy (float or list for COLLISION_ENERGY, e.g. 20.0)",
+    )
+    parser.add_argument(
+        "export_path",
+        nargs="?",
+        default=None,
+        help="Export path (optional, default: overwrite input)",
+    )
 
     args = parser.parse_args()
     process_mgf(args.mgf_path, args.frag_method, args.coll_energy, args.export_path)
