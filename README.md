@@ -246,6 +246,21 @@ mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
 
 ### Quality Control and Validation
 
+Because of an issue during `.mzML` file conversion, `COLLISION_ENERGY` and `FRAGMENTATION_METHOD` are missing from negative CID files.
+To fix it, run:
+
+```bash
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_60_batch_library.mgf CID 60.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/selleck_neg_cid_60_batch_library.mgf CID 60.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_20_batch_library.mgf CID 20.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_40_batch_library.mgf CID 40.0
+uv run python notebooks/mgf_fragmentation_collision_editor.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_60_batch_library.mgf CID 60.0
+```
+
 TODO: Add details on QC steps, including manual inspection and software tools used.
 
 #### Adduct Assignment and Chimeric Spectrum Detection
