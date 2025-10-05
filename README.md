@@ -292,11 +292,14 @@ This led to 54,996 spectra over the 164,371 initially extracted.
 
 #### Adduct Assignment check
 
-TODO
+An additional check is performed to chemically validate numerically found adducts/losses.
+In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the compound contains hydroxyls, and so on.
 
-Spectral quality is assessed using MGF_validator to ensure accurate adduct assignments and identify chimeric spectra (spectra containing fragments from multiple co-eluting compounds).
+```bash
+uv run python notebooks/validate_losses.py
+```
 
-*Documentation in progress*
+From the 54,996 filtered spectra, 48,766 were validated and 6,230 discarded.
 
 #### MS-BUDDY Molecular Formula Annotation
 
