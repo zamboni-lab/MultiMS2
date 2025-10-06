@@ -413,6 +413,8 @@ def _plot(
     os.makedirs("figures", exist_ok=True)
     chart_inchikeys.save("figures/connectivities_upset.svg", format="svg")
     chart_pairs.save("figures/pairs_upset.svg", format="svg")
+    chart_inchikeys.save("figures/connectivities_upset.pdf", format="pdf")
+    chart_pairs.save("figures/pairs_upset.pdf", format="pdf")
     chart_inchikeys.save("figures/connectivities_upset.png", format="png")
     chart_pairs.save("figures/pairs_upset.png", format="png")
     return chart_inchikeys, chart_pairs

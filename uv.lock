@@ -852,7 +852,7 @@ wheels = [
 
 [[package]]
 name = "matchms"
-version = "0.30.2"
+version = "0.31.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "deprecated" },
@@ -863,7 +863,6 @@ dependencies = [
     { name = "numpy" },
     { name = "pandas" },
     { name = "pickydict" },
-    { name = "pillow" },
     { name = "pubchempy" },
     { name = "pynndescent" },
     { name = "pyteomics" },
@@ -874,9 +873,9 @@ dependencies = [
     { name = "sparsestack" },
     { name = "tqdm" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/50/28/8079ae09b4495042188fc30bb1c0f087f8e17a15b737f3926624cce81530/matchms-0.30.2.tar.gz", hash = "sha256:d80fa322e34b61ecd32d44ca272b6ed902d2b3ceb8995badc792f73b29e8e435", size = 120289, upload-time = "2025-06-30T07:11:38.808Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/20/e0/9a7e7ddbe1c20e069955868046f9f45e43b4fdf3bf0c9886143c23d9ab94/matchms-0.31.0.tar.gz", hash = "sha256:4f3178f58c6e3a82e71bb941f60f856f2475dacde96f66ca833caecac5012dec", size = 140231, upload-time = "2025-10-06T15:43:51.063Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/80/1b/6ba074c98564132b6dbac18b43b98e851a421ca32cd837f6d34d10f364b2/matchms-0.30.2-py3-none-any.whl", hash = "sha256:c47f2be9a9947f09166d44ebd5800518a9eed05add0c7a4f2a9e8ba2b9111fbb", size = 182800, upload-time = "2025-06-30T07:11:37.252Z" },
+    { url = "https://files.pythonhosted.org/packages/95/ea/c3cda010ac474eec352dd355db0a8408ad801d75163c3c42fb3abbbe6cf8/matchms-0.31.0-py3-none-any.whl", hash = "sha256:b07ab7c2b675b4a0e0d2dd362e8611389c2eca83ddf1b8309a1b22991bea8e1e", size = 204989, upload-time = "2025-10-06T15:43:49.697Z" },
 ]
 
 [[package]]
@@ -1046,7 +1045,7 @@ requires-dist = [
     { name = "lightgbm", specifier = ">=4.6.0,<5" },
     { name = "map4", specifier = ">=1.1.3,<2" },
     { name = "marimo", specifier = ">=0.16.5,<1" },
-    { name = "matchms", specifier = ">=0.30.2,<1" },
+    { name = "matchms", specifier = ">=0.31.0,<1" },
     { name = "matplotlib-colors", specifier = ">=1.0.16" },
     { name = "molzip", specifier = ">=0.9.2,<1" },
     { name = "msbuddy", git = "https://github.com/adafede/msbuddy" },

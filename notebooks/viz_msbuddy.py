@@ -527,6 +527,7 @@ def _plot(df_filtered):
     os.makedirs("figures", exist_ok=True)
     for name, chart in charts.items():
         chart.save(f"figures/{name}.svg", format="svg")
+        chart.save(f"figures/{name}.pdf", format="pdf")
         chart.save(f"figures/{name}.png", format="png")
     return
 
