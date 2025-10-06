@@ -7,20 +7,12 @@
 # ]
 # ///
 
-# Fallback marimo import to allow CLI use without notebook environment
-try:
-    import marimo  # type: ignore
+import marimo
 
-    app = marimo.App(width="full")
-except Exception:  # noqa: BLE001
+__generated_with = "0.16.3"
+app = marimo.App(width="full")
 
-    class _DummyApp:
-        def function(self, f):
-            return f
-
-    app = _DummyApp()
-
-with app.setup:  # noqa: SIM117
+with app.setup:
     from dataclasses import dataclass, field
     from simple_parsing import ArgumentParser
     from typing import List, Optional
@@ -52,13 +44,14 @@ with app.setup:  # noqa: SIM117
     parser = ArgumentParser()
     parser.add_arguments(Settings, dest="settings")
 
-    def parse_args():
+    def parse_args():  # noqa: D401
+        """Parse command line arguments unless running inside a marimo notebook."""
         try:
             import marimo as mo  # type: ignore
 
             if mo.running_in_notebook():
                 return Settings()
-        except Exception:
+        except Exception:  # noqa: BLE001
             pass
         return parser.parse_args().settings
 
@@ -66,6 +59,7 @@ with app.setup:  # noqa: SIM117
 
 
 # ---------------- Internal Utilities ---------------- #
+@app.function
 class SpectrumBlock:
     """Container for one MGF spectrum block."""
 
@@ -98,9 +92,7 @@ class SpectrumBlock:
         self.selfies_line_idx = selfies_line_idx
 
 
-NUMERIC_LINE_RE = re.compile(r"^\s*(\d+\.?\d*(?:[eE][+-]?\d+)?)\s+\d")
-
-
+@app.function
 def read_text_fallback(path: str) -> List[str]:
     try:
         with open(path, encoding="utf-8") as f:
@@ -110,12 +102,15 @@ def read_text_fallback(path: str) -> List[str]:
             return f.readlines()
 
 
+@app.function
 def write_text_utf8(path: str, lines: List[str]):
     with open(path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
 
+@app.function
 def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order only
+    NUMERIC_LINE_RE = re.compile(r"^\s*(\d+\.?\d*(?:[eE][+-]?\d+)?)\s+\d")
     lines = read_text_fallback(path)
     blocks: List[SpectrumBlock] = []
     cur: List[str] = []
@@ -175,6 +170,11 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order on
 # ---------------- Core Processing ---------------- #
 @app.function
 def assign_feature_ids(settings: "Settings"):
+    """Assign FEATURE_ID fields based on grouping header values.
+
+    The grouping key: (DESCRIPTION, ADDUCT, COLLISION_ENERGY, FRAGMENTATION_METHOD, INCHI_AUX).
+    Empty headers do not collapse distinct blocks (unique sentinel used).
+    """
     if not os.path.isfile(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}
 
@@ -182,7 +182,7 @@ def assign_feature_ids(settings: "Settings"):
     if not blocks:
         return {"error": "No spectra found in input MGF."}
 
-    # Grouping fields for feature ID assignment
+    # Grouping fields for feature ID assignment (case-insensitive header matching)
     grouping_fields = [
         "description",
         "adduct",
@@ -190,24 +190,27 @@ def assign_feature_ids(settings: "Settings"):
         "fragmentation_method",
         "inchi_aux",
     ]
-    # Accept some common header name variants mapping to canonical keys
     canonical_key_map = {
+        # description
         "description": "description",
+        # adduct
         "adduct": "adduct",
+        # collision energy variants
         "collision_energy": "collision_energy",
         "collisionenergy": "collision_energy",
         "collisionenergy_ev": "collision_energy",
         "ce": "collision_energy",
+        # fragmentation method variants
         "fragmentation_method": "fragmentation_method",
         "fragmentationmethod": "fragmentation_method",
         "frag_method": "fragmentation_method",
+        # InChI auxiliary variants
         "inchi_aux": "inchi_aux",
         "inchi": "inchi_aux",
         "inchi_key_aux": "inchi_aux",
     }
 
     def extract_group_key(block: SpectrumBlock):
-        # Parse header key-value pairs (case-insensitive)
         values = {k: "" for k in grouping_fields}
         for line in block.lines:
             if line.startswith("BEGIN IONS"):
@@ -222,7 +225,6 @@ def assign_feature_ids(settings: "Settings"):
             if key_canon in values:
                 values[key_canon] = val.strip()
         key_tuple = tuple(values[k] for k in grouping_fields)
-        # If all empty, return a unique sentinel per block so they don't collapse
         if all(v == "" for v in key_tuple):
             return ("__UNIQUE__", block.order_in_file)
         return key_tuple
@@ -232,13 +234,12 @@ def assign_feature_ids(settings: "Settings"):
     inchi_aux_index = grouping_fields.index("inchi_aux")
     unique_inchi_aux: set[str] = set()
 
-    # Assign FEATURE_IDs based on grouping key (first occurrence order)
     for block in blocks:
         gkey = extract_group_key(block)
         if gkey not in group_to_id:
             group_to_id[gkey] = next_id
             next_id += 1
-        # Collect INCHI_AUX if present (skip sentinel unique key)
+        # Collect INCHI_AUX (skip sentinel unique grouping key)
         if gkey and gkey[0] != "__UNIQUE__":
             iaux_val = gkey[inchi_aux_index]
             if iaux_val:
@@ -249,6 +250,7 @@ def assign_feature_ids(settings: "Settings"):
         else:
             insert_pos = 1 if len(block.lines) > 1 else len(block.lines)
             block.lines.insert(insert_pos, f"FEATURE_ID={fid}\n")
+            # Shift stored indices if needed
             if (
                 block.smiles_line_idx is not None
                 and block.smiles_line_idx >= insert_pos
@@ -269,35 +271,35 @@ def assign_feature_ids(settings: "Settings"):
             try:
                 smi = smi_line.split("=", 1)[1].strip()
                 if smi:
-                    sf = selfies.encoder(smi)
+                    sf_str = selfies.encoder(smi)
                     insert_after = block.smiles_line_idx + 1
-                    block.lines.insert(insert_after, f"SELFIES={sf}\n")
+                    block.lines.insert(insert_after, f"SELFIES={sf_str}\n")
                     if (
                         block.feature_line_idx is not None
                         and block.feature_line_idx > block.smiles_line_idx
                     ):
                         block.feature_line_idx += 1
-            except Exception:
+            except Exception:  # noqa: BLE001
                 pass
 
     if not settings.dry_run:
         out_lines: List[str] = []
         for blk in blocks:
-            # ensure END IONS line ends with newline
             if blk.lines and not blk.lines[-1].endswith("\n"):
                 blk.lines[-1] += "\n"
             out_lines.extend(blk.lines)
-            # add exactly one blank line between blocks
             if not out_lines[-1].endswith("\n"):
                 out_lines.append("\n")
-            out_lines.append("\n")  # blank separator
+            out_lines.append("\n")
         os.makedirs(os.path.dirname(settings.output_mgf), exist_ok=True)
         write_text_utf8(settings.output_mgf, out_lines)
+
+    unique_inchi_aux_sorted = sorted(unique_inchi_aux)
 
     return {
         "spectra_total": len(blocks),
         "unique_feature_ids": len(group_to_id),
-        "unique_inchi_aux_count": len(unique_inchi_aux),
+        "unique_inchi_aux_count": len(unique_inchi_aux_sorted),
         "output_mgf": settings.output_mgf if not settings.dry_run else None,
         "dry_run": settings.dry_run,
     }

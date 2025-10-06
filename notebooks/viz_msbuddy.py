@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.13,<4"
 # dependencies = [
 #     "marimo",
 #     "polars",
@@ -16,7 +16,7 @@
 
 import marimo
 
-__generated_with = "0.14.17"
+__generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:

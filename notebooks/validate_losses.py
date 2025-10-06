@@ -9,6 +9,7 @@
 
 import marimo
 
+__generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -54,6 +55,7 @@ with app.setup:
     settings = parse_args()
 
 
+@app.function
 class MGFLossValidator:
     """Loss validation using reaction-based neutral loss rules.
 
@@ -394,6 +396,7 @@ def validate_file(settings: "Settings"):
 
 
 # ------------- CLI entry (preserved) ------------- #
+@app.cell
 def _cli_main():
     validator = MGFLossValidator()
     try:
