@@ -44,13 +44,32 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 
 @app.function
-def parse_spectrum_id(idx: int, spectrum) -> tuple[str, float | None, float | None]:
-    """Return spectrum id of form IDX_mz_{mz:.4f}_rt_{rt:.2f}.
-    If mz or rt missing, still return an id with available parts to keep it stable.
+def parse_spectrum_id(
+    idx: int, spectrum
+) -> tuple[str | None, float | None, float | None, str | None, str | None, str | None]:
+    """Extract spectrum identifiers based on metadata spectrum_id + mz/rt.
+
+    Returns tuple:
+      (meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid)
+
+    Where:
+      meta_sid: raw metadata spectrum id (expected integer string)
+      composite_sid: meta_sid + mz/rt (preferred) e.g. 123_mz_100.1234_rt_12.34
+      mzrt_sid: fallback using only mz/rt (mz_100.1234_rt_12.34) used ONLY if meta_sid missing
+      legacy_sid: index-based historical ID (idx_mz_..._rt_...) used ONLY if meta_sid missing
     """
+    meta_sid = (
+        spectrum.metadata.get("spectrum_id")
+        or spectrum.metadata.get("spectrumid")
+        or spectrum.metadata.get("spectrumId")
+        or spectrum.metadata.get("spectrumID")
+    )
+    if isinstance(meta_sid, str):
+        meta_sid = meta_sid.strip() or None
+    # If provided but not an integer string, still accept as-is
+
     mz = spectrum.get("precursor_mz")
     rt = spectrum.get("retention_time")
-    # fallbacks some mgf exporters
     if mz is None:
         mz = spectrum.get("pepmass")
         try:
@@ -58,26 +77,47 @@ def parse_spectrum_id(idx: int, spectrum) -> tuple[str, float | None, float | No
                 mz = mz[0]
         except Exception:
             pass
-    mz = float(mz) if mz is not None else None
-    rt = float(rt) if rt is not None else None
+    try:
+        mz = float(mz) if mz is not None else None
+    except Exception:
+        mz = None
+    try:
+        rt = float(rt) if rt is not None else None
+    except Exception:
+        rt = None
+
+    composite_sid = None
+    mzrt_sid = None
+    legacy_sid = None
+
     if mz is not None and rt is not None:
-        sid = f"{idx}_mz_{mz:.4f}_rt_{rt:.2f}"
+        if meta_sid:
+            composite_sid = f"{meta_sid}_mz_{mz:.4f}_rt_{rt:.2f}"
+        mzrt_sid = f"mz_{mz:.4f}_rt_{rt:.2f}"
+        legacy_sid = f"{idx}_mz_{mz:.4f}_rt_{rt:.2f}"
     elif mz is not None:
-        sid = f"{idx}_mz_{mz:.4f}"
+        if meta_sid:
+            composite_sid = f"{meta_sid}_mz_{mz:.4f}"
+        mzrt_sid = f"mz_{mz:.4f}"
+        legacy_sid = f"{idx}_mz_{mz:.4f}"
     else:
-        sid = f"{idx}"
-    return sid, mz, rt
+        # No mz; composite only possible if meta_sid exists
+        composite_sid = meta_sid
+        legacy_sid = f"{idx}" if not meta_sid else None
+
+    return meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid
 
 
 @app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Process a single mgf (consolidated_spectra.mgf) and map spectra to flat msbuddy result dirs.
-    Matching: directory name like '3_mz_331.2268_rt_14.83' equals spectrum id (index based) with mz 4dp, rt 2dp.
-    If not found, attempt seconds->minutes conversion (rt/60) when RT > 180 and retry.
-    Group label (stored in 'mgf' column) constructed from (fragmentation_method, collision_energy, ionmode).
+    """Process single MGF mapping spectra to flat msbuddy result dirs using metadata spectrum_id.
+
+    Matching priority (first hit wins):
+      1. composite_sid (meta spectrum id + mz/rt)
+      2. legacy minute-adjusted composite (if rt>60)
+      3. If no meta_sid: mzrt_sid, legacy_sid, and their minute-adjusted variants
     """
 
-    # Local helpers (avoid execution-order issues in marimo)
     def _meta_lookup_local(spectrum, *keys):
         for k in keys:
             v = spectrum.metadata.get(k)
@@ -106,7 +146,9 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
 
     recs = []
     for idx, spectrum in enumerate(spectra, start=1):
-        sid, mz, rt = parse_spectrum_id(idx, spectrum)
+        meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid = parse_spectrum_id(
+            idx, spectrum
+        )
         ce = _meta_lookup_local(
             spectrum,
             "collision_energy",
@@ -130,27 +172,43 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             ]
         )
 
-        expected_dir = sid
+        candidates: list[str] = []
+        if composite_sid:
+            candidates.append(composite_sid)
+        if (
+            not meta_sid
+        ):  # only fall back to mz/rt or legacy when no explicit spectrum_id
+            if mzrt_sid:
+                candidates.append(mzrt_sid)
+            if legacy_sid:
+                candidates.append(legacy_sid)
+
+        # minute-based alt (only if rt large)
+        if rt is not None and rt > 60 and mz is not None:
+            rt_alt = rt / 60.0
+            if composite_sid:
+                # recompute composite with alt rt
+                if meta_sid:
+                    candidates.append(f"{meta_sid}_mz_{mz:.4f}_rt_{rt_alt:.2f}")
+            if not meta_sid:
+                if mzrt_sid:
+                    candidates.append(f"mz_{mz:.4f}_rt_{rt_alt:.2f}")
+                if legacy_sid:
+                    candidates.append(f"{idx}_mz_{mz:.4f}_rt_{rt_alt:.2f}")
+
         spec_dir = None
+        for cand in candidates:
+            if cand in dir_names:
+                spec_dir = dir_names[cand]
+                break
+
         has_results_tsv = False
         formula_match = False
-        formula_found = False
+        formula_found = spec_dir is not None
         expected_formula = smiles_to_formula(spectrum.metadata.get("smiles"))
 
-        # Attempt direct match
-        if expected_dir in dir_names:
-            spec_dir = dir_names[expected_dir]
-        else:
-            # Attempt alternative with converted RT if plausible (seconds vs minutes)
-            if rt is not None and rt > 60:
-                rt_alt = rt / 60.0
-                alt_id = None
-                if mz is not None:
-                    alt_id = f"{idx}_mz_{mz:.4f}_rt_{rt_alt:.2f}"
-                if alt_id and alt_id in dir_names:
-                    spec_dir = dir_names[alt_id]
+        metric_map = {}
         if spec_dir:
-            formula_found = True
             tsv_path = os.path.join(spec_dir, "formula_results.tsv")
             if os.path.exists(tsv_path):
                 has_results_tsv = True
@@ -158,7 +216,6 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                 row = best_hit_row(df, expected_formula)
                 if row is not None:
                     formula_match = True
-                    # collect row metrics
                     metric_map = {
                         "rank": "rank",
                         "estimated_prob": "estimated_prob",
@@ -171,20 +228,18 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                         "ms2_explanation_idx": "ms2_explanation_idx",
                         "ms2_explanation": "ms2_explanation",
                     }
-                else:
-                    metric_map = {}
-            else:
-                metric_map = {}
-        else:
-            metric_map = {}
 
         rec = {
             "mgf_file": mgf_file,
-            "mgf": group_label,  # group label replacing previous mgf folder concept
+            "mgf": group_label,
             "spectrum_index": idx,
-            "spectrum_id": sid,
+            "spectrum_id": composite_sid or mzrt_sid or legacy_sid,
+            "spectrum_id_meta": meta_sid,
+            "spectrum_id_composite": composite_sid,
+            "spectrum_id_mzrt": mzrt_sid,
+            "spectrum_id_legacy": legacy_sid,
             "pepmass": mz,
-            "rt_seconds": rt,  # retain raw RT value (units as in MGF)
+            "rt_seconds": rt,
             "smiles": spectrum.metadata.get("smiles"),
             "adduct": spectrum.metadata.get("adduct"),
             "collision_energy": ce,
@@ -208,7 +263,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             "ms2_explanation": None,
             "result_dir": os.path.basename(spec_dir) if spec_dir else None,
         }
-        # Fill metrics if match
+
         if formula_match and spec_dir and has_results_tsv:
             tsv_path = os.path.join(spec_dir, "formula_results.tsv")
             df = read_formula_results(tsv_path)
