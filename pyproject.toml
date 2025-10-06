@@ -28,6 +28,7 @@ dependencies = [
     "tmap-viz @ git+https://github.com/mvisani/tmap",
     "tol-colors>=2.1.0,<3",
     "tqdm>=4.67.1,<5",
+    "vegafusion>=2.0.3,<3",
     "vl-convert-python>=1.8.0,<2",
 ]
 

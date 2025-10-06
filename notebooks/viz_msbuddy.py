@@ -20,18 +20,15 @@ __generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
-    import glob
     import os
     import re
     from pathlib import Path
-    from concurrent.futures import ProcessPoolExecutor, as_completed
     import altair as alt
     import cmcrameri.cm as cmc
     import matplotlib as mpl
     import numpy as np
     import polars as pl
     from matchms.importing import load_from_mgf
-    from multiprocessing import cpu_count
     from rdkit import Chem
 
 
@@ -48,18 +45,208 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 @app.function
 def parse_spectrum_id(idx: int, spectrum) -> tuple[str, float | None, float | None]:
+    """Return spectrum id of form IDX_mz_{mz:.4f}_rt_{rt:.2f}.
+    If mz or rt missing, still return an id with available parts to keep it stable.
+    """
     mz = spectrum.get("precursor_mz")
     rt = spectrum.get("retention_time")
-
+    # fallbacks some mgf exporters
+    if mz is None:
+        mz = spectrum.get("pepmass")
+        try:
+            if isinstance(mz, (list, tuple)):
+                mz = mz[0]
+        except Exception:
+            pass
     mz = float(mz) if mz is not None else None
     rt = float(rt) if rt is not None else None
-
     if mz is not None and rt is not None:
         sid = f"{idx}_mz_{mz:.4f}_rt_{rt:.2f}"
+    elif mz is not None:
+        sid = f"{idx}_mz_{mz:.4f}"
     else:
-        sid = None
-
+        sid = f"{idx}"
     return sid, mz, rt
+
+
+@app.function
+def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
+    """Process a single mgf (consolidated_spectra.mgf) and map spectra to flat msbuddy result dirs.
+    Matching: directory name like '3_mz_331.2268_rt_14.83' equals spectrum id (index based) with mz 4dp, rt 2dp.
+    If not found, attempt seconds->minutes conversion (rt/60) when RT > 180 and retry.
+    Group label (stored in 'mgf' column) constructed from (fragmentation_method, collision_energy, ionmode).
+    """
+    # Local helpers (avoid execution-order issues in marimo)
+    def _meta_lookup_local(spectrum, *keys):
+        for k in keys:
+            v = spectrum.metadata.get(k)
+            if v not in (None, ""):
+                return v
+        return None
+
+    def _sanitize_group_value_local(v):
+        if v is None:
+            return "na"
+        v = str(v).strip().lower()
+        v = re.sub(r"[^a-z0-9.+-]", "_", v)
+        v = re.sub(r"__+", "_", v).strip("_")
+        return v or "na"
+
+    mgf_file = os.path.basename(mgf_path)
+    spectra = list(load_from_mgf(mgf_path))
+    try:
+        dir_names = {
+            d: os.path.join(msbuddy_root, d)
+            for d in os.listdir(msbuddy_root)
+            if os.path.isdir(os.path.join(msbuddy_root, d))
+        }
+    except FileNotFoundError:
+        dir_names = {}
+
+    recs = []
+    for idx, spectrum in enumerate(spectra, start=1):
+        sid, mz, rt = parse_spectrum_id(idx, spectrum)
+        ce = _meta_lookup_local(
+            spectrum,
+            "collision_energy",
+            "collisionenergy",
+            "collisionenergy_ev",
+            "ce",
+        )
+        frag = _meta_lookup_local(
+            spectrum,
+            "fragmentation_method",
+            "fragmentationmethod",
+            "frag_method",
+            "fragmode",
+        )
+        ion = _meta_lookup_local(spectrum, "ionmode", "ion_mode", "polarity")
+        group_label = "_".join(
+            [
+                _sanitize_group_value_local(frag),
+                _sanitize_group_value_local(ce),
+                _sanitize_group_value_local(ion),
+            ]
+        )
+
+        expected_dir = sid
+        spec_dir = None
+        has_results_tsv = False
+        formula_match = False
+        formula_found = False
+        expected_formula = smiles_to_formula(spectrum.metadata.get("smiles"))
+
+        # Attempt direct match
+        if expected_dir in dir_names:
+            spec_dir = dir_names[expected_dir]
+        else:
+            # Attempt alternative with converted RT if plausible (seconds vs minutes)
+            if rt is not None and rt > 60:
+                rt_alt = rt / 60.0
+                alt_id = None
+                if mz is not None:
+                    alt_id = f"{idx}_mz_{mz:.4f}_rt_{rt_alt:.2f}"
+                if alt_id and alt_id in dir_names:
+                    spec_dir = dir_names[alt_id]
+        if spec_dir:
+            formula_found = True
+            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
+            if os.path.exists(tsv_path):
+                has_results_tsv = True
+                df = read_formula_results(tsv_path)
+                row = best_hit_row(df, expected_formula)
+                if row is not None:
+                    formula_match = True
+                    # collect row metrics
+                    metric_map = {
+                        "rank": "rank",
+                        "estimated_prob": "estimated_prob",
+                        "normalized_estimated_prob": "normalized_estimated_prob",
+                        "estimated_fdr": "estimated_fdr",
+                        "mz_error_ppm": "mz_error_ppm",
+                        "ms1_isotope_similarity": "ms1_isotope_similarity",
+                        "explained_ms2_peak": "explained_ms2_peak",
+                        "total_valid_ms2_peak": "total_valid_ms2_peak",
+                        "ms2_explanation_idx": "ms2_explanation_idx",
+                        "ms2_explanation": "ms2_explanation",
+                    }
+                else:
+                    metric_map = {}
+            else:
+                metric_map = {}
+        else:
+            metric_map = {}
+
+        rec = {
+            "mgf_file": mgf_file,
+            "mgf": group_label,  # group label replacing previous mgf folder concept
+            "spectrum_index": idx,
+            "spectrum_id": sid,
+            "pepmass": mz,
+            "rt_seconds": rt,  # retain raw RT value (units as in MGF)
+            "smiles": spectrum.metadata.get("smiles"),
+            "adduct": spectrum.metadata.get("adduct"),
+            "collision_energy": ce,
+            "fragmentation_method": frag,
+            "ionmode": ion,
+            "formula_expected": expected_formula,
+            "formula_found": formula_found,
+            "has_results_tsv": has_results_tsv,
+            "formula_match": formula_match,
+            "rank": None,
+            "estimated_prob": None,
+            "normalized_estimated_prob": None,
+            "estimated_fdr": None,
+            "mz_error_ppm": None,
+            "ms1_isotope_similarity": None,
+            "explained_ms2_peak": None,
+            "total_valid_ms2_peak": None,
+            "explained_peak_fraction": None,
+            "explained_intensity": None,
+            "ms2_explanation_idx": None,
+            "ms2_explanation": None,
+            "result_dir": os.path.basename(spec_dir) if spec_dir else None,
+        }
+        # Fill metrics if match
+        if formula_match and spec_dir and has_results_tsv:
+            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
+            df = read_formula_results(tsv_path)
+            row = best_hit_row(df, expected_formula)
+            if row:
+                for rec_key, row_key in metric_map.items():
+                    val = row.get(row_key)
+                    if rec_key in ("explained_ms2_peak", "total_valid_ms2_peak"):
+                        rec[rec_key] = int(val) if val not in (None, "NA") else None
+                    elif rec_key == "ms1_isotope_similarity":
+                        rec[rec_key] = None if val in (None, "NA") else val
+                    else:
+                        rec[rec_key] = val
+                if rec["explained_ms2_peak"] and rec["total_valid_ms2_peak"]:
+                    rec["explained_peak_fraction"] = (
+                        rec["explained_ms2_peak"] / rec["total_valid_ms2_peak"]
+                    )
+                ms2_explanation_idx = rec["ms2_explanation_idx"]
+                if ms2_explanation_idx not in (None, "NA"):
+                    mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
+                    if os.path.exists(mse_path):
+                        try:
+                            mse_df = pl.read_csv(mse_path, separator="\t")
+                            if isinstance(ms2_explanation_idx, str):
+                                indices = [int(i) for i in ms2_explanation_idx.split(",")]
+                            elif isinstance(ms2_explanation_idx, int):
+                                indices = [ms2_explanation_idx]
+                            else:
+                                indices = list(ms2_explanation_idx)
+                            total_intensity = mse_df["intensity"].sum()
+                            explained_sum = mse_df.filter(pl.col("raw_idx").is_in(indices))["intensity"].sum()
+                            if total_intensity > 0:
+                                rec["explained_intensity"] = explained_sum / total_intensity
+                        except Exception:
+                            pass
+        recs.append(rec)
+
+    df = pl.DataFrame(recs)
+    return df
 
 
 @app.function
@@ -74,232 +261,18 @@ def read_formula_results(tsv_path: str) -> pl.DataFrame | None:
 def best_hit_row(df: pl.DataFrame, formula: str) -> dict | None:
     if df is None or formula is None or "formula" not in df.columns:
         return None
-
-    # Use lazy evaluation and more efficient filtering
     sub = df.lazy().filter(pl.col("formula") == formula)
-
     if "rank" in df.columns:
         sub = sub.sort("rank")
-
-    # Collect only the first row
     result = sub.limit(1).collect()
-
     if result.is_empty():
         return None
-
     return result.row(0, named=True)
 
 
 @app.function
-def batch_check_directories(base_paths: list[str]) -> dict[str, bool]:
-    """Batch check directory existence to reduce I/O calls"""
-    return {path: os.path.isdir(path) for path in base_paths}
-
-
-@app.function
-def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    mgf_name = os.path.splitext(os.path.basename(mgf_path))[0]
-    msbuddy_dir = os.path.join(msbuddy_root, mgf_name)
-
-    # Load all spectra at once
-    spectra = list(load_from_mgf(mgf_path))
-
-    # Pre-build all potential paths and check existence in batch
-    potential_paths = []
-    spectrum_info = []
-
-    for idx, spectrum in enumerate(spectra, start=1):
-        sid, pepmass, rt = parse_spectrum_id(idx, spectrum)
-        smiles = spectrum.metadata.get("smiles")
-        adduct = spectrum.metadata.get("adduct")
-        expected_formula = smiles_to_formula(smiles)
-
-        # Build potential directory paths
-        if sid:
-            sid_suffix = re.sub(r"^\d+_", "", sid)
-            glob_pattern = os.path.join(msbuddy_dir, f"*_{sid_suffix}")
-            matches = glob.glob(glob_pattern)
-            spec_dir = matches[0] if matches else os.path.join(msbuddy_dir, sid)
-        else:
-            spec_dir = None
-
-        potential_paths.append(spec_dir)
-        spectrum_info.append(
-            {
-                "idx": idx,
-                "sid": sid,
-                "pepmass": pepmass,
-                "rt": rt,
-                "smiles": smiles,
-                "adduct": adduct,
-                "expected_formula": expected_formula,
-                "spec_dir": spec_dir,
-            },
-        )
-
-    # Batch check directory existence
-    dir_exists = batch_check_directories([p for p in potential_paths if p is not None])
-
-    # Process records with reduced I/O
-    recs = []
-    for i, info in enumerate(spectrum_info):
-        spec_dir = info["spec_dir"]
-        formula_found = dir_exists.get(spec_dir, False) if spec_dir else False
-
-        rec = {
-            "mgf": mgf_name,
-            "spectrum_index": info["idx"],
-            "spectrum_id": info["sid"],
-            "pepmass": info["pepmass"],
-            "rt_seconds": info["rt"],
-            "smiles": info["smiles"],
-            "adduct": info["adduct"],
-            "formula_expected": info["expected_formula"],
-            "formula_found": formula_found,
-            "has_results_tsv": False,
-            "formula_match": False,
-            "rank": None,
-            "estimated_prob": None,
-            "normalized_estimated_prob": None,
-            "estimated_fdr": None,
-            "mz_error_ppm": None,
-            "ms1_isotope_similarity": None,
-            "explained_ms2_peak": None,
-            "total_valid_ms2_peak": None,
-            "explained_peak_fraction": None,
-            "explained_intensity": None,
-            "ms2_explanation_idx": None,
-            "ms2_explanation": None,
-        }
-
-        if formula_found and spec_dir:
-            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
-            if os.path.exists(tsv_path):
-                rec["has_results_tsv"] = True
-                df = read_formula_results(tsv_path)
-                row = best_hit_row(df, info["expected_formula"])
-                if row is not None:
-                    rec["formula_match"] = True
-                    # Batch update all fields from row
-                    field_mapping = {
-                        "rank": "rank",
-                        "estimated_prob": "estimated_prob",
-                        "normalized_estimated_prob": "normalized_estimated_prob",
-                        "estimated_fdr": "estimated_fdr",
-                        "mz_error_ppm": "mz_error_ppm",
-                        "ms1_isotope_similarity": "ms1_isotope_similarity",
-                        "explained_ms2_peak": "explained_ms2_peak",
-                        "total_valid_ms2_peak": "total_valid_ms2_peak",
-                        "ms2_explanation_idx": "ms2_explanation_idx",
-                        "ms2_explanation": "ms2_explanation",
-                    }
-
-                    for rec_key, row_key in field_mapping.items():
-                        value = row.get(row_key)
-                        if rec_key in [
-                            "explained_ms2_peak",
-                            "total_valid_ms2_peak",
-                        ]:
-                            rec[rec_key] = (
-                                int(value) if value not in (None, "NA") else None
-                            )
-                        elif rec_key == "ms1_isotope_similarity":
-                            rec[rec_key] = None if value in (None, "NA") else value
-                        else:
-                            rec[rec_key] = value
-
-                    # Calculate explained peak fraction efficiently
-                    if rec["explained_ms2_peak"] and rec["total_valid_ms2_peak"]:
-                        rec["explained_peak_fraction"] = (
-                            rec["explained_ms2_peak"] / rec["total_valid_ms2_peak"]
-                        )
-
-                    # Compute explained_intensity using polars
-                    ms2_explanation_idx = rec["ms2_explanation_idx"]
-                    if ms2_explanation_idx not in (None, "NA"):
-                        mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
-                        if os.path.exists(mse_path):
-                            try:
-                                mse_df = pl.read_csv(mse_path, separator="\t")
-                                # indices can be comma-separated string
-                                if isinstance(ms2_explanation_idx, str):
-                                    indices = [
-                                        int(i) for i in ms2_explanation_idx.split(",")
-                                    ]
-                                elif isinstance(ms2_explanation_idx, int):
-                                    indices = [ms2_explanation_idx]
-                                else:
-                                    indices = list(ms2_explanation_idx)
-
-                                total_intensity = mse_df["intensity"].sum()
-                                explained_sum = mse_df.filter(
-                                    pl.col("raw_idx").is_in(indices),
-                                )["intensity"].sum()
-
-                                if total_intensity > 0:
-                                    rec["explained_intensity"] = (
-                                        explained_sum / total_intensity
-                                    )
-                                else:
-                                    rec["explained_intensity"] = None
-                            except Exception:
-                                rec["explained_intensity"] = None
-
-        recs.append(rec)
-
-    return pl.DataFrame(recs)
-
-
-@app.function
-def process_mgf_wrapper(args):
-    """Wrapper function for multiprocessing"""
-    mgf_path, msbuddy_root = args
-    return process_mgf(mgf_path, msbuddy_root)
-
-
-@app.function
-def process_directory_parallel(root_dir: str, max_workers: int = None) -> pl.DataFrame:
-    """Process directory with parallel MGF processing"""
-    spectra_dir = os.path.join(root_dir, "spectra")
-    msbuddy_dir = os.path.join(root_dir, "msbuddy")
-    mgfs = glob.glob(os.path.join(spectra_dir, "*.mgf"))
-
-    if not mgfs:
-        return pl.DataFrame()
-
-    # Determine optimal number of workers
-    if max_workers is None:
-        max_workers = min(len(mgfs), os.cpu_count() or 1)
-
-    dfs = []
-    with ProcessPoolExecutor(max_workers=max_workers) as executor:
-        # Submit all jobs
-        future_to_mgf = {
-            executor.submit(process_mgf_wrapper, (mgf, msbuddy_dir)): mgf
-            for mgf in mgfs
-        }
-
-        # Collect results as they complete
-        for future in as_completed(future_to_mgf):
-            try:
-                df = future.result()
-                if not df.is_empty():
-                    dfs.append(df)
-            except Exception as e:
-                mgf = future_to_mgf[future]
-                print(f"Error processing {mgf}: {e}")
-
-    return pl.concat(dfs, how="vertical") if dfs else pl.DataFrame()
-
-
-@app.function
-def process_directory(root_dir: str) -> pl.DataFrame:
-    """Fallback to original sequential processing"""
-    spectra_dir = os.path.join(root_dir, "spectra")
-    msbuddy_dir = os.path.join(root_dir, "msbuddy")
-    mgfs = glob.glob(os.path.join(spectra_dir, "*.mgf"))
-    dfs = [process_mgf(mgf, msbuddy_dir) for mgf in mgfs]
-    return pl.concat(dfs, how="vertical") if dfs else pl.DataFrame()
+def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
+    return [mpl.colors.rgb2hex(cmap(i)) for i in np.linspace(0, 1, n_colors)]
 
 
 @app.function
@@ -310,8 +283,6 @@ def make_status_plot(df: pl.DataFrame):
             .mark_text()
             .encode(text="note:N")
         )
-
-    # Use lazy evaluation and more efficient aggregation
     df_summary = (
         df.lazy()
         .select(["mgf", "formula_found", "formula_match"])
@@ -325,96 +296,77 @@ def make_status_plot(df: pl.DataFrame):
             .alias("status"),
         )
         .group_by(["mgf", "status"])
-        .agg(
-            [
-                pl.len().alias("count"),
-            ],
+        .agg([pl.len().alias("count")])
+        .with_columns(
+            pl.col("count").sum().over("mgf").alias("total_count")
         )
         .collect()
         .to_pandas()
     )
-
     alt.data_transformers.enable("vegafusion")
     return (
         alt.Chart(df_summary)
         .mark_bar()
         .encode(
-            x="mgf:N",
+            x=alt.X(
+                "mgf:N",
+                sort=alt.EncodingSortField(field="total_count", order="descending"),
+            ),
             y="count:Q",
             color=alt.Color(
                 "status:N",
                 scale=alt.Scale(
-                    domain=[
-                        "Formula not found",
-                        "Found but no match",
-                        "Match",
-                    ],
+                    domain=["Formula not found", "Found but no match", "Match"],
                     range=["#004488", "#DDAA33", "#BB5566"],
                 ),
             ),
-            tooltip=["mgf:N", "status:N", alt.Tooltip("count:Q", title="n")],
+            tooltip=[
+                "mgf:N",
+                "status:N",
+                alt.Tooltip("count:Q", title="n"),
+                alt.Tooltip("total_count:Q", title="total"),
+            ],
         )
-        .properties(title="MSBuddy: Formula Identification")
+        .properties(title="MSBuddy: Formula Identification (ordered by total count)")
     )
-
-
-@app.function
-def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
-    """Convert colormap to hex list efficiently"""
-    return [mpl.colors.rgb2hex(cmap(i)) for i in np.linspace(0, 1, n_colors)]
 
 
 @app.function
 def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
     if df.is_empty() or metric not in df.columns:
         return (
-            alt.Chart(
-                pl.DataFrame({"note": ["No matches or invalid metric"]}).to_pandas(),
-            )
+            alt.Chart(pl.DataFrame({"note": ["No matches or invalid metric"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
-
-    # Use lazy evaluation for better performance
     df_matches = (
         df.lazy()
         .filter((pl.col("formula_found") == True) & (pl.col("formula_match") == True))
         .filter(pl.col(metric).is_not_null())
         .group_by("mgf")
-        .agg(
-            [
-                pl.col(metric).mean().alias(f"mean_{metric}"),
-                pl.len().alias("count"),
-            ],
-        )
+        .agg([pl.col(metric).mean().alias(f"mean_{metric}"), pl.len().alias("count")])
         .collect()
         .to_pandas()
     )
-
     if df_matches.empty:
         return (
             alt.Chart(pl.DataFrame({"note": ["No valid matches"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
-
-    min_val, max_val = (
-        df_matches[f"mean_{metric}"].min(),
-        df_matches[f"mean_{metric}"].max(),
-    )
-
+    min_val, max_val = df_matches[f"mean_{metric}"].min(), df_matches[f"mean_{metric}"].max()
     return (
         alt.Chart(df_matches)
         .mark_bar()
         .encode(
-            x="mgf:N",
+            x=alt.X(
+                "mgf:N",
+                sort=alt.EncodingSortField(field="count", order="descending"),
+            ),
             y="count:Q",
             color=alt.Color(
                 f"mean_{metric}:Q",
-                scale=alt.Scale(
-                    domain=[min_val, max_val],
-                    range=cmap_to_hex_list(cmc.batlow, 256),
-                ),
+                scale=alt.Scale(domain=[min_val, max_val], range=cmap_to_hex_list(cmc.batlow, 256)),
             ),
             tooltip=[
                 "mgf:N",
@@ -422,25 +374,25 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
                 alt.Tooltip("count:Q", title="n"),
             ],
         )
-        .properties(title=f"MSBuddy: Match Quality by {metric}")
+        .properties(title=f"MSBuddy: Match Quality by {metric} (ordered by count)")
     )
 
 
 @app.cell
 def _():
-    root_dir = Path("/Volumes/T7/data/zeno_lib_v2")
-    out_name = "summary_test.csv"
-    use_parallel = True  # Toggle parallel processing
-    return root_dir, use_parallel
+    # Configuration for single-MGF workflow
+    mgf_path = Path("scratch/consolidated_spectra.mgf")
+    msbuddy_root = Path("scratch/msbuddy")
+    if not mgf_path.exists():
+        print(f"Warning: MGF file missing: {mgf_path}")
+    if not msbuddy_root.exists():
+        print(f"Warning: MSBuddy result root missing: {msbuddy_root}")
+    return mgf_path, msbuddy_root
 
 
 @app.cell
-def _process(root_dir, use_parallel):
-    if use_parallel:
-        n_cpus = cpu_count()
-        df = process_directory_parallel(root_dir=root_dir, max_workers=n_cpus)
-    else:
-        df = process_directory(root_dir=root_dir)
+def _process(mgf_path, msbuddy_root):
+    df = process_mgf(str(mgf_path), str(msbuddy_root))
     return (df,)
 
 
@@ -495,8 +447,7 @@ def _filter(df):
 
 @app.cell
 def _plot(df_filtered):
-    # Use lazy writing for better performance
-    df_filtered.write_csv("results.tsv")
+    df_filtered.write_csv("scratch/msbuddy_summary_results.tsv")
 
     charts = {
         "status": make_status_plot(df_filtered),
@@ -506,10 +457,10 @@ def _plot(df_filtered):
         "intensity": make_match_plot(df_filtered, "explained_intensity"),
     }
 
-    # Parallel chart saving could be added here if needed
+    os.makedirs("figures", exist_ok=True)
     for name, chart in charts.items():
-        chart.save(f"{name}.svg", format="svg")
-        chart.save(f"{name}.png", format="png")
+        chart.save(f"figures/{name}.svg", format="svg")
+        chart.save(f"figures/{name}.png", format="png")
     return
 
 
