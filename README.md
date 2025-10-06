@@ -334,6 +334,8 @@ uv run msbuddy \
 -batch_size 100 \
 -details \
 -halogen \
+-rel_int_denoise_cutoff 0 \
+-top_n_per_50_da -1 \
 -output "scratch/msbuddy"
 ```
 
