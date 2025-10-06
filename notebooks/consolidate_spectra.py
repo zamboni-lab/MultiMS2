@@ -281,6 +281,36 @@ def assign_feature_ids(settings: "Settings"):
                         block.feature_line_idx += 1
             except Exception:  # noqa: BLE001
                 pass
+        # Insert RTINSECONDS immediately after RETENTION_TIME with same value if missing
+        try:
+            has_rtinseconds = any(
+                l.upper().startswith("RTINSECONDS=") for l in block.lines
+            )
+            if not has_rtinseconds:
+                for idx_line, line in enumerate(block.lines):
+                    if line.upper().startswith("RETENTION_TIME="):
+                        # Extract value (keep original formatting after '=')
+                        val = line.split("=", 1)[1].rstrip("\n")
+                        block.lines.insert(idx_line + 1, f"RTINSECONDS={val}\n")
+                        # Adjust stored indices if they occur after insertion point
+                        if (
+                            block.feature_line_idx is not None
+                            and block.feature_line_idx > idx_line
+                        ):
+                            block.feature_line_idx += 1
+                        if (
+                            block.smiles_line_idx is not None
+                            and block.smiles_line_idx > idx_line
+                        ):
+                            block.smiles_line_idx += 1
+                        if (
+                            block.selfies_line_idx is not None
+                            and block.selfies_line_idx > idx_line
+                        ):
+                            block.selfies_line_idx += 1
+                        break  # only first RETENTION_TIME considered
+        except Exception:
+            pass
 
     if not settings.dry_run:
         out_lines: List[str] = []
