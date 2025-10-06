@@ -2,21 +2,14 @@
 # requires-python = ">=3.13,<4"
 # dependencies = [
 #     "marimo",
-#     "altair_upset",
 #     "polars",
 #     "pyarrow",
 #     "numpy",
 #     "matchms",
 #     "rdkit",
 #     "simple_parsing",
-#     "tmap-viz @ git+https://github.com/mvisani/tmap",
-#     "scipy",
-#     "faerun",
-#     "molzip",
-#     "tol-colors",
-#     "cmcrameri",
-#     "tqdm",
 #     "vl-convert-python",
+#     "altair",
 # ]
 # ///
 
@@ -26,35 +19,34 @@ __generated_with = "0.16.3"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass
-    from dataclasses import field
+    from dataclasses import dataclass, field
     import marimo as mo
-    import altair_upset as au
     import polars as pl
     import numpy as np
-    import glob
     import os
     import logging
-    from collections import defaultdict
+    import altair as alt
     from simple_parsing import ArgumentParser
     from matchms.importing import load_from_mgf
     from rdkit import Chem
-    from tqdm import tqdm
-    import matplotlib.colors as mcolors
-    import scipy.stats as ss
-    from cmcrameri import cm
-    from faerun import Faerun
-    from molzip import ZipKNNGraph
-    from tol_colors import high_contrast
-    import tmap as tm
 
     parser = ArgumentParser()
 
     @dataclass
     class Settings:
-        mgf_directory: str = field(
-            default="/Volumes/T7/data/zeno_lib_v2/spectra",
-            metadata={"help": "Directory containing MGF files to analyze"},
+        mgf_path: str = field(
+            default="scratch/consolidated_spectra.mgf",
+            metadata={"help": "Path to consolidated spectra MGF file"},
+        )
+        top_n_sets: int = field(
+            default=12,
+            metadata={
+                "help": "Maximum number of sets (groups) to retain before intersection ranking (unused if all)"
+            },
+        )
+        top_n_intersections: int = field(
+            default=32,
+            metadata={"help": "Show only the largest N intersections"},
         )
 
     parser.add_arguments(Settings, dest="settings")
@@ -75,23 +67,6 @@ with app.setup:
 
 
 @app.function
-def extract_adduct_and_smiles_from_mgf(file_path):
-    try:
-        spectra = list(load_from_mgf(file_path))
-        pairs = set()
-        for spectrum in spectra:
-            if hasattr(spectrum, "metadata"):
-                smiles = spectrum.metadata.get("smiles")
-                adduct = spectrum.metadata.get("adduct")
-                if smiles:
-                    pairs.add((adduct, smiles))
-        return pairs
-    except Exception as e:
-        print(f"Error reading {file_path}: {e}")
-        return set()
-
-
-@app.function
 def smiles_to_inchikey_first_layer(smiles):
     try:
         mol = Chem.MolFromSmiles(smiles)
@@ -99,80 +74,93 @@ def smiles_to_inchikey_first_layer(smiles):
             inchikey = Chem.MolToInchiKey(mol)
             return inchikey[:14]
         return None
-    except Exception as e:
-        print(f"Error converting SMILES {smiles}: {e}")
+    except Exception:
         return None
 
 
 @app.function
-def read_mgf_files(settings):
-    mgf_files = glob.glob(os.path.join(settings.mgf_directory, "*.mgf"))
-    if not mgf_files:
-        print(f"No MGF files found in {settings.mgf_directory}")
+def read_consolidated_mgf(settings: Settings):
+    """Read a single consolidated MGF and derive group memberships.
 
-    # Precedence for TMAP grouping
-    precedence = {"msmls": 3, "selleck": 2, "nexus": 1, "unknown": 0}
+    Group label logic replicates viz_msbuddy: group = f"{fragmentation_method}_{collision_energy}_{ionmode}" (sanitized).
+    Returns dictionaries for upset:
+      group_inchikeys: group -> {InChIKey14}
+      all_inchikeys: sorted list of unique InChIKey14
+      group_adduct_inchikey: group -> {(adduct, InChIKey14)}
+      all_adduct_inchikey: sorted list of all (adduct, InChIKey14) pairs
+    """
 
-    def tmap_group_from_filename(filename: str) -> str:
-        name = os.path.basename(filename).lower()
-        if "msmls" in name:
-            return "msmls"
-        if "selleck" in name:
-            return "selleck"
-        if "nexus" in name:
-            return "nexus"
-        return "unknown"
+    # Local sanitize (avoid execution-order issues if global _sanitize not yet defined)
+    def _sanitize_local(v):
+        if v is None:
+            return "na"
+        v = str(v).strip().lower()
+        import re as _re
 
-    # Upset: original groups (filename stem)
-    group_inchikeys = defaultdict(set)  # original_group -> {InChIKey14}
-    group_adduct_smiles = defaultdict(set)  # original_group -> {(adduct, smiles)}
+        v = _re.sub(r"[^a-z0-9.+-]", "_", v)
+        v = _re.sub(r"__+", "_", v).strip("_")
+        return v or "na"
 
-    # TMAP: unique SMILES + precedence group per SMILES
-    unique_smiles = set()
-    smiles_to_group = {}
+    mgf_path = settings.mgf_path
+    if not os.path.isfile(mgf_path):
+        logging.error("MGF file not found: %s", mgf_path)
+        return {}, [], {}, []
 
-    # Cache InChIKey conversions for efficiency
-    smiles2ik = {}
+    spectra = list(load_from_mgf(mgf_path))
+    group_inchikeys: dict[str, set[str]] = {}
+    group_adduct_inchikey: dict[str, set[tuple[str | None, str]]] = {}
 
-    for mgf_file in mgf_files:
-        original_group = os.path.splitext(os.path.basename(mgf_file))[
-            0
-        ]  # e.g. nexus_pos
-        tmap_group = tmap_group_from_filename(mgf_file)
+    smiles2ik: dict[str, str | None] = {}
 
-        for adduct, smiles in extract_adduct_and_smiles_from_mgf(mgf_file):
-            # Upset: store unique (adduct, smiles) per ORIGINAL group
-            group_adduct_smiles[original_group].add((adduct, smiles))
+    # metadata synonyms
+    ce_keys = ["collision_energy", "collisionenergy", "collisionenergy_ev", "ce"]
+    frag_keys = [
+        "fragmentation_method",
+        "fragmentationmethod",
+        "frag_method",
+        "fragmode",
+    ]
+    ion_keys = ["ionmode", "ion_mode", "polarity"]
 
-            # Upset: convert to InChIKey14 once per SMILES
+    def meta_lookup(md: dict, keys):
+        for k in keys:
+            v = md.get(k)
+            if v not in (None, ""):
+                return v
+        return None
+
+    for spectrum in spectra:
+        md = getattr(spectrum, "metadata", {}) or {}
+        smiles = md.get("smiles")
+        adduct = md.get("adduct")
+        # Build group label
+        ce = meta_lookup(md, ce_keys)
+        frag = meta_lookup(md, frag_keys)
+        ion = meta_lookup(md, ion_keys)
+        group = "_".join(
+            [_sanitize_local(frag), _sanitize_local(ce), _sanitize_local(ion)]
+        )
+
+        group_inchikeys.setdefault(group, set())
+        group_adduct_inchikey.setdefault(group, set())
+
+        if smiles:
             if smiles not in smiles2ik:
                 smiles2ik[smiles] = smiles_to_inchikey_first_layer(smiles)
             ik14 = smiles2ik[smiles]
             if ik14:
-                group_inchikeys[original_group].add(ik14)
+                group_inchikeys[group].add(ik14)
+                # only add (adduct, ik14) if adduct exists
+                if adduct:
+                    group_adduct_inchikey[group].add((adduct, ik14))
 
-            # TMAP: record unique SMILES and best precedence group
-            unique_smiles.add(smiles)
-            if (
-                smiles not in smiles_to_group
-                or precedence[tmap_group] > precedence[smiles_to_group[smiles]]
-            ):
-                smiles_to_group[smiles] = tmap_group
-
-    # All-item universes for upset membership matrices
-    all_inchikeys = sorted({ik for s, ik in smiles2ik.items() if ik})
-    all_adduct_smiles = sorted(
-        {(a, s) for pairs in group_adduct_smiles.values() for (a, s) in pairs},
+    all_inchikeys = sorted({ik for ik in smiles2ik.values() if ik})
+    all_adduct_inchikey = sorted(
+        {(a, k) for pairs in group_adduct_inchikey.values() for (a, k) in pairs},
+        key=lambda x: (x[0] or "", x[1]),
     )
 
-    return (
-        dict(group_inchikeys),  # for upset (InChIKey14)
-        all_inchikeys,
-        dict(group_adduct_smiles),  # for upset (adduct, SMILES)
-        all_adduct_smiles,
-        smiles_to_group,  # for TMAP
-        sorted(unique_smiles),  # for TMAP (unique SMILES)
-    )
+    return group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
 
 
 @app.function
@@ -187,45 +175,202 @@ def create_upset_data(group_items, all_items, item_label):
 
 
 @app.function
-def filter_upset_data(data, group_names, group="nexus_pos"):
-    pandas_df = data.to_pandas()
-    set_sums = pandas_df.sum(axis=0)
-    selected_cols = [col for col in set_sums.index if group in str(col)]
-    if selected_cols:
-        top_sets = set_sums[selected_cols].nlargest(min(6, len(selected_cols))).index
-    else:
-        top_sets = set_sums.nlargest(min(6, len(set_sums))).index
-    pd_sub = pandas_df[top_sets]
+def filter_upset_data(data: pl.DataFrame, group_names: list[str], top_n: int):
+    pdf = data.to_pandas()
+    set_sums = pdf.sum(axis=0)
+    # Take top N sets by membership size
+    top_sets = set_sums.nlargest(min(top_n, len(set_sums))).index
+    pdf_sub = pdf[top_sets]
     group_names_sub = [g for g in group_names if g in top_sets]
-    return pd_sub, group_names_sub
+    return pdf_sub, group_names_sub
 
 
-@app.cell
-def py_read_mgf_compounds():
-    (
-        group_inchikeys,
-        all_inchikeys,
-        group_adduct_smiles,
-        all_adduct_smiles,
-        smiles_to_group,
-        all_smiles,
-    ) = read_mgf_files(settings)
-    return (
-        all_adduct_smiles,
-        all_inchikeys,
-        all_smiles,
-        group_adduct_smiles,
-        group_inchikeys,
-        smiles_to_group,
+@app.function
+def membership_top_intersections(pdf, top_n: int):
+    """Compute top N intersections from a pandas membership matrix (items x sets)."""
+    # pdf: rows = items, columns = sets (0/1)
+    counts = {}
+    cols = list(pdf.columns)
+    arr = pdf.to_numpy(dtype=int)
+    for row in arr:
+        idxs = np.nonzero(row)[0]
+        if len(idxs) == 0:
+            continue
+        key = tuple(sorted(idxs))
+        counts[key] = counts.get(key, 0) + 1
+    # build sorted list
+    ranked = sorted(counts.items(), key=lambda x: x[1], reverse=True)
+    if top_n > 0:
+        ranked = ranked[:top_n]
+    # active set indices
+    active_indices = sorted({i for key, _ in ranked for i in key})
+    active_sets = [cols[i] for i in active_indices]
+    # Build intersection dataframe
+    records = []
+    for rank_pos, (key, ct) in enumerate(ranked, start=1):
+        set_names = [cols[i] for i in key]
+        intersection_label = " ∩ ".join(set_names)
+        records.append(
+            {
+                "intersection": intersection_label,
+                "count": ct,
+                "order": rank_pos,
+                "sets": set_names,
+            },
+        )
+    return records, active_sets
+
+
+@app.function
+def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
+    records, active_sets = membership_top_intersections(pdf, top_n_intersections)
+    if not records:
+        return (
+            alt.Chart(pl.DataFrame({"note": ["No intersections"]}).to_pandas())
+            .mark_text()
+            .encode(text="note")
+        )
+    import pandas as _pd
+
+    inter_df = _pd.DataFrame(records)
+    matrix_rows = []
+    for r in records:
+        for s in active_sets:
+            matrix_rows.append(
+                {
+                    "intersection": r["intersection"],
+                    "set": s,
+                    "present": 1 if s in r["sets"] else 0,
+                    "count": r["count"],
+                },
+            )
+    matrix_df = _pd.DataFrame(matrix_rows)
+    set_sizes_full = pdf.sum(axis=0).reset_index()
+    set_sizes_full.columns = ["set", "size"]
+    set_sizes = set_sizes_full[set_sizes_full["set"].isin(active_sets)]
+    set_sizes = set_sizes.sort_values(["size", "set"], ascending=[False, True])
+    set_order = list(set_sizes["set"])
+
+    # Dynamic width and heights
+    inter_width = max(400, len(records) * 26)
+    row_height = 22
+    matrix_height = max(80, row_height * len(set_order))
+
+    # Unified palette
+    base_color = "#2E5B88"  # consistent deep blue
+    absent_color = "#F1F4F7"
+
+    max_size = int(set_sizes["size"].max()) if len(set_sizes) else 0
+    set_sizes = set_sizes.assign(maxsize=max_size)
+
+    x_inter = alt.X(
+        "intersection:N",
+        sort=alt.SortField(field="count", order="descending"),
+        axis=alt.Axis(labels=False, ticks=False, title=None),
     )
 
+    # Bars (top)
+    bars = (
+        alt.Chart(inter_df, width=inter_width, height=200)
+        .mark_bar(color=base_color, stroke="white", strokeWidth=0.6)
+        .encode(
+            x=x_inter,
+            y=alt.Y("count:Q", title="Intersection Size"),
+            tooltip=["intersection:N", alt.Tooltip("count:Q", title="size")],
+        )
+        .properties(title=f"{title_prefix}: Top {len(records)} Intersections")
+    )
+
+    bar_labels = (
+        alt.Chart(inter_df, width=inter_width, height=200)
+        .mark_text(dy=-4, color="#222", fontSize=10)
+        .encode(x=x_inter, y=alt.Y("count:Q"), text=alt.Text("count:Q"))
+    )
+
+    # Shared y encoding
+    y_sets = alt.Y(
+        "set:N",
+        sort=set_order,
+        axis=alt.Axis(title="Sets", labelPadding=4, ticks=False, domain=False),
+    )
+
+    matrix = (
+        alt.Chart(matrix_df, width=inter_width, height=matrix_height)
+        .mark_rect(stroke="#d0d5da", strokeWidth=0.5)
+        .encode(
+            x=x_inter,
+            y=y_sets,
+            color=alt.condition(
+                alt.datum.present == 1,
+                alt.value(base_color),
+                alt.value(absent_color),
+            ),
+            tooltip=["set:N", "intersection:N", "present:Q"],
+        )
+    )
+
+    # Background full-width bars for consistent row grid lines
+    bg_bars = (
+        alt.Chart(set_sizes, width=200, height=matrix_height)
+        .mark_bar(fill=absent_color, stroke="#d0d5da", strokeWidth=0.5)
+        .encode(
+            y=alt.Y("set:N", sort=set_order, axis=None),
+            x=alt.X(
+                "maxsize:Q",
+                title="Set Size",
+                scale=alt.Scale(domain=[0, max_size]),
+            ),
+        )
+    )
+
+    size_bars = (
+        alt.Chart(set_sizes, width=200, height=matrix_height)
+        .mark_bar(color=base_color, stroke="white", strokeWidth=0.6)
+        .encode(
+            y=alt.Y("set:N", sort=set_order, axis=None),
+            x=alt.X(
+                "size:Q",
+                title="Set Size",
+                scale=alt.Scale(domain=[0, max_size]),
+            ),
+            tooltip=["set:N", alt.Tooltip("size:Q", title="set size")],
+        )
+    )
+
+    size_labels = (
+        alt.Chart(set_sizes, width=200, height=matrix_height)
+        .mark_text(align="left", dx=3, color="#222", fontSize=10)
+        .encode(
+            y=alt.Y("set:N", sort=set_order, axis=None),
+            x=alt.X("size:Q"),
+            text=alt.Text("size:Q"),
+        )
+    )
+
+    right_panel = bg_bars + size_bars + size_labels
+
+    lower = alt.hconcat(matrix, right_panel, spacing=16).resolve_scale(y="shared")
+
+    chart = (
+        alt.vconcat(bars + bar_labels, lower)
+        .resolve_scale(x="shared", color="independent")
+        .configure_view(strokeWidth=0)
+        .configure_axis(labelFontSize=11, titleFontSize=12)
+    )
+    return chart
+
 
 @app.cell
-def py_prepare_upset(
-    all_adduct_smiles,
-    all_inchikeys,
-    group_adduct_smiles,
-    group_inchikeys,
+def _read(settings):
+    group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey = (
+        read_consolidated_mgf(settings)
+    )
+    return group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
+
+
+@app.cell
+def _prepare(
+    group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
 ):
     data_inchikeys, names_inchikeys = create_upset_data(
         group_items=group_inchikeys,
@@ -233,163 +378,55 @@ def py_prepare_upset(
         item_label="InChIKey",
     )
     data_pairs, names_pairs = create_upset_data(
-        group_items=group_adduct_smiles,
-        all_items=all_adduct_smiles,
-        item_label="SMILES–Adduct pair",
+        group_items=group_adduct_inchikey,
+        all_items=all_adduct_inchikey,
+        item_label="Adduct–Connectivity pair",
     )
     return data_inchikeys, data_pairs, names_inchikeys, names_pairs
 
 
 @app.cell
-def py_filter_upset(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
-    pd_sub_inchikeys, names_sub_inchikey = filter_upset_data(
+def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs, settings):
+    pd_sub_inchikeys, names_sub_inchikeys = filter_upset_data(
         data=data_inchikeys,
-        group_names=names_inchikeys,  # default "nexus_pos"
+        group_names=names_inchikeys,
+        top_n=settings.top_n_sets,
     )
     pd_sub_pairs, names_sub_pairs = filter_upset_data(
         data=data_pairs,
-        group_names=names_pairs,  # default "nexus_pos"
+        group_names=names_pairs,
+        top_n=settings.top_n_sets,
     )
-    return names_sub_inchikey, names_sub_pairs, pd_sub_inchikeys, pd_sub_pairs
+    return names_sub_inchikeys, names_sub_pairs, pd_sub_inchikeys, pd_sub_pairs
 
 
 @app.cell
-def py_plot_upset(
-    names_sub_inchikey,
-    names_sub_pairs,
-    pd_sub_inchikeys,
-    pd_sub_pairs,
+def _plot(
+    names_sub_inchikeys, names_sub_pairs, pd_sub_inchikeys, pd_sub_pairs, settings
 ):
-    chart_inchikeys = au.UpSetAltair(
-        data=pd_sub_inchikeys,
-        sets=names_sub_inchikey,
-        title="InChI Key (first layer) Intersections — Original Groups",
-        height_ratio=0.9,
-        width=3000,
+    chart_inchikeys = build_upset_charts(
+        pd_sub_inchikeys, settings.top_n_intersections, "Connectivities"
     )
-    chart_pairs = au.UpSetAltair(
-        data=pd_sub_pairs,
-        sets=names_sub_pairs,
-        title="SMILES–Adduct Pairs Intersections — Original Groups",
-        height_ratio=0.9,
-        width=3000,
+    chart_pairs = build_upset_charts(
+        pd_sub_pairs, settings.top_n_intersections, "Adduct–Connectivities"
     )
-    chart_inchikeys.chart.save("inchikeys_upset.svg", format="svg")
-    chart_pairs.chart.save("pairs_upset.svg", format="svg")
+    os.makedirs("figures", exist_ok=True)
+    chart_inchikeys.save("figures/connectivities_upset.svg", format="svg")
+    chart_pairs.save("figures/pairs_upset.svg", format="svg")
+    chart_inchikeys.save("figures/connectivities_upset.png", format="png")
+    chart_pairs.save("figures/pairs_upset.png", format="png")
     return chart_inchikeys, chart_pairs
 
 
 @app.cell
-def py_display_chart_inchikeys(chart_inchikeys):
-    chart_inchikeys.chart
+def _show_inchikey(chart_inchikeys):
+    chart_inchikeys
     return
 
 
 @app.cell
-def py_display_chart_pairs(chart_pairs):
-    chart_pairs.chart
-    return
-
-
-@app.cell
-def py_tmap_faerun(all_smiles, smiles_to_group):
-    # compute descriptors on UNIQUE SMILES
-    mols, hac, c_frac, ring_atom_frac, largest_ring_size = [], [], [], [], []
-    for smiles in tqdm(all_smiles, desc="Processing molecules"):
-        mol = Chem.MolFromSmiles(smiles)
-        if mol is None:
-            continue
-        atoms = mol.GetAtoms()
-        size = mol.GetNumHeavyAtoms()
-        n_c = sum(1 for atom in atoms if atom.GetSymbol().lower() == "c")
-        n_ring_atoms = sum(1 for atom in atoms if atom.IsInRing())
-        c_frac.append(n_c / size if size else 0)
-        ring_atom_frac.append(n_ring_atoms / size if size else 0)
-        sssr = Chem.GetSymmSSSR(mol)
-        largest_ring_size.append(max((len(s) for s in sssr), default=0))
-        hac.append(size)
-        mols.append(mol)
-
-    # TMAP groups (simplified)
-    groups = ["nexus", "selleck", "msmls", "unknown"]
-    group_to_idx = {g: i for i, g in enumerate(groups)}
-    group_idx = [group_to_idx[smiles_to_group.get(s, "unknown")] for s in all_smiles]
-
-    # MolZip graph
-    zg = ZipKNNGraph()
-    edge_list = zg.fit_predict(all_smiles, k=5)
-
-    # TMAP layout
-    cfg = tm.LayoutConfiguration()
-    cfg.node_size = 1
-    cfg.mmm_repeats = 2
-    cfg.sl_repeats = 2
-    x, y, s, t, _ = tm.layout_from_edge_list(
-        len(all_smiles),
-        edge_list,
-        create_mst=True,
-        config=cfg,
-    )
-
-    # carbon fraction ranks (safe normalization)
-    c_arr = np.array(c_frac, dtype=float)
-    denom = np.max(c_arr) if len(c_arr) and np.max(c_arr) > 0 else 1.0
-    c_frac_ranked = ss.rankdata(c_arr / denom) / max(len(c_arr), 1)
-
-    # Faerun plot
-    f = Faerun(view="front", coords=False, clear_color="#ffffff")
-    hc_colors = [
-        high_contrast.blue,
-        high_contrast.red,
-        high_contrast.yellow,
-        high_contrast.black,
-    ]
-    legend_labels_group = [(i, g) for i, g in enumerate(groups)]
-
-    f.add_scatter(
-        "attribute",
-        {
-            "x": list(x),
-            "y": list(y),
-            "c": [
-                hac,
-                c_frac_ranked,
-                ring_atom_frac,
-                largest_ring_size,
-                group_idx,
-            ],
-            "labels": all_smiles,
-        },
-        shader="smoothCircle",
-        point_scale=5,
-        max_point_size=50,
-        legend_labels=[[], [], [], [], legend_labels_group],
-        categorical=[False, False, False, False, True],
-        colormap=[
-            cm.batlow,
-            cm.batlow,
-            cm.batlow,
-            cm.batlow,
-            mcolors.ListedColormap(hc_colors),
-        ],
-        series_title=[
-            "HAC",
-            "C Frac",
-            "Ring Atom Frac",
-            "Largest Ring Size",
-            "Group",
-        ],
-        has_legend=True,
-    )
-
-    f.add_tree(
-        "fragments_tree",
-        {"from": list(s), "to": list(t)},
-        point_helper="attribute",
-        color="#e6e6e6",
-    )
-
-    f.plot("libraries_tmap", template="smiles")
+def _show_pairs(chart_pairs):
+    chart_pairs
     return
 
 

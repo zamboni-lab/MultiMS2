@@ -76,6 +76,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
     If not found, attempt seconds->minutes conversion (rt/60) when RT > 180 and retry.
     Group label (stored in 'mgf' column) constructed from (fragmentation_method, collision_energy, ionmode).
     """
+
     # Local helpers (avoid execution-order issues in marimo)
     def _meta_lookup_local(spectrum, *keys):
         for k in keys:
@@ -232,15 +233,21 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                         try:
                             mse_df = pl.read_csv(mse_path, separator="\t")
                             if isinstance(ms2_explanation_idx, str):
-                                indices = [int(i) for i in ms2_explanation_idx.split(",")]
+                                indices = [
+                                    int(i) for i in ms2_explanation_idx.split(",")
+                                ]
                             elif isinstance(ms2_explanation_idx, int):
                                 indices = [ms2_explanation_idx]
                             else:
                                 indices = list(ms2_explanation_idx)
                             total_intensity = mse_df["intensity"].sum()
-                            explained_sum = mse_df.filter(pl.col("raw_idx").is_in(indices))["intensity"].sum()
+                            explained_sum = mse_df.filter(
+                                pl.col("raw_idx").is_in(indices)
+                            )["intensity"].sum()
                             if total_intensity > 0:
-                                rec["explained_intensity"] = explained_sum / total_intensity
+                                rec["explained_intensity"] = (
+                                    explained_sum / total_intensity
+                                )
                         except Exception:
                             pass
         recs.append(rec)
@@ -297,9 +304,7 @@ def make_status_plot(df: pl.DataFrame):
         )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
-        .with_columns(
-            pl.col("count").sum().over("mgf").alias("total_count")
-        )
+        .with_columns(pl.col("count").sum().over("mgf").alias("total_count"))
         .collect()
         .to_pandas()
     )
@@ -335,7 +340,9 @@ def make_status_plot(df: pl.DataFrame):
 def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
     if df.is_empty() or metric not in df.columns:
         return (
-            alt.Chart(pl.DataFrame({"note": ["No matches or invalid metric"]}).to_pandas())
+            alt.Chart(
+                pl.DataFrame({"note": ["No matches or invalid metric"]}).to_pandas()
+            )
             .mark_text()
             .encode(text="note:N")
         )
@@ -354,7 +361,10 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
             .mark_text()
             .encode(text="note:N")
         )
-    min_val, max_val = df_matches[f"mean_{metric}"].min(), df_matches[f"mean_{metric}"].max()
+    min_val, max_val = (
+        df_matches[f"mean_{metric}"].min(),
+        df_matches[f"mean_{metric}"].max(),
+    )
     return (
         alt.Chart(df_matches)
         .mark_bar()
@@ -366,7 +376,9 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
             y="count:Q",
             color=alt.Color(
                 f"mean_{metric}:Q",
-                scale=alt.Scale(domain=[min_val, max_val], range=cmap_to_hex_list(cmc.batlow, 256)),
+                scale=alt.Scale(
+                    domain=[min_val, max_val], range=cmap_to_hex_list(cmc.batlow, 256)
+                ),
             ),
             tooltip=[
                 "mgf:N",
