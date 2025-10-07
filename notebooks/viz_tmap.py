@@ -1,20 +1,21 @@
 # /// script
 # requires-python = ">=3.13,<4"
 # dependencies = [
-#     "marimo",
-#     "tqdm",
-#     "rdkit",
-#     "selfies",
-#     "polars",
-#     "numpy",
-#     "scipy",
 #     "cmcrameri",
-#     "faerun",
-#     "molzip",
-#     "tol-colors",
 #     "datasketch",
+#     "faerun",
 #     "map4",
+#     "marimo",
 #     "matplotlib",
+#     "molzip",
+#     "numpy",
+#     "polars",
+#     "rdkit",
+#     "scipy",
+#     "selfies",
+#     "tmap",
+#     "tol-colors",
+#     "tqdm",
 # ]
 # ///
 

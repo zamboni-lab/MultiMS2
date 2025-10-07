@@ -45,7 +45,7 @@ with app.setup:
             },
         )
         top_n_intersections: int = field(
-            default=32,
+            default=50,
             metadata={"help": "Show only the largest N intersections"},
         )
 
@@ -129,11 +129,11 @@ def read_consolidated_mgf(settings: Settings):
                 return v
         return None
 
+    triplet_set = set()
     for spectrum in spectra:
         md = getattr(spectrum, "metadata", {}) or {}
         smiles = md.get("smiles")
         adduct = md.get("adduct")
-        # Build group label
         ce = meta_lookup(md, ce_keys)
         frag = meta_lookup(md, frag_keys)
         ion = meta_lookup(md, ion_keys)
@@ -150,9 +150,12 @@ def read_consolidated_mgf(settings: Settings):
             ik14 = smiles2ik[smiles]
             if ik14:
                 group_inchikeys[group].add(ik14)
-                # only add (adduct, ik14) if adduct exists
+                # add (adduct, ik14) for plotting
                 if adduct:
                     group_adduct_inchikey[group].add((adduct, ik14))
+                # add (adduct, ik14, ce) for summary
+                if adduct and ce:
+                    triplet_set.add((adduct, ik14, str(ce)))
 
     all_inchikeys = sorted({ik for ik in smiles2ik.values() if ik})
     all_adduct_inchikey = sorted(
@@ -160,17 +163,37 @@ def read_consolidated_mgf(settings: Settings):
         key=lambda x: (x[0] or "", x[1]),
     )
 
-    return group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
+    return (
+        group_inchikeys,
+        all_inchikeys,
+        group_adduct_inchikey,
+        all_adduct_inchikey,
+        triplet_set,
+    )
 
 
 @app.function
 def create_upset_data(group_items, all_items, item_label):
     data_dict = {}
     group_names = list(group_items.keys())
+    group_sizes = []
     for group_name in group_names:
         s = group_items[group_name]
         data_dict[group_name] = [1 if item in s else 0 for item in all_items]
-        print(f"{group_name}: {sum(data_dict[group_name])} {item_label}(s)")
+        group_sizes.append((group_name, sum(data_dict[group_name])))
+    # Sort by size descending, then group name
+    group_sizes_sorted = sorted(group_sizes, key=lambda x: (-x[1], x[0]))
+    print(f"TOTAL: {len(all_items)} unique {item_label}(s)")
+    for group_name, size in group_sizes_sorted:
+        print(f"{group_name}: {size} {item_label}(s)")
+    # Print number of unique (adduct, connectivity, energy) triplets if possible
+    if all_items and isinstance(all_items[0], tuple) and len(all_items[0]) >= 3:
+        # Assume tuple: (adduct, connectivity, energy) or similar
+        triplets = set()
+        for item in all_items:
+            # Only use first three elements
+            triplets.add((item[0], item[1], item[2]))
+        print(f"TOTAL: {len(triplets)} unique Adduct-Connectivity-Energy triplet(s)")
     return pl.DataFrame(data_dict), group_names
 
 
@@ -360,11 +383,22 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
     return chart
 
 
+@app.function
+def log_triplet_count(triplet_set):
+    print(f"TOTAL: {len(triplet_set)} unique Adduct-Connectivity-Energy triplet(s)")
+    return len(triplet_set)
+
+
 @app.cell
 def _read(settings):
-    group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey = (
-        read_consolidated_mgf(settings)
-    )
+    (
+        group_inchikeys,
+        all_inchikeys,
+        group_adduct_inchikey,
+        all_adduct_inchikey,
+        triplet_set,
+    ) = read_consolidated_mgf(settings)
+    log_triplet_count(triplet_set)
     return group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
 
 

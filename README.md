@@ -268,6 +268,12 @@ uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/Mu
 uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/msmls_neg_cid_60_batch_library.mgf CID 60.0
 ```
 
+#### Concatenation
+
+```bash
+uv run python notebooks/concatenate_spectra.py
+```
+
 #### Modalities and Quality Filtering
 
 After this, spectra from all sub-libraries and modalities are concatenated by running:
@@ -285,12 +291,24 @@ min_precursor_purity = 0.9
 min_signals = 3
 min_explained_intensity = 0.4
 min_explained_signals = 0.05
-min_modalities = 3
+min_modalities = 2
 min_intensity_ratio = 0.8
 min_signals_ratio = 0.4
 ```
 
-This led to 54,996 spectra over the 164,371 initially extracted.
+After min_precursor_height: 147509 spectra, 13367 unique (inchi_aux, adduct)
+After min_precursor_purity: 141640 spectra, 13020 unique (inchi_aux, adduct)
+After min_signals: 126088 spectra, 12615 unique (inchi_aux, adduct)
+After min_explained_intensity: 75764 spectra, 10484 unique (inchi_aux, adduct)
+After min_explained_signals: 75662 spectra, 10477 unique (inchi_aux, adduct)
+After min_intensity_ratio: 69650 spectra, 10477 unique (inchi_aux, adduct)
+After min_signals_ratio: 68805 spectra, 10477 unique (inchi_aux, adduct)
+After min_explained_intensity: 68805 spectra, 10477 unique (inchi_aux, adduct)
+After min_explained_signals: 68805 spectra, 10477 unique (inchi_aux, adduct)
+After min_modalities per (inchi_aux, adduct): 3168 inchi_aux, 5005 unique (inchi_aux, adduct), 27898 unique (inchi_aux, adduct, modality)
+Final spectra selected for output: 54645
+Exported 54645 final spectra to scratch/filtered_spectra.mgf
+
 (Both `all` and `filtered` MGF are exported)
 
 #### Adduct Assignment Check
@@ -302,25 +320,19 @@ In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the c
 uv run python notebooks/validate_losses.py
 ```
 
-From the 54,996 filtered spectra, 48,766 were validated and 6,230 discarded.
+From the 54,645 filtered spectra, 48,612 were validated and 6,033 discarded.
 
 TODO CITE RDKit
 
-#### SELFIES Addition
+#### Metadata Consolidation
 
 TODO CITE SELFIES
 
-At this point, SELFIES can be added and unique feature IDs attributed using:
+At this point, SELFIES can be added, metadata in the headers cleaned up, and unique feature IDs attributed using:
 
 ```bash
-uv run python notebooks/consolidate_spectra.py
+uv run python notebooks/consolidate_spectra.py --instrument_name ZENOTOF7600 --data_curator ARutz
 ```
-
-At the end:
-
-* 3,035 unique compounds were recorded in 
-  * 18,610 unique compound-adduct-fragmentation-energy modalities for a total of 
-    * 48,766 spectra
 
 #### MS-BUDDY Molecular Formula Annotation
 
@@ -337,6 +349,22 @@ uv run msbuddy \
 -rel_int_denoise_cutoff 0 \
 -top_n_per_50_da -1 \
 -output "scratch/msbuddy"
+```
+
+## Visualization
+
+```bash
+uv run python notebooks/viz_upset.py
+```
+In the end:
+
+* 2,993 unique compounds were recorded in 
+  * 4,510 unique compound-adduct modalities,
+    * 18,486 unique compound-adduct-fragmentation modalities for a total of 
+      * 48,612 spectra
+
+```bash
+uv run python notebooks/viz_upset.py
 ```
 
 ## Data Processing Pipeline (here for reference)

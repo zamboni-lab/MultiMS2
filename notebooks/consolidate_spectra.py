@@ -4,6 +4,7 @@
 #   "marimo",
 #   "simple_parsing",
 #   "selfies",
+#   "rdkit",
 # ]
 # ///
 
@@ -19,6 +20,8 @@ with app.setup:
     import os
     import re
     import selfies
+    from rdkit import Chem
+    from rdkit.Chem import Descriptors
 
     @dataclass
     class Settings:
@@ -39,6 +42,14 @@ with app.setup:
         dry_run: bool = field(
             default=False,
             metadata={"help": "If True, do not write output file; only report counts."},
+        )
+        instrument_name: Optional[str] = field(
+            default=None,
+            metadata={"help": "Instrument name to add to all spectra (optional)."},
+        )
+        data_curator: Optional[str] = field(
+            default=None,
+            metadata={"help": "Data curator to add to all spectra (optional)."},
         )
 
     parser = ArgumentParser()
@@ -169,11 +180,9 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order on
 
 # ---------------- Core Processing ---------------- #
 @app.function
-def assign_feature_ids(settings: "Settings"):
-    """Assign FEATURE_ID fields based on grouping header values.
-
-    The grouping key: (DESCRIPTION, ADDUCT, COLLISION_ENERGY, FRAGMENTATION_METHOD, INCHI_AUX).
-    Empty headers do not collapse distinct blocks (unique sentinel used).
+def assign_feature_ids(settings: Settings):
+    """
+    Refactored: Reorder and rename fields, calculate MOLECULEMASS, add defaults, remove RETENTION_TIME, keep RTINSECONDS.
     """
     if not os.path.isfile(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}
@@ -182,154 +191,123 @@ def assign_feature_ids(settings: "Settings"):
     if not blocks:
         return {"error": "No spectra found in input MGF."}
 
-    # Grouping fields for feature ID assignment (case-insensitive header matching)
-    grouping_fields = [
-        "description",
-        "adduct",
-        "collision_energy",
-        "fragmentation_method",
-        "inchi_aux",
+    # --- Field order and renaming ---
+    field_order = [
+        "FILENAME",
+        "COMPOUND_NAME",
+        "MOLECULEMASS",
+        "INSTRUMENT_TYPE",
+        "INSTRUMENT_NAME",
+        "IONSOURCE",
+        "EXTRACTSCAN",
+        "FORMULA",
+        "SMILES",
+        "SELFIES",
+        "INCHI",
+        "INCHIAUX",
+        "CHARGE",
+        "IONMODE",
+        "ADDUCT",
+        "EXACTMASS",
+        "ACQUISITION",
+        "DATA_COLLECTOR",
+        "DATA_CURATOR",
+        "PI",
+        "DESCRIPTION",
+        "FEATURE_ID",
+        "FEATURE_FULL_ID",
+        "FEATURELIST_FEATURE_ID",
+        "FEATURE_MS1_HEIGHT",
+        "SPECTYPE",
+        "MERGED_ACROSS_N_SAMPLES",
+        "COLLISION_ENERGY",
+        "FRAGMENTATION_METHOD",
+        "IMS_TYPE",
+        "DATASET_ID",
+        "USI",
+        "SOURCE_SCAN_USI",
+        "PRECURSOR_MZ",
+        "PRECURSOR_PURITY",
+        "QUALITY_CHIMERIC",
+        "QUALITY_EXPLAINED_INTENSITY",
+        "QUALITY_EXPLAINED_SIGNALS",
+        "NUM_PEAKS",
+        "SPECTRUM_ID",
+        "RTINSECONDS",
     ]
-    canonical_key_map = {
-        # description
-        "description": "description",
-        # adduct
-        "adduct": "adduct",
-        # collision energy variants
-        "collision_energy": "collision_energy",
-        "collisionenergy": "collision_energy",
-        "collisionenergy_ev": "collision_energy",
-        "ce": "collision_energy",
-        # fragmentation method variants
-        "fragmentation_method": "fragmentation_method",
-        "fragmentationmethod": "fragmentation_method",
-        "frag_method": "fragmentation_method",
-        # InChI auxiliary variants
-        "inchi_aux": "inchi_aux",
-        "inchi": "inchi_aux",
-        "inchi_key_aux": "inchi_aux",
+    field_rename = {
+        "FILE_NAME": "FILENAME",
+        "ION_SOURCE": "IONSOURCE",
+        "SCANS": "EXTRACTSCAN",
+        "MOLECULEMASS": "MOLECULEMASS",
+        "INSTRUMENT_TYPE": "INSTRUMENT_TYPE",
+        "INSTRUMENT_NAME": "INSTRUMENT_NAME",
+        "SELFIES": "SELFIES",
+        "INCHI_AUX": "INCHIAUX",
+        "PARENT_MASS": "EXACTMASS",
+        "DATA_CURATOR": "DATA_CURATOR",
+        "PRINCIPAL_INVESTIGATOR": "PI",
+        "RETENTION_TIME": "RTINSECONDS",
     }
 
-    def extract_group_key(block: SpectrumBlock):
-        values = {k: "" for k in grouping_fields}
-        for line in block.lines:
-            if line.startswith("BEGIN IONS"):
+    def parse_fields(lines):
+        fields = {}
+        peaks = []
+        for line in lines:
+            if line.startswith("BEGIN IONS") or line.startswith("END IONS"):
                 continue
-            if line.startswith("END IONS"):
-                break
-            if "=" not in line:
-                continue
-            key, val = line.split("=", 1)
-            key_l = key.strip().lower()
-            key_canon = canonical_key_map.get(key_l)
-            if key_canon in values:
-                values[key_canon] = val.strip()
-        key_tuple = tuple(values[k] for k in grouping_fields)
-        if all(v == "" for v in key_tuple):
-            return ("__UNIQUE__", block.order_in_file)
-        return key_tuple
+            if "=" in line:
+                k, v = line.split("=", 1)
+                k = k.strip()
+                v = v.strip()
+                k = field_rename.get(k, k)
+                fields[k] = v
+            elif re.match(r"^\s*\d+\.?\d*", line):
+                peaks.append(line)
+        return fields, peaks
 
-    group_to_id: dict[tuple, int] = {}
-    next_id = 1
-    inchi_aux_index = grouping_fields.index("inchi_aux")
-    unique_inchi_aux: set[str] = set()
+    def build_lines(fields, peaks):
+        out = ["BEGIN IONS\n"]
+        for key in field_order:
+            if key == "INSTRUMENT_NAME":
+                val = settings.instrument_name if settings.instrument_name else ""
+            elif key == "DATA_CURATOR":
+                val = settings.data_curator if settings.data_curator else ""
+            elif key == "MOLECULEMASS":
+                smi = fields.get("SMILES", "")
+                mol = Chem.MolFromSmiles(smi) if smi else None
+                val = f"{Descriptors.MolWt(mol):.4f}" if mol else ""
+            elif key == "SELFIES" and settings.add_selfies:
+                smi = fields.get("SMILES", "")
+                val = selfies.encoder(smi) if smi else ""
+            elif key == "RTINSECONDS":
+                val = fields.get("RTINSECONDS", "")
+            else:
+                val = fields.get(key, "")
+            if val != "":
+                out.append(f"{key}={val}\n")
+        out.extend(peaks)
+        if not out or not out[-1].endswith("\n"):
+            out.append("\n")
+        out.append("END IONS\n\n")
+        return out
 
     for block in blocks:
-        gkey = extract_group_key(block)
-        if gkey not in group_to_id:
-            group_to_id[gkey] = next_id
-            next_id += 1
-        # Collect INCHI_AUX (skip sentinel unique grouping key)
-        if gkey and gkey[0] != "__UNIQUE__":
-            iaux_val = gkey[inchi_aux_index]
-            if iaux_val:
-                unique_inchi_aux.add(iaux_val)
-        fid = str(group_to_id[gkey])
-        if block.feature_line_idx is not None:
-            block.lines[block.feature_line_idx] = f"FEATURE_ID={fid}\n"
-        else:
-            insert_pos = 1 if len(block.lines) > 1 else len(block.lines)
-            block.lines.insert(insert_pos, f"FEATURE_ID={fid}\n")
-            # Shift stored indices if needed
-            if (
-                block.smiles_line_idx is not None
-                and block.smiles_line_idx >= insert_pos
-            ):
-                block.smiles_line_idx += 1
-            if (
-                block.selfies_line_idx is not None
-                and block.selfies_line_idx >= insert_pos
-            ):
-                block.selfies_line_idx += 1
-        # Optional SELFIES insertion
-        if (
-            settings.add_selfies
-            and block.smiles_line_idx is not None
-            and block.selfies_line_idx is None
-        ):
-            smi_line = block.lines[block.smiles_line_idx].strip()
-            try:
-                smi = smi_line.split("=", 1)[1].strip()
-                if smi:
-                    sf_str = selfies.encoder(smi)
-                    insert_after = block.smiles_line_idx + 1
-                    block.lines.insert(insert_after, f"SELFIES={sf_str}\n")
-                    if (
-                        block.feature_line_idx is not None
-                        and block.feature_line_idx > block.smiles_line_idx
-                    ):
-                        block.feature_line_idx += 1
-            except Exception:  # noqa: BLE001
-                pass
-        # Insert RTINSECONDS immediately after RETENTION_TIME with same value if missing
-        try:
-            has_rtinseconds = any(
-                l.upper().startswith("RTINSECONDS=") for l in block.lines
-            )
-            if not has_rtinseconds:
-                for idx_line, line in enumerate(block.lines):
-                    if line.upper().startswith("RETENTION_TIME="):
-                        # Extract value (keep original formatting after '=')
-                        val = line.split("=", 1)[1].rstrip("\n")
-                        block.lines.insert(idx_line + 1, f"RTINSECONDS={val}\n")
-                        # Adjust stored indices if they occur after insertion point
-                        if (
-                            block.feature_line_idx is not None
-                            and block.feature_line_idx > idx_line
-                        ):
-                            block.feature_line_idx += 1
-                        if (
-                            block.smiles_line_idx is not None
-                            and block.smiles_line_idx > idx_line
-                        ):
-                            block.smiles_line_idx += 1
-                        if (
-                            block.selfies_line_idx is not None
-                            and block.selfies_line_idx > idx_line
-                        ):
-                            block.selfies_line_idx += 1
-                        break  # only first RETENTION_TIME considered
-        except Exception:
-            pass
+        fields, peaks = parse_fields(block.lines)
+        # Remove RETENTION_TIME if present
+        fields.pop("RETENTION_TIME", None)
+        # Remove or replace fields as needed
+        block.lines = build_lines(fields, peaks)
 
     if not settings.dry_run:
-        out_lines: List[str] = []
+        out_lines = []
         for blk in blocks:
-            if blk.lines and not blk.lines[-1].endswith("\n"):
-                blk.lines[-1] += "\n"
             out_lines.extend(blk.lines)
-            if not out_lines[-1].endswith("\n"):
-                out_lines.append("\n")
-            out_lines.append("\n")
         os.makedirs(os.path.dirname(settings.output_mgf), exist_ok=True)
         write_text_utf8(settings.output_mgf, out_lines)
 
-    unique_inchi_aux_sorted = sorted(unique_inchi_aux)
-
     return {
         "spectra_total": len(blocks),
-        "unique_feature_ids": len(group_to_id),
-        "unique_inchi_aux_count": len(unique_inchi_aux_sorted),
         "output_mgf": settings.output_mgf if not settings.dry_run else None,
         "dry_run": settings.dry_run,
     }
