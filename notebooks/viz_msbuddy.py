@@ -45,25 +45,16 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 @app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Process single MGF mapping spectra to flat msbuddy result dirs using feature_id only."""
-
-    def _meta_lookup_local(spectrum, *keys):
-        for k in keys:
-            v = spectrum.metadata.get(k)
-            if v not in (None, ""):
-                return v
-        return None
-
-    def _sanitize_group_value_local(v):
-        if v is None:
-            return "na"
-        v = str(v).strip().lower()
-        v = re.sub(r"[^a-z0-9.+-]", "_", v)
-        v = re.sub(r"__+", "_", v).strip("_")
-        return v or "na"
-
+    """Output one row per unique FEATURE_ID, using only the first spectrum's metadata and the msbuddy result for that feature."""
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))
+    # Build a mapping from FEATURE_ID to the first spectrum with that FEATURE_ID
+    featureid_to_spectrum = {}
+    for idx, spectrum in enumerate(spectra, start=1):
+        feature_id = spectrum.metadata.get("feature_id") or str(idx)
+        if feature_id not in featureid_to_spectrum:
+            featureid_to_spectrum[feature_id] = spectrum
+    # Map FEATURE_ID (first part of dir name) to msbuddy result dir
     try:
         featureid_to_dir = {
             d.split("_")[0]: os.path.join(msbuddy_root, d)
@@ -72,82 +63,42 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
         }
     except FileNotFoundError:
         featureid_to_dir = {}
-
     recs = []
-    for idx, spectrum in enumerate(spectra, start=1):
-        # Use feature_id from metadata if available, else fallback to index
-        feature_id = (
-            spectrum.metadata.get("feature_id")
-            or str(idx)
+    for feature_id, spectrum in featureid_to_spectrum.items():
+        spec_dir = featureid_to_dir.get(str(feature_id))
+        smiles = spectrum.metadata.get("smiles")
+        adduct = spectrum.metadata.get("adduct")
+        pepmass = spectrum.get("precursor_mz") or spectrum.get("pepmass")
+        rt = spectrum.get("retention_time")
+        ce = (
+            spectrum.metadata.get("collision_energy")
+            or spectrum.metadata.get("collisionenergy")
+            or spectrum.metadata.get("collisionenergy_ev")
+            or spectrum.metadata.get("ce")
         )
-        ce = _meta_lookup_local(
-            spectrum,
-            "collision_energy",
-            "collisionenergy",
-            "collisionenergy_ev",
-            "ce",
+        frag = (
+            spectrum.metadata.get("fragmentation_method")
+            or spectrum.metadata.get("fragmentationmethod")
+            or spectrum.metadata.get("frag_method")
+            or spectrum.metadata.get("fragmode")
         )
-        frag = _meta_lookup_local(
-            spectrum,
-            "fragmentation_method",
-            "fragmentationmethod",
-            "frag_method",
-            "fragmode",
+        ion = (
+            spectrum.metadata.get("ionmode")
+            or spectrum.metadata.get("ion_mode")
+            or spectrum.metadata.get("polarity")
         )
-        ion = _meta_lookup_local(spectrum, "ionmode", "ion_mode", "polarity")
         group_label = "_".join(
             [
-                _sanitize_group_value_local(frag),
-                _sanitize_group_value_local(ce),
-                _sanitize_group_value_local(ion),
+                str(frag).strip().lower() if frag else "na",
+                str(ce).strip().lower() if ce else "na",
+                str(ion).strip().lower() if ion else "na",
             ]
         )
-
-        spec_dir = featureid_to_dir.get(str(feature_id))
-
         has_results_tsv = False
         formula_match = False
         formula_found = spec_dir is not None
-        expected_formula = smiles_to_formula(spectrum.metadata.get("smiles"))
-
-        metric_map = {}
-        if spec_dir:
-            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
-            if os.path.exists(tsv_path):
-                has_results_tsv = True
-                df = read_formula_results(tsv_path)
-                row = best_hit_row(df, expected_formula)
-                if row is not None:
-                    formula_match = True
-                    metric_map = {
-                        "rank": "rank",
-                        "estimated_prob": "estimated_prob",
-                        "normalized_estimated_prob": "normalized_estimated_prob",
-                        "estimated_fdr": "estimated_fdr",
-                        "mz_error_ppm": "mz_error_ppm",
-                        "ms1_isotope_similarity": "ms1_isotope_similarity",
-                        "explained_ms2_peak": "explained_ms2_peak",
-                        "total_valid_ms2_peak": "total_valid_ms2_peak",
-                        "ms2_explanation_idx": "ms2_explanation_idx",
-                        "ms2_explanation": "ms2_explanation",
-                    }
-
-        rec = {
-            "mgf_file": mgf_file,
-            "mgf": group_label,
-            "spectrum_index": idx,
-            "feature_id": feature_id,
-            "pepmass": spectrum.get("precursor_mz") or spectrum.get("pepmass"),
-            "rt_seconds": spectrum.get("retention_time"),
-            "smiles": spectrum.metadata.get("smiles"),
-            "adduct": spectrum.metadata.get("adduct"),
-            "collision_energy": ce,
-            "fragmentation_method": frag,
-            "ionmode": ion,
-            "formula_expected": expected_formula,
-            "formula_found": formula_found,
-            "has_results_tsv": has_results_tsv,
-            "formula_match": formula_match,
+        expected_formula = smiles_to_formula(smiles) if smiles else None
+        metric_map = {
             "rank": None,
             "estimated_prob": None,
             "normalized_estimated_prob": None,
@@ -160,52 +111,87 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             "explained_intensity": None,
             "ms2_explanation_idx": None,
             "ms2_explanation": None,
+        }
+        if spec_dir:
+            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
+            if os.path.exists(tsv_path):
+                has_results_tsv = True
+                df = read_formula_results(tsv_path)
+                row = best_hit_row(df, expected_formula)
+                if row is not None:
+                    formula_match = True
+                    for rec_key in metric_map:
+                        val = row.get(rec_key)
+                        if rec_key in ("explained_ms2_peak", "total_valid_ms2_peak"):
+                            metric_map[rec_key] = (
+                                int(val) if val not in (None, "NA") else None
+                            )
+                        elif rec_key == "ms1_isotope_similarity":
+                            metric_map[rec_key] = None if val in (None, "NA") else val
+                        else:
+                            metric_map[rec_key] = val
+                    if (
+                        metric_map["explained_ms2_peak"]
+                        and metric_map["total_valid_ms2_peak"]
+                    ):
+                        metric_map["explained_peak_fraction"] = (
+                            metric_map["explained_ms2_peak"]
+                            / metric_map["total_valid_ms2_peak"]
+                        )
+                    ms2_explanation_idx = metric_map["ms2_explanation_idx"]
+                    if ms2_explanation_idx not in (None, "NA"):
+                        mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
+                        if os.path.exists(mse_path):
+                            try:
+                                mse_df = pl.read_csv(mse_path, separator="\t")
+                                if isinstance(ms2_explanation_idx, str):
+                                    indices = [
+                                        int(i) for i in ms2_explanation_idx.split(",")
+                                    ]
+                                elif isinstance(ms2_explanation_idx, int):
+                                    indices = [ms2_explanation_idx]
+                                else:
+                                    indices = list(ms2_explanation_idx)
+                                total_intensity = mse_df["intensity"].sum()
+                                explained_sum = mse_df.filter(
+                                    pl.col("raw_idx").is_in(indices)
+                                )["intensity"].sum()
+                                if total_intensity > 0:
+                                    metric_map["explained_intensity"] = (
+                                        explained_sum / total_intensity
+                                    )
+                            except Exception:
+                                pass
+        rec = {
+            "mgf_file": mgf_file,
+            "mgf": group_label,
+            "feature_id": feature_id,
+            "pepmass": pepmass,
+            "rt_seconds": rt,
+            "smiles": smiles,
+            "adduct": adduct,
+            "collision_energy": ce,
+            "fragmentation_method": frag,
+            "ionmode": ion,
+            "formula_expected": expected_formula,
+            "formula_found": formula_found,
+            "has_results_tsv": has_results_tsv,
+            "formula_match": formula_match,
+            "rank": metric_map["rank"],
+            "estimated_prob": metric_map["estimated_prob"],
+            "normalized_estimated_prob": metric_map["normalized_estimated_prob"],
+            "estimated_fdr": metric_map["estimated_fdr"],
+            "mz_error_ppm": metric_map["mz_error_ppm"],
+            "ms1_isotope_similarity": metric_map["ms1_isotope_similarity"],
+            "explained_ms2_peak": metric_map["explained_ms2_peak"],
+            "total_valid_ms2_peak": metric_map["total_valid_ms2_peak"],
+            "explained_peak_fraction": metric_map["explained_peak_fraction"],
+            "explained_intensity": metric_map["explained_intensity"],
+            "ms2_explanation_idx": metric_map["ms2_explanation_idx"],
+            "ms2_explanation": metric_map["ms2_explanation"],
             "result_dir": os.path.basename(spec_dir) if spec_dir else None,
         }
-
-        if formula_match and spec_dir and has_results_tsv:
-            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
-            df = read_formula_results(tsv_path)
-            row = best_hit_row(df, expected_formula)
-            if row:
-                for rec_key, row_key in metric_map.items():
-                    val = row.get(row_key)
-                    if rec_key in ("explained_ms2_peak", "total_valid_ms2_peak"):
-                        rec[rec_key] = int(val) if val not in (None, "NA") else None
-                    elif rec_key == "ms1_isotope_similarity":
-                        rec[rec_key] = None if val in (None, "NA") else val
-                    else:
-                        rec[rec_key] = val
-                if rec["explained_ms2_peak"] and rec["total_valid_ms2_peak"]:
-                    rec["explained_peak_fraction"] = (
-                        rec["explained_ms2_peak"] / rec["total_valid_ms2_peak"]
-                    )
-                ms2_explanation_idx = rec["ms2_explanation_idx"]
-                if ms2_explanation_idx not in (None, "NA"):
-                    mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
-                    if os.path.exists(mse_path):
-                        try:
-                            mse_df = pl.read_csv(mse_path, separator="\t")
-                            if isinstance(ms2_explanation_idx, str):
-                                indices = [
-                                    int(i) for i in ms2_explanation_idx.split(",")
-                                ]
-                            elif isinstance(ms2_explanation_idx, int):
-                                indices = [ms2_explanation_idx]
-                            else:
-                                indices = list(ms2_explanation_idx)
-                            total_intensity = mse_df["intensity"].sum()
-                            explained_sum = mse_df.filter(
-                                pl.col("raw_idx").is_in(indices)
-                            )["intensity"].sum()
-                            if total_intensity > 0:
-                                rec["explained_intensity"] = (
-                                    explained_sum / total_intensity
-                                )
-                        except Exception:
-                            pass
         recs.append(rec)
-
     df = pl.DataFrame(recs)
     return df
 
@@ -265,8 +251,8 @@ def make_status_plot(df: pl.DataFrame):
     )
 
     # Generate all mgf × status combinations
-    mgfs = df_summary.select(pl.col("mgf")).unique()
-    all_combos = mgfs.join(pl.DataFrame({"status": statuses}), how="cross")
+    mgf_labels = df_summary.select(pl.col("mgf")).unique()
+    all_combos = mgf_labels.join(pl.DataFrame({"status": statuses}), how="cross")
 
     # Left join summary to fill missing combinations with zero
     df_summary = (
@@ -286,6 +272,7 @@ def make_status_plot(df: pl.DataFrame):
             x=alt.X(
                 "mgf:N",
                 sort=alt.EncodingSortField(field="total_count", order="descending"),
+                title="Group Label",
             ),
             y="count:Q",
             color=alt.Color(
@@ -302,7 +289,9 @@ def make_status_plot(df: pl.DataFrame):
                 alt.Tooltip("total_count:Q", title="total"),
             ],
         )
-        .properties(title="MSBuddy: Formula Identification (ordered by total count)")
+        .properties(
+            title="MSBuddy: Formula Identification (by group label, ordered by total count)"
+        )
     )
 
 
@@ -325,10 +314,10 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
         .collect()
     )
 
-    # Ensure all mgfs appear
-    all_mgfs = df.select(pl.col("mgf")).unique()
+    # Ensure all mgf labels appear
+    all_mgf_labels = df.select(pl.col("mgf")).unique()
     df_matches = (
-        all_mgfs.join(df_matches, on="mgf", how="left")
+        all_mgf_labels.join(df_matches, on="mgf", how="left")
         .with_columns(
             pl.col(f"mean_{metric}").fill_null(0), pl.col("count").fill_null(0)
         )
@@ -351,6 +340,7 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
             x=alt.X(
                 "mgf:N",
                 sort=alt.EncodingSortField(field="count", order="descending"),
+                title="Group Label",
             ),
             y="count:Q",
             color=alt.Color(
@@ -365,7 +355,9 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
                 alt.Tooltip("count:Q", title="n"),
             ],
         )
-        .properties(title=f"MSBuddy: Match Quality by {metric} (ordered by count)")
+        .properties(
+            title=f"MSBuddy: Match Quality by {metric} (by group label, ordered by count)"
+        )
     )
 
 
@@ -399,7 +391,8 @@ def _filter(df):
     df_filtered = (
         df.lazy()
         .filter(
-            pl.col("smiles").is_not_null() & (~pl.col("adduct").str.contains("2M")),
+            pl.col("smiles").is_not_null()
+            # & (~pl.col("adduct").str.contains("2M"))
             # & (~pl.col("adduct").str.contains("-2H"))
             # & (
             #     (~pl.col("adduct").str.starts_with("[M-"))
