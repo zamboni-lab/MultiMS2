@@ -290,7 +290,7 @@ def make_status_plot(df: pl.DataFrame):
             ],
         )
         .properties(
-            title="MSBuddy: Formula Identification (by group label, ordered by total count)"
+            title="MSBuddy: Formula identification by group"
         )
     )
 
@@ -356,8 +356,7 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
             ],
         )
         .properties(
-            title=f"MSBuddy: Match Quality by {metric} (by group label, ordered by count)"
-        )
+            title=f"MSBuddy: {metric.replace('_', ' ')} by group"        )
     )
 
 
