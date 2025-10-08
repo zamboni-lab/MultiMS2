@@ -447,7 +447,7 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
                 bins=bins,
                 labels=bin_labels,
                 include_lowest=True,
-                right=False,
+                right=True,
             )
         else:
             # All values are null or zero, create a single bin [0, 1]
