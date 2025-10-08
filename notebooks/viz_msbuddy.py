@@ -231,20 +231,20 @@ def make_status_plot(df: pl.DataFrame):
             .encode(text="note:N")
         )
 
-    statuses = ["Formula not found", "Found but no match", "Match"]
+    statuses = ["Formula found, correct", "Formula found, incorrect", "Formula not found"]
 
     df_summary = (
-        df.lazy()
-        .select(["mgf", "formula_found", "formula_match"])
-        .with_columns(
-            pl.when(~pl.col("formula_found"))
-            .then(pl.lit("Formula not found"))
-            .when(pl.col("formula_found") & ~pl.col("formula_match"))
-            .then(pl.lit("Found but no match"))
-            .when(pl.col("formula_found") & pl.col("formula_match"))
-            .then(pl.lit("Match"))
-            .alias("status"),
-        )
+      df.lazy()
+      .select(["mgf", "formula_found", "formula_match"])
+      .with_columns(
+          pl.when(~pl.col("formula_found"))
+          .then(pl.lit("Formula not found"))
+          .when(pl.col("formula_found") & ~pl.col("formula_match"))
+          .then(pl.lit("Formula found, incorrect"))
+          .when(pl.col("formula_found") & pl.col("formula_match"))
+          .then(pl.lit("Formula found, correct"))
+          .alias("status"),
+          )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
         .collect()
@@ -252,7 +252,8 @@ def make_status_plot(df: pl.DataFrame):
 
     # Generate all mgf × status combinations
     mgf_labels = df_summary.select(pl.col("mgf")).unique()
-    all_combos = mgf_labels.join(pl.DataFrame({"status": statuses}), how="cross")
+    all_statuses = pl.DataFrame({"status": statuses})
+    all_combos = mgf_labels.join(all_statuses, how="cross")
 
     # Left join summary to fill missing combinations with zero
     df_summary = (
@@ -261,42 +262,57 @@ def make_status_plot(df: pl.DataFrame):
             pl.col("count").fill_null(0),
             pl.col("count").sum().over("mgf").alias("total_count"),
         )
+        .with_columns(
+            (pl.col("count") / pl.col("total_count")).alias("percent")
+        )
+        .sort(["mgf", "status"])
+        .with_columns(
+            pl.col("count").cum_sum().over("mgf").alias("cumsum_count"),
+        )
+        .with_columns(
+            (pl.col("cumsum_count") - pl.col("count") / 2).alias("x_center")
+        )
         .to_pandas()  # Altair needs pandas
     )
 
     alt.data_transformers.enable("vegafusion")
+    chart = alt.Chart(df_summary).mark_bar().encode(
+        y=alt.Y(
+            "mgf:N",
+            sort=alt.EncodingSortField(field="total_count", order="descending"),
+            title="Group",
+        ),
+        x=alt.X("count:Q", title = "Count", stack="zero"),
+        color=alt.Color(
+            "status:N",
+            scale=alt.Scale(
+                domain=statuses,
+                range=["#004488", "#DDAA33", "#BB5566"],
+            ),
+        ),
+        tooltip=[
+            "mgf:N",
+            "status:N",
+            alt.Tooltip("count:Q", title="n"),
+            alt.Tooltip("total_count:Q", title="total"),
+            alt.Tooltip("percent:Q", title="%", format=".0%"),
+        ],
+    )
+    text = alt.Chart(df_summary).mark_text(align="center", color = "white", size=8).encode(
+        y=alt.Y("mgf:N", sort=alt.EncodingSortField(field="total_count", order="descending")),
+        x=alt.X("x_center:Q"),
+        detail="status:N",
+        text=alt.Text("percent:Q", format=".0%")
+    ).transform_filter("datum.percent >= 0.05")
     return (
-        alt.Chart(df_summary)
-        .mark_bar()
-        .encode(
-            x=alt.X(
-                "mgf:N",
-                sort=alt.EncodingSortField(field="total_count", order="descending"),
-                title="Group Label",
-            ),
-            y="count:Q",
-            color=alt.Color(
-                "status:N",
-                scale=alt.Scale(
-                    domain=statuses,
-                    range=["#004488", "#DDAA33", "#BB5566"],
-                ),
-            ),
-            tooltip=[
-                "mgf:N",
-                "status:N",
-                alt.Tooltip("count:Q", title="n"),
-                alt.Tooltip("total_count:Q", title="total"),
-            ],
-        )
-        .properties(
-            title="MSBuddy: Formula identification by group"
-        )
+        (chart + text)
+        .properties(title="MSBuddy: Formula identification")
     )
 
 
 @app.function
-def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
+def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: int = 10):
+    import pandas as pd
     if df.is_empty() or metric not in df.columns:
         return (
             alt.Chart(
@@ -305,58 +321,67 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
             .mark_text()
             .encode(text="note:N")
         )
+    # Filter to matches only
     df_matches = (
         df.lazy()
         .filter((pl.col("formula_found") == True) & (pl.col("formula_match") == True))
         .filter(pl.col(metric).is_not_null())
-        .group_by("mgf")
-        .agg([pl.col(metric).mean().alias(f"mean_{metric}"), pl.len().alias("count")])
+        .select(["mgf", metric])
         .collect()
     )
-
-    # Ensure all mgf labels appear
-    all_mgf_labels = df.select(pl.col("mgf")).unique()
-    df_matches = (
-        all_mgf_labels.join(df_matches, on="mgf", how="left")
-        .with_columns(
-            pl.col(f"mean_{metric}").fill_null(0), pl.col("count").fill_null(0)
-        )
-        .to_pandas()
-    )
-    if df_matches.empty:
+    if df_matches.is_empty():
         return (
             alt.Chart(pl.DataFrame({"note": ["No valid matches"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
-    min_val, max_val = (
-        df_matches[f"mean_{metric}"].min(),
-        df_matches[f"mean_{metric}"].max(),
+    # Use pandas for robust binning
+    df_matches_pd = df_matches.to_pandas()
+    values = df_matches_pd[metric].values
+    # Regular bins between min and max, rounded to 1 decimal if in [0,1]
+    min_val, max_val = float(np.nanmin(values)), float(np.nanmax(values))
+    if min_val >= 0 and max_val <= 1:
+        bins = np.round(np.linspace(0, 1, n_bins + 1), 2)
+    else:
+        bins = np.linspace(min_val, max_val, n_bins + 1)
+    bin_labels = [f"{bins[i]:.2f}–{bins[i+1]:.2f}" for i in range(len(bins)-1)]
+    df_matches_pd["metric_bin"] = pd.cut(values, bins=bins, labels=bin_labels, include_lowest=True, right=False)
+    # Count per group/bin
+    df_binned = (
+        df_matches_pd.groupby(["mgf", "metric_bin"]).size().reset_index(name="count")
     )
+    # Ensure all group/bin combos appear
+    all_mgfs = df_matches_pd["mgf"].unique()
+    all_bins = bin_labels
+    all_combos = pd.MultiIndex.from_product([all_mgfs, all_bins], names=["mgf", "metric_bin"]).to_frame(index=False)
+    df_binned = all_combos.merge(df_binned, on=["mgf", "metric_bin"], how="left").fillna({"count": 0})
+    # Add total_count and percent columns
+    df_binned["total_count"] = df_binned.groupby("mgf")["count"].transform("sum")
+    df_binned["percent"] = df_binned["count"] / df_binned["total_count"]
+    # Compute x_center for label centering
+    df_binned = df_binned.sort_values(["mgf", "metric_bin"])
+    df_binned["cumsum_count"] = df_binned.groupby("mgf")["count"].cumsum()
+    df_binned["x_center"] = df_binned["cumsum_count"] - df_binned["count"] / 2
+    # Use cmcrameri colors for bins
+    from cmcrameri import cm
+    bin_palette = cmap_to_hex_list(cm.batlow, n_bins)
+    # Horizontal stacked bar chart with text labels
+    alt.data_transformers.enable("vegafusion")
+    chart = alt.Chart(df_binned).mark_bar().encode(
+        y=alt.Y("mgf:N", title="Group", sort=alt.EncodingSortField(field="count", op="sum", order="descending")),
+        x=alt.X("count:Q", title="Count", stack="zero"),
+        color=alt.Color("metric_bin:N", title=metric.replace("_", " "), scale=alt.Scale(range=bin_palette)),
+        tooltip=["mgf:N", "metric_bin:N", alt.Tooltip("count:Q", title="n"), alt.Tooltip("total_count:Q", title="total"), alt.Tooltip("percent:Q", title="%", format=".0%")],
+    )
+    text = alt.Chart(df_binned).mark_text(align="center", color = "white", size=8).encode(
+        y=alt.Y("mgf:N", sort=alt.EncodingSortField(field="count", op="sum", order="descending")),
+        x=alt.X("x_center:Q"),
+        detail="metric_bin:N",
+        text=alt.Text("percent:Q", format=".0%")
+    ).transform_filter("datum.percent >= 0.05")
     return (
-        alt.Chart(df_matches)
-        .mark_bar()
-        .encode(
-            x=alt.X(
-                "mgf:N",
-                sort=alt.EncodingSortField(field="count", order="descending"),
-                title="Group Label",
-            ),
-            y="count:Q",
-            color=alt.Color(
-                f"mean_{metric}:Q",
-                scale=alt.Scale(
-                    domain=[min_val, max_val], range=cmap_to_hex_list(cmc.batlow, 256)
-                ),
-            ),
-            tooltip=[
-                "mgf:N",
-                alt.Tooltip(f"mean_{metric}:Q", format=".3f", title=f"Mean {metric}"),
-                alt.Tooltip("count:Q", title="n"),
-            ],
-        )
-        .properties(
-            title=f"MSBuddy: {metric.replace('_', ' ')} by group"        )
+        (chart + text)
+        .properties(title=f"MSBuddy: {metric.replace('_', ' ')}")
     )
 
 
