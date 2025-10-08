@@ -55,14 +55,13 @@ with app.setup:
     parser = ArgumentParser()
     parser.add_arguments(Settings, dest="settings")
 
-    def parse_args():  # noqa: D401
-        """Parse command line arguments unless running inside a marimo notebook."""
+    def parse_args():
         try:
             import marimo as mo  # type: ignore
 
             if mo.running_in_notebook():
                 return Settings()
-        except Exception:  # noqa: BLE001
+        except Exception:
             pass
         return parser.parse_args().settings
 
@@ -120,7 +119,7 @@ def write_text_utf8(path: str, lines: List[str]):
 
 
 @app.function
-def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order only
+def parse_mgf_file(path: str) -> List[SpectrumBlock]:
     NUMERIC_LINE_RE = re.compile(r"^\s*(\d+\.?\d*(?:[eE][+-]?\d+)?)\s+\d")
     lines = read_text_fallback(path)
     blocks: List[SpectrumBlock] = []
@@ -182,7 +181,8 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:  # keep encounter order on
 @app.function
 def assign_feature_ids(settings: Settings):
     """
-    Refactored: Reorder and rename fields, calculate MOLECULEMASS, add defaults, remove RETENTION_TIME, keep RTINSECONDS.
+    Assign FEATURE_ID fields based on grouping header values,
+    then reorder, rename, and augment fields as requested.
     """
     if not os.path.isfile(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}
@@ -190,6 +190,51 @@ def assign_feature_ids(settings: Settings):
     blocks = parse_mgf_file(settings.input_mgf)
     if not blocks:
         return {"error": "No spectra found in input MGF."}
+
+    # --- FEATURE_ID assignment logic ---
+    grouping_fields = [
+        "description",
+        "adduct",
+        "collision_energy",
+        "fragmentation_method",
+        "inchi_aux",
+    ]
+    canonical_key_map = {
+        "description": "description",
+        "adduct": "adduct",
+        "collision_energy": "collision_energy",
+        "collisionenergy": "collision_energy",
+        "collisionenergy_ev": "collision_energy",
+        "ce": "collision_energy",
+        "fragmentation_method": "fragmentation_method",
+        "fragmentationmethod": "fragmentation_method",
+        "frag_method": "fragmentation_method",
+        "inchi_aux": "inchi_aux",
+        "inchi": "inchi_aux",
+        "inchi_key_aux": "inchi_aux",
+    }
+
+    def extract_group_key(block: SpectrumBlock):
+        values = {k: "" for k in grouping_fields}
+        for line in block.lines:
+            if line.startswith("BEGIN IONS"):
+                continue
+            if line.startswith("END IONS"):
+                break
+            if "=" not in line:
+                continue
+            key, val = line.split("=", 1)
+            key_l = key.strip().lower()
+            key_canon = canonical_key_map.get(key_l)
+            if key_canon in values:
+                values[key_canon] = val.strip()
+        key_tuple = tuple(values[k] for k in grouping_fields)
+        if all(v == "" for v in key_tuple):
+            return ("__UNIQUE__", block.order_in_file)
+        return key_tuple
+
+    group_to_id = {}
+    next_id = 1
 
     # --- Field order and renaming ---
     field_order = [
@@ -215,8 +260,8 @@ def assign_feature_ids(settings: Settings):
         "PI",
         "DESCRIPTION",
         "FEATURE_ID",
-        "FEATURE_FULL_ID",
-        "FEATURELIST_FEATURE_ID",
+        # "FEATURE_FULL_ID",  # REMOVE IT
+        # "FEATURELIST_FEATURE_ID",  # REMOVE IT
         "FEATURE_MS1_HEIGHT",
         "SPECTYPE",
         "MERGED_ACROSS_N_SAMPLES",
@@ -224,7 +269,7 @@ def assign_feature_ids(settings: Settings):
         "FRAGMENTATION_METHOD",
         "IMS_TYPE",
         "DATASET_ID",
-        "USI",
+        # "USI",  # REMOVE IT
         "SOURCE_SCAN_USI",
         "PRECURSOR_MZ",
         "PRECURSOR_PURITY",
@@ -232,7 +277,7 @@ def assign_feature_ids(settings: Settings):
         "QUALITY_EXPLAINED_INTENSITY",
         "QUALITY_EXPLAINED_SIGNALS",
         "NUM_PEAKS",
-        "SPECTRUM_ID",
+        # "SPECTRUM_ID",  # REMOVE IT
         "RTINSECONDS",
     ]
     field_rename = {
@@ -270,9 +315,17 @@ def assign_feature_ids(settings: Settings):
         out = ["BEGIN IONS\n"]
         for key in field_order:
             if key == "INSTRUMENT_NAME":
-                val = settings.instrument_name if settings.instrument_name else ""
+                val = (
+                    settings.instrument_name
+                    if settings.instrument_name
+                    else fields.get(key, "")
+                )
             elif key == "DATA_CURATOR":
-                val = settings.data_curator if settings.data_curator else ""
+                val = (
+                    settings.data_curator
+                    if settings.data_curator
+                    else fields.get(key, "")
+                )
             elif key == "MOLECULEMASS":
                 smi = fields.get("SMILES", "")
                 mol = Chem.MolFromSmiles(smi) if smi else None
@@ -292,11 +345,26 @@ def assign_feature_ids(settings: Settings):
         out.append("END IONS\n\n")
         return out
 
+    # --- Assign FEATURE_ID and reorder/rename fields ---
     for block in blocks:
+        # Assign FEATURE_ID
+        gkey = extract_group_key(block)
+        if gkey not in group_to_id:
+            group_to_id[gkey] = next_id
+            next_id += 1
+        fid = str(group_to_id[gkey])
+
         fields, peaks = parse_fields(block.lines)
+        fields["FEATURE_ID"] = fid
+
         # Remove RETENTION_TIME if present
         fields.pop("RETENTION_TIME", None)
-        # Remove or replace fields as needed
+        # Ensure RTINSECONDS is present (copy from old RETENTION_TIME if needed)
+        if "RTINSECONDS" not in fields:
+            if "RETENTION_TIME" in fields and fields.get("RETENTION_TIME"):
+                fields["RTINSECONDS"] = fields["RETENTION_TIME"]
+        # Add SELFIES if missing and requested (handled in build_lines)
+
         block.lines = build_lines(fields, peaks)
 
     if not settings.dry_run:
@@ -308,6 +376,7 @@ def assign_feature_ids(settings: Settings):
 
     return {
         "spectra_total": len(blocks),
+        "unique_feature_ids": len(group_to_id),
         "output_mgf": settings.output_mgf if not settings.dry_run else None,
         "dry_run": settings.dry_run,
     }
@@ -317,6 +386,6 @@ def assign_feature_ids(settings: Settings):
 if __name__ == "__main__":
     result = assign_feature_ids(settings)
     if isinstance(result, dict) and "error" in result:
-        print("ERROR:", result["error"])  # noqa: T201
+        print("ERROR:", result["error"])
     else:
-        print(result)  # noqa: T201
+        print(result)

@@ -345,6 +345,9 @@ def make_status_plot(df: pl.DataFrame):
             .mark_text()
             .encode(text="note:N")
         )
+
+    statuses = ["Formula not found", "Found but no match", "Match"]
+
     df_summary = (
         df.lazy()
         .select(["mgf", "formula_found", "formula_match"])
@@ -359,10 +362,23 @@ def make_status_plot(df: pl.DataFrame):
         )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
-        .with_columns(pl.col("count").sum().over("mgf").alias("total_count"))
         .collect()
-        .to_pandas()
     )
+
+    # Generate all mgf × status combinations
+    mgfs = df_summary.select(pl.col("mgf")).unique()
+    all_combos = mgfs.join(pl.DataFrame({"status": statuses}), how="cross")
+
+    # Left join summary to fill missing combinations with zero
+    df_summary = (
+        all_combos.join(df_summary, on=["mgf", "status"], how="left")
+        .with_columns(
+            pl.col("count").fill_null(0),
+            pl.col("count").sum().over("mgf").alias("total_count"),
+        )
+        .to_pandas()  # Altair needs pandas
+    )
+
     alt.data_transformers.enable("vegafusion")
     return (
         alt.Chart(df_summary)
@@ -376,7 +392,7 @@ def make_status_plot(df: pl.DataFrame):
             color=alt.Color(
                 "status:N",
                 scale=alt.Scale(
-                    domain=["Formula not found", "Found but no match", "Match"],
+                    domain=statuses,
                     range=["#004488", "#DDAA33", "#BB5566"],
                 ),
             ),
@@ -408,6 +424,15 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob"):
         .group_by("mgf")
         .agg([pl.col(metric).mean().alias(f"mean_{metric}"), pl.len().alias("count")])
         .collect()
+    )
+
+    # Ensure all mgfs appear
+    all_mgfs = df.select(pl.col("mgf")).unique()
+    df_matches = (
+        all_mgfs.join(df_matches, on="mgf", how="left")
+        .with_columns(
+            pl.col(f"mean_{metric}").fill_null(0), pl.col("count").fill_null(0)
+        )
         .to_pandas()
     )
     if df_matches.empty:
