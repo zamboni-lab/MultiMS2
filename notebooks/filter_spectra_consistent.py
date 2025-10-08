@@ -21,6 +21,7 @@ with app.setup:
     import polars as pl
     from matchms.importing import load_from_mgf
     from matchms.exporting import save_as_mgf
+    import re
 
     @dataclass
     class Settings:
@@ -90,6 +91,36 @@ with app.setup:
     settings = parse_args()
 
 
+def extract_charge_from_adduct(adduct: str):
+    """
+    Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
+    If not found, return None.
+    """
+    if not adduct or not isinstance(adduct, str):
+        return None
+
+    # Try patterns at end: +2, -2, 2+, 2-, +, -
+    match = re.search(r"(\+|\-)(\d+)$", adduct)
+    if match:
+        sign = match.group(1)
+        n = int(match.group(2))
+        return n if sign == "+" else -n
+
+    match = re.search(r"(\d+)(\+|\-)$", adduct)
+    if match:
+        n = int(match.group(1))
+        sign = match.group(2)
+        return n if sign == "+" else -n
+
+    # Single charge: [M+H]+ or [M-H]-
+    match = re.search(r"(\+|\-)$", adduct)
+    if match:
+        sign = match.group(1)
+        return 1 if sign == "+" else -1
+
+    return None
+
+
 @app.function
 def filter_spectra(
     settings: Settings,
@@ -137,7 +168,22 @@ def filter_spectra(
                     row[orig] = conv(val)
                 except Exception:
                     pass
+
+        # Add charge-matching field
+        adduct = meta.get("adduct")
+        charge_str = meta.get("charge") or meta.get("CHARGE")
+        try:
+            charge_int = int(str(charge_str).replace("+", "").replace("-", ""))
+            if charge_str and "-" in str(charge_str):
+                charge_int = -abs(charge_int)
+        except Exception:
+            charge_int = None
+        adduct_charge = extract_charge_from_adduct(adduct)
+        # We'll keep only rows where both charges exist and match
+        row["_adduct_charge"] = adduct_charge
+        row["_spectrum_charge"] = charge_int
         rows.append(row)
+
     if rows:
         all_keys = set()
         for r in rows:
@@ -154,16 +200,23 @@ def filter_spectra(
     else:
         df = pl.DataFrame([])
 
-    def norm(x):
-        if isinstance(x, str):
-            return x.strip().replace("[", "").replace("]", "")
-        return str(x).replace("[", "").replace("]", "").strip()
+    # ----------- CHARGE/ADDUCT Consistency Filter -----------
+    def charge_match(row):
+        try:
+            adduct_charge = int(row["_adduct_charge"])
+            spectrum_charge = int(row["_spectrum_charge"])
+            return adduct_charge == spectrum_charge
+        except Exception:
+            # If we can't parse both, reject spectrum
+            return False
 
-    spectrum_keys = [
-        tuple(norm(row.get(col, "")) for col in spectrum_key_cols) for row in rows
-    ]
+    if df.height > 0:
+        df = df.filter(
+            pl.struct(["_adduct_charge", "_spectrum_charge"]).map_elements(charge_match)
+        )
+        print(f"After charge consistency filter: {df.shape[0]} spectra remain.")
 
-    # ----------- Strict Filtering Steps -----------
+    # ---- existing filtering steps ----
     # 1. Remove spectra that do not have the minimal precursor height
     df_step = df.filter(
         pl.col("feature_ms1_height").cast(pl.Float64, strict=False)
@@ -209,7 +262,6 @@ def filter_spectra(
     )
 
     # 6. For each (inchi_aux, adduct, modality) group, calculate max explained intensity and max explained signals
-    # Define modality column according to settings
     if settings.include_adduct_in_modality:
         modality_expr = (
             pl.col("adduct").cast(pl.Utf8)
@@ -314,7 +366,6 @@ def filter_spectra(
 
     # Normalize key fields in df_final and drop duplicates
     def normalize_key(row):
-        # Remove brackets, whitespace, and cast to string
         def norm(x):
             if isinstance(x, str):
                 return x.strip().replace("[", "").replace("]", "")
@@ -322,7 +373,6 @@ def filter_spectra(
 
         return tuple(norm(row[col]) for col in spectrum_key_cols)
 
-    # Add a normalized key column for duplicate checking
     df_final = df_final.with_columns(
         [pl.struct(spectrum_key_cols).map_elements(normalize_key).alias("_norm_key")]
     )
@@ -334,22 +384,26 @@ def filter_spectra(
             f"Dropped {n_before - n_after} duplicate spectra based on normalized key."
         )
 
-    # Build keep_keys from normalized keys (convert lists to tuples)
     keep_keys = set(
         tuple(x) if isinstance(x, list) else x for x in df_final["_norm_key"].to_list()
     )
 
-    # Select spectra: only keep spectra whose normalized key is in keep_keys
     final_spectra = []
     seen_keys = set()
+    spectrum_keys = [
+        tuple(
+            str(spectrum.metadata.get(col, ""))
+            .strip()
+            .replace("[", "")
+            .replace("]", "")
+            if spectrum.metadata.get(col, "")
+            else ""
+            for col in spectrum_key_cols
+        )
+        for spectrum in all_spectra
+    ]
     for spectrum, key in zip(all_spectra, spectrum_keys):
-        # Normalize the key for comparison
-        def norm(x):
-            if isinstance(x, str):
-                return x.strip().replace("[", "").replace("]", "")
-            return str(x).replace("[", "").replace("]", "").strip()
-
-        key_str = tuple(norm(x) for x in key)
+        key_str = tuple(str(x).strip().replace("[", "").replace("]", "") for x in key)
         if key_str in keep_keys:
             if key_str not in seen_keys:
                 final_spectra.append(spectrum)
@@ -360,9 +414,6 @@ def filter_spectra(
                 )
     print(f"Final spectra selected for output: {len(final_spectra)}")
 
-    # No need for a final robust chimeric filter, as all chimeric filtering is done in the DataFrame
-
-    # Sort spectra: positive polarity first, then by description, then by increasing spectrum length
     def get_sort_tuple(spectrum):
         meta = spectrum.metadata
         ionmode = str(meta.get("ionmode", meta.get("IONMODE", "")).lower())
