@@ -123,45 +123,75 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                     for rec_key in metric_map:
                         val = row.get(rec_key)
                         if rec_key in ("explained_ms2_peak", "total_valid_ms2_peak"):
-                            metric_map[rec_key] = (
-                                int(val) if val not in (None, "NA") else None
-                            )
+                            try:
+                                metric_map[rec_key] = (
+                                    int(val) if val not in (None, "NA", "") else None
+                                )
+                            except Exception:
+                                metric_map[rec_key] = None
                         elif rec_key == "ms1_isotope_similarity":
-                            metric_map[rec_key] = None if val in (None, "NA") else val
+                            metric_map[rec_key] = (
+                                None if val in (None, "NA", "") else val
+                            )
                         else:
                             metric_map[rec_key] = val
+                    # Robustly set explained_peak_fraction
+                    ms2_peak = metric_map["explained_ms2_peak"]
+                    total_peak = metric_map["total_valid_ms2_peak"]
                     if (
-                        metric_map["explained_ms2_peak"]
-                        and metric_map["total_valid_ms2_peak"]
+                        total_peak is not None
+                        and isinstance(total_peak, (int, float))
+                        and total_peak > 0
                     ):
-                        metric_map["explained_peak_fraction"] = (
-                            metric_map["explained_ms2_peak"]
-                            / metric_map["total_valid_ms2_peak"]
-                        )
-                    ms2_explanation_idx = metric_map["ms2_explanation_idx"]
-                    if ms2_explanation_idx not in (None, "NA"):
-                        mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
-                        if os.path.exists(mse_path):
+                        if ms2_peak is None or ms2_peak == "NA" or ms2_peak == "":
+                            metric_map["explained_peak_fraction"] = 0.0
+                        else:
                             try:
-                                mse_df = pl.read_csv(mse_path, separator="\t")
-                                if isinstance(ms2_explanation_idx, str):
-                                    indices = [
-                                        int(i) for i in ms2_explanation_idx.split(",")
-                                    ]
-                                elif isinstance(ms2_explanation_idx, int):
-                                    indices = [ms2_explanation_idx]
-                                else:
-                                    indices = list(ms2_explanation_idx)
-                                total_intensity = mse_df["intensity"].sum()
-                                explained_sum = mse_df.filter(
-                                    pl.col("raw_idx").is_in(indices)
-                                )["intensity"].sum()
-                                if total_intensity > 0:
-                                    metric_map["explained_intensity"] = (
-                                        explained_sum / total_intensity
-                                    )
+                                metric_map["explained_peak_fraction"] = float(
+                                    ms2_peak
+                                ) / float(total_peak)
                             except Exception:
-                                pass
+                                metric_map["explained_peak_fraction"] = 0.0
+                    elif total_peak == 0:
+                        metric_map["explained_peak_fraction"] = 0.0
+                    else:
+                        metric_map["explained_peak_fraction"] = None
+                    # Robustly set explained_intensity
+                    if ms2_peak == 0:
+                        metric_map["explained_intensity"] = 0.0
+                    else:
+                        ms2_explanation_idx = metric_map["ms2_explanation_idx"]
+                        if ms2_explanation_idx not in (None, "NA", ""):
+                            mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
+                            if os.path.exists(mse_path):
+                                try:
+                                    mse_df = pl.read_csv(mse_path, separator="\t")
+                                    if isinstance(ms2_explanation_idx, str):
+                                        indices = [
+                                            int(i)
+                                            for i in ms2_explanation_idx.split(",")
+                                            if i.strip().isdigit()
+                                        ]
+                                    elif isinstance(ms2_explanation_idx, int):
+                                        indices = [ms2_explanation_idx]
+                                    else:
+                                        indices = list(ms2_explanation_idx)
+                                    total_intensity = mse_df["intensity"].sum()
+                                    explained_sum = mse_df.filter(
+                                        pl.col("raw_idx").is_in(indices)
+                                    )["intensity"].sum()
+                                    if total_intensity > 0:
+                                        metric_map["explained_intensity"] = (
+                                            explained_sum / total_intensity
+                                        )
+                                    else:
+                                        metric_map["explained_intensity"] = 0.0
+                                except Exception:
+                                    metric_map["explained_intensity"] = None
+                            else:
+                                metric_map["explained_intensity"] = None
+                        else:
+                            metric_map["explained_intensity"] = None
         rec = {
             "mgf_file": mgf_file,
             "mgf": group_label,
@@ -231,20 +261,24 @@ def make_status_plot(df: pl.DataFrame):
             .encode(text="note:N")
         )
 
-    statuses = ["Formula found, correct", "Formula found, incorrect", "Formula not found"]
+    statuses = [
+        "Formula found, correct",
+        "Formula found, incorrect",
+        "Formula not found",
+    ]
 
     df_summary = (
-      df.lazy()
-      .select(["mgf", "formula_found", "formula_match"])
-      .with_columns(
-          pl.when(~pl.col("formula_found"))
-          .then(pl.lit("Formula not found"))
-          .when(pl.col("formula_found") & ~pl.col("formula_match"))
-          .then(pl.lit("Formula found, incorrect"))
-          .when(pl.col("formula_found") & pl.col("formula_match"))
-          .then(pl.lit("Formula found, correct"))
-          .alias("status"),
-          )
+        df.lazy()
+        .select(["mgf", "formula_found", "formula_match"])
+        .with_columns(
+            pl.when(~pl.col("formula_found"))
+            .then(pl.lit("Formula not found"))
+            .when(pl.col("formula_found") & ~pl.col("formula_match"))
+            .then(pl.lit("Formula found, incorrect"))
+            .when(pl.col("formula_found") & pl.col("formula_match"))
+            .then(pl.lit("Formula found, correct"))
+            .alias("status"),
+        )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
         .collect()
@@ -262,57 +296,84 @@ def make_status_plot(df: pl.DataFrame):
             pl.col("count").fill_null(0),
             pl.col("count").sum().over("mgf").alias("total_count"),
         )
-        .with_columns(
-            (pl.col("count") / pl.col("total_count")).alias("percent")
-        )
+        .with_columns((pl.col("count") / pl.col("total_count")).alias("percent"))
         .sort(["mgf", "status"])
         .with_columns(
             pl.col("count").cum_sum().over("mgf").alias("cumsum_count"),
         )
-        .with_columns(
-            (pl.col("cumsum_count") - pl.col("count") / 2).alias("x_center")
-        )
+        .with_columns((pl.col("cumsum_count") - pl.col("count") / 2).alias("x_center"))
         .to_pandas()  # Altair needs pandas
     )
 
+    # Sort mgf groups by decreasing total count for y-axis order
+    mgf_order = (
+        df_summary.groupby("mgf")["total_count"]
+        .first()
+        .sort_values(ascending=False)
+        .index.tolist()
+    )
+    mgf_order = [str(m) for m in mgf_order]
     alt.data_transformers.enable("vegafusion")
-    chart = alt.Chart(df_summary).mark_bar().encode(
-        y=alt.Y(
-            "mgf:N",
-            sort=alt.EncodingSortField(field="total_count", order="descending"),
-            title="Group",
-        ),
-        x=alt.X("count:Q", title = "Count", stack="zero"),
-        color=alt.Color(
-            "status:N",
-            scale=alt.Scale(
-                domain=statuses,
-                range=["#004488", "#DDAA33", "#BB5566"],
+
+    def clean_label(label):
+        return label.replace("_", " ").replace("[", "").replace("]", "")
+
+    chart = (
+        alt.Chart(df_summary)
+        .mark_bar()
+        .encode(
+            y=alt.Y(
+                "mgf:N",
+                sort=mgf_order,
+                title=clean_label("Group"),
+                axis=alt.Axis(
+                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")'
+                ),
             ),
-        ),
-        tooltip=[
-            "mgf:N",
-            "status:N",
-            alt.Tooltip("count:Q", title="n"),
-            alt.Tooltip("total_count:Q", title="total"),
-            alt.Tooltip("percent:Q", title="%", format=".0%"),
-        ],
+            x=alt.X("count:Q", title=clean_label("Count"), stack="zero"),
+            color=alt.Color(
+                "status:N",
+                scale=alt.Scale(
+                    domain=statuses,
+                    range=["#004488", "#DDAA33", "#BB5566"],
+                ),
+                title=clean_label("Status"),
+                legend=alt.Legend(
+                    labelExpr='replace(replace(replace(datum.label, "[", ""), "]", ""), /_/g, " ")'
+                ),
+            ),
+            tooltip=[
+                "mgf:N",
+                alt.Tooltip("status:N", title=clean_label("Status")),
+                alt.Tooltip("count:Q", title="n"),
+                alt.Tooltip("total_count:Q", title="total"),
+                alt.Tooltip("percent:Q", title="%", format=".0%"),
+            ],
+        )
     )
-    text = alt.Chart(df_summary).mark_text(align="center", color = "white", size=8).encode(
-        y=alt.Y("mgf:N", sort=alt.EncodingSortField(field="total_count", order="descending")),
-        x=alt.X("x_center:Q"),
-        detail="status:N",
-        text=alt.Text("percent:Q", format=".0%")
-    ).transform_filter("datum.percent >= 0.05")
-    return (
-        (chart + text)
-        .properties(title="MSBuddy: Formula identification")
+    # Compute the absolute max value of all bars for filtering text labels
+    max_count = df_summary["count"].max()
+    text = (
+        alt.Chart(df_summary)
+        .mark_text(align="center", color="white", size=8)
+        .encode(
+            y=alt.Y("mgf:N", sort=mgf_order),
+            x=alt.X("x_center:Q"),
+            detail="status:N",
+            text=alt.Text("percent:Q", format=".0%"),
+        )
+        .transform_filter(
+            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count)
+        )
     )
+
+    return (chart + text).properties(title="MSBuddy: Formula identification")
 
 
 @app.function
 def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: int = 10):
     import pandas as pd
+
     if df.is_empty() or metric not in df.columns:
         return (
             alt.Chart(
@@ -338,51 +399,157 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
     # Use pandas for robust binning
     df_matches_pd = df_matches.to_pandas()
     values = df_matches_pd[metric].values
-    # Regular bins between min and max, rounded to 1 decimal if in [0,1]
-    min_val, max_val = float(np.nanmin(values)), float(np.nanmax(values))
-    if min_val >= 0 and max_val <= 1:
-        bins = np.round(np.linspace(0, 1, n_bins + 1), 2)
+    missing_label = "missing"
+    non_null_values = df_matches_pd[metric].dropna().values
+    # Dynamically set n_bins if unique values are few
+    unique_non_null = np.unique(non_null_values)
+    if len(unique_non_null) < n_bins:
+        n_bins = max(2, len(unique_non_null))
+    all_ints = np.all(np.isclose(non_null_values, np.round(non_null_values), atol=1e-8))
+    if all_ints and len(non_null_values) > 0:
+        min_val, max_val = (
+            int(np.nanmin(non_null_values)),
+            int(np.nanmax(non_null_values)),
+        )
+        # Always include 0 as the leftmost bin edge
+        bin_edges = np.linspace(0, max_val + 1, n_bins + 1, dtype=int)
+        bin_edges = np.unique(bin_edges)
+        if len(bin_edges) < 2:
+            bin_edges = np.array([0, max_val + 1])
+        pad = max(len(str(bin_edges[0])), len(str(bin_edges[-1])))
+        bin_labels = [
+            f"{str(bin_edges[i]).zfill(pad)}–{str(bin_edges[i+1]-1).zfill(pad)}"
+            for i in range(len(bin_edges) - 1)
+        ]
+        binned = pd.cut(
+            df_matches_pd[metric],
+            bins=bin_edges,
+            labels=bin_labels,
+            include_lowest=True,
+            right=False,
+        )
     else:
-        bins = np.linspace(min_val, max_val, n_bins + 1)
-    bin_labels = [f"{bins[i]:.2f}–{bins[i+1]:.2f}" for i in range(len(bins)-1)]
-    df_matches_pd["metric_bin"] = pd.cut(values, bins=bins, labels=bin_labels, include_lowest=True, right=False)
+        if len(non_null_values) > 0:
+            min_val, max_val = (
+                float(np.nanmin(non_null_values)),
+                float(np.nanmax(non_null_values)),
+            )
+            # Always include 0 as the leftmost bin edge for fractions
+            if min_val >= 0 and max_val <= 1:
+                bins = np.round(np.linspace(0, 1, n_bins + 1), 2)
+            else:
+                bins = np.linspace(min(0, min_val), max_val, n_bins + 1)
+            bin_labels = [
+                f"{bins[i]:.1f}–{bins[i+1]:.1f}" for i in range(len(bins) - 1)
+            ]
+            binned = pd.cut(
+                df_matches_pd[metric],
+                bins=bins,
+                labels=bin_labels,
+                include_lowest=True,
+                right=False,
+            )
+        else:
+            # All values are null or zero, create a single bin [0, 1]
+            bin_labels = ["0.0–1.0"]
+            binned = pd.Series(
+                ["0.0–1.0"] * len(df_matches_pd), index=df_matches_pd.index
+            )
+    # Assign missing label to nulls
+    metric_bin = binned.astype(object)
+    metric_bin[df_matches_pd[metric].isnull()] = missing_label
+    # Set categorical order: bin_labels + [missing_label] if any nulls
+    if df_matches_pd[metric].isnull().any():
+        categories = bin_labels + [missing_label]
+    else:
+        categories = bin_labels
+    df_matches_pd["metric_bin"] = pd.Categorical(
+        metric_bin, categories=categories, ordered=True
+    )
+    n_bins_actual = len(categories)
     # Count per group/bin
     df_binned = (
-        df_matches_pd.groupby(["mgf", "metric_bin"]).size().reset_index(name="count")
+        df_matches_pd.groupby(["mgf", "metric_bin"], observed=True)
+        .size()
+        .reset_index(name="count")
     )
     # Ensure all group/bin combos appear
     all_mgfs = df_matches_pd["mgf"].unique()
     all_bins = bin_labels
-    all_combos = pd.MultiIndex.from_product([all_mgfs, all_bins], names=["mgf", "metric_bin"]).to_frame(index=False)
-    df_binned = all_combos.merge(df_binned, on=["mgf", "metric_bin"], how="left").fillna({"count": 0})
+    all_combos = pd.MultiIndex.from_product(
+        [all_mgfs, all_bins], names=["mgf", "metric_bin"]
+    ).to_frame(index=False)
+    df_binned = all_combos.merge(
+        df_binned, on=["mgf", "metric_bin"], how="left"
+    ).fillna({"count": 0})
     # Add total_count and percent columns
     df_binned["total_count"] = df_binned.groupby("mgf")["count"].transform("sum")
     df_binned["percent"] = df_binned["count"] / df_binned["total_count"]
-    # Compute x_center for label centering
-    df_binned = df_binned.sort_values(["mgf", "metric_bin"])
     df_binned["cumsum_count"] = df_binned.groupby("mgf")["count"].cumsum()
     df_binned["x_center"] = df_binned["cumsum_count"] - df_binned["count"] / 2
+    # Sort mgf groups by decreasing total count (ensure list of strings)
+    mgf_order = (
+        df_binned.groupby("mgf")["total_count"]
+        .first()
+        .sort_values(ascending=False)
+        .index.tolist()
+    )
+    mgf_order = [str(m) for m in mgf_order]
     # Use cmcrameri colors for bins
     from cmcrameri import cm
-    bin_palette = cmap_to_hex_list(cm.batlow, n_bins)
+
+    bin_palette = cmap_to_hex_list(cm.batlow, n_bins_actual)
+    # Compute the absolute max value of all bars for filtering text labels
+    max_count = df_binned["count"].max()
     # Horizontal stacked bar chart with text labels
     alt.data_transformers.enable("vegafusion")
-    chart = alt.Chart(df_binned).mark_bar().encode(
-        y=alt.Y("mgf:N", title="Group", sort=alt.EncodingSortField(field="count", op="sum", order="descending")),
-        x=alt.X("count:Q", title="Count", stack="zero"),
-        color=alt.Color("metric_bin:N", title=metric.replace("_", " "), scale=alt.Scale(range=bin_palette)),
-        tooltip=["mgf:N", "metric_bin:N", alt.Tooltip("count:Q", title="n"), alt.Tooltip("total_count:Q", title="total"), alt.Tooltip("percent:Q", title="%", format=".0%")],
+    chart = (
+        alt.Chart(df_binned)
+        .mark_bar()
+        .encode(
+            y=alt.Y(
+                "mgf:N",
+                title="Group",
+                sort=mgf_order,
+                axis=alt.Axis(
+                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")'
+                ),
+            ),
+            x=alt.X("count:Q", title="Count", stack="zero"),
+            color=alt.Color(
+                "metric_bin:N",
+                title=metric.replace("_", " "),
+                scale=alt.Scale(range=bin_palette),
+                sort="ascending",
+                # Use double replace to ensure all '_' are replaced with ' '
+                legend=alt.Legend(
+                    labelExpr='replace(replace(replace(replace(datum.label, "_", " "), "_", " "), "[", ""), "]", "")'
+                ),
+            ),
+            order=alt.Order("metric_bin:N", sort="ascending"),
+            tooltip=[
+                "mgf:N",
+                alt.Tooltip("metric_bin:N", title=metric.replace("_", " ")),
+                alt.Tooltip("count:Q", title="n"),
+                alt.Tooltip("total_count:Q", title="total"),
+                alt.Tooltip("percent:Q", title="%", format=".0%"),
+            ],
+        )
     )
-    text = alt.Chart(df_binned).mark_text(align="center", color = "white", size=8).encode(
-        y=alt.Y("mgf:N", sort=alt.EncodingSortField(field="count", op="sum", order="descending")),
-        x=alt.X("x_center:Q"),
-        detail="metric_bin:N",
-        text=alt.Text("percent:Q", format=".0%")
-    ).transform_filter("datum.percent >= 0.05")
-    return (
-        (chart + text)
-        .properties(title=f"MSBuddy: {metric.replace('_', ' ')}")
+    text = (
+        alt.Chart(df_binned)
+        .mark_text(align="center", color="white", size=8)
+        .encode(
+            y=alt.Y("mgf:N", sort=mgf_order),
+            x=alt.X("x_center:Q"),
+            detail="metric_bin:N",
+            text=alt.Text("percent:Q", format=".0%"),
+        )
+        .transform_filter(
+            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count)
+        )
     )
+    return (chart + text).properties(title=f"MSBuddy: {metric.replace('_', ' ')}")
 
 
 @app.cell
