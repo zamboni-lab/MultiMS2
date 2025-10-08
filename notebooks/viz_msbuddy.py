@@ -44,79 +44,8 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 
 @app.function
-def parse_spectrum_id(
-    idx: int, spectrum
-) -> tuple[str | None, float | None, float | None, str | None, str | None, str | None]:
-    """Extract spectrum identifiers based on metadata spectrum_id + mz/rt.
-
-    Returns tuple:
-      (meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid)
-
-    Where:
-      meta_sid: raw metadata spectrum id (expected integer string)
-      composite_sid: meta_sid + mz/rt (preferred) e.g. 123_mz_100.1234_rt_12.34
-      mzrt_sid: fallback using only mz/rt (mz_100.1234_rt_12.34) used ONLY if meta_sid missing
-      legacy_sid: index-based historical ID (idx_mz_..._rt_...) used ONLY if meta_sid missing
-    """
-    meta_sid = (
-        spectrum.metadata.get("spectrum_id")
-        or spectrum.metadata.get("spectrumid")
-        or spectrum.metadata.get("spectrumId")
-        or spectrum.metadata.get("spectrumID")
-    )
-    if isinstance(meta_sid, str):
-        meta_sid = meta_sid.strip() or None
-    # If provided but not an integer string, still accept as-is
-
-    mz = spectrum.get("precursor_mz")
-    rt = spectrum.get("retention_time")
-    if mz is None:
-        mz = spectrum.get("pepmass")
-        try:
-            if isinstance(mz, (list, tuple)):
-                mz = mz[0]
-        except Exception:
-            pass
-    try:
-        mz = float(mz) if mz is not None else None
-    except Exception:
-        mz = None
-    try:
-        rt = float(rt) if rt is not None else None
-    except Exception:
-        rt = None
-
-    composite_sid = None
-    mzrt_sid = None
-    legacy_sid = None
-
-    if mz is not None and rt is not None:
-        if meta_sid:
-            composite_sid = f"{meta_sid}_mz_{mz:.4f}_rt_{rt:.2f}"
-        mzrt_sid = f"mz_{mz:.4f}_rt_{rt:.2f}"
-        legacy_sid = f"{idx}_mz_{mz:.4f}_rt_{rt:.2f}"
-    elif mz is not None:
-        if meta_sid:
-            composite_sid = f"{meta_sid}_mz_{mz:.4f}"
-        mzrt_sid = f"mz_{mz:.4f}"
-        legacy_sid = f"{idx}_mz_{mz:.4f}"
-    else:
-        # No mz; composite only possible if meta_sid exists
-        composite_sid = meta_sid
-        legacy_sid = f"{idx}" if not meta_sid else None
-
-    return meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid
-
-
-@app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Process single MGF mapping spectra to flat msbuddy result dirs using metadata spectrum_id.
-
-    Matching priority (first hit wins):
-      1. composite_sid (meta spectrum id + mz/rt)
-      2. legacy minute-adjusted composite (if rt>60)
-      3. If no meta_sid: mzrt_sid, legacy_sid, and their minute-adjusted variants
-    """
+    """Process single MGF mapping spectra to flat msbuddy result dirs using feature_id only."""
 
     def _meta_lookup_local(spectrum, *keys):
         for k in keys:
@@ -136,18 +65,20 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))
     try:
-        dir_names = {
-            d: os.path.join(msbuddy_root, d)
+        featureid_to_dir = {
+            d.split("_")[0]: os.path.join(msbuddy_root, d)
             for d in os.listdir(msbuddy_root)
             if os.path.isdir(os.path.join(msbuddy_root, d))
         }
     except FileNotFoundError:
-        dir_names = {}
+        featureid_to_dir = {}
 
     recs = []
     for idx, spectrum in enumerate(spectra, start=1):
-        meta_sid, mz, rt, composite_sid, mzrt_sid, legacy_sid = parse_spectrum_id(
-            idx, spectrum
+        # Use feature_id from metadata if available, else fallback to index
+        feature_id = (
+            spectrum.metadata.get("feature_id")
+            or str(idx)
         )
         ce = _meta_lookup_local(
             spectrum,
@@ -172,35 +103,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             ]
         )
 
-        candidates: list[str] = []
-        if composite_sid:
-            candidates.append(composite_sid)
-        if (
-            not meta_sid
-        ):  # only fall back to mz/rt or legacy when no explicit spectrum_id
-            if mzrt_sid:
-                candidates.append(mzrt_sid)
-            if legacy_sid:
-                candidates.append(legacy_sid)
-
-        # minute-based alt (only if rt large)
-        if rt is not None and rt > 60 and mz is not None:
-            rt_alt = rt / 60.0
-            if composite_sid:
-                # recompute composite with alt rt
-                if meta_sid:
-                    candidates.append(f"{meta_sid}_mz_{mz:.4f}_rt_{rt_alt:.2f}")
-            if not meta_sid:
-                if mzrt_sid:
-                    candidates.append(f"mz_{mz:.4f}_rt_{rt_alt:.2f}")
-                if legacy_sid:
-                    candidates.append(f"{idx}_mz_{mz:.4f}_rt_{rt_alt:.2f}")
-
-        spec_dir = None
-        for cand in candidates:
-            if cand in dir_names:
-                spec_dir = dir_names[cand]
-                break
+        spec_dir = featureid_to_dir.get(str(feature_id))
 
         has_results_tsv = False
         formula_match = False
@@ -233,13 +136,9 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             "mgf_file": mgf_file,
             "mgf": group_label,
             "spectrum_index": idx,
-            "spectrum_id": composite_sid or mzrt_sid or legacy_sid,
-            "spectrum_id_meta": meta_sid,
-            "spectrum_id_composite": composite_sid,
-            "spectrum_id_mzrt": mzrt_sid,
-            "spectrum_id_legacy": legacy_sid,
-            "pepmass": mz,
-            "rt_seconds": rt,
+            "feature_id": feature_id,
+            "pepmass": spectrum.get("precursor_mz") or spectrum.get("pepmass"),
+            "rt_seconds": spectrum.get("retention_time"),
             "smiles": spectrum.metadata.get("smiles"),
             "adduct": spectrum.metadata.get("adduct"),
             "collision_energy": ce,

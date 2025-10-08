@@ -45,7 +45,7 @@ with app.setup:
             },
         )
         top_n_intersections: int = field(
-            default=50,
+            default=32,
             metadata={"help": "Show only the largest N intersections"},
         )
 

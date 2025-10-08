@@ -296,18 +296,19 @@ min_intensity_ratio = 0.8
 min_signals_ratio = 0.4
 ```
 
-After min_precursor_height: 147509 spectra, 13367 unique (inchi_aux, adduct)
-After min_precursor_purity: 141640 spectra, 13020 unique (inchi_aux, adduct)
-After min_signals: 126088 spectra, 12615 unique (inchi_aux, adduct)
-After min_explained_intensity: 75764 spectra, 10484 unique (inchi_aux, adduct)
-After min_explained_signals: 75662 spectra, 10477 unique (inchi_aux, adduct)
-After min_intensity_ratio: 69650 spectra, 10477 unique (inchi_aux, adduct)
-After min_signals_ratio: 68805 spectra, 10477 unique (inchi_aux, adduct)
-After min_explained_intensity: 68805 spectra, 10477 unique (inchi_aux, adduct)
-After min_explained_signals: 68805 spectra, 10477 unique (inchi_aux, adduct)
-After min_modalities per (inchi_aux, adduct): 3168 inchi_aux, 5005 unique (inchi_aux, adduct), 27898 unique (inchi_aux, adduct, modality)
-Final spectra selected for output: 54645
-Exported 54645 final spectra to scratch/filtered_spectra.mgf
+After charge consistency filter: 148888 spectra remain.
+After min_precursor_height: 133624 spectra, 11998 unique (inchi_aux, adduct)
+After min_precursor_purity: 128116 spectra, 11693 unique (inchi_aux, adduct)
+After min_signals: 113652 spectra, 11346 unique (inchi_aux, adduct)
+After min_explained_intensity: 67004 spectra, 9394 unique (inchi_aux, adduct)
+After min_explained_signals: 66916 spectra, 9392 unique (inchi_aux, adduct)
+After min_intensity_ratio: 61163 spectra, 9392 unique (inchi_aux, adduct)
+After min_signals_ratio: 60359 spectra, 9392 unique (inchi_aux, adduct)
+After min_explained_intensity: 60359 spectra, 9392 unique (inchi_aux, adduct)
+After min_explained_signals: 60359 spectra, 9392 unique (inchi_aux, adduct)
+After min_modalities per (inchi_aux, adduct): 3043 inchi_aux, 4563 unique (inchi_aux, adduct), 25126 unique (inchi_aux, adduct, modality)
+Final spectra selected for output: 47630
+Exported 47630 final spectra to scratch/filtered_spectra.mgf
 
 (Both `all` and `filtered` MGF are exported)
 
@@ -320,7 +321,7 @@ In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the c
 uv run python notebooks/validate_losses.py
 ```
 
-From the 54,645 filtered spectra, 48,612 were validated and 6,033 discarded.
+From the 47,630 filtered spectra, 43,728 were validated and 3,902 discarded.
 
 TODO CITE RDKit
 
@@ -358,10 +359,10 @@ uv run python notebooks/viz_upset.py
 ```
 In the end:
 
-* 2,993 unique compounds were recorded in 
-  * 4,510 unique compound-adduct modalities,
-    * 18,486 unique compound-adduct-fragmentation modalities for a total of 
-      * 48,612 spectra
+* 2,899 unique compounds were recorded in 
+  * 4,210 unique compound-adduct modalities,
+    * 17,170 unique compound-adduct-fragmentation modalities for a total of 
+      * 43,728 spectra
 
 ```bash
 uv run python notebooks/viz_upset.py
