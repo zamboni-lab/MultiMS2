@@ -3,24 +3,21 @@
 # dependencies = [
 #     "marimo",
 #     "pubchempy",
-#     "simple_parsing",
-#     "requests",
 #     "rdkit",
+#     "simple_parsing",
 # ]
 # ///
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
     from dataclasses import dataclass, field
-    from typing import List, Dict
     from simple_parsing import ArgumentParser
     import marimo as mo
     import pubchempy as pcp
-    import requests
     import time
     import csv
     import os
@@ -31,44 +28,43 @@ with app.setup:
     class Settings:
         smiles_file: str = field(
             default="metadata/selleck_metadata_pos.tsv",
-            metadata={"help": "Path to a TSV file with a 'smiles' column."},
+            metadata={"help": "Path to TSV file with 'smiles' column."},
         )
         output_tsv: str = field(
             default="metadata/selleck_metadata_with_names_pos.tsv",
-            metadata={"help": "TSV output file: SMILES, Record_Name_or_InChIKey"},
+            metadata={"help": "TSV output: SMILES, Record_Name_or_InChIKey"},
         )
         batch_size: int = field(
             default=100,
-            metadata={"help": "Number of SMILES per PubChem batch request (max 100)."},
+            metadata={"help": "SMILES per PubChem batch (max 100)."},
         )
         sleep_time: float = field(
             default=0.22,
-            metadata={
-                "help": "Pause (seconds) between batch requests (PubChem limit ~5/sec)."
-            },
+            metadata={"help": "Pause between requests (PubChem limit ~5/sec)."},
         )
 
     parser = ArgumentParser()
     parser.add_arguments(Settings, dest="settings")
 
-    def parse_args():
+    def parse_args() -> Settings:
         if mo.running_in_notebook():
             return Settings()
         else:
-            args = parser.parse_args()
-            return args.settings
+            return parser.parse_args().settings
 
     settings = parse_args()
 
 
 @app.function
-def get_batch_record_titles(cids: List[int]) -> Dict[int, str]:
-    """Fetch record titles for multiple CIDs in one batch request."""
+def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
+    """Fetch record titles for multiple CIDs in one batch."""
     if not cids:
         return {}
 
     cid_map = {}
     try:
+        import requests
+
         cid_string = ",".join(map(str, cids))
         url = f"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/{cid_string}/description/JSON"
         response = requests.get(url, timeout=30)
@@ -86,23 +82,25 @@ def get_batch_record_titles(cids: List[int]) -> Dict[int, str]:
 
 
 @app.function
-def smiles_to_names(settings: "Settings"):
+def smiles_to_names(settings: Settings) -> dict:
+    """Batch resolve SMILES to PubChem names or InChIKeys."""
     with open(settings.smiles_file, newline="") as infile:
         reader = csv.DictReader(infile, delimiter="\t")
         smiles_list = [
             row["smiles"].strip() for row in reader if row.get("smiles", "").strip()
         ]
+
     total = len(smiles_list)
     out_rows = []
     num_batches = math.ceil(total / settings.batch_size)
 
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(
-            f"Processing batch {batch_idx} of {num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total} SMILES)"
+            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})"
         )
         batch = smiles_list[batch_start : batch_start + settings.batch_size]
 
-        # Step 1: Get compounds from PubChem (by SMILES)
+        # Get compounds from PubChem
         try:
             compounds = pcp.get_compounds(batch, namespace="smiles")
         except Exception:
@@ -115,28 +113,19 @@ def smiles_to_names(settings: "Settings"):
                 except Exception:
                     compounds.append(None)
 
-        # Step 2: Collect CIDs from compounds
-        cids = [cmpd.cid for cmpd in compounds if cmpd and hasattr(cmpd, "cid")]
-
-        # Step 3: Batch fetch titles for all CIDs
+        # Collect CIDs and batch fetch titles
+        cids = [c.cid for c in compounds if c and hasattr(c, "cid")]
         cid_to_title = {}
         if cids:
             cid_to_title = get_batch_record_titles(cids)
-            time.sleep(settings.sleep_time)  # rate limit after title fetch
+            time.sleep(settings.sleep_time)
 
-        # Step 4: Map results
+        # Map results
         for smi, cmpd in zip(batch, compounds):
             if cmpd is None:
-                # Use RDKit for InChIKey if no PubChem record found
+                # Fallback to InChIKey via RDKit
                 mol = Chem.MolFromSmiles(smi)
-                if mol:
-                    try:
-                        inchikey = Chem.inchi.MolToInchiKey(mol)
-                        name = inchikey
-                    except Exception:
-                        name = "NOT_FOUND"
-                else:
-                    name = "NOT_FOUND"
+                name = Chem.MolToInchiKey(mol) if mol else "NOT_FOUND"
             elif hasattr(cmpd, "cid") and cmpd.cid in cid_to_title:
                 name = cid_to_title[cmpd.cid]
             elif hasattr(cmpd, "inchikey") and cmpd.inchikey:
@@ -146,36 +135,45 @@ def smiles_to_names(settings: "Settings"):
 
             out_rows.append((smi, name))
 
-        time.sleep(settings.sleep_time)  # between batches
+        time.sleep(settings.sleep_time)
 
+    # Write output
+    os.makedirs(os.path.dirname(settings.output_tsv), exist_ok=True)
     with open(settings.output_tsv, "w", newline="") as outfile:
         writer = csv.writer(outfile, delimiter="\t")
         writer.writerow(["SMILES", "Record_Name_or_InChIKey"])
         writer.writerows(out_rows)
-    return f"Processed {total} SMILES. Output: {settings.output_tsv}"
+
+    return {
+        "total_processed": total,
+        "output_file": settings.output_tsv,
+    }
 
 
 @app.cell
 def show_settings():
     mo.md(f"""
-    ## SMILES to Record Name/InChIKey Batch Resolver Settings
-
-    - **SMILES file**: `{settings.smiles_file}`
-    - **Output TSV**: `{settings.output_tsv}`
-    - **Batch size**: `{settings.batch_size}`
-    - **Sleep per batch**: `{settings.sleep_time}` seconds
-
-    Use `smiles_to_names(settings)` below to process your SMILES.
-
-    **Note**: This now uses batch requests to fetch record titles efficiently. If no PubChem record is found, the InChIKey is generated using RDKit.
+    ## SMILES to Names Batch Resolver
+    
+    - **Input file**: `{settings.smiles_file}`
+    - **Output file**: `{settings.output_tsv}`
+    - **Batch size**: {settings.batch_size}
+    - **Sleep per batch**: {settings.sleep_time}s
+    
+    Resolves SMILES to PubChem record names or InChIKeys (fallback).
     """)
     return
 
 
 @app.cell
-def run_smiles_to_names():
-    results = smiles_to_names(settings)
-    return
+def run_resolution():
+    result = smiles_to_names(settings)
+    mo.md(f"""
+    ### Resolution Complete
+    - **Processed**: {result['total_processed']:,} SMILES
+    - **Output**: `{result['output_file']}`
+    """)
+    return result
 
 
 if __name__ == "__main__":

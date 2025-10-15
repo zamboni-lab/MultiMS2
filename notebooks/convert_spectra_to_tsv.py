@@ -1,18 +1,20 @@
 # /// script
 # requires-python = ">=3.13,<4"
 # dependencies = [
-#   "marimo",
-#   "simple_parsing",
+#     "marimo",
+#     "simple_parsing",
 # ]
 # ///
 
 import marimo
 
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
     from dataclasses import dataclass, field
     from simple_parsing import ArgumentParser
+    import marimo as mo
     from typing import List
     import os
     import re
@@ -29,28 +31,24 @@ with app.setup:
         )
         dry_run: bool = field(
             default=False,
-            metadata={"help": "If True, do not write output file; just report counts."},
+            metadata={"help": "If True, do not write output file."},
         )
 
     parser = ArgumentParser()
     parser.add_arguments(Settings, dest="settings")
 
-    def parse_args():
-        try:
-            import marimo as mo  # type: ignore
-
-            if mo.running_in_notebook():
-                return Settings()
-        except Exception:
-            pass
-        return parser.parse_args().settings
+    def parse_args() -> Settings:
+        if mo.running_in_notebook():
+            return Settings()
+        else:
+            return parser.parse_args().settings
 
     settings = parse_args()
 
 
-# ---------------- Internal Utilities ---------------- #
 @app.function
 def read_text_fallback(path: str) -> List[str]:
+    """Read text file with encoding fallback."""
     try:
         with open(path, encoding="utf-8") as f:
             return f.readlines()
@@ -60,13 +58,7 @@ def read_text_fallback(path: str) -> List[str]:
 
 
 @app.function
-def write_text_utf8(path: str, lines: List[str]):
-    with open(path, "w", encoding="utf-8") as f:
-        f.writelines(lines)
-
-
-@app.function
-def parse_mgf_file(path: str):
+def parse_mgf_file(path: str) -> list[dict]:
     """Parse MGF into list of dictionaries with fields and peaks."""
     lines = read_text_fallback(path)
     blocks = []
@@ -90,17 +82,21 @@ def parse_mgf_file(path: str):
                 cur_block[k.strip()] = v.strip()
             else:
                 peaks.append(line)
+
     return blocks
 
 
-# ---------------- Core Processing ---------------- #
 @app.function
-def mgf_to_tsv(settings: Settings):
+def mgf_to_tsv(settings: Settings) -> dict:
+    """Convert MGF to GNPS batch TSV format."""
+    if not os.path.exists(settings.input_mgf):
+        return {"error": f"Input file not found: {settings.input_mgf}"}
+
     blocks = parse_mgf_file(settings.input_mgf)
     if not blocks:
         return {"error": "No spectra found in MGF."}
 
-    # TSV Columns (fixed)
+    # TSV columns (GNPS format)
     tsv_columns = [
         "FILENAME",
         "SEQ",
@@ -135,7 +131,7 @@ def mgf_to_tsv(settings: Settings):
     tsv_lines = ["\t".join(tsv_columns) + "\n"]
 
     for blk in blocks:
-        # Normalize field names first
+        # Normalize field names
         normalized = {}
         for k, v in blk.items():
             key = k.upper()
@@ -169,19 +165,48 @@ def mgf_to_tsv(settings: Settings):
             else:
                 val = normalized.get(col, "")
             row.append(val)
+
         tsv_lines.append("\t".join(row) + "\n")
 
     if not settings.dry_run:
         os.makedirs(os.path.dirname(settings.output_tsv), exist_ok=True)
-        write_text_utf8(settings.output_tsv, tsv_lines)
+        with open(settings.output_tsv, "w", encoding="utf-8") as f:
+            f.writelines(tsv_lines)
 
-    return {"spectra_total": len(blocks), "output_tsv": settings.output_tsv}
+    return {
+        "spectra_total": len(blocks),
+        "output_tsv": settings.output_tsv if not settings.dry_run else None,
+    }
 
 
-# ------------- CLI entry ------------- #
-if __name__ == "__main__":
+@app.cell
+def show_settings():
+    mo.md(f"""
+    ## Convert Spectra to TSV Settings
+    
+    - **Input MGF**: `{settings.input_mgf}`
+    - **Output TSV**: `{settings.output_tsv}`
+    - **Dry run**: {settings.dry_run}
+    
+    Converts MGF spectra to GNPS batch upload TSV format.
+    """)
+    return
+
+
+@app.cell
+def run_conversion():
     result = mgf_to_tsv(settings)
+
     if "error" in result:
-        print("ERROR:", result["error"])
+        mo.md(f"**Error:** {result['error']}")
     else:
-        print(result)
+        mo.md(f"""
+        ### Conversion Complete
+        - **Spectra processed**: {result['spectra_total']:,}
+        - **Output file**: `{result['output_tsv'] or 'None (dry run)'}`
+        """)
+    return result
+
+
+if __name__ == "__main__":
+    app.run()
