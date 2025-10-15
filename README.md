@@ -2,12 +2,12 @@
 
 ## Overview
 
-MultiMS2 is a comprehensive, rigorously curated mass spectrometry spectral library designed to address critical gaps in metabolomics research. This library provides high-quality MS/MS spectra across:
+MultiMS2 is a curated mass spectrometry spectral library designed to address critical gaps in metabolomics research.
+This library provides high-quality MS/MS spectra across:
 
 - **Multiple fragmentation methods**: Collision-Induced Dissociation (CID) and Electron-Activated Dissociation (EAD)
 - **Multiple collision energies**: 20, 40, and 60 eV for CID; 12, 16, and 24 eV for EAD
 - **Both ionization modes**: Positive and negative
-- **Diverse chemical space**: Three curated compound collections (NEXUS, Selleck, MSMLS)
 
 ### Why MultiMS2?
 

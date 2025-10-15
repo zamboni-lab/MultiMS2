@@ -314,7 +314,13 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
     y_sets = alt.Y(
         "set:N",
         sort=set_order,
-        axis=alt.Axis(title="Sets", labelPadding=4, ticks=False, domain=False),
+        axis=alt.Axis(
+            labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")',
+            title="Group",
+            labelPadding=4,
+            ticks=False,
+            domain=False,
+        ),
     )
 
     matrix = (
@@ -340,7 +346,7 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
                 "maxsize:Q",
-                title="Set Size",
+                title="Group Size",
                 scale=alt.Scale(domain=[0, max_size]),
             ),
         )
@@ -353,7 +359,7 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
                 "size:Q",
-                title="Set Size",
+                title="Group Size",
                 scale=alt.Scale(domain=[0, max_size]),
             ),
             tooltip=["set:N", alt.Tooltip("size:Q", title="set size")],
