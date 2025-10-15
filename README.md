@@ -368,6 +368,16 @@ In the end:
 uv run python notebooks/viz_upset.py
 ```
 
+## GNPS export
+
+To export the TSV file required for GNPS libraries:
+
+```bash
+uv run python notebooks/convert_spectra_to_tsv.py
+```
+
+This should then pass the validation at <https://gnps-quickstart.ucsd.edu/validatebatch>
+
 ## Data Processing Pipeline (here for reference)
 
 ### Initial Data Conversion
