@@ -37,23 +37,29 @@ The complete dataset is publicly available through:
 ### Prerequisites
 
 - [mzmine 3+](https://mzmine.github.io/)
-- [UV package manager](https://github.com/astral-sh/uv)
+- [uv package manager](https://github.com/astral-sh/uv)
 - [Docker](https://www.docker.com/) (for initial conversion only)
 
 ### Quick Start
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/yourusername/MultiMS2.git
 cd MultiMS2
 ```
 
 2. **Download spectral data from Zenodo**
+
 ```bash
 uv run python notebooks/get_mzmls_from_zenodo.py
 ```
 
-TODO add unzip step
+and then:
+
+```bash
+unzip "*.zip"
+```
 
 3. **Configure mzmine batch files**
 
@@ -67,9 +73,7 @@ Update the metadata file path in `.mzmine/batch/*.mzbatch`:
 
 ## Usage
 
-### Spectral Extraction with mzmine
-
-TODO CITE MZMINE
+### Spectral Extraction with mzmine[^1][^2]
 
 The library generation uses mzmine batch processing for consistent, reproducible spectral extraction. Below are the commands for all library combinations:
 
@@ -316,6 +320,7 @@ Exported 47630 final spectra to scratch/filtered_spectra.mgf
 
 An additional check is performed to chemically validate numerically found adducts/losses.
 In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the compound contains hydroxyls, and so on.
+Checks are performed using RDKit[^3].
 
 ```bash
 uv run python notebooks/validate_losses.py
@@ -323,19 +328,15 @@ uv run python notebooks/validate_losses.py
 
 From the 47,630 filtered spectra, 43,728 were validated and 3,902 discarded.
 
-TODO CITE RDKit
-
 #### Metadata Consolidation
 
-TODO CITE SELFIES
-
-At this point, SELFIES can be added, metadata in the headers cleaned up, and unique feature IDs attributed using:
+At this point, SELFIES[^4] can be added, metadata in the headers cleaned up, and unique feature IDs attributed using:
 
 ```bash
 uv run python notebooks/consolidate_spectra.py --instrument_name ZENOTOF7600 --data_curator ARutz
 ```
 
-#### MS-BUDDY Molecular Formula Annotation
+#### MS-BUDDY[^5] Molecular Formula Annotation
 
 MS-BUDDY provides molecular formula annotation to further structural validation:
 
@@ -368,7 +369,7 @@ In the end:
 uv run python notebooks/viz_upset.py
 ```
 
-## GNPS export
+## GNPS[^6] export
 
 To export the TSV file required for GNPS libraries:
 
@@ -386,7 +387,7 @@ The following steps document the complete data processing workflow from raw inst
 
 #### Step 1: Convert `.wiff` to `.mzML`
 
-Raw AB SCIEX `.wiff` files are converted to open-format `.mzML` using ProteoWizard:
+Raw AB SCIEX `.wiff` files are converted to open-format `.mzML` using ProteoWizard[^7]:
 
 ```bash
 docker run -it --rm \
@@ -398,7 +399,7 @@ docker run -it --rm \
 
 #### Step 2: Profile to Centroided Spectra
 
-Profile mode spectra are converted to centroided format using CentroidR:
+Profile mode spectra are converted to centroided format using CentroidR[^8]:
 
 ```r
 files <- "/Volumes/T7/data/7600/ms2_libraries" |>
@@ -451,16 +452,17 @@ MultiMS2 enables:
 4. **Method Development**: Reference spectra for optimizing MS/MS acquisition parameters
 5. **Quality Assessment**: Benchmarking datasets for evaluating annotation algorithms
 
-## Citation
-
-If you use MultiMS2 in your research, please cite:
-
-TODO
-
-## License
-
-*TODO License information to be added*
-
 ## Acknowledgments
 
 TODO
+
+## References
+
+[^1]: Schmid, R., Heuckeroth, S., Korf, A., Smirnov, A., Myers, O., Dyrlund, T. S., Bushuiev, R., Murray, K. J., Hoffmann, N., Lu, M., Sarvepalli, A., Zhang, Z., Fleischauer, M., Dührkop, K., Wesner, M., Hoogstra, S. J., Rudt, E., Mokshyna, O., Brungs, C., … Pluskal, T. (2023). Integrative analysis of multimodal mass spectrometry data in MZmine 3. Nature Biotechnology, 41(4), 447–449. <https://doi.org/10.1038/s41587-023-01690-2>
+[^2]: Brungs, C., Schmid, R., Heuckeroth, S., Mazumdar, A., Drexler, M., Šácha, P., Dorrestein, P. C., Petras, D., Nothias, L.-F., Veverka, V., Nencka, R., Kameník, Z., & Pluskal, T. (2025). MSnLib: efficient generation of open multi-stage fragmentation mass spectral libraries. Nature Methods, 22(10), 2028–2031. <https://doi.org/10.1038/s41592-025-02813-0>
+[^3]: Greg Landrum, Paolo Tosco, Brian Kelley, Ricardo Rodriguez, David Cosgrove, Riccardo Vianello, sriniker, Peter Gedeck, Gareth Jones, Eisuke Kawashima, NadineSchneider, Dan Nealschneider, Andrew Dalke, tadhurst-cdd, Matt Swain, Brian Cole, Samo Turk, Aleksandr Savelev, Alain Vaucher, … Juuso Lehtivarjo. (2025). rdkit/rdkit: 2025_09_1 (Q3 2025) Release (Version Release_2025_09_1). Zenodo. <https://doi.org/10.5281/ZENODO.17232453>
+[^4]: Krenn, M., Häse, F., Nigam, A., Friederich, P., & Aspuru-Guzik, A. (2020). Self-referencing embedded strings (SELFIES): A 100% robust molecular string representation. Machine Learning: Science and Technology, 1(4), 045024. <https://doi.org/10.1088/2632-2153/aba947>
+[^5]: Xing, S., Shen, S., Xu, B., Li, X., & Huan, T. (2023). BUDDY: molecular formula discovery via bottom-up MS/MS interrogation. Nature Methods, 20(6), 881–890. <https://doi.org/10.1038/s41592-023-01850-x>
+[^6]: Wang, M., Carver, J. J., Phelan, V. V., Sanchez, L. M., Garg, N., Peng, Y., Nguyen, D. D., Watrous, J., Kapono, C. A., Luzzatto-Knaan, T., Porto, C., Bouslimani, A., Melnik, A. V., Meehan, M. J., Liu, W.-T., Crüsemann, M., Boudreau, P. D., Esquenazi, E., Sandoval-Calderón, M., … Bandeira, N. (2016). Sharing and community curation of mass spectrometry data with Global Natural Products Social Molecular Networking. Nature Biotechnology, 34(8), 828–837. <https://doi.org/10.1038/nbt.3597>
+[^7]: Chambers, M. C., Maclean, B., Burke, R., Amodei, D., Ruderman, D. L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T. A., Brusniak, M.-Y., Paulse, C., Creasy, D., … Mallick, P. (2012). A cross-platform toolkit for mass spectrometry and proteomics. Nature Biotechnology, 30(10), 918–920. <https://doi.org/10.1038/nbt.2377>
+[^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile spectra. (Version 0.0.0.9001). Zenodo. https://doi.org/10.5281/ZENODO.17250308 
