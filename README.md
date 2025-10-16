@@ -358,6 +358,11 @@ uv run msbuddy \
 ```bash
 uv run python notebooks/viz_upset.py
 ```
+
+![](figures/pairs_upset.svg)
+
+![](figures/connectivities_upset.svg)
+
 In the end:
 
 * 2,899 unique compounds were recorded in 
@@ -366,8 +371,25 @@ In the end:
       * 43,728 spectra
 
 ```bash
-uv run python notebooks/viz_upset.py
+uv run python notebooks/viz_msbuddy.py
 ```
+
+![](figures/status.svg)
+
+![](figures/prob.svg)
+
+![](figures/ms2peak.svg)
+
+![](figures/peakfrac.svg)
+
+![](figures/intensity.svg)
+
+
+<!-- an additional TMAP visualization is also available:
+
+```bash
+uv run python notebooks/viz_tmap.py
+``` -->
 
 ## GNPS[^6] export
 
