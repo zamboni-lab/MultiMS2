@@ -30,7 +30,7 @@ with app.setup:
             metadata={"help": "Path to the input validated spectra MGF file."},
         )
         output_mgf: str = field(
-            default="scratch/consolidated_spectra.mgf",
+            default="data/multims2_spectra.mgf",
             metadata={
                 "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs."
             },

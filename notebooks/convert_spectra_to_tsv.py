@@ -22,11 +22,11 @@ with app.setup:
     @dataclass
     class Settings:
         input_mgf: str = field(
-            default="scratch/consolidated_spectra.mgf",
+            default="data/multims2_spectra.mgf",
             metadata={"help": "Path to input MGF file."},
         )
         output_tsv: str = field(
-            default="scratch/batch_gnps.tsv",
+            default="data/multims2_batch_gnps.tsv",
             metadata={"help": "Path to output TSV."},
         )
         dry_run: bool = field(
