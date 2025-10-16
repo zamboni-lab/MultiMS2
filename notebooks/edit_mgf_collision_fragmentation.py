@@ -135,7 +135,7 @@ def fix_mgf_fields(
 def show_settings():
     mo.md(f"""
     ## Edit MGF Collision/Fragmentation Settings
-    
+
     - **Input MGF**: `{settings.mgf_path}`
     - **Fragmentation method**: `{settings.frag_method}`
     - **Collision energy**: `{settings.coll_energy}`
@@ -163,7 +163,7 @@ def run_fix():
         - **Fragmentation method**: {result['frag_method']}
         - **Collision energy**: {result['coll_energy']}
         """)
-    return result
+    return
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -68,8 +68,7 @@ with app.setup:
     settings = parse_args()
 
 
-# ---------------- Internal Utilities ---------------- #
-@app.function
+@app.class_definition
 class SpectrumBlock:
     """Container for one MGF spectrum block."""
 
@@ -177,7 +176,6 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:
     return blocks
 
 
-# ---------------- Core Processing ---------------- #
 @app.function
 def assign_feature_ids(settings: Settings):
     """
@@ -382,10 +380,5 @@ def assign_feature_ids(settings: Settings):
     }
 
 
-# ------------- CLI entry ------------- #
 if __name__ == "__main__":
-    result = assign_feature_ids(settings)
-    if isinstance(result, dict) and "error" in result:
-        print("ERROR:", result["error"])
-    else:
-        print(result)
+    app.run()

@@ -177,11 +177,11 @@ def enhance_smiles(settings: Settings) -> dict:
 def show_settings():
     mo.md(f"""
     ## SMILES Enhancement Settings
-    
+
     - **Input file**: `{settings.smiles_file}`
     - **Output file**: `{settings.output_tsv}`
     - **Batch size**: {settings.batch_size}
-    
+
     Converts SMILES to enhanced metadata including:
     - Molecular formula
     - Exact mass
@@ -205,7 +205,7 @@ def run_enhancement():
         - **Processed**: {result['total_processed']:,} SMILES
         - **Output**: `{result['output_file']}`
         """)
-    return result
+    return
 
 
 if __name__ == "__main__":

@@ -154,12 +154,12 @@ def smiles_to_names(settings: Settings) -> dict:
 def show_settings():
     mo.md(f"""
     ## SMILES to Names Batch Resolver
-    
+
     - **Input file**: `{settings.smiles_file}`
     - **Output file**: `{settings.output_tsv}`
     - **Batch size**: {settings.batch_size}
     - **Sleep per batch**: {settings.sleep_time}s
-    
+
     Resolves SMILES to PubChem record names or InChIKeys (fallback).
     """)
     return
@@ -173,7 +173,7 @@ def run_resolution():
     - **Processed**: {result['total_processed']:,} SMILES
     - **Output**: `{result['output_file']}`
     """)
-    return result
+    return
 
 
 if __name__ == "__main__":

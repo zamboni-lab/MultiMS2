@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -91,6 +91,7 @@ with app.setup:
     settings = parse_args()
 
 
+@app.function
 def extract_charge_from_adduct(adduct: str):
     """
     Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
@@ -445,9 +446,4 @@ def run_app():
 
 
 if __name__ == "__main__":
-    from simple_parsing import ArgumentParser
-
-    parser = ArgumentParser()
-    parser.add_arguments(Settings, dest="settings")
-    args = parser.parse_args()
-    filter_spectra(args.settings)
+    app.run()

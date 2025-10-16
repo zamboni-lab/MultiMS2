@@ -15,7 +15,7 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -396,7 +396,7 @@ def log_triplet_count(triplet_set):
 
 
 @app.cell
-def _read(settings):
+def _read():
     (
         group_inchikeys,
         all_inchikeys,
@@ -405,12 +405,20 @@ def _read(settings):
         triplet_set,
     ) = read_consolidated_mgf(settings)
     log_triplet_count(triplet_set)
-    return group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
+    return (
+        all_adduct_inchikey,
+        all_inchikeys,
+        group_adduct_inchikey,
+        group_inchikeys,
+    )
 
 
 @app.cell
 def _prepare(
-    group_inchikeys, all_inchikeys, group_adduct_inchikey, all_adduct_inchikey
+    all_adduct_inchikey,
+    all_inchikeys,
+    group_adduct_inchikey,
+    group_inchikeys,
 ):
     data_inchikeys, names_inchikeys = create_upset_data(
         group_items=group_inchikeys,
@@ -426,7 +434,7 @@ def _prepare(
 
 
 @app.cell
-def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs, settings):
+def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
     pd_sub_inchikeys, names_sub_inchikeys = filter_upset_data(
         data=data_inchikeys,
         group_names=names_inchikeys,
@@ -437,13 +445,11 @@ def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs, settings):
         group_names=names_pairs,
         top_n=settings.top_n_sets,
     )
-    return names_sub_inchikeys, names_sub_pairs, pd_sub_inchikeys, pd_sub_pairs
+    return pd_sub_inchikeys, pd_sub_pairs
 
 
 @app.cell
-def _plot(
-    names_sub_inchikeys, names_sub_pairs, pd_sub_inchikeys, pd_sub_pairs, settings
-):
+def _plot(pd_sub_inchikeys, pd_sub_pairs):
     chart_inchikeys = build_upset_charts(
         pd_sub_inchikeys, settings.top_n_intersections, "Connectivities"
     )

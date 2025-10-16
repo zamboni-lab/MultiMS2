@@ -157,7 +157,7 @@ def run_concatenation():
         - **Metadata saved to**: `{result['output_tsv']}`
         - **Spectra saved to**: `{result['output_mgf']}`
         """)
-    return result
+    return
 
 
 if __name__ == "__main__":

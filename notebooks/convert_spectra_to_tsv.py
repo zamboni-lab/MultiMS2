@@ -183,11 +183,11 @@ def mgf_to_tsv(settings: Settings) -> dict:
 def show_settings():
     mo.md(f"""
     ## Convert Spectra to TSV Settings
-    
+
     - **Input MGF**: `{settings.input_mgf}`
     - **Output TSV**: `{settings.output_tsv}`
     - **Dry run**: {settings.dry_run}
-    
+
     Converts MGF spectra to GNPS batch upload TSV format.
     """)
     return
@@ -205,7 +205,7 @@ def run_conversion():
         - **Spectra processed**: {result['spectra_total']:,}
         - **Output file**: `{result['output_tsv'] or 'None (dry run)'}`
         """)
-    return result
+    return
 
 
 if __name__ == "__main__":

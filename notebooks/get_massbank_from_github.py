@@ -70,7 +70,7 @@ def download_massbank(settings: Settings) -> dict:
 def show_settings():
     mo.md(f"""
     ## Download MassBank Data Settings
-    
+
     - **URL**: `{settings.url}`
     - **Output path**: `{settings.output_path}`
     - **Hash verification**: SHA256
@@ -86,7 +86,7 @@ def run_download():
     - **File path**: `{result['file_path']}`
     - **Size**: {result['size_mb']:.2f} MB
     """)
-    return result
+    return
 
 
 if __name__ == "__main__":

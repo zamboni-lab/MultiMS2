@@ -152,7 +152,7 @@ def show_settings():
 
     mo.md(f"""
     ## Zenodo mzML Downloader Settings
-    
+
     - **DOI**: `{settings.doi}`
     - **Output directory**: `{settings.output_dir}`
     - **Files to download**: {file_count}
@@ -171,22 +171,22 @@ def run_download():
 
     mo.md(f"""
     ### Download Results
-    
+
     - **Total files**: {result['total_files']}
     - **Successful**: {result['successful']}
     - **Failed**: {result['failed']}
-    
+
     #### Downloaded Files
     ```
     {status_lines}
     ```
-    
+
     #### Errors
     ```
     {error_lines}
     ```
     """)
-    return result
+    return
 
 
 if __name__ == "__main__":

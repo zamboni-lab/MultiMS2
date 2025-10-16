@@ -21,7 +21,7 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -327,11 +327,6 @@ with app.setup:
         return df_filtered, group_idx_filtered, descriptors_filtered
 
 
-# ========================================
-# Main Pipeline
-# ========================================
-
-
 @app.function
 def run_pipeline():
     """Main pipeline for generating TMAPs from spectral library files."""
@@ -520,23 +515,23 @@ def run_pipeline():
     return mo.md(
         f"""
         ## TMAPs Generated Successfully
-        
+
         ### Output Files
         - **MolZip on SELFIES**: `scratch/tmap_molzip_selfies.html`
         - **MAP4 on fingerprints**: `scratch/tmap_map4.html`
-        
+
         ### Dataset Summary
         - Total records loaded: {len(records):,}
         - Unique molecules: {len(df_unique):,}
         - Groups: {', '.join(unique_groups)}
-        
+
         ### Runtime Benchmark
         {timing_md}
-        
+
         Open the HTML files in your browser for interactive exploration.
         """
     )
 
 
 if __name__ == "__main__":
-    run_pipeline()
+    app.run()

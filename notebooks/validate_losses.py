@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -55,7 +55,7 @@ with app.setup:
     settings = parse_args()
 
 
-@app.function
+@app.class_definition
 class MGFLossValidator:
     """Loss validation using reaction-based neutral loss rules.
 
@@ -380,7 +380,6 @@ class MGFLossValidator:
         return "\n\n".join(blocks)
 
 
-# ------------- Marimo exposed functions ------------- #
 @app.function
 def validate_file(settings: "Settings"):
     if not settings.input:
@@ -395,7 +394,6 @@ def validate_file(settings: "Settings"):
     return {"stats": stats, "n_valid": len(valid), "n_invalid": len(invalid)}
 
 
-# ------------- CLI entry (preserved) ------------- #
 @app.cell
 def _cli_main():
     validator = MGFLossValidator()
@@ -428,8 +426,8 @@ def _cli_main():
         print("\nReasons:")
         for r, c in sorted(stats["reasons"].items()):
             print(f"  {r}: {c}")
+    return
 
 
 if __name__ == "__main__":
-    # Only run CLI main if launched as script
-    _cli_main()
+    app.run()
