@@ -489,7 +489,8 @@ MultiMS2 enables:
 
 ## Acknowledgments
 
-TODO
+This work was supported by a grant from the Swiss National Science Foundation (project MetabolinkAI, #[10002786](https://data.snf.ch/grants/grant/10002786)),
+and a grant from the Strategic Focal Area Personalized Health and Related Technologies (PHRT) of the ETH Domain (#603).
 
 ## References
 
