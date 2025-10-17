@@ -1,0 +1,33 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: MultiMS2
+message: >-
+  If you use this software, please cite the following.
+type: software
+authors:
+  - affiliation: 'ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)'
+    family-names: Rutz
+    given-names: Adriano
+    orcid: 'https://orcid.org/0000-0003-0443-9902'
+    role: 'Conceptualization, Data curation, Methodology, Software, Validation, Visualization'
+  - affiliation: 'ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)'
+    family-names: Povoa Correia
+    given-names: Mario Sergio
+    orcid: 'https://orcid.org/0000-0003-2125-4184'
+    role: 'Investigation, Validation'
+  - affiliation: 'ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)'
+    family-names: Zamboni
+    given-names: Nicola
+    orcid: 'https://orcid.org/0000-0003-1271-1021'
+    role: 'Conceptualization, Funding acquisition, Methodology, Project administration, Resources, Supervision'
+repository-code: 'https://github.com/adafede/wd-labels-to-iupac'
+abstract: >-
+    MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library.
+keywords:
+  - "collision induced dissociation"
+  - "electron activated dissociation" 
+  - "mass spectrometry"
+  - "spectral library"
+license: [CC0-1.0, MIT]
