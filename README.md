@@ -76,6 +76,8 @@ Update the metadata file path in `.mzmine/batch/*.mzbatch`:
 
 The library generation uses mzmine batch processing for consistent, reproducible spectral extraction. Below are the commands for all library combinations:
 
+<details>
+
 #### NEXUS Library
 
 **Negative Mode:**
@@ -250,6 +252,8 @@ mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
   -o "scratch/msmls_pos_ead_24"
 ```
 
+</details>
+    
 **Performance Note:** For optimal performance, consider copying files to a fast local disk before processing to avoid slow network I/O.
 
 ### Quality Control and Validation
@@ -299,6 +303,9 @@ min_intensity_ratio = 0.8
 min_signals_ratio = 0.4
 ```
 
+<details>
+
+```plaintext
 After charge consistency filter: 148888 spectra remain.
 After min_precursor_height: 133624 spectra, 11998 unique (inchi_aux, adduct)
 After min_precursor_purity: 128116 spectra, 11693 unique (inchi_aux, adduct)
@@ -312,6 +319,9 @@ After min_explained_signals: 60359 spectra, 9392 unique (inchi_aux, adduct)
 After min_modalities per (inchi_aux, adduct): 3043 inchi_aux, 4563 unique (inchi_aux, adduct), 25126 unique (inchi_aux, adduct, modality)
 Final spectra selected for output: 47630
 Exported 47630 final spectra to scratch/filtered_spectra.mgf
+```
+
+</details>
 
 (Both `all` and `filtered` MGF are exported)
 
@@ -402,6 +412,8 @@ This should then pass the validation at <https://gnps-quickstart.ucsd.edu/valida
 
 ## Data Processing Pipeline (here for reference)
 
+<details>
+
 ### Initial Data Conversion
 
 The following steps document the complete data processing workflow from raw instrument files to curated spectral libraries.
@@ -433,6 +445,8 @@ files |>
     replacement = "/centroided/"
   )
 ```
+
+</details>
 
 **Note:** These preprocessing steps have already been completed for the publicly available datasets on Zenodo and MassIVE.
 
