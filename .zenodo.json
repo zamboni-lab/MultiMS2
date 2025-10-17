@@ -1,98 +1,93 @@
 {
-  "title": "MultiMS2",
-  "description": "MultiMS2",
-  "version": "0.0.1",
-  "creators": [
-    {
-      "name": "Rutz, Adriano",
-      "orcid": "0000-0003-0443-9902",
-      "type": "Data curator",
-      "affiliation": {
-        "name": "ETH Zurich",
-        "department": "Institute for Molecular Systems Biology",
-        "address": "Otto-Stern-Weg, 3",
-        "city": "Zurich",
-        "country": "Switzerland",
-        "postal_code": "8093",
-        "ror": "https://ror.org/03j5gm982"
-      }
-    }
-  ],
-  "contributors": [
-    {
-      "name": "Povoa Correia, Mario Sergio",
-      "type": "Data collector",
-      "affiliation": {
-        "name": "ETH Zurich",
-        "department": "Institute for Molecular Systems Biology",
-        "address": "Otto-Stern-Weg, 3",
-        "city": "Zurich",
-        "country": "Switzerland",
-        "postal_code": "8093",
-        "ror": "https://ror.org/03j5gm982"
-      }
-    },
-    {
-      "name": "Zamboni, Nicola",
-      "type": "Supervisor",
-      "affiliation": {
-        "name": "ETH Zurich",
-        "department": "Institute for Molecular Systems Biology",
-        "address": "Otto-Stern-Weg, 3",
-        "city": "Zurich",
-        "country": "Switzerland",
-        "postal_code": "8093",
-        "ror": "https://ror.org/03j5gm982"
-      }
-    }
-  ],
-  "license": "MIT (code) and CC0 (data)",
-  // TODO
-  // "keywords": [
-  //   "cheminformatics",
-  //   "IUPAC",
-  //   "OPSIN",
-  //   "wikidata"
-  // ],
-  // "related_identifiers": [
-  //   {
-  //     "identifier": "https://github.com/dan2097/opsin",
-  //     "relation": "requires",
-  //     "resource_type": "software",
-  //     "scheme": "url"
-  //   },
-  //   {
-  //     "identifier": "https://github.com/rdkit/rdkit",
-  //     "relation": "requires",
-  //     "resource_type": "software",
-  //     "scheme": "url"
-  //   },
-  //   {
-  //     "identifier": "https://www.wikidata.org",
-  //     "relation": "isSourceOf",
-  //     "resource_type": "dataset",
-  //     "scheme": "url"
-  //   },
-  //   {
-  //     "identifier": "10.59350/dycsw-qeq51",
-  //     "relation": "cites",
-  //     "resource_type": "other",
-  //     "scheme": "doi"
-  //   }
-  // ]
-  "funding": [
-      {
-        "award": {
-          "id": "00yjd3n13::10002786",
-          "number": "10002786",
-          "title": {
-            "en": "MetaboLinkAI"
-          }
-        },
-        "funder": {
-          "id": "00yjd3n13",
-          "name": "Swiss National Science Foundation"
+    "title": "MultiMS2",
+    "description": "MultiMS2",
+    "version": "0.0.1",
+    "creators": [
+        {
+            "name": "Rutz, Adriano",
+            "orcid": "0000-0003-0443-9902",
+            "type": "Data curator",
+            "affiliation": {
+                "name": "ETH Zurich",
+                "department": "Institute for Molecular Systems Biology",
+                "address": "Otto-Stern-Weg, 3",
+                "city": "Zurich",
+                "country": "Switzerland",
+                "postal_code": "8093",
+                "ror": "https://ror.org/03j5gm982"
+            }
         }
-      }
+    ],
+    "contributors": [
+        {
+            "name": "Povoa Correia, Mario Sergio",
+            "type": "Data collector",
+            "affiliation": {
+                "name": "ETH Zurich",
+                "department": "Institute for Molecular Systems Biology",
+                "address": "Otto-Stern-Weg, 3",
+                "city": "Zurich",
+                "country": "Switzerland",
+                "postal_code": "8093",
+                "ror": "https://ror.org/03j5gm982"
+            }
+        },
+        {
+            "name": "Zamboni, Nicola",
+            "type": "Supervisor",
+            "affiliation": {
+                "name": "ETH Zurich",
+                "department": "Institute for Molecular Systems Biology",
+                "address": "Otto-Stern-Weg, 3",
+                "city": "Zurich",
+                "country": "Switzerland",
+                "postal_code": "8093",
+                "ror": "https://ror.org/03j5gm982"
+            }
+        }
+    ],
+    "license": "MIT (code) and CC0 (data)",
+    "keywords": [
+        "collision induced dissociation",
+        "electron activated dissociation",
+        "mass spectrometry",
+        "spectral library"
+    ],
+    "subjects": [
+        {
+            "id": "mesh:D013058",
+            "scheme": "MeSH",
+            "subject": "Mass Spectrometry"
+        },
+        {
+            "subject": "spectral library"
+        }
+    ],
+    "related_identifiers": [
+        {
+            "identifier": "10.5281/zenodo.17250693",
+            "relation_type": {
+                "id": "isderivedfrom"
+            },
+            "resource_type": {
+                "id": "dataset"
+            },
+            "scheme": "doi"
+        }
+    ],
+    "funding": [
+        {
+            "award": {
+                "id": "00yjd3n13::10002786",
+                "number": "10002786",
+                "title": {
+                    "en": "MetaboLinkAI"
+                }
+            },
+            "funder": {
+                "id": "00yjd3n13",
+                "name": "Swiss National Science Foundation"
+            }
+        }
     ]
 }
