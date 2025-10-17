@@ -1,5 +1,4 @@
-# MultiMS2: A Multi-Energy, Multi-Fragmentation Spectral Library
-
+# MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library
 ## Overview
 
 MultiMS2 is a curated mass spectrometry spectral library designed to address critical gaps in metabolomics research.
