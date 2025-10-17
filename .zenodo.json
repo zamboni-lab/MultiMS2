@@ -80,4 +80,19 @@
   //     "scheme": "doi"
   //   }
   // ]
+  "funding": [
+      {
+        "award": {
+          "id": "00yjd3n13::10002786",
+          "number": "10002786",
+          "title": {
+            "en": "MetaboLinkAI"
+          }
+        },
+        "funder": {
+          "id": "00yjd3n13",
+          "name": "Swiss National Science Foundation"
+        }
+      }
+    ]
 }
