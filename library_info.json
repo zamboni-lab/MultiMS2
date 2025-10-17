@@ -2,7 +2,7 @@
   "library": {
     "name": "MultiMS2",
     "identifier": "MultiMS2",
-    "description": "MultiMS2 library from multiple compound libraries",
+    "description": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
     "publication": "10.00000/TODO"
   },
   "mass_spectrometer": {
