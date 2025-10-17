@@ -1,52 +1,11 @@
 {
     "title": "MultiMS2",
     "description": "MultiMS2",
+    "license": "MIT",
+    "notes": "This is a mixed-license upload. Dataset and metadata are released under CC0-1.0; scripts and utilities are licensed under MIT.",
+    "upload_type": "software",
     "version": "0.0.1",
-    "creators": [
-        {
-            "name": "Rutz, Adriano",
-            "orcid": "0000-0003-0443-9902",
-            "type": "Data curator",
-            "affiliation": {
-                "name": "ETH Zurich",
-                "department": "Institute for Molecular Systems Biology",
-                "address": "Otto-Stern-Weg, 3",
-                "city": "Zurich",
-                "country": "Switzerland",
-                "postal_code": "8093",
-                "ror": "https://ror.org/03j5gm982"
-            }
-        }
-    ],
-    "contributors": [
-        {
-            "name": "Povoa Correia, Mario Sergio",
-            "type": "Data collector",
-            "affiliation": {
-                "name": "ETH Zurich",
-                "department": "Institute for Molecular Systems Biology",
-                "address": "Otto-Stern-Weg, 3",
-                "city": "Zurich",
-                "country": "Switzerland",
-                "postal_code": "8093",
-                "ror": "https://ror.org/03j5gm982"
-            }
-        },
-        {
-            "name": "Zamboni, Nicola",
-            "type": "Supervisor",
-            "affiliation": {
-                "name": "ETH Zurich",
-                "department": "Institute for Molecular Systems Biology",
-                "address": "Otto-Stern-Weg, 3",
-                "city": "Zurich",
-                "country": "Switzerland",
-                "postal_code": "8093",
-                "ror": "https://ror.org/03j5gm982"
-            }
-        }
-    ],
-    "license": "MIT (code) and CC0 (data)",
+    "access_right": "open",
     "keywords": [
         "collision induced dissociation",
         "electron activated dissociation",
@@ -61,6 +20,28 @@
         },
         {
             "subject": "spectral library"
+        }
+    ],
+    "creators": [
+        {
+            "name": "Adriano Rutz",
+            "orcid": "0000-0003-0443-9902",
+            "type": "Data curator",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Povoa Correia, Mario Sergio",
+            "orcid": "0000-0003-2125-4184",
+            "type": "Data collector",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
+        },
+        {
+            "name": "Zamboni, Nicola",
+            "orcid": "0000-0003-1271-1021",
+            "type": "Supervisor",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
         }
     ],
     "related_identifiers": [
