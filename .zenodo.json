@@ -1,0 +1,51 @@
+{
+    "title": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
+    "description": "MultiMS2",
+    "license": "MIT",
+    "notes": "This is a mixed-license upload. Dataset and metadata are released under CC0-1.0; scripts and utilities are licensed under MIT.",
+    "upload_type": "software",
+    "version": "0.0.1",
+    "access_right": "open",
+    "keywords": [
+        "collision induced dissociation",
+        "electron activated dissociation",
+        "mass spectrometry",
+        "spectral library"
+    ],
+    "creators": [
+        {
+            "name": "Adriano Rutz",
+            "orcid": "0000-0003-0443-9902",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Povoa Correia, Mario Sergio",
+            "orcid": "0000-0003-2125-4184",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
+        },
+        {
+            "name": "Zamboni, Nicola",
+            "orcid": "0000-0003-1271-1021",
+            "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
+        }
+    ],
+    "related_identifiers": [
+        {
+            "identifier": "10.5281/zenodo.17250693",
+            "relation_type": {
+                "id": "isderivedfrom"
+            },
+            "resource_type": {
+                "id": "dataset"
+            },
+            "scheme": "doi"
+        }
+    ],
+    "grants": [
+        {
+            "id": "00yjd3n13::10002786"
+        }
+    ]
+}
