@@ -22,7 +22,7 @@ authors:
     given-names: Nicola
     orcid: 'https://orcid.org/0000-0003-1271-1021'
     role: 'Conceptualization, Funding acquisition, Methodology, Project administration, Resources, Supervision'
-repository-code: 'https://github.com/adafede/wd-labels-to-iupac'
+repository-code: 'https://github.com/zamboni-lab/MultiMS2'
 abstract: >-
     MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library.
 keywords:
