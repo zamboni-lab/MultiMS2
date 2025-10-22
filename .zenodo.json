@@ -1,5 +1,5 @@
 {
-    "title": "MultiMS2",
+    "title": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
     "description": "MultiMS2",
     "license": "MIT",
     "notes": "This is a mixed-license upload. Dataset and metadata are released under CC0-1.0; scripts and utilities are licensed under MIT.",
