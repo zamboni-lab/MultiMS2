@@ -3,7 +3,7 @@
     "name": "MultiMS2",
     "identifier": "MultiMS2",
     "description": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
-    "publication": "10.00000/TODO"
+    "publication": null
   },
   "mass_spectrometer": {
     "description": "ZenoTOF 7600",
@@ -22,7 +22,7 @@
   "sample_introduction": {
     "method": "dual pump flow injection",
     "manufacturer": "Agilent",
-    "model": "TODO",
+    "model": "Agilent Infinity II",
     "column": {
       "name": "",
       "manufacturer": "",
@@ -40,12 +40,12 @@
         "flow_type": "constant",
         "steps": [
           {
-            "time": 0.0,
-            "flow_rate": 000000, // TODO
+            "time": 0.6,
+            "flow_rate": 0.2,
             "flow_rate_unit": "ml/min",
             "components": [
-              {"id": "A", "percentage": 000000}, // TODO
-              {"id": "B", "percentage": 000000} // TODO
+              {"id": "A", "percentage": 50}, 
+              {"id": "B", "percentage": 50}
             ]
           }
         ]
@@ -56,15 +56,15 @@
           "solvents": [
             {
               "name": "H2O",
-              "amount": 000, // TODO
+              "amount": 100, 
               "unit": "percent",
-              "pH": 0.00, // TODO
+              "pH": null,
             },
             {
               "name": "formic acid",
               "amount": 0.1,
               "unit": "percent",
-              "pH": 0.00, // TODO
+              "pH": null, 
             }
           ]
         },
@@ -72,7 +72,7 @@
           "id": "B",
           "solvents": [
             {
-              "name": "TODO",
+              "name": "Methanol",
               "amount": 100,
               "unit": "percent"
             },
@@ -103,31 +103,31 @@
   ],
   "compound_libraries": [
     {
-      "name": "MSMLS TODO",
+      "name": "MSMLS",
       "identifier": "MSMLS",
-      "distributor": "TODO",
-      "catalog_number": "TODO",
-      "url": "TODO",
+      "distributor": "",
+      "catalog_number": "",
+      "url": "",
       "description": "",
-      "source": "commercial/purified/TODO"
+      "source": "commercial"
     },
     {
-      "name": "NEXUS TODO",
+      "name": "NEXUS",
       "identifier": "NEXUS",
-      "distributor": "TODO",
-      "catalog_number": "TODO",
-      "url": "TODO",
+      "distributor": "",
+      "catalog_number": "",
+      "url": "",
       "description": "",
-      "source": "commercial/purified/TODO"
+      "source": "commercial"
     },
     {
       "name": "SELLECK",
       "identifier": "SELLECK",
-      "distributor": "TODO",
+      "distributor": "",
       "catalog_number": "",
       "url": "",
       "description": "",
-      "source": "commercial/purified/TODO"
+      "source": "commercial"
     }
   ],
   "people": [
