@@ -32,12 +32,8 @@
     "related_identifiers": [
         {
             "identifier": "10.5281/zenodo.17250693",
-            "relation_type": {
-                "id": "isderivedfrom"
-            },
-            "resource_type": {
-                "id": "dataset"
-            },
+            "relation": "isderivedfrom",
+            "resource_type": "dataset",
             "scheme": "doi"
         }
     ],
