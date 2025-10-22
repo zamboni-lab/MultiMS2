@@ -12,13 +12,15 @@
         "mass spectrometry",
         "spectral library"
     ],
-    "contributors": [
+    "creators": [
         {
             "name": "Adriano Rutz",
             "orcid": "0000-0003-0443-9902",
             "type": "DataCurator",
             "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
-        },
+        }
+    ],
+    "contributors": [
         {
             "name": "Povoa Correia, Mario Sergio",
             "orcid": "0000-0003-2125-4184",
@@ -46,17 +48,7 @@
     ],
     "grants": [
         {
-            "award": {
-                "id": "00yjd3n13::10002786",
-                "number": "10002786",
-                "title": {
-                    "en": "MetaboLinkAI"
-                }
-            },
-            "funder": {
-                "id": "00yjd3n13",
-                "name": "Swiss National Science Foundation"
-            }
+            "id": "00yjd3n13::10002786"
         }
     ]
 }
