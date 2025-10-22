@@ -12,35 +12,23 @@
         "mass spectrometry",
         "spectral library"
     ],
-    "subjects": [
-        {
-            "id": "mesh:D013058",
-            "scheme": "MeSH",
-            "subject": "Mass Spectrometry"
-        },
-        {
-            "subject": "spectral library"
-        }
-    ],
     "creators": [
         {
             "name": "Adriano Rutz",
             "orcid": "0000-0003-0443-9902",
-            "type": "Data curator",
+            "role": "Data curator",
             "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
-        }
-    ],
-    "contributors": [
+        },
         {
             "name": "Povoa Correia, Mario Sergio",
             "orcid": "0000-0003-2125-4184",
-            "type": "Data collector",
+            "role": "Data collector",
             "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
         },
         {
             "name": "Zamboni, Nicola",
             "orcid": "0000-0003-1271-1021",
-            "type": "Supervisor",
+            "role": "Supervisor",
             "affiliation": "ETH Zurich, Institute for Molecular Systems Biology, Otto-Stern-Weg 3, 8093 Zurich, Switzerland (ROR: https://ror.org/03j5gm982)"
         }
     ],
@@ -54,21 +42,6 @@
                 "id": "dataset"
             },
             "scheme": "doi"
-        }
-    ],
-    "funding": [
-        {
-            "award": {
-                "id": "00yjd3n13::10002786",
-                "number": "10002786",
-                "title": {
-                    "en": "MetaboLinkAI"
-                }
-            },
-            "funder": {
-                "id": "00yjd3n13",
-                "name": "Swiss National Science Foundation"
-            }
         }
     ]
 }
