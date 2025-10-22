@@ -11,8 +11,8 @@
     "model": "ZenoTOF 7600",
     "ionization_mode": "HESI",
     "resolutions": {
-      "MS1": 000000, // TODO
-      "MS2": 000000, // TODO
+      "MS1": 42000,
+      "MS2": 42000,
     },
     "fragmentation_types": [
       "CID",
