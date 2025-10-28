@@ -26,7 +26,7 @@ with app.setup:
             metadata={"help": "Path to input MGF file."},
         )
         output_tsv: str = field(
-            default="data/multims2_batch_gnps.tsv",
+            default="data/MULTIMS2.tsv",
             metadata={"help": "Path to output TSV."},
         )
         dry_run: bool = field(
@@ -121,6 +121,8 @@ def mgf_to_tsv(settings: Settings) -> dict:
         "INCHIAUX",
         "CHARGE",
         "IONMODE",
+        "FRAGMENTATION_METHOD",
+        "COLLISION_ENERGY",
         "ACQUISITION",
         "EXACTMASS",
         "DATACOLLECTOR",
@@ -222,6 +224,7 @@ def show_settings():
     - **Input MGF**: `{settings.input_mgf}`
     - **Output TSV**: `{settings.output_tsv}`
     - **Dry run**: {settings.dry_run}
+    - **Change .mzml to .mzXML**: {settings.change_mzml_to_mzxml}
 
     Converts MGF spectra to GNPS batch upload TSV format.
     """)
