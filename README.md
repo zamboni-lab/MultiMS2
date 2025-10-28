@@ -405,7 +405,7 @@ uv run python notebooks/viz_tmap.py
 To export the TSV file required for GNPS libraries:
 
 ```bash
-uv run python notebooks/convert_spectra_to_tsv.py
+uv run python notebooks/convert_spectra_to_tsv.py --change_mzml_to_mzxml --split 10000
 ```
 
 This should then pass the validation at <https://gnps-quickstart.ucsd.edu/validatebatch>

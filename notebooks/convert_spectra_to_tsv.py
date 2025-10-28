@@ -33,6 +33,16 @@ with app.setup:
             default=False,
             metadata={"help": "If True, do not write output file."},
         )
+        change_mzml_to_mzxml: bool = field(
+            default=False,
+            metadata={"help": "If True, change .mzml extension to .mzxml in FILENAME."},
+        )
+        split: int = field(
+            default=0,
+            metadata={
+                "help": "Split the output TSV into multiple files with up to this many data lines each."
+            },
+        )
 
     parser = ArgumentParser()
     parser.add_arguments(Settings, dest="settings")
@@ -127,11 +137,10 @@ def mgf_to_tsv(settings: Settings) -> dict:
     ]
 
     na_defaults = {"SPECIES", "CASNUMBER", "PUBMED", "STRAIN", "INTEREST", "GENUS"}
-
-    tsv_lines = ["\t".join(tsv_columns) + "\n"]
+    header = "\t".join(tsv_columns) + "\n"
+    tsv_lines = []
 
     for blk in blocks:
-        # Normalize field names
         normalized = {}
         for k, v in blk.items():
             key = k.upper()
@@ -147,6 +156,10 @@ def mgf_to_tsv(settings: Settings) -> dict:
                 val = "1"
             elif col == "SEQ":
                 val = "*..*"
+            elif col == "FILENAME":
+                val = normalized.get("FILENAME", "")
+                if settings.change_mzml_to_mzxml and val.lower().endswith(".mzml"):
+                    val = val[:-5] + ".mzXML"
             elif col == "INSTRUMENT":
                 val = normalized.get(
                     "INSTRUMENT_TYPE", normalized.get("INSTRUMENT", "")
@@ -168,14 +181,36 @@ def mgf_to_tsv(settings: Settings) -> dict:
 
         tsv_lines.append("\t".join(row) + "\n")
 
-    if not settings.dry_run:
-        os.makedirs(os.path.dirname(settings.output_tsv), exist_ok=True)
+    if settings.dry_run:
+        return {"spectra_total": len(blocks), "output_tsv": None}
+
+    os.makedirs(os.path.dirname(settings.output_tsv), exist_ok=True)
+
+    base, ext = os.path.splitext(settings.output_tsv)
+    total_lines = len(tsv_lines)
+    split_size = settings.split
+    output_files = []
+
+    # Disable splitting if split <= 0
+    if split_size <= 0 or total_lines <= split_size:
         with open(settings.output_tsv, "w", encoding="utf-8") as f:
+            f.write(header)
             f.writelines(tsv_lines)
+        output_files.append(settings.output_tsv)
+    else:
+        num_splits = (total_lines + split_size - 1) // split_size
+        for i in range(num_splits):
+            start = i * split_size
+            end = min((i + 1) * split_size, total_lines)
+            split_path = f"{base}-PARTITION-{i+1}{ext}"
+            with open(split_path, "w", encoding="utf-8") as f:
+                f.write(header)
+                f.writelines(tsv_lines[start:end])
+            output_files.append(split_path)
 
     return {
         "spectra_total": len(blocks),
-        "output_tsv": settings.output_tsv if not settings.dry_run else None,
+        "output_tsv": output_files,
     }
 
 
