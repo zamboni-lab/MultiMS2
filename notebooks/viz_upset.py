@@ -324,7 +324,7 @@ def build_single_upset_chart(
     # Bars (top)
     bars = (
         alt.Chart(inter_df, width=inter_width, height=180)
-        .mark_bar(color=base_color, stroke="white", strokeWidth=1)
+        .mark_bar(color=base_color, stroke=grid_color, strokeWidth=1)
         .encode(
             x=x_inter,
             y=alt.Y(
@@ -346,7 +346,7 @@ def build_single_upset_chart(
     bar_labels = (
         alt.Chart(inter_df, width=inter_width, height=180)
         .mark_text(
-            dy=-5, color="#4d4d4d", fontSize=11 * 1.5, font="Arial", fontWeight="normal"
+            dy=-7, color="#4d4d4d", fontSize=11 * 1.5, font="Arial", fontWeight="normal"
         )
         .encode(x=x_inter, y=alt.Y("count:Q"), text=alt.Text("count:Q"))
     )
@@ -439,7 +439,7 @@ def build_single_upset_chart(
 
     size_bars = (
         alt.Chart(set_sizes, width=220, height=matrix_height)
-        .mark_bar(color=base_color, stroke="white", strokeWidth=1)
+        .mark_bar(color=base_color, stroke=grid_color, strokeWidth=1)
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
@@ -478,7 +478,7 @@ def build_single_upset_chart(
 
     right_panel = bg_bars + size_bars + size_labels
 
-    lower = alt.hconcat(matrix, right_panel, spacing=0).resolve_scale(y="shared")
+    lower = alt.hconcat(matrix, right_panel, spacing=20).resolve_scale(y="shared")
 
     chart = alt.vconcat(
         panel_label_chart + title_chart + bars + bar_labels, lower
@@ -509,7 +509,7 @@ def build_combined_upset_figure(
     )
 
     combined = (
-        alt.vconcat(chart_a, chart_b, spacing=0)
+        alt.vconcat(chart_a, chart_b, spacing=50)
         .properties(background="none")
         .configure_view(strokeWidth=0, fill=None)
         .configure_axis(
