@@ -686,7 +686,6 @@ def build_combined_msbuddy_figure(df: pl.DataFrame):
         panel_label="",
         chart_width=chart_width,
     )
-    
 
     main_figure = (
         alt.vconcat(chart_a, chart_b, chart_c)
