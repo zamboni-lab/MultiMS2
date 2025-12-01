@@ -45,7 +45,7 @@ with app.setup:
             },
         )
         top_n_intersections: int = field(
-            default=32,
+            default=20,
             metadata={"help": "Show only the largest N intersections"},
         )
 
@@ -323,7 +323,7 @@ def build_single_upset_chart(
 
     # Bars (top)
     bars = (
-        alt.Chart(inter_df, width=inter_width, height=220)
+        alt.Chart(inter_df, width=inter_width, height=180)
         .mark_bar(color=base_color, stroke="white", strokeWidth=1)
         .encode(
             x=x_inter,
@@ -332,7 +332,7 @@ def build_single_upset_chart(
                 title="Intersection Size",
                 axis=alt.Axis(
                     titleFontSize=13 * 2,
-                    labelFontSize=11 * 1.5,
+                    labelFontSize=11 * 2,
                     titleFont="Arial",
                     labelFont="Arial",
                     labelColor="#4d4d4d",
@@ -344,7 +344,7 @@ def build_single_upset_chart(
     )
 
     bar_labels = (
-        alt.Chart(inter_df, width=inter_width, height=220)
+        alt.Chart(inter_df, width=inter_width, height=180)
         .mark_text(
             dy=-5, color="#4d4d4d", fontSize=11 * 1.5, font="Arial", fontWeight="normal"
         )
@@ -360,7 +360,7 @@ def build_single_upset_chart(
             fontSize=18 * 2,
             fontWeight="bold",
             dx=-200,
-            dy=-30,
+            dy=-48,
             font="Arial",
             color="#4d4d4d",
         )
@@ -374,7 +374,7 @@ def build_single_upset_chart(
             align="center",
             fontSize=14 * 2,
             fontWeight="bold",
-            dy=-12,
+            dy=-30,
             font="Arial",
             color="#4d4d4d",
         )
@@ -478,7 +478,7 @@ def build_single_upset_chart(
 
     right_panel = bg_bars + size_bars + size_labels
 
-    lower = alt.hconcat(matrix, right_panel, spacing=20).resolve_scale(y="shared")
+    lower = alt.hconcat(matrix, right_panel, spacing=0).resolve_scale(y="shared")
 
     chart = alt.vconcat(
         panel_label_chart + title_chart + bars + bar_labels, lower
@@ -492,7 +492,7 @@ def build_combined_upset_figure(
 ):
     """Build combined figure with panels A and B."""
     # Define grid color globally for consistency
-    grid_color = "#DDDDDD"
+    grid_color = "#4d4d4d"
 
     chart_a = build_single_upset_chart(
         pd_sub_inchikeys,
@@ -509,7 +509,7 @@ def build_combined_upset_figure(
     )
 
     combined = (
-        alt.vconcat(chart_a, chart_b, spacing=50)
+        alt.vconcat(chart_a, chart_b, spacing=0)
         .properties(background="none")
         .configure_view(strokeWidth=0, fill=None)
         .configure_axis(
