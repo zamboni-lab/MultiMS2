@@ -675,17 +675,18 @@ def build_combined_msbuddy_figure(df: pl.DataFrame):
         panel_label="C",
         chart_width=chart_width,
     )
-    chart_supp_1 = make_status_plot(
-        df,
-        panel_label="",
-        chart_width=chart_width,
-    )
-    chart_supp_2 = make_match_plot(
+    chart_supp_1 = make_match_plot(
         df,
         "explained_ms2_peak",
         panel_label="",
         chart_width=chart_width,
     )
+    chart_supp_2 = make_status_plot(
+        df,
+        panel_label="",
+        chart_width=chart_width,
+    )
+    
 
     main_figure = (
         alt.vconcat(chart_a, chart_b, chart_c)
@@ -734,7 +735,7 @@ def build_combined_msbuddy_figure(df: pl.DataFrame):
             labelColor="#4d4d4d",
             titleColor="#4d4d4d",
             orient="bottom",
-            columns=1,
+            columns=4,
         )
     )
 
@@ -759,7 +760,7 @@ def build_combined_msbuddy_figure(df: pl.DataFrame):
             labelColor="#4d4d4d",
             titleColor="#4d4d4d",
             orient="bottom",
-            columns=4,
+            columns=1,
         )
     )
     return main_figure, supp_figure_1, supp_figure_2
