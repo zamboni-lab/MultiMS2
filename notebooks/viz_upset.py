@@ -35,7 +35,7 @@ with app.setup:
     @dataclass
     class Settings:
         mgf_path: str = field(
-            default="scratch/consolidated_spectra.mgf",
+            default="data/multims2_spectra.mgf",
             metadata={"help": "Path to consolidated spectra MGF file"},
         )
         top_n_sets: int = field(
@@ -245,7 +245,10 @@ def membership_top_intersections(pdf, top_n: int):
 
 
 @app.function
-def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
+def build_single_upset_chart(
+    pdf, top_n_intersections: int, panel_label: str, title_text: str
+):
+    """Build a single upset chart with a panel label."""
     records, active_sets = membership_top_intersections(pdf, top_n_intersections)
     if not records:
         return (
@@ -270,18 +273,44 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
     matrix_df = _pd.DataFrame(matrix_rows)
     set_sizes_full = pdf.sum(axis=0).reset_index()
     set_sizes_full.columns = ["set", "size"]
-    set_sizes = set_sizes_full[set_sizes_full["set"].isin(active_sets)]
-    set_sizes = set_sizes.sort_values(["size", "set"], ascending=[False, True])
-    set_order = list(set_sizes["set"])
+    set_sizes = set_sizes_full[set_sizes_full["set"].isin(active_sets)].copy()
+
+    # Define custom order: cid 20, 40, 60 pos, ead 12, 16, 24 pos, then same for neg
+    desired_order = [
+        "cid_[20.0]_negative",
+        "cid_[20.0]_positive",
+        "cid_[40.0]_negative",
+        "cid_[40.0]_positive",
+        "cid_[60.0]_negative",
+        "cid_[60.0]_positive",
+        "ead_[12.0]_negative",
+        "ead_[12.0]_positive",
+        "ead_[16.0]_negative",
+        "ead_[16.0]_positive",
+        "ead_[24.0]_negative",
+        "ead_[24.0]_positive",
+    ]
+
+    # Filter to only include sets that are active, maintaining desired order
+    set_order = [s for s in desired_order if s in active_sets]
+    # Add any active sets not in desired_order at the end
+    set_order.extend([s for s in active_sets if s not in set_order])
+
+    # Don't sort set_sizes by size - keep it in the custom order
+    # Create a categorical column to preserve the order
+    set_sizes["set"] = _pd.Categorical(
+        set_sizes["set"], categories=set_order, ordered=True
+    )
+    set_sizes = set_sizes.sort_values("set")
 
     # Dynamic width and heights
-    inter_width = max(400, len(records) * 26)
-    row_height = 22
+    inter_width = max(400, len(records) * 28)
+    row_height = 24
     matrix_height = max(80, row_height * len(set_order))
 
-    # Unified palette
-    base_color = "#2E5B88"  # consistent deep blue
-    absent_color = "#F1F4F7"
+    # Paul Tol color scheme - vibrant blue with light neutral background
+    base_color = "#4477AA"  # Paul Tol vibrant blue
+    grid_color = "#4d4d4d"  # soft grid lines
 
     max_size = int(set_sizes["size"].max()) if len(set_sizes) else 0
     set_sizes = set_sizes.assign(maxsize=max_size)
@@ -294,20 +323,62 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
 
     # Bars (top)
     bars = (
-        alt.Chart(inter_df, width=inter_width, height=200)
-        .mark_bar(color=base_color, stroke="white", strokeWidth=0.6)
+        alt.Chart(inter_df, width=inter_width, height=220)
+        .mark_bar(color=base_color, stroke="white", strokeWidth=1)
         .encode(
             x=x_inter,
-            y=alt.Y("count:Q", title="Intersection Size"),
+            y=alt.Y(
+                "count:Q",
+                title="Intersection Size",
+                axis=alt.Axis(
+                    titleFontSize=13 * 2,
+                    labelFontSize=11 * 1.5,
+                    titleFont="Arial",
+                    labelFont="Arial",
+                    labelColor="#4d4d4d",
+                    titleColor="#4d4d4d",
+                ),
+            ),
             tooltip=["intersection:N", alt.Tooltip("count:Q", title="size")],
         )
-        .properties(title=f"{title_prefix}: Top {len(records)} Intersections")
     )
 
     bar_labels = (
-        alt.Chart(inter_df, width=inter_width, height=200)
-        .mark_text(dy=-4, color="#222", fontSize=10)
+        alt.Chart(inter_df, width=inter_width, height=220)
+        .mark_text(
+            dy=-5, color="#4d4d4d", fontSize=11 * 1.5, font="Arial", fontWeight="normal"
+        )
         .encode(x=x_inter, y=alt.Y("count:Q"), text=alt.Text("count:Q"))
+    )
+
+    # Panel label for top section - positioned at very left
+    panel_label_chart = (
+        alt.Chart(_pd.DataFrame({"label": [panel_label], "x": [0], "y": [0]}))
+        .mark_text(
+            align="left",
+            baseline="top",
+            fontSize=18 * 2,
+            fontWeight="bold",
+            dx=-200,
+            dy=-30,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(0), y=alt.value(0), text="label:N")
+    )
+
+    # Title - positioned at the top center of the bars
+    title_chart = (
+        alt.Chart(_pd.DataFrame({"title": [title_text]}))
+        .mark_text(
+            align="center",
+            fontSize=14 * 2,
+            fontWeight="bold",
+            dy=-12,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(inter_width / 2), y=alt.value(0), text="title:N")
     )
 
     # Shared y encoding
@@ -317,22 +388,28 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
         axis=alt.Axis(
             labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")',
             title="Group",
-            labelPadding=4,
+            labelPadding=6,
             ticks=False,
             domain=False,
+            titleFontSize=13 * 2,
+            labelFontSize=11 * 2,
+            titleFont="Arial",
+            labelFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
         ),
     )
 
     matrix = (
         alt.Chart(matrix_df, width=inter_width, height=matrix_height)
-        .mark_rect(stroke="#d0d5da", strokeWidth=0.5)
+        .mark_rect(stroke=grid_color, strokeWidth=0.8)
         .encode(
             x=x_inter,
             y=y_sets,
             color=alt.condition(
                 alt.datum.present == 1,
                 alt.value(base_color),
-                alt.value(absent_color),
+                alt.value("none"),
             ),
             tooltip=["set:N", "intersection:N", "present:Q"],
         )
@@ -340,35 +417,58 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
 
     # Background full-width bars for consistent row grid lines
     bg_bars = (
-        alt.Chart(set_sizes, width=200, height=matrix_height)
-        .mark_bar(fill=absent_color, stroke="#d0d5da", strokeWidth=0.5)
+        alt.Chart(set_sizes, width=220, height=matrix_height)
+        .mark_bar(fill="none", stroke=grid_color, strokeWidth=0.8)
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
                 "maxsize:Q",
                 title="Group Size",
                 scale=alt.Scale(domain=[0, max_size]),
+                axis=alt.Axis(
+                    titleFontSize=13 * 2,
+                    labelFontSize=11 * 2,
+                    titleFont="Arial",
+                    labelFont="Arial",
+                    labelColor="#4d4d4d",
+                    titleColor="#4d4d4d",
+                ),
             ),
         )
     )
 
     size_bars = (
-        alt.Chart(set_sizes, width=200, height=matrix_height)
-        .mark_bar(color=base_color, stroke="white", strokeWidth=0.6)
+        alt.Chart(set_sizes, width=220, height=matrix_height)
+        .mark_bar(color=base_color, stroke="white", strokeWidth=1)
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
                 "size:Q",
                 title="Group Size",
                 scale=alt.Scale(domain=[0, max_size]),
+                axis=alt.Axis(
+                    titleFontSize=13 * 2,
+                    labelFontSize=11 * 2,
+                    titleFont="Arial",
+                    labelFont="Arial",
+                    labelColor="#4d4d4d",
+                    titleColor="#4d4d4d",
+                ),
             ),
             tooltip=["set:N", alt.Tooltip("size:Q", title="set size")],
         )
     )
 
     size_labels = (
-        alt.Chart(set_sizes, width=200, height=matrix_height)
-        .mark_text(align="left", dx=3, color="#222", fontSize=10)
+        alt.Chart(set_sizes, width=220, height=matrix_height)
+        .mark_text(
+            align="left",
+            dx=4,
+            color="#4d4d4d",
+            fontSize=11 * 2,
+            font="Arial",
+            fontWeight="normal",
+        )
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X("size:Q"),
@@ -378,15 +478,54 @@ def build_upset_charts(pdf, top_n_intersections: int, title_prefix: str):
 
     right_panel = bg_bars + size_bars + size_labels
 
-    lower = alt.hconcat(matrix, right_panel, spacing=16).resolve_scale(y="shared")
+    lower = alt.hconcat(matrix, right_panel, spacing=20).resolve_scale(y="shared")
 
-    chart = (
-        alt.vconcat(bars + bar_labels, lower)
-        .resolve_scale(x="shared", color="independent")
-        .configure_view(strokeWidth=0)
-        .configure_axis(labelFontSize=11, titleFontSize=12)
-    )
+    chart = alt.vconcat(
+        panel_label_chart + title_chart + bars + bar_labels, lower
+    ).resolve_scale(x="shared", color="independent")
     return chart
+
+
+@app.function
+def build_combined_upset_figure(
+    pd_sub_inchikeys, pd_sub_pairs, top_n_intersections: int
+):
+    """Build combined figure with panels A and B."""
+    # Define grid color globally for consistency
+    grid_color = "#DDDDDD"
+
+    chart_a = build_single_upset_chart(
+        pd_sub_inchikeys,
+        top_n_intersections,
+        "A",
+        f"Connectivities: Top {min(top_n_intersections, len(pd_sub_inchikeys))} Intersections",
+    )
+
+    chart_b = build_single_upset_chart(
+        pd_sub_pairs,
+        top_n_intersections,
+        "B",
+        f"Adduct–Connectivities: Top {min(top_n_intersections, len(pd_sub_pairs))} Intersections",
+    )
+
+    combined = (
+        alt.vconcat(chart_a, chart_b, spacing=50)
+        .properties(background="none")
+        .configure_view(strokeWidth=0, fill=None)
+        .configure_axis(
+            labelFontSize=11 * 2,
+            titleFontSize=13 * 2,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            gridColor=grid_color,
+            gridOpacity=0.5,
+        )
+        .configure_title(font="Arial", fontSize=14 * 2, color="#4d4d4d")
+    )
+
+    return combined
 
 
 @app.function
@@ -450,31 +589,20 @@ def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
 
 @app.cell
 def _plot(pd_sub_inchikeys, pd_sub_pairs):
-    chart_inchikeys = build_upset_charts(
-        pd_sub_inchikeys, settings.top_n_intersections, "Connectivities"
+    combined_chart = build_combined_upset_figure(
+        pd_sub_inchikeys, pd_sub_pairs, settings.top_n_intersections
     )
-    chart_pairs = build_upset_charts(
-        pd_sub_pairs, settings.top_n_intersections, "Adduct–Connectivities"
-    )
+
     os.makedirs("figures", exist_ok=True)
-    chart_inchikeys.save("figures/connectivities_upset.svg", format="svg")
-    chart_pairs.save("figures/pairs_upset.svg", format="svg")
-    chart_inchikeys.save("figures/connectivities_upset.pdf", format="pdf")
-    chart_pairs.save("figures/pairs_upset.pdf", format="pdf")
-    chart_inchikeys.save("figures/connectivities_upset.png", format="png")
-    chart_pairs.save("figures/pairs_upset.png", format="png")
-    return chart_inchikeys, chart_pairs
+    combined_chart.save("figures/combined_upset.svg", format="svg", background=None)
+    combined_chart.save("figures/combined_upset.pdf", format="pdf", background=None)
+    combined_chart.save("figures/combined_upset.png", format="png", background=None)
+    return (combined_chart,)
 
 
 @app.cell
-def _show_inchikey(chart_inchikeys):
-    chart_inchikeys
-    return
-
-
-@app.cell
-def _show_pairs(chart_pairs):
-    chart_pairs
+def _show_combined(combined_chart):
+    combined_chart
     return
 
 

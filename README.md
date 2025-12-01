@@ -368,9 +368,8 @@ uv run msbuddy \
 uv run python notebooks/viz_upset.py
 ```
 
-![](figures/pairs_upset.svg)
+![](figures/combined_upset.svg)
 
-![](figures/connectivities_upset.svg)
 
 In the end:
 
@@ -383,16 +382,11 @@ In the end:
 uv run python notebooks/viz_msbuddy.py
 ```
 
-![](figures/status.svg)
+![](figures/msbuddy_main.svg)
 
-![](figures/prob.svg)
+![](figures/msbuddy_supp_1.svg)
 
-![](figures/ms2peak.svg)
-
-![](figures/peakfrac.svg)
-
-![](figures/intensity.svg)
-
+![](figures/msbuddy_supp_2.svg)
 
 <!-- an additional TMAP visualization is also available:
 

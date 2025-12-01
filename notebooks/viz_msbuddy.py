@@ -1,16 +1,16 @@
 # /// script
 # requires-python = ">=3.13,<4"
 # dependencies = [
-#     "marimo",
-#     "polars",
-#     "matchms",
-#     "rdkit",
 #     "altair",
+#     "cmcrameri",
+#     "marimo",
+#     "matchms",
 #     "pandas",
+#     "polars",
 #     "pyarrow",
+#     "rdkit",
 #     "vegafusion",
 #     "vl-convert-python",
-#     "cmcrameri",
 # ]
 # ///
 
@@ -21,7 +21,6 @@ app = marimo.App(width="full")
 
 with app.setup:
     import os
-    import re
     from pathlib import Path
     import altair as alt
     import cmcrameri.cm as cmc
@@ -45,16 +44,14 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 @app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Output one row per unique FEATURE_ID, using only the first spectrum's metadata and the msbuddy result for that feature."""
+    """Output one row per unique FEATURE_ID."""
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))
-    # Build a mapping from FEATURE_ID to the first spectrum with that FEATURE_ID
     featureid_to_spectrum = {}
     for idx, spectrum in enumerate(spectra, start=1):
         feature_id = spectrum.metadata.get("feature_id") or str(idx)
         if feature_id not in featureid_to_spectrum:
             featureid_to_spectrum[feature_id] = spectrum
-    # Map FEATURE_ID (first part of dir name) to msbuddy result dir
     try:
         featureid_to_dir = {
             d.split("_")[0]: os.path.join(msbuddy_root, d)
@@ -116,8 +113,8 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             tsv_path = os.path.join(spec_dir, "formula_results.tsv")
             if os.path.exists(tsv_path):
                 has_results_tsv = True
-                df = read_formula_results(tsv_path)
-                row = best_hit_row(df, expected_formula)
+                df_tsv = read_formula_results(tsv_path)
+                row = best_hit_row(df_tsv, expected_formula)
                 if row is not None:
                     formula_match = True
                     for rec_key in metric_map:
@@ -135,7 +132,6 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                             )
                         else:
                             metric_map[rec_key] = val
-                    # Robustly set explained_peak_fraction
                     ms2_peak = metric_map["explained_ms2_peak"]
                     total_peak = metric_map["total_valid_ms2_peak"]
                     if (
@@ -156,7 +152,6 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                         metric_map["explained_peak_fraction"] = 0.0
                     else:
                         metric_map["explained_peak_fraction"] = None
-                    # Robustly set explained_intensity
                     if ms2_peak == 0:
                         metric_map["explained_intensity"] = 0.0
                     else:
@@ -180,18 +175,13 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                                     explained_sum = mse_df.filter(
                                         pl.col("raw_idx").is_in(indices)
                                     )["intensity"].sum()
-                                    if total_intensity > 0:
-                                        metric_map["explained_intensity"] = (
-                                            explained_sum / total_intensity
-                                        )
-                                    else:
-                                        metric_map["explained_intensity"] = 0.0
+                                    metric_map["explained_intensity"] = (
+                                        explained_sum / total_intensity
+                                        if total_intensity > 0
+                                        else 0.0
+                                    )
                                 except Exception:
                                     metric_map["explained_intensity"] = None
-                            else:
-                                metric_map["explained_intensity"] = None
-                        else:
-                            metric_map["explained_intensity"] = None
         rec = {
             "mgf_file": mgf_file,
             "mgf": group_label,
@@ -207,23 +197,11 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
             "formula_found": formula_found,
             "has_results_tsv": has_results_tsv,
             "formula_match": formula_match,
-            "rank": metric_map["rank"],
-            "estimated_prob": metric_map["estimated_prob"],
-            "normalized_estimated_prob": metric_map["normalized_estimated_prob"],
-            "estimated_fdr": metric_map["estimated_fdr"],
-            "mz_error_ppm": metric_map["mz_error_ppm"],
-            "ms1_isotope_similarity": metric_map["ms1_isotope_similarity"],
-            "explained_ms2_peak": metric_map["explained_ms2_peak"],
-            "total_valid_ms2_peak": metric_map["total_valid_ms2_peak"],
-            "explained_peak_fraction": metric_map["explained_peak_fraction"],
-            "explained_intensity": metric_map["explained_intensity"],
-            "ms2_explanation_idx": metric_map["ms2_explanation_idx"],
-            "ms2_explanation": metric_map["ms2_explanation"],
+            **metric_map,
             "result_dir": os.path.basename(spec_dir) if spec_dir else None,
         }
         recs.append(rec)
-    df = pl.DataFrame(recs)
-    return df
+    return pl.DataFrame(recs)
 
 
 @app.function
@@ -242,9 +220,7 @@ def best_hit_row(df: pl.DataFrame, formula: str) -> dict | None:
     if "rank" in df.columns:
         sub = sub.sort("rank")
     result = sub.limit(1).collect()
-    if result.is_empty():
-        return None
-    return result.row(0, named=True)
+    return None if result.is_empty() else result.row(0, named=True)
 
 
 @app.function
@@ -253,20 +229,60 @@ def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
 
 
 @app.function
-def make_status_plot(df: pl.DataFrame):
+def get_mgf_order(df_pd):
+    """Get custom order for mgf groups."""
+    desired_order = [
+        "cid_[20.0]_positive",
+        "cid_[40.0]_positive",
+        "cid_[60.0]_positive",
+        "ead_[12.0]_positive",
+        "ead_[16.0]_positive",
+        "ead_[24.0]_positive",
+        "cid_[20.0]_negative",
+        "cid_[40.0]_negative",
+        "cid_[60.0]_negative",
+        "ead_[12.0]_negative",
+        "ead_[16.0]_negative",
+        "ead_[24.0]_negative",
+    ]
+    # Ensure we operate on numpy/pandas-like values
+    try:
+        values = list(df_pd["mgf"].astype(str).values)
+    except Exception:
+        values = list(df_pd["mgf"].values)
+    mgf_order = [m for m in desired_order if m in values]
+    # keep original order for the rest (preserve encountered order)
+    rest = [m for m in pd_unique_preserve_order(values) if m not in mgf_order]
+    mgf_order.extend(rest)
+    return mgf_order
+
+
+@app.function
+def pd_unique_preserve_order(seq):
+    seen = set()
+    out = []
+    for x in seq:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+
+@app.function
+def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int = 500):
     if df.is_empty():
         return (
             alt.Chart(pl.DataFrame({"note": ["No data"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
+    import pandas as pd
 
     statuses = [
         "Formula found, correct",
         "Formula found, incorrect",
         "Formula not found",
     ]
-
     df_summary = (
         df.lazy()
         .select(["mgf", "formula_found", "formula_match"])
@@ -277,19 +293,14 @@ def make_status_plot(df: pl.DataFrame):
             .then(pl.lit("Formula found, incorrect"))
             .when(pl.col("formula_found") & pl.col("formula_match"))
             .then(pl.lit("Formula found, correct"))
-            .alias("status"),
+            .alias("status")
         )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
         .collect()
     )
-
-    # Generate all mgf × status combinations
     mgf_labels = df_summary.select(pl.col("mgf")).unique()
-    all_statuses = pl.DataFrame({"status": statuses})
-    all_combos = mgf_labels.join(all_statuses, how="cross")
-
-    # Left join summary to fill missing combinations with zero
+    all_combos = mgf_labels.join(pl.DataFrame({"status": statuses}), how="cross")
     df_summary = (
         all_combos.join(df_summary, on=["mgf", "status"], how="left")
         .with_columns(
@@ -298,66 +309,81 @@ def make_status_plot(df: pl.DataFrame):
         )
         .with_columns((pl.col("count") / pl.col("total_count")).alias("percent"))
         .sort(["mgf", "status"])
-        .with_columns(
-            pl.col("count").cum_sum().over("mgf").alias("cumsum_count"),
-        )
+        .with_columns(pl.col("count").cum_sum().over("mgf").alias("cumsum_count"))
         .with_columns((pl.col("cumsum_count") - pl.col("count") / 2).alias("x_center"))
-        .to_pandas()  # Altair needs pandas
+        .to_pandas()
     )
 
-    # Sort mgf groups by decreasing total count for y-axis order
-    mgf_order = (
-        df_summary.groupby("mgf")["total_count"]
-        .first()
-        .sort_values(ascending=False)
-        .index.tolist()
+    # build mgf order and set categorical on the pandas DF so the order travels with data
+    mgf_order = get_mgf_order(df_summary)
+    df_summary["mgf"] = pd.Categorical(
+        df_summary["mgf"], categories=mgf_order, ordered=True
     )
-    mgf_order = [str(m) for m in mgf_order]
+
     alt.data_transformers.enable("vegafusion")
-
-    def clean_label(label):
-        return label.replace("_", " ").replace("[", "").replace("]", "")
-
+    status_colors = ["#4477AA", "#DDAA33", "#BB5566"]
     chart = (
-        alt.Chart(df_summary)
-        .mark_bar()
+        alt.Chart(df_summary, width=chart_width, height=300)
+        .mark_bar(stroke="white", strokeWidth=1)
         .encode(
             y=alt.Y(
                 "mgf:N",
                 sort=mgf_order,
-                title=clean_label("Group"),
+                title="Group",
                 axis=alt.Axis(
-                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")'
+                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")',
+                    labelFontSize=11 * 2,
+                    titleFontSize=13 * 2,
+                    labelFont="Arial",
+                    titleFont="Arial",
+                    ticks=False,
+                    domain=False,
+                    labelPadding=6,
+                ),
+                scale=alt.Scale(domain=mgf_order),
+            ),
+            x=alt.X(
+                "count:Q",
+                title="Count",
+                stack="zero",
+                axis=alt.Axis(
+                    labelFontSize=11 * 2,
+                    titleFontSize=13 * 2,
+                    labelFont="Arial",
+                    titleFont="Arial",
+                    gridColor="#4d4d4d",
+                    gridOpacity=0.5,
                 ),
             ),
-            x=alt.X("count:Q", title=clean_label("Count"), stack="zero"),
             color=alt.Color(
                 "status:N",
-                scale=alt.Scale(
-                    domain=statuses,
-                    range=["#004488", "#DDAA33", "#BB5566"],
-                ),
-                title=clean_label("Status"),
+                scale=alt.Scale(domain=statuses, range=status_colors),
+                title="",
                 legend=alt.Legend(
-                    labelExpr='replace(replace(replace(datum.label, "[", ""), "]", ""), /_/g, " ")'
+                    labelFontSize=11 * 2,
+                    titleFontSize=12 * 2,
+                    labelFont="Arial",
+                    titleFont="Arial",
+                    labelLimit=1000,
+                    titleLimit=1000,
                 ),
             ),
             tooltip=[
                 "mgf:N",
-                alt.Tooltip("status:N", title=clean_label("Status")),
+                alt.Tooltip("status:N", title="Status"),
                 alt.Tooltip("count:Q", title="n"),
                 alt.Tooltip("total_count:Q", title="total"),
                 alt.Tooltip("percent:Q", title="%", format=".0%"),
             ],
         )
     )
-    # Compute the absolute max value of all bars for filtering text labels
+
     max_count = df_summary["count"].max()
     text = (
-        alt.Chart(df_summary)
-        .mark_text(align="center", color="white", size=8)
+        alt.Chart(df_summary, width=chart_width, height=300)
+        .mark_text(align="center", color="white", fontSize=10 * 2, font="Arial")
         .encode(
-            y=alt.Y("mgf:N", sort=mgf_order),
+            y=alt.Y("mgf:N", sort=mgf_order, scale=alt.Scale(domain=mgf_order)),
             x=alt.X("x_center:Q"),
             detail="status:N",
             text=alt.Text("percent:Q", format=".0%"),
@@ -367,22 +393,55 @@ def make_status_plot(df: pl.DataFrame):
         )
     )
 
-    return (chart + text).properties(title="MSBuddy: Formula identification")
+    panel_label_chart = (
+        alt.Chart(pd.DataFrame({"label": [panel_label]}))
+        .mark_text(
+            align="left",
+            baseline="top",
+            fontSize=18 * 2,
+            fontWeight="bold",
+            dx=-200,
+            dy=-30,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(0), y=alt.value(0), text="label:N")
+    )
+
+    # Add subtitle
+    title_chart = (
+        alt.Chart(pd.DataFrame({"title": ["Formula identification"]}))
+        .mark_text(
+            align="center",
+            fontSize=14 * 2,
+            fontWeight="bold",
+            dy=-15,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(chart_width / 2), y=alt.value(0), text="title:N")
+    )
+
+    return panel_label_chart + title_chart + chart + text
 
 
 @app.function
-def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: int = 10):
+def make_match_plot(
+    df: pl.DataFrame,
+    metric: str = "estimated_prob",
+    n_bins: int = 10,
+    panel_label: str = "B",
+    chart_width: int = 500,
+    show_legend: bool = True,
+):
     import pandas as pd
 
     if df.is_empty() or metric not in df.columns:
         return (
-            alt.Chart(
-                pl.DataFrame({"note": ["No matches or invalid metric"]}).to_pandas()
-            )
+            alt.Chart(pl.DataFrame({"note": ["No data"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
-    # Filter to matches only
     df_matches = (
         df.lazy()
         .filter((pl.col("formula_found") == True) & (pl.col("formula_match") == True))
@@ -392,16 +451,12 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
     )
     if df_matches.is_empty():
         return (
-            alt.Chart(pl.DataFrame({"note": ["No valid matches"]}).to_pandas())
+            alt.Chart(pl.DataFrame({"note": ["No data"]}).to_pandas())
             .mark_text()
             .encode(text="note:N")
         )
-    # Use pandas for robust binning
     df_matches_pd = df_matches.to_pandas()
-    values = df_matches_pd[metric].values
-    missing_label = "missing"
     non_null_values = df_matches_pd[metric].dropna().values
-    # Dynamically set n_bins if unique values are few
     unique_non_null = np.unique(non_null_values)
     if len(unique_non_null) < n_bins:
         n_bins = max(2, len(unique_non_null))
@@ -411,9 +466,7 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
             int(np.nanmin(non_null_values)),
             int(np.nanmax(non_null_values)),
         )
-        # Always include 0 as the leftmost bin edge
-        bin_edges = np.linspace(0, max_val + 1, n_bins + 1, dtype=int)
-        bin_edges = np.unique(bin_edges)
+        bin_edges = np.unique(np.linspace(0, max_val + 1, n_bins + 1, dtype=int))
         if len(bin_edges) < 2:
             bin_edges = np.array([0, max_val + 1])
         pad = max(len(str(bin_edges[0])), len(str(bin_edges[-1])))
@@ -434,11 +487,11 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
                 float(np.nanmin(non_null_values)),
                 float(np.nanmax(non_null_values)),
             )
-            # Always include 0 as the leftmost bin edge for fractions
-            if min_val >= 0 and max_val <= 1:
-                bins = np.round(np.linspace(0, 1, n_bins + 1), 2)
-            else:
-                bins = np.linspace(min(0, min_val), max_val, n_bins + 1)
+            bins = (
+                np.round(np.linspace(0, 1, n_bins + 1), 2)
+                if min_val >= 0 and max_val <= 1
+                else np.linspace(min(0, min_val), max_val, n_bins + 1)
+            )
             bin_labels = [
                 f"{bins[i]:.1f}–{bins[i+1]:.1f}" for i in range(len(bins) - 1)
             ]
@@ -450,86 +503,106 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
                 right=True,
             )
         else:
-            # All values are null or zero, create a single bin [0, 1]
             bin_labels = ["0.0–1.0"]
             binned = pd.Series(
                 ["0.0–1.0"] * len(df_matches_pd), index=df_matches_pd.index
             )
-    # Assign missing label to nulls
-    metric_bin = binned.astype(object)
-    metric_bin[df_matches_pd[metric].isnull()] = missing_label
-    # Set categorical order: bin_labels + [missing_label] if any nulls
-    if df_matches_pd[metric].isnull().any():
-        categories = bin_labels + [missing_label]
-    else:
-        categories = bin_labels
     df_matches_pd["metric_bin"] = pd.Categorical(
-        metric_bin, categories=categories, ordered=True
+        binned.astype(object), categories=bin_labels, ordered=True
     )
-    n_bins_actual = len(categories)
-    # Count per group/bin
     df_binned = (
         df_matches_pd.groupby(["mgf", "metric_bin"], observed=True)
         .size()
         .reset_index(name="count")
     )
-    # Ensure all group/bin combos appear
-    all_mgfs = df_matches_pd["mgf"].unique()
-    all_bins = bin_labels
     all_combos = pd.MultiIndex.from_product(
-        [all_mgfs, all_bins], names=["mgf", "metric_bin"]
+        [df_matches_pd["mgf"].unique(), bin_labels], names=["mgf", "metric_bin"]
     ).to_frame(index=False)
     df_binned = all_combos.merge(
         df_binned, on=["mgf", "metric_bin"], how="left"
     ).fillna({"count": 0})
-    # Add total_count and percent columns
     df_binned["total_count"] = df_binned.groupby("mgf")["count"].transform("sum")
     df_binned["percent"] = df_binned["count"] / df_binned["total_count"]
     df_binned["cumsum_count"] = df_binned.groupby("mgf")["count"].cumsum()
     df_binned["x_center"] = df_binned["cumsum_count"] - df_binned["count"] / 2
-    # Sort mgf groups by decreasing total count (ensure list of strings)
-    mgf_order = (
-        df_binned.groupby("mgf")["total_count"]
-        .first()
-        .sort_values(ascending=False)
-        .index.tolist()
+
+    # build mgf order and make sure mgf column is a pandas categorical to carry the order
+    mgf_order = get_mgf_order(df_binned)
+    df_binned["mgf"] = pd.Categorical(
+        df_binned["mgf"].astype(str), categories=mgf_order, ordered=True
     )
-    mgf_order = [str(m) for m in mgf_order]
-    # Use cmcrameri colors for bins
+
     from cmcrameri import cm
 
-    bin_palette = cmap_to_hex_list(cm.batlow, n_bins_actual)
-    # Compute the absolute max value of all bars for filtering text labels
+    bin_palette = cmap_to_hex_list(cm.batlow, len(bin_labels))
     max_count = df_binned["count"].max()
-    # Horizontal stacked bar chart with text labels
     alt.data_transformers.enable("vegafusion")
+    METRIC_DISPLAY_NAMES = {
+        "estimated_prob": "Estimated Probability",
+        "explained_ms2_peak": "Number of Explained MS2 Peaks",
+        "explained_peak_fraction": "Explained Peak Fraction",
+        "explained_intensity": "Explained Intensity Fraction",
+    }
+    metric_display = METRIC_DISPLAY_NAMES.get(metric, metric.replace("_", " ").title())
+
+    legend_config = (
+        alt.Legend(
+            title="",
+            labelFontSize=11 * 2,
+            titleFontSize=12 * 2,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelLimit=1000,
+            titleLimit=1000,
+        )
+        if show_legend
+        else None
+    )
+
     chart = (
-        alt.Chart(df_binned)
-        .mark_bar()
+        alt.Chart(df_binned, width=chart_width, height=300)
+        .mark_bar(stroke="white", strokeWidth=1)
         .encode(
             y=alt.Y(
                 "mgf:N",
                 title="Group",
                 sort=mgf_order,
                 axis=alt.Axis(
-                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")'
+                    labelExpr='replace(replace(replace(datum.value, "[", ""), "]", ""), /_/g, " ")',
+                    labelFontSize=11 * 2,
+                    titleFontSize=13 * 2,
+                    labelFont="Arial",
+                    titleFont="Arial",
+                    ticks=False,
+                    domain=False,
+                    labelPadding=6,
+                ),
+                scale=alt.Scale(domain=mgf_order),
+            ),
+            x=alt.X(
+                "count:Q",
+                title="Count",
+                stack="zero",
+                axis=alt.Axis(
+                    labelFontSize=11 * 2,
+                    titleFontSize=13 * 2,
+                    labelFont="Arial",
+                    titleFont="Arial",
+                    gridColor="#4d4d4d",
+                    gridOpacity=0.5,
                 ),
             ),
-            x=alt.X("count:Q", title="Count", stack="zero"),
             color=alt.Color(
                 "metric_bin:N",
-                title=metric.replace("_", " "),
+                title=metric_display,
                 scale=alt.Scale(range=bin_palette),
                 sort="ascending",
-                # Use double replace to ensure all '_' are replaced with ' '
-                legend=alt.Legend(
-                    labelExpr='replace(replace(replace(replace(datum.label, "_", " "), "_", " "), "[", ""), "]", "")'
-                ),
+                legend=legend_config,
             ),
             order=alt.Order("metric_bin:N", sort="ascending"),
             tooltip=[
                 "mgf:N",
-                alt.Tooltip("metric_bin:N", title=metric.replace("_", " ")),
+                alt.Tooltip("metric_bin:N", title=metric_display),
                 alt.Tooltip("count:Q", title="n"),
                 alt.Tooltip("total_count:Q", title="total"),
                 alt.Tooltip("percent:Q", title="%", format=".0%"),
@@ -537,10 +610,10 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
         )
     )
     text = (
-        alt.Chart(df_binned)
-        .mark_text(align="center", color="white", size=8)
+        alt.Chart(df_binned, width=chart_width, height=300)
+        .mark_text(align="center", color="white", fontSize=10 * 2, font="Arial")
         .encode(
-            y=alt.Y("mgf:N", sort=mgf_order),
+            y=alt.Y("mgf:N", sort=mgf_order, scale=alt.Scale(domain=mgf_order)),
             x=alt.X("x_center:Q"),
             detail="metric_bin:N",
             text=alt.Text("percent:Q", format=".0%"),
@@ -549,13 +622,152 @@ def make_match_plot(df: pl.DataFrame, metric: str = "estimated_prob", n_bins: in
             "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count)
         )
     )
-    return (chart + text).properties(title=f"MSBuddy: {metric.replace('_', ' ')}")
+    panel_label_chart = (
+        alt.Chart(pd.DataFrame({"label": [panel_label]}))
+        .mark_text(
+            align="left",
+            baseline="top",
+            fontSize=18 * 2,
+            fontWeight="bold",
+            dx=-200,
+            dy=-30,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(0), y=alt.value(0), text="label:N")
+    )
+
+    # Add subtitle
+    title_chart = (
+        alt.Chart(pd.DataFrame({"title": [metric_display]}))
+        .mark_text(
+            align="center",
+            fontSize=14 * 2,
+            fontWeight="bold",
+            dy=-15,
+            font="Arial",
+            color="#4d4d4d",
+        )
+        .encode(x=alt.value(chart_width / 2), y=alt.value(0), text="title:N")
+    )
+
+    return panel_label_chart + title_chart + chart + text
+
+
+@app.function
+def build_combined_msbuddy_figure(df: pl.DataFrame):
+    chart_width = 450
+    chart_a = make_match_plot(
+        df,
+        "estimated_prob",
+        panel_label="A",
+        chart_width=chart_width,
+    )
+    chart_b = make_match_plot(
+        df,
+        "explained_intensity",
+        panel_label="B",
+        chart_width=chart_width,
+    )
+    chart_c = make_match_plot(
+        df,
+        "explained_peak_fraction",
+        panel_label="C",
+        chart_width=chart_width,
+    )
+    chart_supp_1 = make_status_plot(
+        df,
+        panel_label="",
+        chart_width=chart_width,
+    )
+    chart_supp_2 = make_match_plot(
+        df,
+        "explained_ms2_peak",
+        panel_label="",
+        chart_width=chart_width,
+    )
+
+    main_figure = (
+        alt.vconcat(chart_a, chart_b, chart_c)
+        .properties(background="none")
+        .configure_view(strokeWidth=0, fill=None)
+        .configure_axis(
+            labelFontSize=11,
+            titleFontSize=13,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            gridColor="#4d4d4d",
+            gridOpacity=0.5,
+        )
+        .configure_legend(
+            labelFontSize=11,
+            titleFontSize=12,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            orient="bottom",
+            columns=4,
+        )
+    )
+
+    supp_figure_1 = (
+        chart_supp_1.properties(background="none")
+        .configure_view(strokeWidth=0, fill=None)
+        .configure_axis(
+            labelFontSize=11,
+            titleFontSize=13,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            gridColor="#4d4d4d",
+            gridOpacity=0.5,
+        )
+        .configure_legend(
+            labelFontSize=11,
+            titleFontSize=12,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            orient="bottom",
+            columns=1,
+        )
+    )
+
+    supp_figure_2 = (
+        chart_supp_2.properties(background="none")
+        .configure_view(strokeWidth=0, fill=None)
+        .configure_axis(
+            labelFontSize=11,
+            titleFontSize=13,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            gridColor="#4d4d4d",
+            gridOpacity=0.5,
+        )
+        .configure_legend(
+            labelFontSize=11,
+            titleFontSize=12,
+            labelFont="Arial",
+            titleFont="Arial",
+            labelColor="#4d4d4d",
+            titleColor="#4d4d4d",
+            orient="bottom",
+            columns=4,
+        )
+    )
+    return main_figure, supp_figure_1, supp_figure_2
 
 
 @app.cell
 def _():
-    # Configuration for single-MGF workflow
-    mgf_path = Path("scratch/consolidated_spectra.mgf")
+    mgf_path = Path("data/multims2_spectra.mgf")
     msbuddy_root = Path("scratch/msbuddy")
     if not mgf_path.exists():
         print(f"Warning: MGF file missing: {mgf_path}")
@@ -578,42 +790,25 @@ def _(df):
 
 @app.cell
 def _filter(df):
-    # Use lazy evaluation for filtering
-    df_filtered = (
-        df.lazy()
-        .filter(
-            pl.col("smiles").is_not_null()
-            # & (~pl.col("adduct").str.contains("2M"))
-            # & (~pl.col("adduct").str.contains("-2H"))
-            # & (
-            #     (~pl.col("adduct").str.starts_with("[M-"))
-            #     | (pl.col("adduct") == "[M-H]-")
-            # )
-        )
-        .collect()
-    )
+    df_filtered = df.lazy().filter(pl.col("smiles").is_not_null()).collect()
+
+    print(f"Total rows before filtering: {len(df)}")
+    print(f"Total rows after filtering (smiles not null): {len(df_filtered)}")
+    print(f"Rows with null smiles: {len(df) - len(df_filtered)}")
 
     def summary(df: pl.DataFrame):
-        """Optimized summary function using polars native operations"""
-        summary_data = []
         for col in df.columns:
             dtype = df[col].dtype
             null_count = df[col].null_count()
-
             if dtype == pl.Boolean:
                 true_count = df[col].sum()
                 false_count = df.shape[0] - true_count - null_count
-                summary_data.append(
-                    f"{col} ({dtype}): {null_count} nulls, {true_count} True, {false_count} False",
+                print(
+                    f"{col} ({dtype}): {null_count} nulls, {true_count} True, {false_count} False"
                 )
             else:
                 unique_count = df[col].n_unique()
-                summary_data.append(
-                    f"{col} ({dtype}): {null_count} nulls, {unique_count} unique",
-                )
-
-        for line in summary_data:
-            print(line)
+                print(f"{col} ({dtype}): {null_count} nulls, {unique_count} unique")
 
     summary(df_filtered)
     df_filtered
@@ -622,21 +817,38 @@ def _filter(df):
 
 @app.cell
 def _plot(df_filtered):
-    df_filtered.write_csv("scratch/msbuddy_summary_results.tsv")
-
-    charts = {
-        "status": make_status_plot(df_filtered),
-        "prob": make_match_plot(df_filtered, "estimated_prob"),
-        "ms2peak": make_match_plot(df_filtered, "explained_ms2_peak"),
-        "peakfrac": make_match_plot(df_filtered, "explained_peak_fraction"),
-        "intensity": make_match_plot(df_filtered, "explained_intensity"),
-    }
-
+    df_filtered.write_csv("scratch/msbuddy_summary_results.tsv", separator="\t")
+    main_figure, supp_figure_1, supp_figure_2 = build_combined_msbuddy_figure(
+        df_filtered
+    )
     os.makedirs("figures", exist_ok=True)
-    for name, chart in charts.items():
-        chart.save(f"figures/{name}.svg", format="svg")
-        chart.save(f"figures/{name}.pdf", format="pdf")
-        chart.save(f"figures/{name}.png", format="png")
+    main_figure.save("figures/msbuddy_main.svg", format="svg", background=None)
+    main_figure.save("figures/msbuddy_main.pdf", format="pdf", background=None)
+    main_figure.save("figures/msbuddy_main.png", format="png", background=None)
+    supp_figure_1.save("figures/msbuddy_supp_1.svg", format="svg", background=None)
+    supp_figure_1.save("figures/msbuddy_supp_1.pdf", format="pdf", background=None)
+    supp_figure_1.save("figures/msbuddy_supp_1.png", format="png", background=None)
+    supp_figure_2.save("figures/msbuddy_supp_2.svg", format="svg", background=None)
+    supp_figure_2.save("figures/msbuddy_supp_2.pdf", format="pdf", background=None)
+    supp_figure_2.save("figures/msbuddy_supp_2.png", format="png", background=None)
+    return main_figure, supp_figure_1, supp_figure_2
+
+
+@app.cell
+def _show_main(main_figure):
+    main_figure
+    return
+
+
+@app.cell
+def _show_supp(supp_figure_1):
+    supp_figure_1
+    return
+
+
+@app.cell
+def _show_supp(supp_figure_1):
+    supp_figure_1
     return
 
 
