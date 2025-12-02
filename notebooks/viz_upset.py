@@ -594,9 +594,9 @@ def _plot(pd_sub_inchikeys, pd_sub_pairs):
     )
 
     os.makedirs("figures", exist_ok=True)
-    combined_chart.save("figures/combined_upset.svg", format="svg", background=None)
-    combined_chart.save("figures/combined_upset.pdf", format="pdf", background=None)
-    combined_chart.save("figures/combined_upset.png", format="png", background=None)
+    combined_chart.save("figures/upset_main.svg", format="svg", background=None)
+    combined_chart.save("figures/upset_main.pdf", format="pdf", background=None)
+    combined_chart.save("figures/upset_main.png", format="png", background=None)
     return (combined_chart,)
 
 
