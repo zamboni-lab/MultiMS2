@@ -16,18 +16,17 @@
 
 import marimo
 
-__generated_with = "0.16.3"
+__generated_with = "0.18.1"
 app = marimo.App(width="full")
 
 with app.setup:
     import os
-    from pathlib import Path
     import altair as alt
-    import cmcrameri.cm as cmc
     import matplotlib as mpl
     import numpy as np
     import polars as pl
     from matchms.importing import load_from_mgf
+    from pathlib import Path
     from rdkit import Chem
 
 
@@ -43,165 +42,54 @@ def smiles_to_formula(smiles: str) -> str | None:
 
 
 @app.function
-def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Output one row per unique FEATURE_ID."""
-    mgf_file = os.path.basename(mgf_path)
-    spectra = list(load_from_mgf(mgf_path))
-    featureid_to_spectrum = {}
-    for idx, spectrum in enumerate(spectra, start=1):
-        feature_id = spectrum.metadata.get("feature_id") or str(idx)
-        if feature_id not in featureid_to_spectrum:
-            featureid_to_spectrum[feature_id] = spectrum
+def safe_div(numerator, denominator, default=None):
     try:
-        featureid_to_dir = {
-            d.split("_")[0]: os.path.join(msbuddy_root, d)
-            for d in os.listdir(msbuddy_root)
-            if os.path.isdir(os.path.join(msbuddy_root, d))
-        }
-    except FileNotFoundError:
-        featureid_to_dir = {}
-    recs = []
-    for feature_id, spectrum in featureid_to_spectrum.items():
-        spec_dir = featureid_to_dir.get(str(feature_id))
-        smiles = spectrum.metadata.get("smiles")
-        adduct = spectrum.metadata.get("adduct")
-        pepmass = spectrum.get("precursor_mz") or spectrum.get("pepmass")
-        rt = spectrum.get("retention_time")
-        ce = (
-            spectrum.metadata.get("collision_energy")
-            or spectrum.metadata.get("collisionenergy")
-            or spectrum.metadata.get("collisionenergy_ev")
-            or spectrum.metadata.get("ce")
-        )
-        frag = (
-            spectrum.metadata.get("fragmentation_method")
-            or spectrum.metadata.get("fragmentationmethod")
-            or spectrum.metadata.get("frag_method")
-            or spectrum.metadata.get("fragmode")
-        )
-        ion = (
-            spectrum.metadata.get("ionmode")
-            or spectrum.metadata.get("ion_mode")
-            or spectrum.metadata.get("polarity")
-        )
-        group_label = "_".join(
-            [
-                str(frag).strip().lower() if frag else "na",
-                str(ce).strip().lower() if ce else "na",
-                str(ion).strip().lower() if ion else "na",
-            ]
-        )
-        has_results_tsv = False
-        formula_match = False
-        formula_found = spec_dir is not None
-        expected_formula = smiles_to_formula(smiles) if smiles else None
-        metric_map = {
-            "rank": None,
-            "estimated_prob": None,
-            "normalized_estimated_prob": None,
-            "estimated_fdr": None,
-            "mz_error_ppm": None,
-            "ms1_isotope_similarity": None,
-            "explained_ms2_peak": None,
-            "total_valid_ms2_peak": None,
-            "explained_peak_fraction": None,
-            "explained_intensity": None,
-            "ms2_explanation_idx": None,
-            "ms2_explanation": None,
-        }
-        if spec_dir:
-            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
-            if os.path.exists(tsv_path):
-                has_results_tsv = True
-                df_tsv = read_formula_results(tsv_path)
-                row = best_hit_row(df_tsv, expected_formula)
-                if row is not None:
-                    formula_match = True
-                    for rec_key in metric_map:
-                        val = row.get(rec_key)
-                        if rec_key in ("explained_ms2_peak", "total_valid_ms2_peak"):
-                            try:
-                                metric_map[rec_key] = (
-                                    int(val) if val not in (None, "NA", "") else None
-                                )
-                            except Exception:
-                                metric_map[rec_key] = None
-                        elif rec_key == "ms1_isotope_similarity":
-                            metric_map[rec_key] = (
-                                None if val in (None, "NA", "") else val
-                            )
-                        else:
-                            metric_map[rec_key] = val
-                    ms2_peak = metric_map["explained_ms2_peak"]
-                    total_peak = metric_map["total_valid_ms2_peak"]
-                    if (
-                        total_peak is not None
-                        and isinstance(total_peak, (int, float))
-                        and total_peak > 0
-                    ):
-                        if ms2_peak is None or ms2_peak == "NA" or ms2_peak == "":
-                            metric_map["explained_peak_fraction"] = 0.0
-                        else:
-                            try:
-                                metric_map["explained_peak_fraction"] = float(
-                                    ms2_peak
-                                ) / float(total_peak)
-                            except Exception:
-                                metric_map["explained_peak_fraction"] = 0.0
-                    elif total_peak == 0:
-                        metric_map["explained_peak_fraction"] = 0.0
-                    else:
-                        metric_map["explained_peak_fraction"] = None
-                    if ms2_peak == 0:
-                        metric_map["explained_intensity"] = 0.0
-                    else:
-                        ms2_explanation_idx = metric_map["ms2_explanation_idx"]
-                        if ms2_explanation_idx not in (None, "NA", ""):
-                            mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
-                            if os.path.exists(mse_path):
-                                try:
-                                    mse_df = pl.read_csv(mse_path, separator="\t")
-                                    if isinstance(ms2_explanation_idx, str):
-                                        indices = [
-                                            int(i)
-                                            for i in ms2_explanation_idx.split(",")
-                                            if i.strip().isdigit()
-                                        ]
-                                    elif isinstance(ms2_explanation_idx, int):
-                                        indices = [ms2_explanation_idx]
-                                    else:
-                                        indices = list(ms2_explanation_idx)
-                                    total_intensity = mse_df["intensity"].sum()
-                                    explained_sum = mse_df.filter(
-                                        pl.col("raw_idx").is_in(indices)
-                                    )["intensity"].sum()
-                                    metric_map["explained_intensity"] = (
-                                        explained_sum / total_intensity
-                                        if total_intensity > 0
-                                        else 0.0
-                                    )
-                                except Exception:
-                                    metric_map["explained_intensity"] = None
-        rec = {
-            "mgf_file": mgf_file,
-            "mgf": group_label,
-            "feature_id": feature_id,
-            "pepmass": pepmass,
-            "rt_seconds": rt,
-            "smiles": smiles,
-            "adduct": adduct,
-            "collision_energy": ce,
-            "fragmentation_method": frag,
-            "ionmode": ion,
-            "formula_expected": expected_formula,
-            "formula_found": formula_found,
-            "has_results_tsv": has_results_tsv,
-            "formula_match": formula_match,
-            **metric_map,
-            "result_dir": os.path.basename(spec_dir) if spec_dir else None,
-        }
-        recs.append(rec)
-    return pl.DataFrame(recs)
+        return float(numerator) / float(denominator) if denominator else default
+    except Exception:
+        return default
+
+
+@app.function
+def pd_unique_preserve_order(seq):
+    seen = set()
+    out = []
+    for x in seq:
+        if x not in seen:
+            seen.add(x)
+            out.append(x)
+    return out
+
+
+@app.function
+def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
+    return [mpl.colors.rgb2hex(cmap(i)) for i in np.linspace(0, 1, n_colors)]
+
+
+@app.function
+def get_mgf_order(df_pd):
+    """Return ordered MGF groups with custom priority."""
+    desired_order = [
+        "cid_[20.0]_positive",
+        "cid_[40.0]_positive",
+        "cid_[60.0]_positive",
+        "ead_[12.0]_positive",
+        "ead_[16.0]_positive",
+        "ead_[24.0]_positive",
+        "cid_[20.0]_negative",
+        "cid_[40.0]_negative",
+        "cid_[60.0]_negative",
+        "ead_[12.0]_negative",
+        "ead_[16.0]_negative",
+        "ead_[24.0]_negative",
+    ]
+    try:
+        values = list(df_pd["mgf"].astype(str).values)
+    except Exception:
+        values = list(df_pd["mgf"].values)
+    mgf_order = [m for m in desired_order if m in values]
+    rest = [m for m in pd_unique_preserve_order(values) if m not in mgf_order]
+    mgf_order.extend(rest)
+    return mgf_order
 
 
 @app.function
@@ -224,48 +112,150 @@ def best_hit_row(df: pl.DataFrame, formula: str) -> dict | None:
 
 
 @app.function
-def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
-    return [mpl.colors.rgb2hex(cmap(i)) for i in np.linspace(0, 1, n_colors)]
+def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
+    """Output one row per unique FEATURE_ID."""
+    mgf_file = os.path.basename(mgf_path)
+    spectra = list(load_from_mgf(mgf_path))
+    featureid_to_spectrum = {
+        s.metadata.get("feature_id") or str(i): s for i, s in enumerate(spectra, 1)
+    }
 
-
-@app.function
-def get_mgf_order(df_pd):
-    """Get custom order for mgf groups."""
-    desired_order = [
-        "cid_[20.0]_positive",
-        "cid_[40.0]_positive",
-        "cid_[60.0]_positive",
-        "ead_[12.0]_positive",
-        "ead_[16.0]_positive",
-        "ead_[24.0]_positive",
-        "cid_[20.0]_negative",
-        "cid_[40.0]_negative",
-        "cid_[60.0]_negative",
-        "ead_[12.0]_negative",
-        "ead_[16.0]_negative",
-        "ead_[24.0]_negative",
-    ]
-    # Ensure we operate on numpy/pandas-like values
     try:
-        values = list(df_pd["mgf"].astype(str).values)
-    except Exception:
-        values = list(df_pd["mgf"].values)
-    mgf_order = [m for m in desired_order if m in values]
-    # keep original order for the rest (preserve encountered order)
-    rest = [m for m in pd_unique_preserve_order(values) if m not in mgf_order]
-    mgf_order.extend(rest)
-    return mgf_order
+        featureid_to_dir = {
+            d.split("_")[0]: os.path.join(msbuddy_root, d)
+            for d in os.listdir(msbuddy_root)
+            if os.path.isdir(os.path.join(msbuddy_root, d))
+        }
+    except FileNotFoundError:
+        featureid_to_dir = {}
 
+    recs = []
+    for feature_id, spectrum in featureid_to_spectrum.items():
+        spec_dir = featureid_to_dir.get(str(feature_id))
+        metadata = spectrum.metadata
+        pepmass = spectrum.get("precursor_mz") or spectrum.get("pepmass")
+        rt = spectrum.get("retention_time")
 
-@app.function
-def pd_unique_preserve_order(seq):
-    seen = set()
-    out = []
-    for x in seq:
-        if x not in seen:
-            seen.add(x)
-            out.append(x)
-    return out
+        ce = (
+            metadata.get("collision_energy")
+            or metadata.get("collisionenergy")
+            or metadata.get("collisionenergy_ev")
+            or metadata.get("ce")
+        )
+        frag = (
+            metadata.get("fragmentation_method")
+            or metadata.get("fragmentationmethod")
+            or metadata.get("frag_method")
+            or metadata.get("fragmode")
+        )
+        ion = (
+            metadata.get("ionmode")
+            or metadata.get("ion_mode")
+            or metadata.get("polarity")
+        )
+        smiles = metadata.get("smiles")
+        adduct = metadata.get("adduct")
+
+        group_label = "_".join(
+            [
+                str(frag).strip().lower() if frag else "na",
+                str(ce).strip().lower() if ce else "na",
+                str(ion).strip().lower() if ion else "na",
+            ]
+        )
+
+        expected_formula = smiles_to_formula(smiles) if smiles else None
+        has_results_tsv = False
+        formula_match = False
+        formula_found = spec_dir is not None
+        metric_map = {
+            key: None
+            for key in [
+                "rank",
+                "estimated_prob",
+                "normalized_estimated_prob",
+                "estimated_fdr",
+                "mz_error_ppm",
+                "ms1_isotope_similarity",
+                "explained_ms2_peak",
+                "total_valid_ms2_peak",
+                "explained_peak_fraction",
+                "explained_intensity",
+                "ms2_explanation_idx",
+                "ms2_explanation",
+            ]
+        }
+
+        if spec_dir:
+            tsv_path = os.path.join(spec_dir, "formula_results.tsv")
+            if os.path.exists(tsv_path):
+                has_results_tsv = True
+                df_tsv = read_formula_results(tsv_path)
+                row = best_hit_row(df_tsv, expected_formula)
+                if row is not None:
+                    formula_match = True
+                    for key in metric_map:
+                        val = row.get(key)
+                        if key in ("explained_ms2_peak", "total_valid_ms2_peak"):
+                            try:
+                                metric_map[key] = (
+                                    int(val) if val not in (None, "NA", "") else None
+                                )
+                            except Exception:
+                                metric_map[key] = None
+                        else:
+                            metric_map[key] = (
+                                val if val not in (None, "NA", "") else None
+                            )
+
+                    total_peak = metric_map["total_valid_ms2_peak"]
+                    ms2_peak = metric_map["explained_ms2_peak"]
+                    metric_map["explained_peak_fraction"] = safe_div(
+                        ms2_peak, total_peak, default=0.0
+                    )
+                    ms2_expl_idx = metric_map["ms2_explanation_idx"]
+                    mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
+                    if ms2_expl_idx not in (None, "NA", "") and os.path.exists(
+                        mse_path
+                    ):
+                        try:
+                            mse_df = pl.read_csv(mse_path, separator="\t")
+                            indices = [
+                                int(i)
+                                for i in str(ms2_expl_idx).split(",")
+                                if i.strip().isdigit()
+                            ]
+                            total_intensity = mse_df["intensity"].sum()
+                            explained_sum = mse_df.filter(
+                                pl.col("raw_idx").is_in(indices)
+                            )["intensity"].sum()
+                            metric_map["explained_intensity"] = safe_div(
+                                explained_sum, total_intensity, default=0.0
+                            )
+                        except Exception:
+                            metric_map["explained_intensity"] = None
+
+        recs.append(
+            {
+                "mgf_file": mgf_file,
+                "mgf": group_label,
+                "feature_id": feature_id,
+                "pepmass": pepmass,
+                "rt_seconds": rt,
+                "smiles": smiles,
+                "adduct": adduct,
+                "collision_energy": ce,
+                "fragmentation_method": frag,
+                "ionmode": ion,
+                "formula_expected": expected_formula,
+                "formula_found": formula_found,
+                "has_results_tsv": has_results_tsv,
+                "formula_match": formula_match,
+                **metric_map,
+                "result_dir": os.path.basename(spec_dir) if spec_dir else None,
+            }
+        )
+    return pl.DataFrame(recs)
 
 
 @app.function
@@ -847,8 +837,8 @@ def _show_supp(supp_figure_1):
 
 
 @app.cell
-def _show_supp(supp_figure_1):
-    supp_figure_1
+def _show_supp(supp_figure_2):
+    supp_figure_2
     return
 
 
