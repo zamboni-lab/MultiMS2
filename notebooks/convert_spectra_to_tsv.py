@@ -111,6 +111,8 @@ def mgf_to_tsv(settings: Settings) -> dict:
         "FILENAME",
         "SEQ",
         "COMPOUND_NAME",
+        # Keep track in case
+        "COMPOUND_NAME_ORIGINAL",
         "MOLECULEMASS",
         "INSTRUMENT",
         "IONSOURCE",
@@ -175,6 +177,15 @@ def mgf_to_tsv(settings: Settings) -> dict:
                 val = raw_val.strip().capitalize() if raw_val else ""
                 if val not in {"Positive", "Negative"}:
                     val = ""
+            elif col == "COMPOUND_NAME":
+                # Construct new COMPOUND_NAME: original + "_" + FRAGMENTATION_METHOD + "_" + COLLISION_ENERGY, on GNPS' people request
+                original_name = normalized.get("COMPOUND_NAME", "")
+                frag_method = normalized.get("FRAGMENTATION_METHOD", "")
+                collision_energy = normalized.get("COLLISION_ENERGY", "")
+                val = f"{original_name}_{frag_method}_{collision_energy}"
+            elif col == "COMPOUND_NAME_ORIGINAL":
+                # Store original COMPOUND_NAME
+                val = normalized.get("COMPOUND_NAME", "")
             elif col in na_defaults:
                 val = normalized.get(col, "N/A")
             else:
