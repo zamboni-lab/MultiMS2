@@ -298,7 +298,7 @@ with app.setup:
             "fragments_tree",
             {"from": list(s), "to": list(t)},
             point_helper="attribute",
-            color="#e6e6e6",
+            color="#767676",
         )
 
         directory = os.path.dirname(filepath) or "."
