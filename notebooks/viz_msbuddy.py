@@ -371,7 +371,7 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
     max_count = df_summary["count"].max()
     text = (
         alt.Chart(df_summary, width=chart_width, height=300)
-        .mark_text(align="center", color="#4d4d4d", fontSize=10 * 2, font="Arial")
+        .mark_text(align="center", color="#767676", fontSize=10 * 2, font="Arial")
         .encode(
             y=alt.Y("mgf:N", sort=mgf_order, scale=alt.Scale(domain=mgf_order)),
             x=alt.X("x_center:Q"),
@@ -393,7 +393,7 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
             dx=-200,
             dy=-30,
             font="Arial",
-            color="#4d4d4d",
+            color="#767676",
         )
         .encode(x=alt.value(0), y=alt.value(0), text="label:N")
     )
@@ -407,7 +407,7 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
             fontWeight="bold",
             dy=-15,
             font="Arial",
-            color="#4d4d4d",
+            color="#767676",
         )
         .encode(x=alt.value(chart_width / 2), y=alt.value(0), text="title:N")
     )
@@ -601,7 +601,7 @@ def make_match_plot(
     )
     text = (
         alt.Chart(df_binned, width=chart_width, height=300)
-        .mark_text(align="center", color="#4d4d4d", fontSize=10 * 2, font="Arial")
+        .mark_text(align="center", color="#767676", fontSize=10 * 2, font="Arial")
         .encode(
             y=alt.Y("mgf:N", sort=mgf_order, scale=alt.Scale(domain=mgf_order)),
             x=alt.X("x_center:Q"),
@@ -622,7 +622,7 @@ def make_match_plot(
             dx=-200,
             dy=-30,
             font="Arial",
-            color="#4d4d4d",
+            color="#767676",
         )
         .encode(x=alt.value(0), y=alt.value(0), text="label:N")
     )
@@ -636,7 +636,7 @@ def make_match_plot(
             fontWeight="bold",
             dy=-15,
             font="Arial",
-            color="#4d4d4d",
+            color="#767676",
         )
         .encode(x=alt.value(chart_width / 2), y=alt.value(0), text="title:N")
     )
