@@ -16,6 +16,7 @@ app = marimo.App(width="full")
 with app.setup:
     from dataclasses import dataclass, field
     from simple_parsing import ArgumentParser
+    from typing import Any
     import marimo as mo
     import glob
     import os
@@ -51,7 +52,7 @@ with app.setup:
 
 
 @app.function
-def extract_numeric_fields(meta: dict, field_name: str, converter) -> any:
+def extract_numeric_fields(meta: dict, field_name: str, converter) -> Any:
     """Extract and convert numeric fields from spectrum metadata."""
     val = meta.get(field_name)
     if val is not None and val != "":

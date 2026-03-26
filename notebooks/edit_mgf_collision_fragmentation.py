@@ -107,10 +107,10 @@ def fix_mgf_fields(
                 # Add missing COLLISION_ENERGY (before FRAGMENTATION_METHOD)
                 if not coll_found:
                     frag_idx = None
-                    for j in range(block_start, block_end):
-                        if new_lines[j].startswith("FRAGMENTATION_METHOD="):
-                            frag_idx = j
-                            break
+                    if block_start is not None:
+                        for j in range(block_start, block_end):
+                            if new_lines[j].startswith("FRAGMENTATION_METHOD="):
+                                frag_idx = j
                     if frag_idx is not None:
                         new_lines.insert(
                             frag_idx,

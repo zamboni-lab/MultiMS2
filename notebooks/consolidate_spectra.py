@@ -57,7 +57,7 @@ with app.setup:
 
     def parse_args():
         try:
-            import marimo as mo  # type: ignore
+            import marimo as mo
 
             if mo.running_in_notebook():
                 return Settings()
