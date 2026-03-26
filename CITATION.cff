@@ -24,7 +24,7 @@ abstract: >-
     MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library.
 keywords:
   - "collision induced dissociation"
-  - "electron activated dissociation" 
+  - "electron activated dissociation"
   - "mass spectrometry"
   - "spectral library"
 license: [CC0-1.0, MIT]

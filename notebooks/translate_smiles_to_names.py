@@ -96,7 +96,7 @@ def smiles_to_names(settings: Settings) -> dict:
 
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(
-            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})"
+            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})",
         )
         batch = smiles_list[batch_start : batch_start + settings.batch_size]
 
@@ -170,8 +170,8 @@ def run_resolution():
     result = smiles_to_names(settings)
     mo.md(f"""
     ### Resolution Complete
-    - **Processed**: {result['total_processed']:,} SMILES
-    - **Output**: `{result['output_file']}`
+    - **Processed**: {result["total_processed"]:,} SMILES
+    - **Output**: `{result["output_file"]}`
     """)
     return
 

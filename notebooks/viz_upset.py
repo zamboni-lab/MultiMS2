@@ -38,7 +38,7 @@ with app.setup:
     if not logger.handlers:
         handler = logging.StreamHandler()
         handler.setFormatter(
-            logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+            logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"),
         )
         logger.addHandler(handler)
 
@@ -51,7 +51,7 @@ with app.setup:
         top_n_sets: int = field(
             default=12,
             metadata={
-                "help": "Maximum number of sets (groups) to retain before intersection ranking (unused if all)"
+                "help": "Maximum number of sets (groups) to retain before intersection ranking (unused if all)",
             },
         )
         top_n_intersections: int = field(
@@ -161,7 +161,7 @@ def read_consolidated_mgf(settings: Settings):
         ion = meta_lookup(md, ion_keys)
 
         group = "_".join(
-            (sanitize_local(frag), sanitize_local(ce), sanitize_local(ion))
+            (sanitize_local(frag), sanitize_local(ce), sanitize_local(ion)),
         )
 
         # ensure group entries exist
@@ -232,7 +232,8 @@ def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: 
     if all_items and isinstance(all_items[0], tuple) and len(all_items[0]) >= 3:
         triplets = {(it[0], it[1], it[2]) for it in all_items}
         logger.info(
-            "TOTAL: %d unique Adduct-Connectivity-Energy triplet(s)", len(triplets)
+            "TOTAL: %d unique Adduct-Connectivity-Energy triplet(s)",
+            len(triplets),
         )
 
     # Use polars DataFrame for downstream consumption
@@ -284,7 +285,7 @@ def membership_top_intersections(pdf, top_n: int):
                 "count": ct,
                 "order": rank_pos,
                 "sets": set_names,
-            }
+            },
         )
 
     return records, active_sets
@@ -292,7 +293,10 @@ def membership_top_intersections(pdf, top_n: int):
 
 @app.function
 def build_single_upset_chart(
-    pdf, top_n_intersections: int, panel_label: str, title_text: str
+    pdf,
+    top_n_intersections: int,
+    panel_label: str,
+    title_text: str,
 ):
     """Build an Altair upset-like plot for the top intersections.
 
@@ -322,7 +326,7 @@ def build_single_upset_chart(
                     "set": s,
                     "present": 1 if s in r["sets"] else 0,
                     "count": r["count"],
-                }
+                },
             )
     matrix_df = _pd.DataFrame(matrix_rows)
 
@@ -351,7 +355,9 @@ def build_single_upset_chart(
 
     # preserve categorical order
     set_sizes["set"] = _pd.Categorical(
-        set_sizes["set"], categories=set_order, ordered=True
+        set_sizes["set"],
+        categories=set_order,
+        ordered=True,
     )
     set_sizes = set_sizes.sort_values("set")
 
@@ -461,7 +467,9 @@ def build_single_upset_chart(
             x=x_inter,
             y=y_sets,
             color=alt.condition(
-                alt.datum.present == 1, alt.value(base_color), alt.value("none")
+                alt.datum.present == 1,
+                alt.value(base_color),
+                alt.value("none"),
             ),
             tooltip=["set:N", "intersection:N", "present:Q"],
         )
@@ -474,7 +482,9 @@ def build_single_upset_chart(
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
-                "maxsize:Q", title="Group Size", scale=alt.Scale(domain=[0, max_size])
+                "maxsize:Q",
+                title="Group Size",
+                scale=alt.Scale(domain=[0, max_size]),
             ),
         )
     )
@@ -511,7 +521,8 @@ def build_single_upset_chart(
     lower = alt.hconcat(matrix, right_panel, spacing=20).resolve_scale(y="shared")
 
     chart = alt.vconcat(
-        panel_label_chart + title_chart + bars + bar_labels, lower
+        panel_label_chart + title_chart + bars + bar_labels,
+        lower,
     ).resolve_scale(x="shared", color="independent")
 
     return chart
@@ -519,7 +530,9 @@ def build_single_upset_chart(
 
 @app.function
 def build_combined_upset_figure(
-    pd_sub_inchikeys, pd_sub_pairs, top_n_intersections: int
+    pd_sub_inchikeys,
+    pd_sub_pairs,
+    top_n_intersections: int,
 ):
     """Compose panels A and B into a single combined figure (Altair)."""
     grid_color = "#4d4d4d"
@@ -607,10 +620,14 @@ def _prepare(
 @app.cell
 def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
     pd_sub_inchikeys, names_sub_inchikeys = filter_upset_data(
-        data=data_inchikeys, group_names=names_inchikeys, top_n=settings.top_n_sets
+        data=data_inchikeys,
+        group_names=names_inchikeys,
+        top_n=settings.top_n_sets,
     )
     pd_sub_pairs, names_sub_pairs = filter_upset_data(
-        data=data_pairs, group_names=names_pairs, top_n=settings.top_n_sets
+        data=data_pairs,
+        group_names=names_pairs,
+        top_n=settings.top_n_sets,
     )
     return pd_sub_inchikeys, pd_sub_pairs
 
@@ -618,7 +635,9 @@ def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
 @app.cell
 def _plot(pd_sub_inchikeys, pd_sub_pairs):
     combined_chart = build_combined_upset_figure(
-        pd_sub_inchikeys, pd_sub_pairs, settings.top_n_intersections
+        pd_sub_inchikeys,
+        pd_sub_pairs,
+        settings.top_n_intersections,
     )
 
     outdir = Path("figures")
@@ -627,13 +646,19 @@ def _plot(pd_sub_inchikeys, pd_sub_pairs):
     save_path = outdir / "upset_main"
     try:
         combined_chart.save(
-            str(save_path.with_suffix(".svg")), format="svg", background=None
+            str(save_path.with_suffix(".svg")),
+            format="svg",
+            background=None,
         )
         combined_chart.save(
-            str(save_path.with_suffix(".pdf")), format="pdf", background=None
+            str(save_path.with_suffix(".pdf")),
+            format="pdf",
+            background=None,
         )
         combined_chart.save(
-            str(save_path.with_suffix(".png")), format="png", background=None
+            str(save_path.with_suffix(".png")),
+            format="png",
+            background=None,
         )
         logger.info("Saved combined upset figures to %s.[svg|pdf|png]", save_path)
     except Exception as exc:

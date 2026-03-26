@@ -58,7 +58,7 @@ with app.setup:
     def parse_msp_smiles(path):
         """Parse SMILES from MSP format files."""
         smiles = []
-        with open(path, "r", buffering=1024 * 1024) as f:
+        with open(path, buffering=1024 * 1024) as f:
             content = f.read()
             blocks = content.split("\n\n")
             for block in blocks:
@@ -71,7 +71,7 @@ with app.setup:
     def parse_mgf_smiles(path):
         """Parse SMILES from MGF format files."""
         smiles = []
-        with open(path, "r", buffering=1024 * 1024) as f:
+        with open(path, buffering=1024 * 1024) as f:
             content = f.read()
             blocks = content.split("END IONS")
             for block in blocks:
@@ -120,7 +120,7 @@ with app.setup:
                     max((len(ring) for ring in Chem.GetSymmSSSR(mol)), default=0),
                     inchikey,
                     selfies_str,
-                )
+                ),
             )
         return results
 
@@ -154,7 +154,10 @@ with app.setup:
             ]
 
             for future in tqdm(
-                futures, desc="Processing molecules", total=len(batches), unit="batch"
+                futures,
+                desc="Processing molecules",
+                total=len(batches),
+                unit="batch",
             ):
                 batch_results = future.result()
                 for h, cf, raf, lrs, ik, sf_str in batch_results:
@@ -166,7 +169,7 @@ with app.setup:
                     selfies.append(sf_str)
 
         logging.info(
-            f"Processed {len(smiles_list)} molecules in {len(batches)} batches"
+            f"Processed {len(smiles_list)} molecules in {len(batches)} batches",
         )
         return hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies
 
@@ -186,7 +189,7 @@ with app.setup:
 
         if len(mols) < len(smiles_list):
             logging.warning(
-                f"Failed to convert {len(smiles_list) - len(mols)} SMILES to mol objects"
+                f"Failed to convert {len(smiles_list) - len(mols)} SMILES to mol objects",
             )
 
         return mols, valid_indices
@@ -245,7 +248,10 @@ with app.setup:
         cfg.mmm_repeats = 2
         cfg.sl_repeats = 2
         x, y, s, t, _ = tm.layout_from_edge_list(
-            n_nodes, edge_list, create_mst=True, config=cfg
+            n_nodes,
+            edge_list,
+            create_mst=True,
+            config=cfg,
         )
         return x, y, s, t
 
@@ -253,7 +259,7 @@ with app.setup:
         """Create interactive TMAP visualization using Faerun."""
         c_frac = np.array([v if v is not None else 0.0 for v in descriptors["c_frac"]])
         c_frac_ranked = ss.rankdata(
-            c_frac / (np.max(c_frac) if np.any(c_frac) else 1.0)
+            c_frac / (np.max(c_frac) if np.any(c_frac) else 1.0),
         ) / len(df)
 
         f = Faerun(view="front", coords=False, clear_color="#ffffff")
@@ -357,7 +363,7 @@ def run_pipeline():
                     "smiles": smi,
                     "source_group": group,
                     "source_file": os.path.basename(path),
-                }
+                },
             )
 
     if not records:
@@ -382,15 +388,15 @@ def run_pipeline():
             pl.Series("largest_ring_size", largest_ring_size),
             pl.Series("inchikey", inchikeys),
             pl.Series("selfies", selfies),
-        ]
+        ],
     )
 
     # Filter valid molecules
     df_unique = df_unique.filter(
-        pl.col("inchikey").is_not_null() & pl.col("selfies").is_not_null()
+        pl.col("inchikey").is_not_null() & pl.col("selfies").is_not_null(),
     )
     logging.info(
-        f"Retained {len(df_unique)} molecules with valid InChIKeys and SELFIES"
+        f"Retained {len(df_unique)} molecules with valid InChIKeys and SELFIES",
     )
 
     # Merge back to full records
@@ -404,7 +410,7 @@ def run_pipeline():
                 "largest_ring_size",
                 "inchikey",
                 "selfies",
-            ]
+            ],
         ),
         on="smiles",
         how="inner",
@@ -412,18 +418,20 @@ def run_pipeline():
 
     # Build group assignments
     group_map = df.group_by("inchikey").agg(
-        pl.col("source_group").unique().alias("groups")
+        pl.col("source_group").unique().alias("groups"),
     )
     group_map = group_map.with_columns(pl.col("groups").list.len().alias("group_count"))
     group_map = group_map.with_columns(
         pl.when(pl.col("group_count") > 1)
         .then(pl.lit("SHARED"))
         .otherwise(pl.col("groups").list.first())
-        .alias("group")
+        .alias("group"),
     )
 
     df_unique_inchikeys = df.unique(subset=["inchikey"]).join(
-        group_map.select(["inchikey", "group"]), on="inchikey", how="inner"
+        group_map.select(["inchikey", "group"]),
+        on="inchikey",
+        how="inner",
     )
 
     # Prepare coloring data
@@ -457,11 +465,15 @@ def run_pipeline():
         timings["MolZip_SELFIES"] = t_selfies
 
         df_selfies, group_idx_selfies, descriptors_selfies = filter_by_indices(
-            df_unique_inchikeys, valid_selfies_indices, descriptors, group_idx
+            df_unique_inchikeys,
+            valid_selfies_indices,
+            descriptors,
+            group_idx,
         )
 
         x_sf, y_sf, s_sf, t_sf = compute_tmap_layout(
-            edge_list_selfies, len(valid_selfies)
+            edge_list_selfies,
+            len(valid_selfies),
         )
         visualize_tmap(
             x_sf,
@@ -492,7 +504,10 @@ def run_pipeline():
         timings["MAP4"] = t_map4
 
         df_map4, group_idx_map4, descriptors_map4 = filter_by_indices(
-            df_unique_inchikeys, valid_mol_indices, descriptors, group_idx
+            df_unique_inchikeys,
+            valid_mol_indices,
+            descriptors,
+            group_idx,
         )
 
         x_map4, y_map4, s_map4, t_map4 = compute_tmap_layout(edge_list_map4, len(mols))
@@ -523,13 +538,13 @@ def run_pipeline():
         ### Dataset Summary
         - Total records loaded: {len(records):,}
         - Unique molecules: {len(df_unique):,}
-        - Groups: {', '.join(unique_groups)}
+        - Groups: {", ".join(unique_groups)}
 
         ### Runtime Benchmark
         {timing_md}
 
         Open the HTML files in your browser for interactive exploration.
-        """
+        """,
     )
 
 

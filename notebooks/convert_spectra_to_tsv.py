@@ -40,7 +40,7 @@ with app.setup:
         split: int = field(
             default=0,
             metadata={
-                "help": "Split the output TSV into multiple files with up to this many data lines each."
+                "help": "Split the output TSV into multiple files with up to this many data lines each.",
             },
         )
 
@@ -166,7 +166,8 @@ def mgf_to_tsv(settings: Settings) -> dict:
                     val = val[:-5] + ".mzXML"
             elif col == "INSTRUMENT":
                 val = normalized.get(
-                    "INSTRUMENT_TYPE", normalized.get("INSTRUMENT", "")
+                    "INSTRUMENT_TYPE",
+                    normalized.get("INSTRUMENT", ""),
                 )
             elif col == "CHARGE":
                 raw_val = normalized.get("CHARGE", "")
@@ -215,7 +216,7 @@ def mgf_to_tsv(settings: Settings) -> dict:
         for i in range(num_splits):
             start = i * split_size
             end = min((i + 1) * split_size, total_lines)
-            split_path = f"{base}-PARTITION-{i+1}{ext}"
+            split_path = f"{base}-PARTITION-{i + 1}{ext}"
             with open(split_path, "w", encoding="utf-8") as f:
                 f.write(header)
                 f.writelines(tsv_lines[start:end])
@@ -251,8 +252,8 @@ def run_conversion():
     else:
         mo.md(f"""
         ### Conversion Complete
-        - **Spectra processed**: {result['spectra_total']:,}
-        - **Output file**: `{result['output_tsv'] or 'None (dry run)'}`
+        - **Spectra processed**: {result["spectra_total"]:,}
+        - **Output file**: `{result["output_tsv"] or "None (dry run)"}`
         """)
     return
 

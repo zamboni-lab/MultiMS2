@@ -152,10 +152,10 @@ def run_concatenation():
     else:
         mo.md(f"""
         ### Results
-        - **Total spectra**: {result['total_spectra']:,}
-        - **MGF files processed**: {result['total_files']}
-        - **Metadata saved to**: `{result['output_tsv']}`
-        - **Spectra saved to**: `{result['output_mgf']}`
+        - **Total spectra**: {result["total_spectra"]:,}
+        - **MGF files processed**: {result["total_files"]}
+        - **Metadata saved to**: `{result["output_tsv"]}`
+        - **Spectra saved to**: `{result["output_mgf"]}`
         """)
     return
 

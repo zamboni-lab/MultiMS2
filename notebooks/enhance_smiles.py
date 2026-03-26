@@ -132,7 +132,7 @@ def enhance_smiles(settings: Settings) -> dict:
 
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(
-            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})"
+            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})",
         )
         batch = smiles_list[batch_start : batch_start + settings.batch_size]
 
@@ -148,7 +148,7 @@ def enhance_smiles(settings: Settings) -> dict:
                     "selfies": smiles_to_selfies(smi) if mol else "",
                     "inchi": mol_to_inchi(mol) if mol else "",
                     "inchikey": mol_to_inchikey(mol) if mol else "",
-                }
+                },
             )
 
     # Write output
@@ -202,8 +202,8 @@ def run_enhancement():
     else:
         mo.md(f"""
         ### Enhancement Complete
-        - **Processed**: {result['total_processed']:,} SMILES
-        - **Output**: `{result['output_file']}`
+        - **Processed**: {result["total_processed"]:,} SMILES
+        - **Output**: `{result["output_file"]}`
         """)
     return
 

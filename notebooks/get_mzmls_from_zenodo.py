@@ -37,7 +37,7 @@ with app.setup:
         file_filter: str | None = field(
             default=None,
             metadata={
-                "help": "Optional filter pattern for files (e.g., 'selleck', 'pos')"
+                "help": "Optional filter pattern for files (e.g., 'selleck', 'pos')",
             },
         )
 
@@ -172,9 +172,9 @@ def run_download():
     mo.md(f"""
     ### Download Results
 
-    - **Total files**: {result['total_files']}
-    - **Successful**: {result['successful']}
-    - **Failed**: {result['failed']}
+    - **Total files**: {result["total_files"]}
+    - **Successful**: {result["successful"]}
+    - **Failed**: {result["failed"]}
 
     #### Downloaded Files
     ```

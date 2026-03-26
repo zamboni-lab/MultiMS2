@@ -44,7 +44,7 @@
             "flow_rate": 0.2,
             "flow_rate_unit": "ml/min",
             "components": [
-              {"id": "A", "percentage": 50}, 
+              {"id": "A", "percentage": 50},
               {"id": "B", "percentage": 50}
             ]
           }
@@ -56,7 +56,7 @@
           "solvents": [
             {
               "name": "H2O",
-              "amount": 100, 
+              "amount": 100,
               "unit": "percent",
               "pH": null,
             },
@@ -64,7 +64,7 @@
               "name": "formic acid",
               "amount": 0.1,
               "unit": "percent",
-              "pH": null, 
+              "pH": null,
             }
           ]
         },

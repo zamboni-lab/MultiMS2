@@ -32,7 +32,7 @@ with app.setup:
         output_mgf: str = field(
             default="data/multims2_spectra.mgf",
             metadata={
-                "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs."
+                "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs.",
             },
         )
         add_selfies: bool = field(
@@ -143,7 +143,7 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:
                 feature_line_idx=feature_idx,
                 smiles_line_idx=smiles_idx,
                 selfies_line_idx=selfies_idx,
-            )
+            ),
         )
         order += 1
         cur = []
