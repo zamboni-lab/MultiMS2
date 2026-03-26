@@ -1,2 +1,4 @@
 scratch/**
 spectra/**
+data/chebi_v244/OrganoXCompoundClassifier_element_class_mapping.csv
+data/chebi_v244/XMolecularEntityClassifier_element_class_mapping.csv
