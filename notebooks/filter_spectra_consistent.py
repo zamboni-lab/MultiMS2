@@ -1,10 +1,10 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
-#     "simple_parsing",
-#     "matchms",
-#     "polars",
+#     "simple_parsing==0.1.8",
+#     "matchms==0.32.0",
+#     "polars==1.39.3",
 # ]
 # ///
 
@@ -210,7 +210,7 @@ def filter_spectra(
     if df.height > 0:
         df = df.filter(
             pl.struct(["_adduct_charge", "_spectrum_charge"]).map_elements(
-                charge_match
+                charge_match,
             ),
         )
         print(f"After charge consistency filter: {df.shape[0]} spectra remain.")

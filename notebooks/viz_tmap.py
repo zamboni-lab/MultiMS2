@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "cmcrameri",
 #     "datasketch",
@@ -13,7 +13,7 @@
 #     "rdkit",
 #     "scipy",
 #     "selfies",
-#     "tmap",
+#     "tmap-silicon",
 #     "tol-colors",
 #     "tqdm",
 # ]
