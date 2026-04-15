@@ -53,7 +53,22 @@ with app.setup:
 
 @app.function
 def extract_numeric_fields(meta: dict, field_name: str, converter) -> Any:
-    """Extract and convert numeric fields from spectrum metadata."""
+    """Extract and convert numeric fields from spectrum metadata.
+
+    Parameters
+    ----------
+    meta : dict
+        Meta.
+    field_name : str
+        Field name.
+    converter : Any
+        Converter.
+
+    Returns
+    -------
+    Any
+        Converted numeric value, or ``None`` when parsing fails or value is missing.
+    """
     val = meta.get(field_name)
     if val is not None and val != "":
         try:
@@ -65,7 +80,18 @@ def extract_numeric_fields(meta: dict, field_name: str, converter) -> Any:
 
 @app.function
 def concatenate_spectra(settings: Settings) -> dict:
-    """Concatenate all MGF files in directory and export metadata."""
+    """Concatenate all MGF files in directory and export metadata.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Run summary with counts and output file paths, or an ``error`` message.
+    """
     mgf_files = sorted(glob.glob(os.path.join(settings.mgf_dir, "*.mgf")))
 
     if not mgf_files:

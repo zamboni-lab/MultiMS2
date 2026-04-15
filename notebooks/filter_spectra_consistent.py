@@ -89,9 +89,13 @@ with app.setup:
 
 @app.function
 def extract_charge_from_adduct(adduct: str):
-    """
-    Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
-    If not found, return None.
+    """Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
+        If not found, return None.
+
+    Parameters
+    ----------
+    adduct : str
+        Adduct.
     """
     if not adduct or not isinstance(adduct, str):
         return None
@@ -122,10 +126,19 @@ def extract_charge_from_adduct(adduct: str):
 def filter_spectra(
     settings: Settings,
 ) -> str:
-    """
-    Filter spectra based on metadata and quality criteria.
-    Reads a concatenated MGF file (produced by concat_spectra.py).
-    Outputs only the final filtered spectra as MGF.
+    """Filter spectra based on metadata and quality criteria.
+        Reads a concatenated MGF file (produced by concat_spectra.py).
+        Outputs only the final filtered spectra as MGF.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    str
+        Human-readable summary of input spectra count and exported filtered output.
     """
     import polars as pl
     from matchms.importing import load_from_mgf

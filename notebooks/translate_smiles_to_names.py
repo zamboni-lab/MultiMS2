@@ -57,7 +57,18 @@ with app.setup:
 
 @app.function
 def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
-    """Fetch record titles for multiple CIDs in one batch."""
+    """Fetch record titles for multiple CIDs in one batch.
+
+    Parameters
+    ----------
+    cids : list[int]
+        Cids.
+
+    Returns
+    -------
+    dict[int, str]
+        Mapping from PubChem CID to resolved record title.
+    """
     if not cids:
         return {}
 
@@ -83,7 +94,18 @@ def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
 
 @app.function
 def smiles_to_names(settings: Settings) -> dict:
-    """Batch resolve SMILES to PubChem names or InChIKeys."""
+    """Batch resolve SMILES to PubChem names or InChIKeys.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Processing summary with total SMILES handled and output file path.
+    """
     with open(settings.smiles_file, newline="") as infile:
         reader = csv.DictReader(infile, delimiter="\t")
         smiles_list = [

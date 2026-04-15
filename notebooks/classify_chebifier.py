@@ -77,7 +77,18 @@ with app.setup:
     # ============================================================
 
     def parse_mgf_smiles(path: str) -> list[str]:
-        """Parse SMILES from an MGF file using matchms."""
+        """Parse SMILES from an MGF file using matchms.
+
+        Parameters
+        ----------
+        path : str
+            Path.
+
+        Returns
+        -------
+        list[str]
+            SMILES strings extracted from spectra metadata.
+        """
         smiles = []
         for spectrum in load_from_mgf(path):
             smi = spectrum.metadata.get("smiles")
@@ -93,12 +104,24 @@ with app.setup:
         smiles_list: list[str],
         batch_size: int,
     ) -> list[list[str] | None]:
-        """
-        Run chebifier ensemble on SMILES in batches.
+        """Run chebifier ensemble on SMILES in batches.
 
-        Returns a list parallel to smiles_list where each element is:
-        - A list of ChEBI class name strings, or
-        - None if the molecule could not be classified.
+                Returns a list parallel to smiles_list where each element is:
+                - A list of ChEBI class name strings, or
+                - None if the molecule could not be classified.
+
+        Parameters
+        ----------
+        smiles_list : list[str]
+            Smiles list.
+        batch_size : int
+            Batch size.
+
+        Returns
+        -------
+        list[list[str] | None]
+            Predictions aligned with ``smiles_list``; each item is a class list or
+            ``None`` when classification fails.
         """
         from chebifier import BaseEnsemble
 
@@ -125,7 +148,21 @@ with app.setup:
         unique_smiles: list[str],
         predictions: list[list[str] | None],
     ) -> pl.DataFrame:
-        """Build a Polars DataFrame from classification results."""
+        """Build a Polars DataFrame from classification results.
+
+        Parameters
+        ----------
+        unique_smiles : list[str]
+            Unique smiles.
+        predictions : list[list[str] | None]
+            Predictions.
+
+        Returns
+        -------
+        pl.DataFrame
+            Classification results with SMILES, status flags, class counts, and joined
+            class labels.
+        """
         rows = []
         for smiles, pred in zip(unique_smiles, predictions):
             if pred is None:
@@ -135,7 +172,7 @@ with app.setup:
                         "classified": False,
                         "n_classes": 0,
                         "classes": None,
-                    }
+                    },
                 )
             else:
                 rows.append(
@@ -144,12 +181,25 @@ with app.setup:
                         "classified": True,
                         "n_classes": len(pred),
                         "classes": "; ".join(sorted(pred)),
-                    }
+                    },
                 )
         return pl.DataFrame(rows)
 
     def top_classes(df: pl.DataFrame, n: int = 20) -> pl.DataFrame:
-        """Return the top-n most frequent ChEBI classes across all molecules."""
+        """Return the top-n most frequent ChEBI classes across all molecules.
+
+        Parameters
+        ----------
+        df : pl.DataFrame
+            Df.
+        n : int
+            Default is 20.
+
+        Returns
+        -------
+        pl.DataFrame
+            Top ``n`` ChEBI classes ranked by number of molecules.
+        """
         return (
             df.filter(pl.col("classes").is_not_null())
             .with_columns(pl.col("classes").str.split("; ").alias("class_list"))
@@ -182,7 +232,18 @@ def show_settings():
 
 @app.function
 def run_pipeline(settings: Settings) -> mo.Html | pl.DataFrame:
-    """End-to-end pipeline: parse → deduplicate → classify → save."""
+    """End-to-end pipeline: parse → deduplicate → classify → save.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    mo.Html | pl.DataFrame
+        Markdown status output describing pipeline results, or an error message.
+    """
 
     # ── 1. Parse ──────────────────────────────────────────────
     if not os.path.exists(settings.mgf_path):
@@ -214,7 +275,9 @@ def run_pipeline(settings: Settings) -> mo.Html | pl.DataFrame:
     Path(settings.output_csv).parent.mkdir(parents=True, exist_ok=True)
     df.write_csv(settings.output_csv)
     df.write_parquet(settings.output_parquet)
-    logging.info(f"Saved results to {settings.output_csv} and {settings.output_parquet}")
+    logging.info(
+        f"Saved results to {settings.output_csv} and {settings.output_parquet}"
+    )
 
     return mo.md(f"""
     ### Classification Complete
@@ -240,7 +303,13 @@ def run_and_show():
 
 @app.function
 def show_results(settings: Settings):
-    """Load saved results and display summary tables."""
+    """Load saved results and display summary tables.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+    """
     if not os.path.exists(settings.output_parquet):
         return mo.md("_Run the pipeline above to generate results._")
 
@@ -267,7 +336,7 @@ def show_results(settings: Settings):
             ),
             mo.md("#### Top-20 most frequent ChEBI classes"),
             mo.ui.table(top_df.to_pandas(), pagination=False),
-        ]
+        ],
     )
 
 

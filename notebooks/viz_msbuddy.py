@@ -67,7 +67,13 @@ def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
 
 @app.function
 def get_mgf_order(df_pd):
-    """Return ordered MGF groups with custom priority."""
+    """Return ordered MGF groups with custom priority.
+
+    Parameters
+    ----------
+    df_pd : Any
+        Df pd.
+    """
     desired_order = [
         "cid_[20.0]_positive",
         "cid_[40.0]_positive",
@@ -113,7 +119,20 @@ def best_hit_row(df: pl.DataFrame, formula: str) -> dict | None:
 
 @app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Output one row per unique FEATURE_ID."""
+    """Output one row per unique FEATURE_ID.
+
+    Parameters
+    ----------
+    mgf_path : str
+        Mgf path.
+    msbuddy_root : str
+        Msbuddy root.
+
+    Returns
+    -------
+    pl.DataFrame
+        One row per feature with grouped metadata and MSBuddy-derived match metrics.
+    """
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))
     featureid_to_spectrum = {

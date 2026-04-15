@@ -121,8 +121,18 @@ class MGFLossValidator:
 
     def parse_mgf_file(self, mgf_content: str) -> List[Dict]:
         """Parse MGF content preserving original block text.
-        Each returned spectrum dict includes a RAW_TEXT key with the exact
-        original block (BEGIN/END IONS inclusive) to allow lossless filtering.
+                Each returned spectrum dict includes a RAW_TEXT key with the exact
+                original block (BEGIN/END IONS inclusive) to allow lossless filtering.
+
+        Parameters
+        ----------
+        mgf_content : str
+            Mgf content.
+
+        Returns
+        -------
+        List[Dict]
+            Parsed spectra dictionaries including preserved original ``RAW_TEXT`` blocks.
         """
         # Regex finds each full block
         pattern = re.compile(r"BEGIN IONS\n(.*?)END IONS", re.DOTALL)
@@ -164,17 +174,29 @@ class MGFLossValidator:
     def can_form_adduct(self, smiles: str, adduct: str) -> Tuple[bool, str]:
         """Validate feasibility of requested neutral losses.
 
-        Strategy:
-          1. Parse requested losses.
-          2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
-          3. If enumeration underestimates capacity, fall back to functional-group
-             heuristics specific to each loss type.
-          4. Accept if all requested losses are supported by either enumeration
-             or heuristics; reject otherwise.
+                Strategy:
+                  1. Parse requested losses.
+                  2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
+                  3. If enumeration underestimates capacity, fall back to functional-group
+                     heuristics specific to each loss type.
+                  4. Accept if all requested losses are supported by either enumeration
+                     or heuristics; reject otherwise.
 
-        Heuristics deliberately over-estimate within reasonable chemical bounds
-        to avoid false negatives for polyfunctional natural products / sugars.
-        No structural mutation is performed.
+                Heuristics deliberately over-estimate within reasonable chemical bounds
+                to avoid false negatives for polyfunctional natural products / sugars.
+                No structural mutation is performed.
+
+        Parameters
+        ----------
+        smiles : str
+            Smiles.
+        adduct : str
+            Adduct.
+
+        Returns
+        -------
+        Tuple[bool, str]
+            Validation status and explanatory note for the requested adduct losses.
         """
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
@@ -370,7 +392,18 @@ class MGFLossValidator:
         return "\n".join(lines)
 
     def write_mgf_file(self, spectra: List[Dict]) -> str:
-        """Write spectra using original untouched RAW_TEXT blocks if present."""
+        """Write spectra using original untouched RAW_TEXT blocks if present.
+
+        Parameters
+        ----------
+        spectra : List[Dict]
+            Spectra.
+
+        Returns
+        -------
+        str
+            MGF text assembled from original spectrum blocks (or reconstructed blocks).
+        """
         blocks = []
         for spec in spectra:
             raw = spec.get("RAW_TEXT")

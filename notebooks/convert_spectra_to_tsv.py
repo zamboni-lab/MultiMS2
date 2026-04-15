@@ -58,7 +58,18 @@ with app.setup:
 
 @app.function
 def read_text_fallback(path: str) -> List[str]:
-    """Read text file with encoding fallback."""
+    """Read text file with encoding fallback.
+
+    Parameters
+    ----------
+    path : str
+        Path.
+
+    Returns
+    -------
+    List[str]
+        File lines decoded with UTF-8 or Latin-1 fallback.
+    """
     try:
         with open(path, encoding="utf-8") as f:
             return f.readlines()
@@ -69,7 +80,18 @@ def read_text_fallback(path: str) -> List[str]:
 
 @app.function
 def parse_mgf_file(path: str) -> list[dict]:
-    """Parse MGF into list of dictionaries with fields and peaks."""
+    """Parse MGF into list of dictionaries with fields and peaks.
+
+    Parameters
+    ----------
+    path : str
+        Path.
+
+    Returns
+    -------
+    list[dict]
+        Parsed spectra blocks with metadata fields and peak lists.
+    """
     lines = read_text_fallback(path)
     blocks = []
     cur_block = {}
@@ -98,7 +120,19 @@ def parse_mgf_file(path: str) -> list[dict]:
 
 @app.function
 def mgf_to_tsv(settings: Settings) -> dict:
-    """Convert MGF to GNPS batch TSV format."""
+    """Convert MGF to GNPS batch TSV format.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Conversion summary containing processed spectra count and output path(s),
+        or an ``error`` message.
+    """
     if not os.path.exists(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}
 

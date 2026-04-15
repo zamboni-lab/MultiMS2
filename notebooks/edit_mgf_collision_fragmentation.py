@@ -55,7 +55,25 @@ def fix_mgf_fields(
     coll_energy: str,
     output_path: str | None = None,
 ) -> dict:
-    """Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files."""
+    """Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files.
+
+    Parameters
+    ----------
+    input_path : str
+        Input path.
+    frag_method : str
+        Frag method.
+    coll_energy : str
+        Coll energy.
+    output_path : str | None
+        None. Default is None.
+
+    Returns
+    -------
+    dict
+        Update summary with input/output paths and applied values, or an ``error``
+        message when input is missing.
+    """
     if output_path is None:
         output_path = input_path
 

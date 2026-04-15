@@ -56,7 +56,13 @@ with app.setup:
     # ========================================
 
     def parse_msp_smiles(path):
-        """Parse SMILES from MSP format files."""
+        """Parse SMILES from MSP format files.
+
+        Parameters
+        ----------
+        path : Any
+            Path.
+        """
         smiles = []
         with open(path, buffering=1024 * 1024) as f:
             content = f.read()
@@ -69,7 +75,13 @@ with app.setup:
         return smiles
 
     def parse_mgf_smiles(path):
-        """Parse SMILES from MGF format files."""
+        """Parse SMILES from MGF format files.
+
+        Parameters
+        ----------
+        path : Any
+            Path.
+        """
         smiles = []
         with open(path, buffering=1024 * 1024) as f:
             content = f.read()
@@ -86,10 +98,14 @@ with app.setup:
     # ========================================
 
     def process_molecule_batch(smiles_batch):
-        """
-        Process a batch of SMILES strings to compute molecular descriptors.
+        """Process a batch of SMILES strings to compute molecular descriptors.
 
-        Returns tuple of (hac, c_frac, ring_atom_frac, largest_ring_size, inchikey, selfies).
+                Returns tuple of (hac, c_frac, ring_atom_frac, largest_ring_size, inchikey, selfies).
+
+        Parameters
+        ----------
+        smiles_batch : Any
+            Smiles batch.
         """
         results = []
         for smiles in smiles_batch:
@@ -125,10 +141,16 @@ with app.setup:
         return results
 
     def compute_descriptors_and_conversions(smiles_list, n_workers=None):
-        """
-        Parallel computation of molecular descriptors and conversions.
+        """Parallel computation of molecular descriptors and conversions.
 
-        Returns: (hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies)
+                Returns: (hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies)
+
+        Parameters
+        ----------
+        smiles_list : Any
+            Smiles list.
+        n_workers : Any
+            None. Default is None.
         """
         if n_workers is None:
             n_workers = min(os.cpu_count() or 4, 8)
@@ -174,10 +196,14 @@ with app.setup:
         return hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies
 
     def convert_smiles_to_mols(smiles_list):
-        """
-        Convert SMILES to RDKit mol objects.
+        """Convert SMILES to RDKit mol objects.
 
-        Returns: (mols, valid_indices)
+                Returns: (mols, valid_indices)
+
+        Parameters
+        ----------
+        smiles_list : Any
+            Smiles list.
         """
         mols = []
         valid_indices = []
@@ -199,7 +225,15 @@ with app.setup:
     # ========================================
 
     def compute_molzip_edges(string_list, k=10):
-        """Compute molecular similarity edges using MolZip compression."""
+        """Compute molecular similarity edges using MolZip compression.
+
+        Parameters
+        ----------
+        string_list : Any
+            String list.
+        k : Any
+            Default is 10.
+        """
         t0 = time.perf_counter()
         zg = ZipKNNGraph()
         edge_list = zg.fit_predict(string_list, k=k)
@@ -208,7 +242,17 @@ with app.setup:
         return edge_list, elapsed
 
     def compute_map4_edges(mols, k=5, n_perm=128):
-        """Compute molecular similarity edges using MAP4 fingerprints and MinHash LSH."""
+        """Compute molecular similarity edges using MAP4 fingerprints and MinHash LSH.
+
+        Parameters
+        ----------
+        mols : Any
+            Mols.
+        k : Any
+            Default is 5.
+        n_perm : Any
+            Default is 128.
+        """
         t0 = time.perf_counter()
         calc = MAP4(dimensions=2048, radius=2, include_duplicated_shingles=False)
 
@@ -242,7 +286,15 @@ with app.setup:
     # ========================================
 
     def compute_tmap_layout(edge_list, n_nodes):
-        """Compute 2D layout from edge list using TMAP."""
+        """Compute 2D layout from edge list using TMAP.
+
+        Parameters
+        ----------
+        edge_list : Any
+            Edge list.
+        n_nodes : Any
+            N nodes.
+        """
         cfg = tm.LayoutConfiguration()
         cfg.node_size = 1.5
         cfg.mmm_repeats = 2
@@ -256,7 +308,27 @@ with app.setup:
         return x, y, s, t
 
     def visualize_tmap(x, y, s, t, descriptors, group_idx, df, filepath="tmap_out"):
-        """Create interactive TMAP visualization using Faerun."""
+        """Create interactive TMAP visualization using Faerun.
+
+        Parameters
+        ----------
+        x : Any
+            X.
+        y : Any
+            Y.
+        s : Any
+            S.
+        t : Any
+            T.
+        descriptors : Any
+            Descriptors.
+        group_idx : Any
+            Group idx.
+        df : Any
+            Df.
+        filepath : Any
+            Default is 'tmap_out'.
+        """
         c_frac = np.array([v if v is not None else 0.0 for v in descriptors["c_frac"]])
         c_frac_ranked = ss.rankdata(
             c_frac / (np.max(c_frac) if np.any(c_frac) else 1.0),
@@ -317,14 +389,36 @@ with app.setup:
     # ========================================
 
     def choose_k(n_samples, method_name="Method", max_k=10):
-        """Choose k parameter based on dataset size."""
+        """Choose k parameter based on dataset size.
+
+        Parameters
+        ----------
+        n_samples : Any
+            N samples.
+        method_name : Any
+            Default is 'Method'.
+        max_k : Any
+            Default is 10.
+        """
         k = max(3, int(np.sqrt(n_samples)))
         k = min(k, max_k)
         logging.info(f"{method_name}: k={k} for {n_samples} molecules")
         return k
 
     def filter_by_indices(df, indices, descriptors, group_idx):
-        """Filter dataframe, descriptors, and group indices by valid indices."""
+        """Filter dataframe, descriptors, and group indices by valid indices.
+
+        Parameters
+        ----------
+        df : Any
+            Df.
+        indices : Any
+            Indices.
+        descriptors : Any
+            Descriptors.
+        group_idx : Any
+            Group idx.
+        """
         df_filtered = df[indices]
         group_idx_filtered = [group_idx[i] for i in indices]
         descriptors_filtered = {

@@ -92,7 +92,18 @@ with app.setup:
 
 @app.function
 def download_zenodo_files(settings: Settings) -> dict:
-    """Download mzML files from Zenodo with hash verification."""
+    """Download mzML files from Zenodo with hash verification.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Download summary with totals, successes, failures, and per-file messages.
+    """
     os.makedirs(settings.output_dir, exist_ok=True)
 
     # Filter files if requested

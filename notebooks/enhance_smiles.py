@@ -53,7 +53,13 @@ with app.setup:
 
 @app.function
 def smiles_to_mol(smiles: str):
-    """Convert SMILES to RDKit mol object."""
+    """Convert SMILES to RDKit mol object.
+
+    Parameters
+    ----------
+    smiles : str
+        Smiles.
+    """
     try:
         return Chem.MolFromSmiles(smiles)
     except Exception:
@@ -62,7 +68,18 @@ def smiles_to_mol(smiles: str):
 
 @app.function
 def mol_to_formula(mol) -> str:
-    """Extract molecular formula from mol object."""
+    """Extract molecular formula from mol object.
+
+    Parameters
+    ----------
+    mol : Any
+        Mol.
+
+    Returns
+    -------
+    str
+        Molecular formula for ``mol``, or an empty string on failure.
+    """
     try:
         return Chem.rdMolDescriptors.CalcMolFormula(mol)
     except Exception:
@@ -71,7 +88,18 @@ def mol_to_formula(mol) -> str:
 
 @app.function
 def mol_to_mass(mol) -> float:
-    """Calculate exact molecular weight."""
+    """Calculate exact molecular weight.
+
+    Parameters
+    ----------
+    mol : Any
+        Mol.
+
+    Returns
+    -------
+    float
+        Exact molecular mass for ``mol``, or ``nan`` on failure.
+    """
     try:
         return Descriptors.ExactMolWt(mol)
     except Exception:
@@ -80,7 +108,18 @@ def mol_to_mass(mol) -> float:
 
 @app.function
 def mol_to_canonical_smiles(mol) -> str:
-    """Convert mol to canonical SMILES."""
+    """Convert mol to canonical SMILES.
+
+    Parameters
+    ----------
+    mol : Any
+        Mol.
+
+    Returns
+    -------
+    str
+        Canonical SMILES for ``mol``, or an empty string on failure.
+    """
     try:
         return Chem.MolToSmiles(mol, canonical=True)
     except Exception:
@@ -89,7 +128,18 @@ def mol_to_canonical_smiles(mol) -> str:
 
 @app.function
 def mol_to_inchi(mol) -> str:
-    """Convert mol to InChI."""
+    """Convert mol to InChI.
+
+    Parameters
+    ----------
+    mol : Any
+        Mol.
+
+    Returns
+    -------
+    str
+        InChI string for ``mol``, or an empty string on failure.
+    """
     try:
         return Chem.MolToInchi(mol)
     except Exception:
@@ -98,7 +148,18 @@ def mol_to_inchi(mol) -> str:
 
 @app.function
 def mol_to_inchikey(mol) -> str:
-    """Convert mol to InChIKey."""
+    """Convert mol to InChIKey.
+
+    Parameters
+    ----------
+    mol : Any
+        Mol.
+
+    Returns
+    -------
+    str
+        InChIKey for ``mol``, or an empty string on failure.
+    """
     try:
         return Chem.MolToInchiKey(mol)
     except Exception:
@@ -107,7 +168,18 @@ def mol_to_inchikey(mol) -> str:
 
 @app.function
 def smiles_to_selfies(smiles: str) -> str:
-    """Convert SMILES to SELFIES."""
+    """Convert SMILES to SELFIES.
+
+    Parameters
+    ----------
+    smiles : str
+        Smiles.
+
+    Returns
+    -------
+    str
+        SELFIES representation of ``smiles``, or an empty string on failure.
+    """
     try:
         return selfies.encoder(smiles)
     except Exception:
@@ -116,7 +188,18 @@ def smiles_to_selfies(smiles: str) -> str:
 
 @app.function
 def enhance_smiles(settings: Settings) -> dict:
-    """Enhance SMILES with formula, mass, canonical form, SELFIES, InChI, InChIKey."""
+    """Enhance SMILES with formula, mass, canonical form, SELFIES, InChI, InChIKey.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Processing summary with total molecules handled and output path.
+    """
     if not os.path.exists(settings.smiles_file):
         return {"error": f"Input file not found: {settings.smiles_file}"}
 

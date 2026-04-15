@@ -48,7 +48,18 @@ with app.setup:
 
 @app.function
 def download_massbank(settings: Settings) -> dict:
-    """Download MassBank data from GitHub with hash verification."""
+    """Download MassBank data from GitHub with hash verification.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Download metadata containing local file path and size in megabytes.
+    """
     os.makedirs(os.path.dirname(settings.output_path) or ".", exist_ok=True)
 
     file_path = pooch.retrieve(
