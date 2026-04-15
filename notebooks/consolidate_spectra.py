@@ -179,7 +179,7 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:
 @app.function
 def assign_feature_ids(settings: Settings):
     """Assign FEATURE_ID fields based on grouping header values,
-        then reorder, rename, and augment fields as requested.
+            then reorder, rename, and augment fields as requested.
 
     Parameters
     ----------

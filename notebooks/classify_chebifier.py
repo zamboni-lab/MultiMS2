@@ -106,9 +106,9 @@ with app.setup:
     ) -> list[list[str] | None]:
         """Run chebifier ensemble on SMILES in batches.
 
-                Returns a list parallel to smiles_list where each element is:
-                - A list of ChEBI class name strings, or
-                - None if the molecule could not be classified.
+                        Returns a list parallel to smiles_list where each element is:
+                        - A list of ChEBI class name strings, or
+                        - None if the molecule could not be classified.
 
         Parameters
         ----------
@@ -120,8 +120,7 @@ with app.setup:
         Returns
         -------
         list[list[str] | None]
-            Predictions aligned with ``smiles_list``; each item is a class list or
-            ``None`` when classification fails.
+            Predictions aligned with ``smiles_list``; each item is a class list or ``None`` when classification fails.
         """
         from chebifier import BaseEnsemble
 
@@ -160,8 +159,7 @@ with app.setup:
         Returns
         -------
         pl.DataFrame
-            Classification results with SMILES, status flags, class counts, and joined
-            class labels.
+            SMILES, status flags, class counts, and joined class labels.
         """
         rows = []
         for smiles, pred in zip(unique_smiles, predictions):
@@ -276,7 +274,7 @@ def run_pipeline(settings: Settings) -> mo.Html | pl.DataFrame:
     df.write_csv(settings.output_csv)
     df.write_parquet(settings.output_parquet)
     logging.info(
-        f"Saved results to {settings.output_csv} and {settings.output_parquet}"
+        f"Saved results to {settings.output_csv} and {settings.output_parquet}",
     )
 
     return mo.md(f"""

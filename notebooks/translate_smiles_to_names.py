@@ -67,7 +67,7 @@ def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
     Returns
     -------
     dict[int, str]
-        Mapping from PubChem CID to resolved record title.
+        CID to resolved record title.
     """
     if not cids:
         return {}
@@ -104,7 +104,7 @@ def smiles_to_names(settings: Settings) -> dict:
     Returns
     -------
     dict
-        Processing summary with total SMILES handled and output file path.
+        SMILES handled and output file path.
     """
     with open(settings.smiles_file, newline="") as infile:
         reader = csv.DictReader(infile, delimiter="\t")

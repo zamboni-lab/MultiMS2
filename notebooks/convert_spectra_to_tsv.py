@@ -68,7 +68,7 @@ def read_text_fallback(path: str) -> List[str]:
     Returns
     -------
     List[str]
-        File lines decoded with UTF-8 or Latin-1 fallback.
+        UTF-8 or Latin-1 fallback.
     """
     try:
         with open(path, encoding="utf-8") as f:
@@ -130,8 +130,7 @@ def mgf_to_tsv(settings: Settings) -> dict:
     Returns
     -------
     dict
-        Conversion summary containing processed spectra count and output path(s),
-        or an ``error`` message.
+        Conversion summary containing processed spectra count and output path(s), or an ``error`` message.
     """
     if not os.path.exists(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}

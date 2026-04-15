@@ -121,8 +121,8 @@ class MGFLossValidator:
 
     def parse_mgf_file(self, mgf_content: str) -> List[Dict]:
         """Parse MGF content preserving original block text.
-                Each returned spectrum dict includes a RAW_TEXT key with the exact
-                original block (BEGIN/END IONS inclusive) to allow lossless filtering.
+                        Each returned spectrum dict includes a RAW_TEXT key with the exact
+                        original block (BEGIN/END IONS inclusive) to allow lossless filtering.
 
         Parameters
         ----------
@@ -174,17 +174,17 @@ class MGFLossValidator:
     def can_form_adduct(self, smiles: str, adduct: str) -> Tuple[bool, str]:
         """Validate feasibility of requested neutral losses.
 
-                Strategy:
-                  1. Parse requested losses.
-                  2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
-                  3. If enumeration underestimates capacity, fall back to functional-group
-                     heuristics specific to each loss type.
-                  4. Accept if all requested losses are supported by either enumeration
-                     or heuristics; reject otherwise.
+                        Strategy:
+                          1. Parse requested losses.
+                          2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
+                          3. If enumeration underestimates capacity, fall back to functional-group
+                             heuristics specific to each loss type.
+                          4. Accept if all requested losses are supported by either enumeration
+                             or heuristics; reject otherwise.
 
-                Heuristics deliberately over-estimate within reasonable chemical bounds
-                to avoid false negatives for polyfunctional natural products / sugars.
-                No structural mutation is performed.
+                        Heuristics deliberately over-estimate within reasonable chemical bounds
+                        to avoid false negatives for polyfunctional natural products / sugars.
+                        No structural mutation is performed.
 
         Parameters
         ----------

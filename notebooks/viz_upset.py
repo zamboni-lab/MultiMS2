@@ -158,7 +158,7 @@ def smiles_to_inchikey_first_layer(smiles: str) -> Optional[str]:
 def read_consolidated_mgf(settings: Settings):
     """Read a consolidated MGF and compute group memberships.
 
-        Group label: "{fragmentation_method}_{collision_energy}_{ionmode}" (sanitized).
+            Group label: "{fragmentation_method}_{collision_energy}_{ionmode}" (sanitized).
 
     Parameters
     ----------
@@ -368,8 +368,8 @@ def build_single_upset_chart(
 ):
     """Build an Altair upset-like plot for the top intersections.
 
-        The function returns an Altair Chart. It expects `pdf` as a pandas membership DataFrame
-        (rows=items, columns=sets) and uses membership_top_intersections to select the top intersections.
+            The function returns an Altair Chart. It expects `pdf` as a pandas membership DataFrame
+            (rows=items, columns=sets) and uses membership_top_intersections to select the top intersections.
 
     Parameters
     ----------

@@ -131,7 +131,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
     Returns
     -------
     pl.DataFrame
-        One row per feature with grouped metadata and MSBuddy-derived match metrics.
+        MSBuddy-derived match metrics.
     """
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))

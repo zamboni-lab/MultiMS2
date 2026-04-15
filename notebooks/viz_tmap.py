@@ -100,7 +100,7 @@ with app.setup:
     def process_molecule_batch(smiles_batch):
         """Process a batch of SMILES strings to compute molecular descriptors.
 
-                Returns tuple of (hac, c_frac, ring_atom_frac, largest_ring_size, inchikey, selfies).
+                        Returns tuple of (hac, c_frac, ring_atom_frac, largest_ring_size, inchikey, selfies).
 
         Parameters
         ----------
@@ -143,7 +143,7 @@ with app.setup:
     def compute_descriptors_and_conversions(smiles_list, n_workers=None):
         """Parallel computation of molecular descriptors and conversions.
 
-                Returns: (hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies)
+                        Returns: (hac, c_frac, ring_atom_frac, largest_ring_size, inchikeys, selfies)
 
         Parameters
         ----------
@@ -198,7 +198,7 @@ with app.setup:
     def convert_smiles_to_mols(smiles_list):
         """Convert SMILES to RDKit mol objects.
 
-                Returns: (mols, valid_indices)
+                        Returns: (mols, valid_indices)
 
         Parameters
         ----------

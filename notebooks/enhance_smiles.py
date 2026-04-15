@@ -118,7 +118,7 @@ def mol_to_canonical_smiles(mol) -> str:
     Returns
     -------
     str
-        Canonical SMILES for ``mol``, or an empty string on failure.
+        SMILES for ``mol``, or an empty string on failure.
     """
     try:
         return Chem.MolToSmiles(mol, canonical=True)

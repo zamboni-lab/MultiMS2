@@ -71,8 +71,7 @@ def fix_mgf_fields(
     Returns
     -------
     dict
-        Update summary with input/output paths and applied values, or an ``error``
-        message when input is missing.
+        Update summary with input/output paths and applied values, or an ``error`` message when input is missing.
     """
     if output_path is None:
         output_path = input_path
