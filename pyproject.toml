@@ -5,7 +5,7 @@ description = "MultiMS2"
 requires-python = "==3.12.*"
 dependencies = [
   "altair-upset>=0.5.0",
-  "c3p>=0.2.0",  # required by chebifier
+  "c3p>=0.5.0",  # required by chebifier
   "chebai>=1.1.0",  # required by chebifier
   "chebai-graph>=1.0.0",  # required by chebifier
   "chebifier>=1.2.1",
