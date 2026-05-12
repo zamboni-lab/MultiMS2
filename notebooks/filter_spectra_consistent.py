@@ -3,7 +3,7 @@
 # dependencies = [
 #     "marimo",
 #     "simple_parsing==0.1.8",
-#     "matchms==0.32.0",
+#     "matchms==0.33.0",
 #     "polars==1.39.3",
 # ]
 # ///
