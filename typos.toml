@@ -1,0 +1,16 @@
+[files]
+# Exclude chemistry data files that contain domain-specific abbreviations
+# and compound names that are flagged as typos (e.g. ACN=acetonitrile, FO in
+# molecular formulae, chemical name suffixes split across lines).
+extend-exclude = [
+  ".mzmine/",
+  "data/",
+  "figures/",
+  "metadata/",
+  "scratch/",
+]
+
+[default.extend-words]
+# Chemistry / mass-spec abbreviations that typos would incorrectly flag
+ACN = "ACN"  # acetonitrile
+FO = "FO"  # appears in molecular formulae (e.g. BrFO2)
