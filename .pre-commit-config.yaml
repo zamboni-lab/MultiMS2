@@ -70,7 +70,6 @@ repos:
         language: python
         entry: ty check
         exclude: '^(?!.*\.py$).*$'
-        respect-ignore-files: true
         additional_dependencies: [ty]
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
     rev: v1.25.2
