@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "rdkit",
@@ -69,31 +69,31 @@ class MGFLossValidator:
         self.loss_reactions = {
             # 15Da: N-demethylation, O-demethylation, and S-demethylation
             "CH3_from_NOS": AllChem.ReactionFromSmarts(
-                "[#7,#8,#16:1][CH3:2]>>[#7,#8,#16:1].[CH3:2]"
+                "[#7,#8,#16:1][CH3:2]>>[#7,#8,#16:1].[CH3:2]",
             ),
             # 17Da: Ammonia loss from primary amine
             "NH3": AllChem.ReactionFromSmarts(
-                "[#6,#16:1][#6,#16:2][NH2:3]>>[#6,#16:1]=[#6,#16:2].[NH3:3]"
+                "[#6,#16:1][#6,#16:2][NH2:3]>>[#6,#16:1]=[#6,#16:2].[NH3:3]",
             ),
             # 18Da: Dehydration
             "H2O": AllChem.ReactionFromSmarts(
-                "[#6,#7,#16:1][#6,#7,#16:2][OX2H:3]>>[#6,#7,#16:1]=[#6,#7,#16:2].[OH2:3]"
+                "[#6,#7,#16:1][#6,#7,#16:2][OX2H:3]>>[#6,#7,#16:1]=[#6,#7,#16:2].[OH2:3]",
             ),
             # 28Da: CO loss from carbonyl
             "CO": AllChem.ReactionFromSmarts("[C:1][C:2]=O>>[C:1][C:2].[C]=O"),
             # 28Da: Ethylene loss
             "C2H4": AllChem.ReactionFromSmarts(
-                "[C:1][C:2][C:3][C:4]>>[C:1][C:4].[C:2]=[C:3]"
+                "[C:1][C:2][C:3][C:4]>>[C:1][C:4].[C:2]=[C:3]",
             ),
             # 32Da: Methanol loss
             "CH3OH": AllChem.ReactionFromSmarts("[#6:1][O][#6:2]>>[#6:1].[O][#6:2]"),
             # 44Da: CO2 loss from carboxylic acid
             "CO2": AllChem.ReactionFromSmarts(
-                "[#6:1][C](=O)[OH]>>[#6:1][H].[O]=[C]=[O]"
+                "[#6:1][C](=O)[OH]>>[#6:1][H].[O]=[C]=[O]",
             ),
             # 162Da: Dehydrohexose loss
             "C6H10O5": AllChem.ReactionFromSmarts(
-                "[O:1][C:2]1O[C][C][C][C][C]O1>>[O:1].[C:2]1O[C][C][C][C][C]O1"
+                "[O:1][C:2]1O[C][C][C][C][C]O1>>[O:1].[C:2]1O[C][C][C][C][C]O1",
             ),
         }
 
@@ -121,8 +121,18 @@ class MGFLossValidator:
 
     def parse_mgf_file(self, mgf_content: str) -> List[Dict]:
         """Parse MGF content preserving original block text.
-        Each returned spectrum dict includes a RAW_TEXT key with the exact
-        original block (BEGIN/END IONS inclusive) to allow lossless filtering.
+                        Each returned spectrum dict includes a RAW_TEXT key with the exact
+                        original block (BEGIN/END IONS inclusive) to allow lossless filtering.
+
+        Parameters
+        ----------
+        mgf_content : str
+            Mgf content.
+
+        Returns
+        -------
+        List[Dict]
+            Parsed spectra dictionaries including preserved original ``RAW_TEXT`` blocks.
         """
         # Regex finds each full block
         pattern = re.compile(r"BEGIN IONS\n(.*?)END IONS", re.DOTALL)
@@ -164,17 +174,29 @@ class MGFLossValidator:
     def can_form_adduct(self, smiles: str, adduct: str) -> Tuple[bool, str]:
         """Validate feasibility of requested neutral losses.
 
-        Strategy:
-          1. Parse requested losses.
-          2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
-          3. If enumeration underestimates capacity, fall back to functional-group
-             heuristics specific to each loss type.
-          4. Accept if all requested losses are supported by either enumeration
-             or heuristics; reject otherwise.
+                        Strategy:
+                          1. Parse requested losses.
+                          2. Attempt reaction enumeration (greedy, shallow) for each unique loss.
+                          3. If enumeration underestimates capacity, fall back to functional-group
+                             heuristics specific to each loss type.
+                          4. Accept if all requested losses are supported by either enumeration
+                             or heuristics; reject otherwise.
 
-        Heuristics deliberately over-estimate within reasonable chemical bounds
-        to avoid false negatives for polyfunctional natural products / sugars.
-        No structural mutation is performed.
+                        Heuristics deliberately over-estimate within reasonable chemical bounds
+                        to avoid false negatives for polyfunctional natural products / sugars.
+                        No structural mutation is performed.
+
+        Parameters
+        ----------
+        smiles : str
+            Smiles.
+        adduct : str
+            Adduct.
+
+        Returns
+        -------
+        Tuple[bool, str]
+            Validation status and explanatory note for the requested adduct losses.
         """
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
@@ -224,7 +246,8 @@ class MGFLossValidator:
         def capacity_CH3OH() -> int:
             # Methoxy present: O-CH3 (ether or ester) groups
             return count("[OX2;!$(*=O)][CH3]", "methoxy") + count(
-                "[C](=O)[OX2][CH3]", "ester_methoxy"
+                "[C](=O)[OX2][CH3]",
+                "ester_methoxy",
             )
 
         def capacity_CH3_from_NOS() -> int:
@@ -298,15 +321,15 @@ class MGFLossValidator:
                 heuristic_cap = cap_fn() if cap_fn else 0
                 if requested <= heuristic_cap and heuristic_cap > 0:
                     special_notes.append(
-                        f"{loss}: heuristic capacity {heuristic_cap} used (enumerated {enumerated})"
+                        f"{loss}: heuristic capacity {heuristic_cap} used (enumerated {enumerated})",
                     )
                 else:
                     unapplied_losses.append(
-                        f"{loss} (need {requested}, have {max(enumerated, heuristic_cap)})"
+                        f"{loss} (need {requested}, have {max(enumerated, heuristic_cap)})",
                     )
             elif enumerated > requested:
                 special_notes.append(
-                    f"{loss}: more reactive sites ({enumerated}) than requested ({requested})"
+                    f"{loss}: more reactive sites ({enumerated}) than requested ({requested})",
                 )
 
         if unapplied_losses:
@@ -369,7 +392,18 @@ class MGFLossValidator:
         return "\n".join(lines)
 
     def write_mgf_file(self, spectra: List[Dict]) -> str:
-        """Write spectra using original untouched RAW_TEXT blocks if present."""
+        """Write spectra using original untouched RAW_TEXT blocks if present.
+
+        Parameters
+        ----------
+        spectra : List[Dict]
+            Spectra.
+
+        Returns
+        -------
+        str
+            MGF text assembled from original spectrum blocks (or reconstructed blocks).
+        """
         blocks = []
         for spec in spectra:
             raw = spec.get("RAW_TEXT")
@@ -385,7 +419,7 @@ def validate_file(settings: "Settings"):
     if not settings.input:
         return {"error": "No input file specified"}
     try:
-        with open(settings.input, "r") as fh:
+        with open(settings.input) as fh:
             content = fh.read()
     except FileNotFoundError:
         return {"error": f"Input file not found: {settings.input}"}
@@ -398,7 +432,7 @@ def validate_file(settings: "Settings"):
 def _cli_main():
     validator = MGFLossValidator()
     try:
-        with open(settings.input, "r") as f:
+        with open(settings.input) as f:
             mgf_content = f.read()
     except Exception as e:
         print(f"Error reading input: {e}", file=sys.stderr)

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "altair",
@@ -38,7 +38,7 @@ with app.setup:
     if not logger.handlers:
         handler = logging.StreamHandler()
         handler.setFormatter(
-            logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+            logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"),
         )
         logger.addHandler(handler)
 
@@ -51,7 +51,7 @@ with app.setup:
         top_n_sets: int = field(
             default=12,
             metadata={
-                "help": "Maximum number of sets (groups) to retain before intersection ranking (unused if all)"
+                "help": "Maximum number of sets (groups) to retain before intersection ranking (unused if all)",
             },
         )
         top_n_intersections: int = field(
@@ -64,7 +64,13 @@ with app.setup:
     parser.add_arguments(Settings, dest="settings")
 
     def parse_args() -> Settings:
-        """Return settings from CLI or default Settings when running in notebook."""
+        """Return settings from CLI or default Settings when running in notebook.
+
+        Returns
+        -------
+        Settings
+            Parsed runtime settings, or defaults when running in a notebook.
+        """
         if marimo.running_in_notebook():
             logger.info("Running in notebook: using default Settings()")
             return Settings()
@@ -79,7 +85,18 @@ with app.setup:
 
 @app.function
 def sanitize_local(v: Any) -> str:
-    """Sanitize a metadata value into a normalized group token (lowercase, safe)."""
+    """Sanitize a metadata value into a normalized group token (lowercase, safe).
+
+    Parameters
+    ----------
+    v : Any
+        V.
+
+    Returns
+    -------
+    str
+        Sanitized lowercase token safe for group labeling.
+    """
     if v is None:
         return "na"
     s = str(v).strip().lower()
@@ -90,7 +107,20 @@ def sanitize_local(v: Any) -> str:
 
 @app.function
 def meta_lookup(md: dict, keys: Iterable[str]) -> Optional[str]:
-    """Return the first non-empty metadata value matching any key in `keys`."""
+    """Return the first non-empty metadata value matching any key in `keys`.
+
+    Parameters
+    ----------
+    md : dict
+        Md.
+    keys : Iterable[str]
+        Keys.
+
+    Returns
+    -------
+    Optional[str]
+        First non-empty metadata value for the provided keys, or ``None``.
+    """
     for k in keys:
         v = md.get(k)
         if v not in (None, ""):
@@ -100,7 +130,18 @@ def meta_lookup(md: dict, keys: Iterable[str]) -> Optional[str]:
 
 @app.function
 def smiles_to_inchikey_first_layer(smiles: str) -> Optional[str]:
-    """Convert SMILES to first 14 chars of InChIKey (or None on failure)."""
+    """Convert SMILES to first 14 chars of InChIKey (or None on failure).
+
+    Parameters
+    ----------
+    smiles : str
+        Smiles.
+
+    Returns
+    -------
+    Optional[str]
+        First-layer InChIKey (14 chars), or ``None`` when conversion fails.
+    """
     try:
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
@@ -117,13 +158,12 @@ def smiles_to_inchikey_first_layer(smiles: str) -> Optional[str]:
 def read_consolidated_mgf(settings: Settings):
     """Read a consolidated MGF and compute group memberships.
 
-    Group label: "{fragmentation_method}_{collision_energy}_{ionmode}" (sanitized).
-    Returns:
-      - group_inchikeys: dict[group -> set(InChIKey14)]
-      - all_inchikeys: sorted list[str]
-      - group_adduct_inchikey: dict[group -> set[(adduct, InChIKey14)]]
-      - all_adduct_inchikey: sorted list[(adduct, InChIKey14)]
-      - triplet_set: set[(adduct, InChIKey14, energy)]
+            Group label: "{fragmentation_method}_{collision_energy}_{ionmode}" (sanitized).
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
     """
     mgf_path = Path(settings.mgf_path)
     if not mgf_path.is_file():
@@ -161,7 +201,7 @@ def read_consolidated_mgf(settings: Settings):
         ion = meta_lookup(md, ion_keys)
 
         group = "_".join(
-            (sanitize_local(frag), sanitize_local(ce), sanitize_local(ion))
+            (sanitize_local(frag), sanitize_local(ce), sanitize_local(ion)),
         )
 
         # ensure group entries exist
@@ -210,7 +250,17 @@ def read_consolidated_mgf(settings: Settings):
 
 @app.function
 def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: str):
-    """Create a membership DataFrame (polars) and ordered group names from mapping group -> set(items)."""
+    """Create a membership DataFrame (polars) and ordered group names from mapping group -> set(items).
+
+    Parameters
+    ----------
+    group_items : Dict[str, Set]
+        Group items.
+    all_items : List
+        All items.
+    item_label : str
+        Item label.
+    """
     data_dict: Dict[str, List[int]] = {}
     group_names = list(group_items.keys())
     group_sizes: List[Tuple[str, int]] = []
@@ -232,7 +282,8 @@ def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: 
     if all_items and isinstance(all_items[0], tuple) and len(all_items[0]) >= 3:
         triplets = {(it[0], it[1], it[2]) for it in all_items}
         logger.info(
-            "TOTAL: %d unique Adduct-Connectivity-Energy triplet(s)", len(triplets)
+            "TOTAL: %d unique Adduct-Connectivity-Energy triplet(s)",
+            len(triplets),
         )
 
     # Use polars DataFrame for downstream consumption
@@ -241,7 +292,17 @@ def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: 
 
 @app.function
 def filter_upset_data(data: pl.DataFrame, group_names: List[str], top_n: int):
-    """Select the top_n groups by membership size and return the pandas slice and filtered group names."""
+    """Select the top_n groups by membership size and return the pandas slice and filtered group names.
+
+    Parameters
+    ----------
+    data : pl.DataFrame
+        Data.
+    group_names : List[str]
+        Group names.
+    top_n : int
+        Top n.
+    """
     pdf = data.to_pandas()
     set_sums = pdf.sum(axis=0)
     # top N indices (handles when top_n > available)
@@ -254,7 +315,15 @@ def filter_upset_data(data: pl.DataFrame, group_names: List[str], top_n: int):
 
 @app.function
 def membership_top_intersections(pdf, top_n: int):
-    """Compute top N intersections from membership matrix (pandas DataFrame: items x sets)."""
+    """Compute top N intersections from membership matrix (pandas DataFrame: items x sets).
+
+    Parameters
+    ----------
+    pdf : Any
+        Pdf.
+    top_n : int
+        Top n.
+    """
     # pdf: rows = items, columns = sets (0/1)
     counts: dict[tuple[int, ...], int] = {}
     cols = list(pdf.columns)
@@ -284,7 +353,7 @@ def membership_top_intersections(pdf, top_n: int):
                 "count": ct,
                 "order": rank_pos,
                 "sets": set_names,
-            }
+            },
         )
 
     return records, active_sets
@@ -292,12 +361,26 @@ def membership_top_intersections(pdf, top_n: int):
 
 @app.function
 def build_single_upset_chart(
-    pdf, top_n_intersections: int, panel_label: str, title_text: str
+    pdf,
+    top_n_intersections: int,
+    panel_label: str,
+    title_text: str,
 ):
     """Build an Altair upset-like plot for the top intersections.
 
-    The function returns an Altair Chart. It expects `pdf` as a pandas membership DataFrame
-    (rows=items, columns=sets) and uses membership_top_intersections to select the top intersections.
+            The function returns an Altair Chart. It expects `pdf` as a pandas membership DataFrame
+            (rows=items, columns=sets) and uses membership_top_intersections to select the top intersections.
+
+    Parameters
+    ----------
+    pdf : Any
+        Pdf.
+    top_n_intersections : int
+        Top n intersections.
+    panel_label : str
+        Panel label.
+    title_text : str
+        Title text.
     """
     records, active_sets = membership_top_intersections(pdf, top_n_intersections)
     if not records:
@@ -322,7 +405,7 @@ def build_single_upset_chart(
                     "set": s,
                     "present": 1 if s in r["sets"] else 0,
                     "count": r["count"],
-                }
+                },
             )
     matrix_df = _pd.DataFrame(matrix_rows)
 
@@ -351,7 +434,9 @@ def build_single_upset_chart(
 
     # preserve categorical order
     set_sizes["set"] = _pd.Categorical(
-        set_sizes["set"], categories=set_order, ordered=True
+        set_sizes["set"],
+        categories=set_order,
+        ordered=True,
     )
     set_sizes = set_sizes.sort_values("set")
 
@@ -461,7 +546,9 @@ def build_single_upset_chart(
             x=x_inter,
             y=y_sets,
             color=alt.condition(
-                alt.datum.present == 1, alt.value(base_color), alt.value("none")
+                alt.datum.present == 1,
+                alt.value(base_color),
+                alt.value("none"),
             ),
             tooltip=["set:N", "intersection:N", "present:Q"],
         )
@@ -474,7 +561,9 @@ def build_single_upset_chart(
         .encode(
             y=alt.Y("set:N", sort=set_order, axis=None),
             x=alt.X(
-                "maxsize:Q", title="Group Size", scale=alt.Scale(domain=[0, max_size])
+                "maxsize:Q",
+                title="Group Size",
+                scale=alt.Scale(domain=[0, max_size]),
             ),
         )
     )
@@ -511,7 +600,8 @@ def build_single_upset_chart(
     lower = alt.hconcat(matrix, right_panel, spacing=20).resolve_scale(y="shared")
 
     chart = alt.vconcat(
-        panel_label_chart + title_chart + bars + bar_labels, lower
+        panel_label_chart + title_chart + bars + bar_labels,
+        lower,
     ).resolve_scale(x="shared", color="independent")
 
     return chart
@@ -519,9 +609,21 @@ def build_single_upset_chart(
 
 @app.function
 def build_combined_upset_figure(
-    pd_sub_inchikeys, pd_sub_pairs, top_n_intersections: int
+    pd_sub_inchikeys,
+    pd_sub_pairs,
+    top_n_intersections: int,
 ):
-    """Compose panels A and B into a single combined figure (Altair)."""
+    """Compose panels A and B into a single combined figure (Altair).
+
+    Parameters
+    ----------
+    pd_sub_inchikeys : Any
+        Pd sub inchikeys.
+    pd_sub_pairs : Any
+        Pd sub pairs.
+    top_n_intersections : int
+        Top n intersections.
+    """
     grid_color = "#4d4d4d"
 
     chart_a = build_single_upset_chart(
@@ -560,7 +662,18 @@ def build_combined_upset_figure(
 
 @app.function
 def log_triplet_count(triplet_set: Set[Tuple[str, str, str]]) -> int:
-    """Log number of unique adduct-connectivity-energy triplets and return count."""
+    """Log number of unique adduct-connectivity-energy triplets and return count.
+
+    Parameters
+    ----------
+    triplet_set : Set[Tuple[str, str, str]]
+        Triplet set.
+
+    Returns
+    -------
+    int
+        Number of unique adduct-connectivity-energy triplets.
+    """
     count = len(triplet_set)
     logger.info("TOTAL: %d unique Adduct-Connectivity-Energy triplet(s)", count)
     return count
@@ -607,10 +720,14 @@ def _prepare(
 @app.cell
 def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
     pd_sub_inchikeys, names_sub_inchikeys = filter_upset_data(
-        data=data_inchikeys, group_names=names_inchikeys, top_n=settings.top_n_sets
+        data=data_inchikeys,
+        group_names=names_inchikeys,
+        top_n=settings.top_n_sets,
     )
     pd_sub_pairs, names_sub_pairs = filter_upset_data(
-        data=data_pairs, group_names=names_pairs, top_n=settings.top_n_sets
+        data=data_pairs,
+        group_names=names_pairs,
+        top_n=settings.top_n_sets,
     )
     return pd_sub_inchikeys, pd_sub_pairs
 
@@ -618,7 +735,9 @@ def _filter(data_inchikeys, data_pairs, names_inchikeys, names_pairs):
 @app.cell
 def _plot(pd_sub_inchikeys, pd_sub_pairs):
     combined_chart = build_combined_upset_figure(
-        pd_sub_inchikeys, pd_sub_pairs, settings.top_n_intersections
+        pd_sub_inchikeys,
+        pd_sub_pairs,
+        settings.top_n_intersections,
     )
 
     outdir = Path("figures")
@@ -627,13 +746,19 @@ def _plot(pd_sub_inchikeys, pd_sub_pairs):
     save_path = outdir / "upset_main"
     try:
         combined_chart.save(
-            str(save_path.with_suffix(".svg")), format="svg", background=None
+            str(save_path.with_suffix(".svg")),
+            format="svg",
+            background=None,
         )
         combined_chart.save(
-            str(save_path.with_suffix(".pdf")), format="pdf", background=None
+            str(save_path.with_suffix(".pdf")),
+            format="pdf",
+            background=None,
         )
         combined_chart.save(
-            str(save_path.with_suffix(".png")), format="png", background=None
+            str(save_path.with_suffix(".png")),
+            format="png",
+            background=None,
         )
         logger.info("Saved combined upset figures to %s.[svg|pdf|png]", save_path)
     except Exception as exc:

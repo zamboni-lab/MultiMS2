@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "pooch",
@@ -48,7 +48,18 @@ with app.setup:
 
 @app.function
 def download_massbank(settings: Settings) -> dict:
-    """Download MassBank data from GitHub with hash verification."""
+    """Download MassBank data from GitHub with hash verification.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Download metadata containing local file path and size in megabytes.
+    """
     os.makedirs(os.path.dirname(settings.output_path) or ".", exist_ok=True)
 
     file_path = pooch.retrieve(
@@ -83,8 +94,8 @@ def run_download():
     result = download_massbank(settings)
     mo.md(f"""
     ### Download Complete
-    - **File path**: `{result['file_path']}`
-    - **Size**: {result['size_mb']:.2f} MB
+    - **File path**: `{result["file_path"]}`
+    - **Size**: {result["size_mb"]:.2f} MB
     """)
     return
 

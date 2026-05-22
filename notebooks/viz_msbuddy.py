@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "altair",
 #     "cmcrameri",
@@ -67,7 +67,13 @@ def cmap_to_hex_list(cmap, n_colors: int = 256) -> list[str]:
 
 @app.function
 def get_mgf_order(df_pd):
-    """Return ordered MGF groups with custom priority."""
+    """Return ordered MGF groups with custom priority.
+
+    Parameters
+    ----------
+    df_pd : Any
+        Df pd.
+    """
     desired_order = [
         "cid_[20.0]_positive",
         "cid_[40.0]_positive",
@@ -113,7 +119,20 @@ def best_hit_row(df: pl.DataFrame, formula: str) -> dict | None:
 
 @app.function
 def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
-    """Output one row per unique FEATURE_ID."""
+    """Output one row per unique FEATURE_ID.
+
+    Parameters
+    ----------
+    mgf_path : str
+        Mgf path.
+    msbuddy_root : str
+        Msbuddy root.
+
+    Returns
+    -------
+    pl.DataFrame
+        MSBuddy-derived match metrics.
+    """
     mgf_file = os.path.basename(mgf_path)
     spectra = list(load_from_mgf(mgf_path))
     featureid_to_spectrum = {
@@ -161,7 +180,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                 str(frag).strip().lower() if frag else "na",
                 str(ce).strip().lower() if ce else "na",
                 str(ion).strip().lower() if ion else "na",
-            ]
+            ],
         )
 
         expected_formula = smiles_to_formula(smiles) if smiles else None
@@ -211,12 +230,14 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                     total_peak = metric_map["total_valid_ms2_peak"]
                     ms2_peak = metric_map["explained_ms2_peak"]
                     metric_map["explained_peak_fraction"] = safe_div(
-                        ms2_peak, total_peak, default=0.0
+                        ms2_peak,
+                        total_peak,
+                        default=0.0,
                     )
                     ms2_expl_idx = metric_map["ms2_explanation_idx"]
                     mse_path = os.path.join(spec_dir, "ms2_preprocessed.tsv")
                     if ms2_expl_idx not in (None, "NA", "") and os.path.exists(
-                        mse_path
+                        mse_path,
                     ):
                         try:
                             mse_df = pl.read_csv(mse_path, separator="\t")
@@ -227,10 +248,12 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                             ]
                             total_intensity = mse_df["intensity"].sum()
                             explained_sum = mse_df.filter(
-                                pl.col("raw_idx").is_in(indices)
+                                pl.col("raw_idx").is_in(indices),
                             )["intensity"].sum()
                             metric_map["explained_intensity"] = safe_div(
-                                explained_sum, total_intensity, default=0.0
+                                explained_sum,
+                                total_intensity,
+                                default=0.0,
                             )
                         except Exception:
                             metric_map["explained_intensity"] = None
@@ -253,7 +276,7 @@ def process_mgf(mgf_path: str, msbuddy_root: str) -> pl.DataFrame:
                 "formula_match": formula_match,
                 **metric_map,
                 "result_dir": os.path.basename(spec_dir) if spec_dir else None,
-            }
+            },
         )
     return pl.DataFrame(recs)
 
@@ -283,7 +306,7 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
             .then(pl.lit("Formula found, incorrect"))
             .when(pl.col("formula_found") & pl.col("formula_match"))
             .then(pl.lit("Formula found, correct"))
-            .alias("status")
+            .alias("status"),
         )
         .group_by(["mgf", "status"])
         .agg([pl.len().alias("count")])
@@ -307,7 +330,9 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
     # build mgf order and set categorical on the pandas DF so the order travels with data
     mgf_order = get_mgf_order(df_summary)
     df_summary["mgf"] = pd.Categorical(
-        df_summary["mgf"], categories=mgf_order, ordered=True
+        df_summary["mgf"],
+        categories=mgf_order,
+        ordered=True,
     )
 
     alt.data_transformers.enable("vegafusion")
@@ -379,7 +404,7 @@ def make_status_plot(df: pl.DataFrame, panel_label: str = "A", chart_width: int 
             text=alt.Text("percent:Q", format=".0%"),
         )
         .transform_filter(
-            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count)
+            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count),
         )
     )
 
@@ -434,7 +459,7 @@ def make_match_plot(
         )
     df_matches = (
         df.lazy()
-        .filter((pl.col("formula_found") == True) & (pl.col("formula_match") == True))
+        .filter(pl.col("formula_found") & pl.col("formula_match"))
         .filter(pl.col(metric).is_not_null())
         .select(["mgf", metric])
         .collect()
@@ -461,7 +486,7 @@ def make_match_plot(
             bin_edges = np.array([0, max_val + 1])
         pad = max(len(str(bin_edges[0])), len(str(bin_edges[-1])))
         bin_labels = [
-            f"{str(bin_edges[i]).zfill(pad)}–{str(bin_edges[i+1]-1).zfill(pad)}"
+            f"{str(bin_edges[i]).zfill(pad)}–{str(bin_edges[i + 1] - 1).zfill(pad)}"
             for i in range(len(bin_edges) - 1)
         ]
         binned = pd.cut(
@@ -483,7 +508,7 @@ def make_match_plot(
                 else np.linspace(min(0, min_val), max_val, n_bins + 1)
             )
             bin_labels = [
-                f"{bins[i]:.1f}–{bins[i+1]:.1f}" for i in range(len(bins) - 1)
+                f"{bins[i]:.1f}–{bins[i + 1]:.1f}" for i in range(len(bins) - 1)
             ]
             binned = pd.cut(
                 df_matches_pd[metric],
@@ -495,10 +520,13 @@ def make_match_plot(
         else:
             bin_labels = ["0.0–1.0"]
             binned = pd.Series(
-                ["0.0–1.0"] * len(df_matches_pd), index=df_matches_pd.index
+                ["0.0–1.0"] * len(df_matches_pd),
+                index=df_matches_pd.index,
             )
     df_matches_pd["metric_bin"] = pd.Categorical(
-        binned.astype(object), categories=bin_labels, ordered=True
+        binned.astype(object),
+        categories=bin_labels,
+        ordered=True,
     )
     df_binned = (
         df_matches_pd.groupby(["mgf", "metric_bin"], observed=True)
@@ -506,10 +534,13 @@ def make_match_plot(
         .reset_index(name="count")
     )
     all_combos = pd.MultiIndex.from_product(
-        [df_matches_pd["mgf"].unique(), bin_labels], names=["mgf", "metric_bin"]
+        [df_matches_pd["mgf"].unique(), bin_labels],
+        names=["mgf", "metric_bin"],
     ).to_frame(index=False)
     df_binned = all_combos.merge(
-        df_binned, on=["mgf", "metric_bin"], how="left"
+        df_binned,
+        on=["mgf", "metric_bin"],
+        how="left",
     ).fillna({"count": 0})
     df_binned["total_count"] = df_binned.groupby("mgf")["count"].transform("sum")
     df_binned["percent"] = df_binned["count"] / df_binned["total_count"]
@@ -519,7 +550,9 @@ def make_match_plot(
     # build mgf order and make sure mgf column is a pandas categorical to carry the order
     mgf_order = get_mgf_order(df_binned)
     df_binned["mgf"] = pd.Categorical(
-        df_binned["mgf"].astype(str), categories=mgf_order, ordered=True
+        df_binned["mgf"].astype(str),
+        categories=mgf_order,
+        ordered=True,
     )
 
     from cmcrameri import cm
@@ -609,7 +642,7 @@ def make_match_plot(
             text=alt.Text("percent:Q", format=".0%"),
         )
         .transform_filter(
-            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count)
+            "datum.percent >= 0.05 && datum.count >= %f" % (0.10 * max_count),
         )
     )
     panel_label_chart = (
@@ -794,7 +827,7 @@ def _filter(df):
                 true_count = df[col].sum()
                 false_count = df.shape[0] - true_count - null_count
                 print(
-                    f"{col} ({dtype}): {null_count} nulls, {true_count} True, {false_count} False"
+                    f"{col} ({dtype}): {null_count} nulls, {true_count} True, {false_count} False",
                 )
             else:
                 unique_count = df[col].n_unique()
@@ -809,7 +842,7 @@ def _filter(df):
 def _plot(df_filtered):
     df_filtered.write_csv("scratch/msbuddy_summary_results.tsv", separator="\t")
     main_figure, supp_figure_1, supp_figure_2 = build_combined_msbuddy_figure(
-        df_filtered
+        df_filtered,
     )
     os.makedirs("figures", exist_ok=True)
     main_figure.save("figures/msbuddy_main.svg", format="svg", background=None)

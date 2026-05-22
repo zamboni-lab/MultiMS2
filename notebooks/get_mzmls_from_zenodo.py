@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "pooch",
@@ -37,7 +37,7 @@ with app.setup:
         file_filter: str | None = field(
             default=None,
             metadata={
-                "help": "Optional filter pattern for files (e.g., 'selleck', 'pos')"
+                "help": "Optional filter pattern for files (e.g., 'selleck', 'pos')",
             },
         )
 
@@ -92,7 +92,18 @@ with app.setup:
 
 @app.function
 def download_zenodo_files(settings: Settings) -> dict:
-    """Download mzML files from Zenodo with hash verification."""
+    """Download mzML files from Zenodo with hash verification.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Download summary with totals, successes, failures, and per-file messages.
+    """
     os.makedirs(settings.output_dir, exist_ok=True)
 
     # Filter files if requested
@@ -172,9 +183,9 @@ def run_download():
     mo.md(f"""
     ### Download Results
 
-    - **Total files**: {result['total_files']}
-    - **Successful**: {result['successful']}
-    - **Failed**: {result['failed']}
+    - **Total files**: {result["total_files"]}
+    - **Successful**: {result["successful"]}
+    - **Failed**: {result["failed"]}
 
     #### Downloaded Files
     ```

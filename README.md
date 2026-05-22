@@ -31,6 +31,12 @@ The complete dataset is publicly available through:
 - **Zenodo**: [https://doi.org/10.5281/zenodo.17250693](https://doi.org/10.5281/zenodo.17250693)
 - **MassIVE**: [https://doi.org/10.25345/C5GQ6RF85](https://doi.org/10.25345/C5GQ6RF85)
 
+## Licensing
+
+- Repository software and scripts are licensed under the MIT license.
+- Files in the `/data` folder are licensed under CC0 1.0.
+- See `LICENSE` and `data/LICENSE` for details.
+
 ## Installation & Setup
 
 ### Prerequisites
@@ -253,7 +259,7 @@ mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
 ```
 
 </details>
-    
+
 **Performance Note:** For optimal performance, consider copying files to a fast local disk before processing to avoid slow network I/O.
 
 ### Quality Control and Validation
@@ -373,9 +379,9 @@ uv run python notebooks/viz_upset.py
 
 In the end:
 
-* 2,899 unique compounds were recorded in 
+* 2,899 unique compounds were recorded in
   * 4,210 unique compound-adduct modalities,
-    * 17,170 unique compound-adduct-fragmentation modalities for a total of 
+    * 17,170 unique compound-adduct-fragmentation modalities for a total of
       * 43,728 spectra
 
 ```bash
@@ -495,4 +501,4 @@ and a grant from the Strategic Focal Area Personalized Health and Related Techno
 [^5]: Xing, S., Shen, S., Xu, B., Li, X., & Huan, T. (2023). BUDDY: molecular formula discovery via bottom-up MS/MS interrogation. Nature Methods, 20(6), 881–890. <https://doi.org/10.1038/s41592-023-01850-x>
 [^6]: Wang, M., Carver, J. J., Phelan, V. V., Sanchez, L. M., Garg, N., Peng, Y., Nguyen, D. D., Watrous, J., Kapono, C. A., Luzzatto-Knaan, T., Porto, C., Bouslimani, A., Melnik, A. V., Meehan, M. J., Liu, W.-T., Crüsemann, M., Boudreau, P. D., Esquenazi, E., Sandoval-Calderón, M., … Bandeira, N. (2016). Sharing and community curation of mass spectrometry data with Global Natural Products Social Molecular Networking. Nature Biotechnology, 34(8), 828–837. <https://doi.org/10.1038/nbt.3597>
 [^7]: Chambers, M. C., Maclean, B., Burke, R., Amodei, D., Ruderman, D. L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T. A., Brusniak, M.-Y., Paulse, C., Creasy, D., … Mallick, P. (2012). A cross-platform toolkit for mass spectrometry and proteomics. Nature Biotechnology, 30(10), 918–920. <https://doi.org/10.1038/nbt.2377>
-[^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile spectra. (Version 0.0.0.9001). Zenodo. https://doi.org/10.5281/ZENODO.17250308 
+[^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile spectra. (Version 0.0.0.9001). Zenodo. https://doi.org/10.5281/ZENODO.17250308

@@ -1,70 +1,117 @@
 {
+  "compound_libraries": [
+    {
+      "catalog_number": "",
+      "description": "",
+      "distributor": "",
+      "identifier": "MSMLS",
+      "name": "MSMLS",
+      "source": "commercial",
+      "url": ""
+    },
+    {
+      "catalog_number": "",
+      "description": "",
+      "distributor": "",
+      "identifier": "NEXUS",
+      "name": "NEXUS",
+      "source": "commercial",
+      "url": ""
+    },
+    {
+      "catalog_number": "",
+      "description": "",
+      "distributor": "",
+      "identifier": "SELLECK",
+      "name": "SELLECK",
+      "source": "commercial",
+      "url": ""
+    }
+  ],
+  "data_repositories": [
+    {
+      "accession_id": [
+        "MSV000099369"
+      ],
+      "name": "MassIVE"
+    },
+    {
+      "accession_id": [
+        "10.5281/zenodo.17250693"
+      ],
+      "name": "Zenodo"
+    }
+  ],
   "library": {
-    "name": "MultiMS2",
-    "identifier": "MultiMS2",
     "description": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
+    "identifier": "MultiMS2",
+    "name": "MultiMS2",
     "publication": null
   },
   "mass_spectrometer": {
     "description": "ZenoTOF 7600",
-    "manufacturer": "Sciex",
-    "model": "ZenoTOF 7600",
-    "ionization_mode": "HESI",
-    "resolutions": {
-      "MS1": 42000,
-      "MS2": 42000,
-    },
     "fragmentation_types": [
       "CID",
       "EAD"
-    ]
+    ],
+    "ionization_mode": "HESI",
+    "manufacturer": "Sciex",
+    "model": "ZenoTOF 7600",
+    "resolutions": {
+      "MS1": 42000,
+      "MS2": 42000
+    }
   },
+  "people": [
+    {
+      "contact": "rutz@imsb.biol.ethz.ch",
+      "institute": "Institute of Molecular Systems Biology, ETH Z\u00fcrich, Z\u00fcrich, Switzerland",
+      "name": "Adriano Rutz",
+      "role": "Conceptualization, Data curation, Methodology, Software, Validation, Visualization"
+    },
+    {
+      "contact": "povoacorreia@imsb.biol.ethz.ch",
+      "institute": "Institute of Molecular Systems Biology, ETH Z\u00fcrich, Z\u00fcrich, Switzerland",
+      "name": "Mario S. P. Correia",
+      "role": "Investigation, Validation"
+    },
+    {
+      "contact": "zamboni@imsb.biol.ethz.ch",
+      "institute": "Institute of Molecular Systems Biology, ETH Z\u00fcrich, Z\u00fcrich, Switzerland",
+      "name": "Nicola Zamboni",
+      "role": "Conceptualization, Funding acquisition, Methodology, Project administration, Resources, Supervision"
+    }
+  ],
   "sample_introduction": {
-    "method": "dual pump flow injection",
-    "manufacturer": "Agilent",
-    "model": "Agilent Infinity II",
     "column": {
-      "name": "",
-      "manufacturer": "",
-      "usp_code": "",
-      "length": "",
       "inner_diameter": "",
+      "length": "",
+      "manufacturer": "",
+      "name": "",
       "particle_size": "",
       "pore_size": "",
+      "separation_mode": "",
       "temperature": "",
-      "separation_mode": ""
+      "usp_code": ""
     },
+    "manufacturer": "Agilent",
+    "method": "dual pump flow injection",
     "mobile_phase": {
-      "gradient": {
-        "mix_type": "isocratic",
-        "flow_type": "constant",
-        "steps": [
-          {
-            "time": 0.6,
-            "flow_rate": 0.2,
-            "flow_rate_unit": "ml/min",
-            "components": [
-              {"id": "A", "percentage": 50}, 
-              {"id": "B", "percentage": 50}
-            ]
-          }
-        ]
-      },
       "components": [
         {
           "id": "A",
           "solvents": [
             {
+              "amount": 100,
               "name": "H2O",
-              "amount": 100, 
-              "unit": "percent",
               "pH": null,
+              "unit": "percent"
             },
             {
-              "name": "formic acid",
               "amount": 0.1,
-              "unit": "percent",
-              "pH": null, 
+              "name": "formic acid",
+              "pH": null,
+              "unit": "percent"
             }
           ]
         },
@@ -72,81 +119,40 @@
           "id": "B",
           "solvents": [
             {
-              "name": "Methanol",
               "amount": 100,
+              "name": "Methanol",
               "unit": "percent"
             },
             {
-              "name": "formic acid",
               "amount": 0.1,
+              "name": "formic acid",
               "unit": "percent"
             }
           ]
         }
-      ]
+      ],
+      "gradient": {
+        "flow_type": "constant",
+        "mix_type": "isocratic",
+        "steps": [
+          {
+            "components": [
+              {
+                "id": "A",
+                "percentage": 50
+              },
+              {
+                "id": "B",
+                "percentage": 50
+              }
+            ],
+            "flow_rate": 0.2,
+            "flow_rate_unit": "ml/min",
+            "time": 0.6
+          }
+        ]
+      }
     },
-  },
-  "data_repositories": [
-    {
-      "name": "MassIVE",
-      "accession_id": [
-        "MSV000099369"
-      ]
-    },
-    {
-      "name": "Zenodo",
-      "accession_id": [
-        "10.5281/zenodo.17250693"
-      ]
-    }
-  ],
-  "compound_libraries": [
-    {
-      "name": "MSMLS",
-      "identifier": "MSMLS",
-      "distributor": "",
-      "catalog_number": "",
-      "url": "",
-      "description": "",
-      "source": "commercial"
-    },
-    {
-      "name": "NEXUS",
-      "identifier": "NEXUS",
-      "distributor": "",
-      "catalog_number": "",
-      "url": "",
-      "description": "",
-      "source": "commercial"
-    },
-    {
-      "name": "SELLECK",
-      "identifier": "SELLECK",
-      "distributor": "",
-      "catalog_number": "",
-      "url": "",
-      "description": "",
-      "source": "commercial"
-    }
-  ],
-  "people": [
-    {
-      "name": "Adriano Rutz",
-      "role": "Conceptualization, Data curation, Methodology, Software, Validation, Visualization",
-      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
-      "contact": "rutz@imsb.biol.ethz.ch"
-    },
-    {
-      "name": "Mario S. P. Correia",
-      "role": "Investigation, Validation",
-      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
-      "contact": "povoacorreia@imsb.biol.ethz.ch"
-    },
-    {
-      "name": "Nicola Zamboni",
-      "role": "Conceptualization, Funding acquisition, Methodology, Project administration, Resources, Supervision",
-      "institute": "Institute of Molecular Systems Biology, ETH Zürich, Zürich, Switzerland",
-      "contact": "zamboni@imsb.biol.ethz.ch"
-    }
-  ]
+    "model": "Agilent Infinity II"
+  }
 }

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "matchms",
@@ -16,6 +16,7 @@ app = marimo.App(width="full")
 with app.setup:
     from dataclasses import dataclass, field
     from simple_parsing import ArgumentParser
+    from typing import Any
     import marimo as mo
     import glob
     import os
@@ -51,8 +52,23 @@ with app.setup:
 
 
 @app.function
-def extract_numeric_fields(meta: dict, field_name: str, converter) -> any:
-    """Extract and convert numeric fields from spectrum metadata."""
+def extract_numeric_fields(meta: dict, field_name: str, converter) -> Any:
+    """Extract and convert numeric fields from spectrum metadata.
+
+    Parameters
+    ----------
+    meta : dict
+        Meta.
+    field_name : str
+        Field name.
+    converter : Any
+        Converter.
+
+    Returns
+    -------
+    Any
+        Converted numeric value, or ``None`` when parsing fails or value is missing.
+    """
     val = meta.get(field_name)
     if val is not None and val != "":
         try:
@@ -64,7 +80,18 @@ def extract_numeric_fields(meta: dict, field_name: str, converter) -> any:
 
 @app.function
 def concatenate_spectra(settings: Settings) -> dict:
-    """Concatenate all MGF files in directory and export metadata."""
+    """Concatenate all MGF files in directory and export metadata.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Run summary with counts and output file paths, or an ``error`` message.
+    """
     mgf_files = sorted(glob.glob(os.path.join(settings.mgf_dir, "*.mgf")))
 
     if not mgf_files:
@@ -152,10 +179,10 @@ def run_concatenation():
     else:
         mo.md(f"""
         ### Results
-        - **Total spectra**: {result['total_spectra']:,}
-        - **MGF files processed**: {result['total_files']}
-        - **Metadata saved to**: `{result['output_tsv']}`
-        - **Spectra saved to**: `{result['output_mgf']}`
+        - **Total spectra**: {result["total_spectra"]:,}
+        - **MGF files processed**: {result["total_files"]}
+        - **Metadata saved to**: `{result["output_tsv"]}`
+        - **Spectra saved to**: `{result["output_mgf"]}`
         """)
     return
 

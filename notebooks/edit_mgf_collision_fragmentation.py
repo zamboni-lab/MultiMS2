@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "simple_parsing",
@@ -50,16 +50,36 @@ with app.setup:
 
 @app.function
 def fix_mgf_fields(
-    input_path: str, frag_method: str, coll_energy: str, output_path: str | None = None
+    input_path: str,
+    frag_method: str,
+    coll_energy: str,
+    output_path: str | None = None,
 ) -> dict:
-    """Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files."""
+    """Fix/add FRAGMENTATION_METHOD and COLLISION_ENERGY in MGF files.
+
+    Parameters
+    ----------
+    input_path : str
+        Input path.
+    frag_method : str
+        Frag method.
+    coll_energy : str
+        Coll energy.
+    output_path : str | None
+        None. Default is None.
+
+    Returns
+    -------
+    dict
+        Update summary with input/output paths and applied values, or an ``error`` message when input is missing.
+    """
     if output_path is None:
         output_path = input_path
 
     if not os.path.exists(input_path):
         return {"error": f"Input file not found: {input_path}"}
 
-    with open(input_path, "r") as fin:
+    with open(input_path) as fin:
         lines = fin.readlines()
 
     new_lines = []
@@ -104,13 +124,14 @@ def fix_mgf_fields(
                 # Add missing COLLISION_ENERGY (before FRAGMENTATION_METHOD)
                 if not coll_found:
                     frag_idx = None
-                    for j in range(block_start, block_end):
-                        if new_lines[j].startswith("FRAGMENTATION_METHOD="):
-                            frag_idx = j
-                            break
+                    if block_start is not None:
+                        for j in range(block_start, block_end):
+                            if new_lines[j].startswith("FRAGMENTATION_METHOD="):
+                                frag_idx = j
                     if frag_idx is not None:
                         new_lines.insert(
-                            frag_idx, f"COLLISION_ENERGY=[{coll_energy}]\n"
+                            frag_idx,
+                            f"COLLISION_ENERGY=[{coll_energy}]\n",
                         )
 
                 in_ions = False
@@ -139,7 +160,7 @@ def show_settings():
     - **Input MGF**: `{settings.mgf_path}`
     - **Fragmentation method**: `{settings.frag_method}`
     - **Collision energy**: `{settings.coll_energy}`
-    - **Export path**: `{settings.export_path or settings.mgf_path + ' (overwrite)'}`
+    - **Export path**: `{settings.export_path or settings.mgf_path + " (overwrite)"}`
     """)
     return
 
@@ -158,10 +179,10 @@ def run_fix():
     else:
         mo.md(f"""
         ### MGF Fixed Successfully
-        - **Input**: `{result['input']}`
-        - **Output**: `{result['output']}`
-        - **Fragmentation method**: {result['frag_method']}
-        - **Collision energy**: {result['coll_energy']}
+        - **Input**: `{result["input"]}`
+        - **Output**: `{result["output"]}`
+        - **Fragmentation method**: {result["frag_method"]}
+        - **Collision energy**: {result["coll_energy"]}
         """)
     return
 

@@ -1,10 +1,10 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
-#     "simple_parsing",
-#     "matchms",
-#     "polars",
+#     "simple_parsing==0.1.8",
+#     "matchms==0.33.0",
+#     "polars==1.39.3",
 # ]
 # ///
 
@@ -16,11 +16,7 @@ app = marimo.App(width="full")
 with app.setup:
     from dataclasses import dataclass, field
     import marimo as mo
-    import os
     from simple_parsing import ArgumentParser
-    import polars as pl
-    from matchms.importing import load_from_mgf
-    from matchms.exporting import save_as_mgf
     import re
 
     @dataclass
@@ -28,25 +24,25 @@ with app.setup:
         input_mgf: str = field(
             default="scratch/all_spectra.mgf",
             metadata={
-                "help": "MGF input file for all spectra (concatenated, unfiltered)."
+                "help": "MGF input file for all spectra (concatenated, unfiltered).",
             },
         )
         output_mgf_final: str = field(
             default="scratch/filtered_spectra.mgf",
             metadata={
-                "help": "MGF output file for spectra passing all post-metadata filters."
+                "help": "MGF output file for spectra passing all post-metadata filters.",
             },
         )
         min_modalities: int = field(
             default=3,
             metadata={
-                "help": "Minimum number of unique modalities per inchi_aux to keep spectra for that molecule. Modality is defined as (adduct, collision_energy, fragmentation_method) if include_adduct_in_modality is True, else (collision_energy, fragmentation_method)."
+                "help": "Minimum number of unique modalities per inchi_aux to keep spectra for that molecule. Modality is defined as (adduct, collision_energy, fragmentation_method) if include_adduct_in_modality is True, else (collision_energy, fragmentation_method).",
             },
         )
         include_adduct_in_modality: bool = field(
             default=False,
             metadata={
-                "help": "If True, include adduct in modality definition for filtering; if False, only use collision_energy and fragmentation_method."
+                "help": "If True, include adduct in modality definition for filtering; if False, only use collision_energy and fragmentation_method.",
             },
         )
         min_precursor_height: float = field(
@@ -93,9 +89,13 @@ with app.setup:
 
 @app.function
 def extract_charge_from_adduct(adduct: str):
-    """
-    Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
-    If not found, return None.
+    """Return the charge as an integer from an adduct string like [M+MeOH+Fe]+2 or [M+H]- or [M+2H]2+.
+            If not found, return None.
+
+    Parameters
+    ----------
+    adduct : str
+        Adduct.
     """
     if not adduct or not isinstance(adduct, str):
         return None
@@ -126,10 +126,19 @@ def extract_charge_from_adduct(adduct: str):
 def filter_spectra(
     settings: Settings,
 ) -> str:
-    """
-    Filter spectra based on metadata and quality criteria.
-    Reads a concatenated MGF file (produced by concat_spectra.py).
-    Outputs only the final filtered spectra as MGF.
+    """Filter spectra based on metadata and quality criteria.
+            Reads a concatenated MGF file (produced by concat_spectra.py).
+            Outputs only the final filtered spectra as MGF.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    str
+        Human-readable summary of input spectra count and exported filtered output.
     """
     import polars as pl
     from matchms.importing import load_from_mgf
@@ -213,7 +222,9 @@ def filter_spectra(
 
     if df.height > 0:
         df = df.filter(
-            pl.struct(["_adduct_charge", "_spectrum_charge"]).map_elements(charge_match)
+            pl.struct(["_adduct_charge", "_spectrum_charge"]).map_elements(
+                charge_match,
+            ),
         )
         print(f"After charge consistency filter: {df.shape[0]} spectra remain.")
 
@@ -221,45 +232,45 @@ def filter_spectra(
     # 1. Remove spectra that do not have the minimal precursor height
     df_step = df.filter(
         pl.col("feature_ms1_height").cast(pl.Float64, strict=False)
-        >= settings.min_precursor_height
+        >= settings.min_precursor_height,
     )
     print(
-        f"After min_precursor_height: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_precursor_height: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 2. Remove spectra that do not have the minimal precursor purity
     df_step = df_step.filter(
         pl.col("precursor_purity").cast(pl.Float64, strict=False)
-        >= settings.min_precursor_purity
+        >= settings.min_precursor_purity,
     )
     print(
-        f"After min_precursor_purity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_precursor_purity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 3. Remove spectra that do not have the minimal signals
     df_step = df_step.filter(
-        pl.col("num_peaks").cast(pl.Int64, strict=False) >= settings.min_signals
+        pl.col("num_peaks").cast(pl.Int64, strict=False) >= settings.min_signals,
     )
     print(
-        f"After min_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 4. Remove spectra that do not have the minimal explained intensity
     df_step = df_step.filter(
         pl.col("quality_explained_intensity").cast(pl.Float64, strict=False)
-        >= settings.min_explained_intensity
+        >= settings.min_explained_intensity,
     )
     print(
-        f"After min_explained_intensity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_explained_intensity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 5. Remove spectra that do not have the minimal explained signals
     df_step = df_step.filter(
         pl.col("quality_explained_signals").cast(pl.Float64, strict=False)
-        >= settings.min_explained_signals
+        >= settings.min_explained_signals,
     )
     print(
-        f"After min_explained_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_explained_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 6. For each (inchi_aux, adduct, modality) group, calculate max explained intensity and max explained signals
@@ -290,44 +301,44 @@ def filter_spectra(
             .cast(pl.Float64, strict=False)
             .max()
             .alias("max_signals"),
-        ]
+        ],
     )
     df_step = df_step.join(df_grouped, on=group_cols, how="left")
 
     # 7. Remove spectra below min_intensity_ratio * max_intensity for their (inchi_aux, adduct) group
     df_step = df_step.filter(
         pl.col("quality_explained_intensity").cast(pl.Float64, strict=False)
-        >= settings.min_intensity_ratio * pl.col("max_intensity")
+        >= settings.min_intensity_ratio * pl.col("max_intensity"),
     )
     print(
-        f"After min_intensity_ratio: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_intensity_ratio: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 8. Remove spectra below min_signals_ratio * max_signals for their (inchi_aux, adduct) group
     df_step = df_step.filter(
         pl.col("quality_explained_signals").cast(pl.Float64, strict=False)
-        >= settings.min_signals_ratio * pl.col("max_signals")
+        >= settings.min_signals_ratio * pl.col("max_signals"),
     )
     print(
-        f"After min_signals_ratio: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_signals_ratio: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 9. Remove spectra that do not have the minimal explained intensity
     df_step = df_step.filter(
         pl.col("quality_explained_intensity").cast(pl.Float64, strict=False)
-        >= settings.min_explained_intensity
+        >= settings.min_explained_intensity,
     )
     print(
-        f"After min_explained_intensity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_explained_intensity: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 10. Remove spectra that do not have the minimal explained signals
     df_step = df_step.filter(
         pl.col("quality_explained_signals").cast(pl.Float64, strict=False)
-        >= settings.min_explained_signals
+        >= settings.min_explained_signals,
     )
     print(
-        f"After min_explained_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)"
+        f"After min_explained_signals: {df_step.shape[0]} spectra, {df_step.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct)",
     )
 
     # 11. For each (inchi_aux, adduct) pair, count unique modalities (collision_energy + fragmentation_method)
@@ -341,13 +352,13 @@ def filter_spectra(
             modality_expr.alias("modality"),
             pl.col("inchi_aux").cast(pl.Utf8),
             pl.col("adduct").cast(pl.Utf8),
-        ]
+        ],
     )
     df_modalities_unique = df_modalities.unique(
-        subset=["inchi_aux", "adduct", "modality"]
+        subset=["inchi_aux", "adduct", "modality"],
     )
     modalities_count = df_modalities_unique.group_by(["inchi_aux", "adduct"]).agg(
-        pl.col("modality").count().alias("n_modalities")
+        pl.col("modality").count().alias("n_modalities"),
     )
     keep_pairs = (
         modalities_count.filter(pl.col("n_modalities") >= settings.min_modalities)
@@ -359,10 +370,10 @@ def filter_spectra(
         pl.struct(["inchi_aux", "adduct"]).map_elements(
             lambda row: (row["inchi_aux"], row["adduct"]) in keep_pairs_set,
             return_dtype=pl.Boolean,
-        )
+        ),
     )
     print(
-        f"After min_modalities per (inchi_aux, adduct): {df_final.select(['inchi_aux']).unique().shape[0]} inchi_aux, {df_final.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct), {df_modalities_unique.shape[0]} unique (inchi_aux, adduct, modality)"
+        f"After min_modalities per (inchi_aux, adduct): {df_final.select(['inchi_aux']).unique().shape[0]} inchi_aux, {df_final.select(['inchi_aux', 'adduct']).unique().shape[0]} unique (inchi_aux, adduct), {df_modalities_unique.shape[0]} unique (inchi_aux, adduct, modality)",
     )
 
     # Normalize key fields in df_final and drop duplicates
@@ -375,19 +386,19 @@ def filter_spectra(
         return tuple(norm(row[col]) for col in spectrum_key_cols)
 
     df_final = df_final.with_columns(
-        [pl.struct(spectrum_key_cols).map_elements(normalize_key).alias("_norm_key")]
+        [pl.struct(spectrum_key_cols).map_elements(normalize_key).alias("_norm_key")],
     )
     n_before = df_final.shape[0]
     df_final = df_final.unique(subset=["_norm_key"])
     n_after = df_final.shape[0]
     if n_after < n_before:
         print(
-            f"Dropped {n_before - n_after} duplicate spectra based on normalized key."
+            f"Dropped {n_before - n_after} duplicate spectra based on normalized key.",
         )
 
-    keep_keys = set(
+    keep_keys = {
         tuple(x) if isinstance(x, list) else x for x in df_final["_norm_key"].to_list()
-    )
+    }
 
     final_spectra = []
     seen_keys = set()
@@ -411,7 +422,7 @@ def filter_spectra(
                 seen_keys.add(key_str)
             else:
                 print(
-                    f"Warning: duplicate spectrum key {key_str} detected and skipped."
+                    f"Warning: duplicate spectrum key {key_str} detected and skipped.",
                 )
     print(f"Final spectra selected for output: {len(final_spectra)}")
 
@@ -431,7 +442,7 @@ def filter_spectra(
 
     save_as_mgf(final_spectra_sorted, settings.output_mgf_final)
     print(
-        f"Exported {len(final_spectra_sorted)} final spectra to {settings.output_mgf_final}"
+        f"Exported {len(final_spectra_sorted)} final spectra to {settings.output_mgf_final}",
     )
     return (
         f"Read {df.shape[0]} (one per spectrum) from {settings.input_mgf}, "

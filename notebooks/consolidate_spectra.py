@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #   "marimo",
 #   "simple_parsing",
@@ -32,7 +32,7 @@ with app.setup:
         output_mgf: str = field(
             default="data/multims2_spectra.mgf",
             metadata={
-                "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs."
+                "help": "Path to write the consolidated MGF with reassigned FEATURE_IDs.",
             },
         )
         add_selfies: bool = field(
@@ -57,7 +57,7 @@ with app.setup:
 
     def parse_args():
         try:
-            import marimo as mo  # type: ignore
+            import marimo as mo
 
             if mo.running_in_notebook():
                 return Settings()
@@ -143,7 +143,7 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:
                 feature_line_idx=feature_idx,
                 smiles_line_idx=smiles_idx,
                 selfies_line_idx=selfies_idx,
-            )
+            ),
         )
         order += 1
         cur = []
@@ -178,9 +178,13 @@ def parse_mgf_file(path: str) -> List[SpectrumBlock]:
 
 @app.function
 def assign_feature_ids(settings: Settings):
-    """
-    Assign FEATURE_ID fields based on grouping header values,
-    then reorder, rename, and augment fields as requested.
+    """Assign FEATURE_ID fields based on grouping header values,
+            then reorder, rename, and augment fields as requested.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
     """
     if not os.path.isfile(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}

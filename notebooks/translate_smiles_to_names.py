@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "pubchempy",
@@ -57,7 +57,18 @@ with app.setup:
 
 @app.function
 def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
-    """Fetch record titles for multiple CIDs in one batch."""
+    """Fetch record titles for multiple CIDs in one batch.
+
+    Parameters
+    ----------
+    cids : list[int]
+        Cids.
+
+    Returns
+    -------
+    dict[int, str]
+        CID to resolved record title.
+    """
     if not cids:
         return {}
 
@@ -83,7 +94,18 @@ def get_batch_record_titles(cids: list[int]) -> dict[int, str]:
 
 @app.function
 def smiles_to_names(settings: Settings) -> dict:
-    """Batch resolve SMILES to PubChem names or InChIKeys."""
+    """Batch resolve SMILES to PubChem names or InChIKeys.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        SMILES handled and output file path.
+    """
     with open(settings.smiles_file, newline="") as infile:
         reader = csv.DictReader(infile, delimiter="\t")
         smiles_list = [
@@ -96,7 +118,7 @@ def smiles_to_names(settings: Settings) -> dict:
 
     for batch_idx, batch_start in enumerate(range(0, total, settings.batch_size), 1):
         print(
-            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})"
+            f"Processing batch {batch_idx}/{num_batches} ({batch_start + 1}-{min(batch_start + settings.batch_size, total)}/{total})",
         )
         batch = smiles_list[batch_start : batch_start + settings.batch_size]
 
@@ -170,8 +192,8 @@ def run_resolution():
     result = smiles_to_names(settings)
     mo.md(f"""
     ### Resolution Complete
-    - **Processed**: {result['total_processed']:,} SMILES
-    - **Output**: `{result['output_file']}`
+    - **Processed**: {result["total_processed"]:,} SMILES
+    - **Output**: `{result["output_file"]}`
     """)
     return
 

@@ -1,5 +1,5 @@
 # /// script
-# requires-python = ">=3.13,<4"
+# requires-python = "==3.12.*"
 # dependencies = [
 #     "marimo",
 #     "simple_parsing",
@@ -40,7 +40,7 @@ with app.setup:
         split: int = field(
             default=0,
             metadata={
-                "help": "Split the output TSV into multiple files with up to this many data lines each."
+                "help": "Split the output TSV into multiple files with up to this many data lines each.",
             },
         )
 
@@ -58,7 +58,18 @@ with app.setup:
 
 @app.function
 def read_text_fallback(path: str) -> List[str]:
-    """Read text file with encoding fallback."""
+    """Read text file with encoding fallback.
+
+    Parameters
+    ----------
+    path : str
+        Path.
+
+    Returns
+    -------
+    List[str]
+        UTF-8 or Latin-1 fallback.
+    """
     try:
         with open(path, encoding="utf-8") as f:
             return f.readlines()
@@ -69,7 +80,18 @@ def read_text_fallback(path: str) -> List[str]:
 
 @app.function
 def parse_mgf_file(path: str) -> list[dict]:
-    """Parse MGF into list of dictionaries with fields and peaks."""
+    """Parse MGF into list of dictionaries with fields and peaks.
+
+    Parameters
+    ----------
+    path : str
+        Path.
+
+    Returns
+    -------
+    list[dict]
+        Parsed spectra blocks with metadata fields and peak lists.
+    """
     lines = read_text_fallback(path)
     blocks = []
     cur_block = {}
@@ -98,7 +120,18 @@ def parse_mgf_file(path: str) -> list[dict]:
 
 @app.function
 def mgf_to_tsv(settings: Settings) -> dict:
-    """Convert MGF to GNPS batch TSV format."""
+    """Convert MGF to GNPS batch TSV format.
+
+    Parameters
+    ----------
+    settings : Settings
+        Settings.
+
+    Returns
+    -------
+    dict
+        Conversion summary containing processed spectra count and output path(s), or an ``error`` message.
+    """
     if not os.path.exists(settings.input_mgf):
         return {"error": f"Input file not found: {settings.input_mgf}"}
 
@@ -166,7 +199,8 @@ def mgf_to_tsv(settings: Settings) -> dict:
                     val = val[:-5] + ".mzXML"
             elif col == "INSTRUMENT":
                 val = normalized.get(
-                    "INSTRUMENT_TYPE", normalized.get("INSTRUMENT", "")
+                    "INSTRUMENT_TYPE",
+                    normalized.get("INSTRUMENT", ""),
                 )
             elif col == "CHARGE":
                 raw_val = normalized.get("CHARGE", "")
@@ -215,7 +249,7 @@ def mgf_to_tsv(settings: Settings) -> dict:
         for i in range(num_splits):
             start = i * split_size
             end = min((i + 1) * split_size, total_lines)
-            split_path = f"{base}-PARTITION-{i+1}{ext}"
+            split_path = f"{base}-PARTITION-{i + 1}{ext}"
             with open(split_path, "w", encoding="utf-8") as f:
                 f.write(header)
                 f.writelines(tsv_lines[start:end])
@@ -251,8 +285,8 @@ def run_conversion():
     else:
         mo.md(f"""
         ### Conversion Complete
-        - **Spectra processed**: {result['spectra_total']:,}
-        - **Output file**: `{result['output_tsv'] or 'None (dry run)'}`
+        - **Spectra processed**: {result["spectra_total"]:,}
+        - **Output file**: `{result["output_tsv"] or "None (dry run)"}`
         """)
     return
 
