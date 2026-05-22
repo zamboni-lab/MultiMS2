@@ -459,7 +459,7 @@ def make_match_plot(
         )
     df_matches = (
         df.lazy()
-        .filter((pl.col("formula_found") == True) & (pl.col("formula_match") == True))
+        .filter(pl.col("formula_found") & pl.col("formula_match"))
         .filter(pl.col(metric).is_not_null())
         .select(["mgf", metric])
         .collect()
