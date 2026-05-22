@@ -31,6 +31,12 @@ The complete dataset is publicly available through:
 - **Zenodo**: [https://doi.org/10.5281/zenodo.17250693](https://doi.org/10.5281/zenodo.17250693)
 - **MassIVE**: [https://doi.org/10.25345/C5GQ6RF85](https://doi.org/10.25345/C5GQ6RF85)
 
+## Licensing
+
+- Repository software and scripts are licensed under the MIT license.
+- Files in the `/data` folder are licensed under CC0 1.0.
+- See `LICENSE` and `data/LICENSE` for details.
+
 ## Installation & Setup
 
 ### Prerequisites
