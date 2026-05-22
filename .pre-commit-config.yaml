@@ -25,9 +25,11 @@ repos:
           - --autofix
       - id: debug-statements
       - id: end-of-file-fixer
+        exclude: ^(figures/tmap\.html|data/multims2_spectra\.mgf)$
       - id: mixed-line-ending
       - id: pretty-format-json
       - id: trailing-whitespace
+        exclude: ^data/multims2_spectra\.mgf$
   - repo: https://github.com/fpgmaas/deptry
     rev: 0.25.1
     hooks:
