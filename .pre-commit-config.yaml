@@ -51,9 +51,10 @@ repos:
           - --fix
       - id: ruff-format
   - repo: https://github.com/tombi-toml/tombi-pre-commit
-    rev: v0.11.6
+    rev: v1.1.1
     hooks:
       - id: tombi-format
+        exclude: ^uv\.lock$
       - id: tombi-lint
   - repo: https://github.com/crate-ci/typos
     rev: v1.46.2
