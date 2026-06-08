@@ -1,9 +1,9 @@
 # /// script
-# requires-python = "==3.12.*"
+# requires-python = "==3.13.*"
 # dependencies = [
 #     "marimo",
 #     "simple_parsing==0.1.8",
-#     "matchms==0.33.0",
+#     "matchms==0.33.1",
 #     "polars==1.39.3",
 # ]
 # ///

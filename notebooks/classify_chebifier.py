@@ -1,5 +1,5 @@
 # /// script
-# requires-python = "==3.12.*"
+# requires-python = "==3.13.*"
 # dependencies = [
 #     "chebai>=1.1.0", # required by chebifier
 #     "chebai-graph>=1.0.0", # required by chebifier
@@ -9,7 +9,7 @@
 #     "huggingface-hub>=1.8.0", # required by chebifier
 #     "jsonargparse[signatures]>=4.27.7", # required by chebifier, weird error with lightning
 #     "marimo",
-#     "matchms==0.33.0",
+#     "matchms==0.33.1",
 #     "polars==1.39.3",
 #     "simple-parsing==0.1.8",
 #     "torch==2.11.0", # required by chebifier
