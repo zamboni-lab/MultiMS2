@@ -24,12 +24,17 @@ MultiMS2 addresses these challenges by providing a curated resource that:
 - Facilitates comparative fragmentation studies between CID and EAD
 - Accelerates innovation in computational metabolomics
 
+## Publication
+
+This work is now published in GigaScience[^9].
+
 ## Data Availability
 
 The complete dataset is publicly available through:
 
-- **Zenodo**: [https://doi.org/10.5281/zenodo.17250693](https://doi.org/10.5281/zenodo.17250693)
-- **MassIVE**: [https://doi.org/10.25345/C5GQ6RF85](https://doi.org/10.25345/C5GQ6RF85)
+- **Publication**: <https://doi.org/10.1093/gigascience/giag069>
+- **Zenodo**: <https://doi.org/10.5281/zenodo.17250693>
+- **MassIVE**: <https://doi.org/10.25345/C5GQ6RF85>
 
 ## Licensing
 
@@ -502,3 +507,4 @@ and a grant from the Strategic Focal Area Personalized Health and Related Techno
 [^6]: Wang, M., Carver, J. J., Phelan, V. V., Sanchez, L. M., Garg, N., Peng, Y., Nguyen, D. D., Watrous, J., Kapono, C. A., Luzzatto-Knaan, T., Porto, C., Bouslimani, A., Melnik, A. V., Meehan, M. J., Liu, W.-T., Crüsemann, M., Boudreau, P. D., Esquenazi, E., Sandoval-Calderón, M., … Bandeira, N. (2016). Sharing and community curation of mass spectrometry data with Global Natural Products Social Molecular Networking. Nature Biotechnology, 34(8), 828–837. <https://doi.org/10.1038/nbt.3597>
 [^7]: Chambers, M. C., Maclean, B., Burke, R., Amodei, D., Ruderman, D. L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T. A., Brusniak, M.-Y., Paulse, C., Creasy, D., … Mallick, P. (2012). A cross-platform toolkit for mass spectrometry and proteomics. Nature Biotechnology, 30(10), 918–920. <https://doi.org/10.1038/nbt.2377>
 [^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile spectra. (Version 0.0.0.9001). Zenodo. https://doi.org/10.5281/ZENODO.17250308
+[^9]: Rutz, A., Correia, M. S. P., & Zamboni, N. (2026). MultiMS2: A curated multi-modal, multi-energy spectral library for metabolomics. *GigaScience*, giag069. <https://doi.org/10.1093/gigascience/giag069>

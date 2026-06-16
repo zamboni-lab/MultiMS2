@@ -33,6 +33,12 @@
   "notes": "This is a mixed-license upload. Dataset and metadata are released under CC0-1.0; scripts and utilities are licensed under MIT.",
   "related_identifiers": [
     {
+      "identifier": "10.1093/gigascience/giag069",
+      "relation": "isdescribedby",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    },
+    {
       "identifier": "10.5281/zenodo.17250693",
       "relation": "isderivedfrom",
       "resource_type": "dataset",

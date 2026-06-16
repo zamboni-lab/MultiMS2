@@ -46,7 +46,13 @@
     "description": "MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library",
     "identifier": "MultiMS2",
     "name": "MultiMS2",
-    "publication": null
+    "publication": {
+      "doi": "10.1093/gigascience/giag069",
+      "journal": "GigaScience",
+      "title": "MultiMS2: A curated multi-modal, multi-energy spectral library for metabolomics",
+      "url": "https://doi.org/10.1093/gigascience/giag069",
+      "year": 2026
+    }
   },
   "mass_spectrometer": {
     "description": "ZenoTOF 7600",
