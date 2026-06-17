@@ -1,26 +1,35 @@
 # MultiMS2: A Multi-Modal, Multi-Energy MS2 Spectral Library
+
 ## Overview
 
-MultiMS2 is a curated mass spectrometry spectral library designed to address critical gaps in metabolomics research.
-This library provides high-quality MS/MS spectra across:
+MultiMS2 is a curated mass spectrometry spectral library designed to address
+critical gaps in metabolomics research. This library provides high-quality MS/MS
+spectra across:
 
-- **Multiple fragmentation methods**: Collision-Induced Dissociation (CID) and Electron-Activated Dissociation (EAD)
-- **Multiple collision energies**: 20, 40, and 60 eV for CID; 12, 16, and 24 eV for EAD
+- **Multiple fragmentation methods**: Collision-Induced Dissociation (CID) and
+  Electron-Activated Dissociation (EAD)
+- **Multiple collision energies**: 20, 40, and 60 eV for CID; 12, 16, and 24 eV
+  for EAD
 - **Both ionization modes**: Positive and negative
 
 ### Why MultiMS2?
 
-Confident metabolite identification relies on high-quality reference spectral libraries, yet most existing resources suffer from significant limitations:
+Confident metabolite identification relies on high-quality reference spectral
+libraries, yet most existing resources suffer from significant limitations:
 
-- **Limited fragmentation diversity**: Predominantly CID spectra, with EAD spectra remaining scarce despite their structural value
+- **Limited fragmentation diversity**: Predominantly CID spectra, with EAD
+  spectra remaining scarce despite their structural value
 - **Restricted energy ranges**: Single or limited collision energy coverage
-- **Narrow acquisition conditions**: Limited applicability across varied analytical workflows
-- **Machine learning constraints**: Insufficient diversity for training robust, generalizable models
+- **Narrow acquisition conditions**: Limited applicability across varied
+  analytical workflows
+- **Machine learning constraints**: Insufficient diversity for training robust,
+  generalizable models
 
 MultiMS2 addresses these challenges by providing a curated resource that:
 
 - Enables reliable metabolite annotation across diverse experimental conditions
-- Supports development of generalizable machine learning models for spectrum prediction and structure elucidation
+- Supports development of generalizable machine learning models for spectrum
+  prediction and structure elucidation
 - Facilitates comparative fragmentation studies between CID and EAD
 - Accelerates innovation in computational metabolomics
 
@@ -85,7 +94,8 @@ Update the metadata file path in `.mzmine/batch/*.mzbatch`:
 
 ### Spectral Extraction with mzmine[^1][^2]
 
-The library generation uses mzmine batch processing for consistent, reproducible spectral extraction. Below are the commands for all library combinations:
+The library generation uses mzmine batch processing for consistent, reproducible
+spectral extraction. Below are the commands for all library combinations:
 
 <details>
 
@@ -265,14 +275,15 @@ mzmine -b ".mzmine/batch/msmls_library_generation_pos.mzbatch" \
 
 </details>
 
-**Performance Note:** For optimal performance, consider copying files to a fast local disk before processing to avoid slow network I/O.
+**Performance Note:** For optimal performance, consider copying files to a fast
+local disk before processing to avoid slow network I/O.
 
 ### Quality Control and Validation
 
 #### Metadata
 
-Because of an issue during `.mzML` file conversion, `COLLISION_ENERGY` and `FRAGMENTATION_METHOD` are missing from negative CID files.
-To fix it, run:
+Because of an issue during `.mzML` file conversion, `COLLISION_ENERGY` and
+`FRAGMENTATION_METHOD` are missing from negative CID files. To fix it, run:
 
 ```bash
 uv run python notebooks/edit_mgf_collision_fragmentation.py /Users/adrutz/Git/MultiMS2/scratch/nexus_neg_cid_20_batch_library.mgf CID 20.0
@@ -294,7 +305,8 @@ uv run python notebooks/concatenate_spectra.py
 
 #### Modalities and Quality Filtering
 
-After this, spectra from all sub-libraries and modalities are concatenated by running:
+After this, spectra from all sub-libraries and modalities are concatenated by
+running:
 
 ```bash
 uv run python notebooks/filter_spectra_consistent.py
@@ -338,9 +350,10 @@ Exported 47630 final spectra to scratch/filtered_spectra.mgf
 
 #### Adduct Assignment Check
 
-An additional check is performed to chemically validate numerically found adducts/losses.
-In other words, if a spectrum was recognized as `[M-H2O+H]+`, it checks if the compound contains hydroxyls, and so on.
-Checks are performed using RDKit[^3].
+An additional check is performed to chemically validate numerically found
+adducts/losses. In other words, if a spectrum was recognized as `[M-H2O+H]+`, it
+checks if the compound contains hydroxyls, and so on. Checks are performed using
+RDKit[^3].
 
 ```bash
 uv run python notebooks/validate_losses.py
@@ -350,7 +363,8 @@ From the 47,630 filtered spectra, 43,728 were validated and 3,902 discarded.
 
 #### Metadata Consolidation
 
-At this point, SELFIES[^4] can be added, metadata in the headers cleaned up, and unique feature IDs attributed using:
+At this point, SELFIES[^4] can be added, metadata in the headers cleaned up, and
+unique feature IDs attributed using:
 
 ```bash
 uv run python notebooks/consolidate_spectra.py --instrument_name ZENOTOF7600 --data_curator ARutz
@@ -381,13 +395,12 @@ uv run python notebooks/viz_upset.py
 
 ![](figures/combined_upset.svg)
 
-
 In the end:
 
-* 2,899 unique compounds were recorded in
-  * 4,210 unique compound-adduct modalities,
-    * 17,170 unique compound-adduct-fragmentation modalities for a total of
-      * 43,728 spectra
+- 2,899 unique compounds were recorded in
+  - 4,210 unique compound-adduct modalities,
+    - 17,170 unique compound-adduct-fragmentation modalities for a total of
+      - 43,728 spectra
 
 ```bash
 uv run python notebooks/viz_msbuddy.py
@@ -413,7 +426,8 @@ To export the TSV file required for GNPS libraries:
 uv run python notebooks/convert_spectra_to_tsv.py --change_mzml_to_mzxml --split 10000
 ```
 
-This should then pass the validation at <https://gnps-quickstart.ucsd.edu/validatebatch>
+This should then pass the validation at
+<https://gnps-quickstart.ucsd.edu/validatebatch>
 
 ## Data Processing Pipeline (here for reference)
 
@@ -453,7 +467,8 @@ files |>
 
 </details>
 
-**Note:** These preprocessing steps have already been completed for the publicly available datasets on Zenodo and MassIVE.
+**Note:** These preprocessing steps have already been completed for the publicly
+available datasets on Zenodo and MassIVE.
 
 ## Library Contents
 
@@ -465,20 +480,20 @@ files |>
 
 ### Spectral Coverage
 
-| Collection | Ionization | Fragmentation | Energies Available |
-|------------|------------|---------------|-------------------|
-| NEXUS | Positive | CID | 20, 40, 60 eV |
-| NEXUS | Positive | EAD | 12, 16, 24 eV |
-| NEXUS | Negative | CID | 20, 40, 60 eV |
-| NEXUS | Negative | EAD | 12, 16, 24 eV |
-| Selleck | Positive | CID | 20, 40, 60 eV |
-| Selleck | Positive | EAD | 12, 16, 24 eV |
-| Selleck | Negative | CID | 20, 40, 60 eV |
-| Selleck | Negative | EAD | 12, 16, 24 eV |
-| MSMLS | Positive | CID | 40, 60 eV* |
-| MSMLS | Positive | EAD | 16, 24 eV* |
-| MSMLS | Negative | CID | 20, 40, 60 eV |
-| MSMLS | Negative | EAD | 16, 24 eV* |
+  | Collection | Ionization | Fragmentation | Energies Available |
+  | ---------- | ---------- | ------------- | ------------------ |
+  | NEXUS      | Positive   | CID           | 20, 40, 60 eV      |
+  | NEXUS      | Positive   | EAD           | 12, 16, 24 eV      |
+  | NEXUS      | Negative   | CID           | 20, 40, 60 eV      |
+  | NEXUS      | Negative   | EAD           | 12, 16, 24 eV      |
+  | Selleck    | Positive   | CID           | 20, 40, 60 eV      |
+  | Selleck    | Positive   | EAD           | 12, 16, 24 eV      |
+  | Selleck    | Negative   | CID           | 20, 40, 60 eV      |
+  | Selleck    | Negative   | EAD           | 12, 16, 24 eV      |
+  | MSMLS      | Positive   | CID           | 40, 60 eV*         |
+  | MSMLS      | Positive   | EAD           | 16, 24 eV*         |
+  | MSMLS      | Negative   | CID           | 20, 40, 60 eV      |
+  | MSMLS      | Negative   | EAD           | 16, 24 eV*         |
 
 Some energy levels not available for certain MSMLS conditions
 
@@ -486,25 +501,74 @@ Some energy levels not available for certain MSMLS conditions
 
 MultiMS2 enables:
 
-1. **Metabolite Annotation**: High-confidence identification through multi-energy spectral matching
-2. **Machine Learning Development**: Training data for spectrum prediction and structure elucidation models
-3. **Fragmentation Studies**: Comparative analysis of CID vs. EAD fragmentation patterns
-4. **Method Development**: Reference spectra for optimizing MS/MS acquisition parameters
-5. **Quality Assessment**: Benchmarking datasets for evaluating annotation algorithms
+1. **Metabolite Annotation**: High-confidence identification through
+   multi-energy spectral matching
+2. **Machine Learning Development**: Training data for spectrum prediction and
+   structure elucidation models
+3. **Fragmentation Studies**: Comparative analysis of CID vs. EAD fragmentation
+   patterns
+4. **Method Development**: Reference spectra for optimizing MS/MS acquisition
+   parameters
+5. **Quality Assessment**: Benchmarking datasets for evaluating annotation
+   algorithms
 
 ## Acknowledgments
 
-This work was supported by a grant from the Swiss National Science Foundation (project MetabolinkAI, #[10002786](https://data.snf.ch/grants/grant/10002786)),
-and a grant from the Strategic Focal Area Personalized Health and Related Technologies (PHRT) of the ETH Domain (#603).
+This work was supported by a grant from the Swiss National Science Foundation
+(project MetabolinkAI, #[10002786](https://data.snf.ch/grants/grant/10002786)),
+and a grant from the Strategic Focal Area Personalized Health and Related
+Technologies (PHRT) of the ETH Domain (#603).
 
 ## References
 
-[^1]: Schmid, R., Heuckeroth, S., Korf, A., Smirnov, A., Myers, O., Dyrlund, T. S., Bushuiev, R., Murray, K. J., Hoffmann, N., Lu, M., Sarvepalli, A., Zhang, Z., Fleischauer, M., Dührkop, K., Wesner, M., Hoogstra, S. J., Rudt, E., Mokshyna, O., Brungs, C., … Pluskal, T. (2023). Integrative analysis of multimodal mass spectrometry data in MZmine 3. Nature Biotechnology, 41(4), 447–449. <https://doi.org/10.1038/s41587-023-01690-2>
-[^2]: Brungs, C., Schmid, R., Heuckeroth, S., Mazumdar, A., Drexler, M., Šácha, P., Dorrestein, P. C., Petras, D., Nothias, L.-F., Veverka, V., Nencka, R., Kameník, Z., & Pluskal, T. (2025). MSnLib: efficient generation of open multi-stage fragmentation mass spectral libraries. Nature Methods, 22(10), 2028–2031. <https://doi.org/10.1038/s41592-025-02813-0>
-[^3]: Greg Landrum, Paolo Tosco, Brian Kelley, Ricardo Rodriguez, David Cosgrove, Riccardo Vianello, sriniker, Peter Gedeck, Gareth Jones, Eisuke Kawashima, NadineSchneider, Dan Nealschneider, Andrew Dalke, tadhurst-cdd, Matt Swain, Brian Cole, Samo Turk, Aleksandr Savelev, Alain Vaucher, … Juuso Lehtivarjo. (2025). rdkit/rdkit: 2025_09_1 (Q3 2025) Release (Version Release_2025_09_1). Zenodo. <https://doi.org/10.5281/ZENODO.17232453>
-[^4]: Krenn, M., Häse, F., Nigam, A., Friederich, P., & Aspuru-Guzik, A. (2020). Self-referencing embedded strings (SELFIES): A 100% robust molecular string representation. Machine Learning: Science and Technology, 1(4), 045024. <https://doi.org/10.1088/2632-2153/aba947>
-[^5]: Xing, S., Shen, S., Xu, B., Li, X., & Huan, T. (2023). BUDDY: molecular formula discovery via bottom-up MS/MS interrogation. Nature Methods, 20(6), 881–890. <https://doi.org/10.1038/s41592-023-01850-x>
-[^6]: Wang, M., Carver, J. J., Phelan, V. V., Sanchez, L. M., Garg, N., Peng, Y., Nguyen, D. D., Watrous, J., Kapono, C. A., Luzzatto-Knaan, T., Porto, C., Bouslimani, A., Melnik, A. V., Meehan, M. J., Liu, W.-T., Crüsemann, M., Boudreau, P. D., Esquenazi, E., Sandoval-Calderón, M., … Bandeira, N. (2016). Sharing and community curation of mass spectrometry data with Global Natural Products Social Molecular Networking. Nature Biotechnology, 34(8), 828–837. <https://doi.org/10.1038/nbt.3597>
-[^7]: Chambers, M. C., Maclean, B., Burke, R., Amodei, D., Ruderman, D. L., Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K., Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T. A., Brusniak, M.-Y., Paulse, C., Creasy, D., … Mallick, P. (2012). A cross-platform toolkit for mass spectrometry and proteomics. Nature Biotechnology, 30(10), 918–920. <https://doi.org/10.1038/nbt.2377>
-[^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile spectra. (Version 0.0.0.9001). Zenodo. https://doi.org/10.5281/ZENODO.17250308
-[^9]: Rutz, A., Correia, M. S. P., & Zamboni, N. (2026). MultiMS2: A curated multi-modal, multi-energy spectral library for metabolomics. *GigaScience*, giag069. <https://doi.org/10.1093/gigascience/giag069>
+[^1]: Schmid, R., Heuckeroth, S., Korf, A., Smirnov, A., Myers, O., Dyrlund, T.
+    S., Bushuiev, R., Murray, K. J., Hoffmann, N., Lu, M., Sarvepalli, A.,
+    Zhang, Z., Fleischauer, M., Dührkop, K., Wesner, M., Hoogstra, S. J., Rudt,
+    E., Mokshyna, O., Brungs, C., ... Pluskal, T. (2023). Integrative analysis
+    of multimodal mass spectrometry data in MZmine 3. Nature Biotechnology,
+    41(4), 447--449. <https://doi.org/10.1038/s41587-023-01690-2>
+
+[^2]: Brungs, C., Schmid, R., Heuckeroth, S., Mazumdar, A., Drexler, M., Šácha,
+    P., Dorrestein, P. C., Petras, D., Nothias, L.-F., Veverka, V., Nencka, R.,
+    Kameník, Z., & Pluskal, T. (2025). MSnLib: efficient generation of open
+    multi-stage fragmentation mass spectral libraries. Nature Methods, 22(10),
+    2028--2031. <https://doi.org/10.1038/s41592-025-02813-0>
+
+[^3]: Greg Landrum, Paolo Tosco, Brian Kelley, Ricardo Rodriguez, David
+    Cosgrove, Riccardo Vianello, sriniker, Peter Gedeck, Gareth Jones, Eisuke
+    Kawashima, NadineSchneider, Dan Nealschneider, Andrew Dalke, tadhurst-cdd,
+    Matt Swain, Brian Cole, Samo Turk, Aleksandr Savelev, Alain Vaucher, ...
+    Juuso Lehtivarjo. (2025). rdkit/rdkit: 2025_09_1 (Q3 2025) Release (Version
+    Release_2025_09_1). Zenodo. <https://doi.org/10.5281/ZENODO.17232453>
+
+[^4]: Krenn, M., Häse, F., Nigam, A., Friederich, P., & Aspuru-Guzik, A. (2020).
+    Self-referencing embedded strings (SELFIES): A 100% robust molecular string
+    representation. Machine Learning: Science and Technology, 1(4), 045024.
+    <https://doi.org/10.1088/2632-2153/aba947>
+
+[^5]: Xing, S., Shen, S., Xu, B., Li, X., & Huan, T. (2023). BUDDY: molecular
+    formula discovery via bottom-up MS/MS interrogation. Nature Methods, 20(6),
+    881--890. <https://doi.org/10.1038/s41592-023-01850-x>
+
+[^6]: Wang, M., Carver, J. J., Phelan, V. V., Sanchez, L. M., Garg, N., Peng,
+    Y., Nguyen, D. D., Watrous, J., Kapono, C. A., Luzzatto-Knaan, T., Porto,
+    C., Bouslimani, A., Melnik, A. V., Meehan, M. J., Liu, W.-T., Crüsemann, M.,
+    Boudreau, P. D., Esquenazi, E., Sandoval-Calderón, M., ... Bandeira, N.
+    (2016). Sharing and community curation of mass spectrometry data with Global
+    Natural Products Social Molecular Networking. Nature Biotechnology, 34(8),
+    828--837. <https://doi.org/10.1038/nbt.3597>
+
+[^7]: Chambers, M. C., Maclean, B., Burke, R., Amodei, D., Ruderman, D. L.,
+    Neumann, S., Gatto, L., Fischer, B., Pratt, B., Egertson, J., Hoff, K.,
+    Kessner, D., Tasman, N., Shulman, N., Frewen, B., Baker, T. A., Brusniak,
+    M.-Y., Paulse, C., Creasy, D., ... Mallick, P. (2012). A cross-platform
+    toolkit for mass spectrometry and proteomics. Nature Biotechnology, 30(10),
+    918--920. <https://doi.org/10.1038/nbt.2377>
+
+[^8]: Rutz, A., & Rainer, J. (2025). CentroidR: Repository to centroid profile
+    spectra. (Version 0.0.0.9001). Zenodo.
+    https://doi.org/10.5281/ZENODO.17250308
+
+[^9]: Rutz, A., Correia, M. S. P., & Zamboni, N. (2026). MultiMS2: A curated
+    multi-modal, multi-energy spectral library for metabolomics. *GigaScience*,
+    giag069. <https://doi.org/10.1093/gigascience/giag069>
