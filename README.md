@@ -412,8 +412,11 @@ uv run python notebooks/viz_msbuddy.py
 
 ![](figures/msbuddy_supp_2.svg)
 
-<!-- an additional TMAP visualization is also available:
+an additional TMAP visualization is also available:
 
+![](figures/tmap.svg)
+
+<!-- 
 ```bash
 uv run python notebooks/viz_tmap.py
 ``` -->
