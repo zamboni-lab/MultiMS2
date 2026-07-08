@@ -266,6 +266,7 @@ def assign_feature_ids(settings: Settings):
         # "FEATURELIST_FEATURE_ID",  # REMOVE IT
         "FEATURE_MS1_HEIGHT",
         "SPECTYPE",
+        "MSLEVEL",
         "MERGED_ACROSS_N_SAMPLES",
         "COLLISION_ENERGY",
         "FRAGMENTATION_METHOD",
@@ -295,6 +296,7 @@ def assign_feature_ids(settings: Settings):
         "DATA_CURATOR": "DATA_CURATOR",
         "PRINCIPAL_INVESTIGATOR": "PI",
         "RETENTION_TIME": "RTINSECONDS",
+        "MS_LEVEL": "MSLEVEL",
     }
 
     def parse_fields(lines):
@@ -315,6 +317,7 @@ def assign_feature_ids(settings: Settings):
 
     def build_lines(fields, peaks):
         out = ["BEGIN IONS\n"]
+        emitted_keys = set()
         for key in field_order:
             if key == "INSTRUMENT_NAME":
                 val = (
@@ -341,6 +344,13 @@ def assign_feature_ids(settings: Settings):
                 val = fields.get(key, "")
             if val != "":
                 out.append(f"{key}={val}\n")
+                emitted_keys.add(key)
+
+        for key, val in fields.items():
+            if key in emitted_keys:
+                continue
+            if val != "":
+                out.append(f"{key}={val}\n")
         out.extend(peaks)
         if not out or not out[-1].endswith("\n"):
             out.append("\n")
@@ -359,12 +369,12 @@ def assign_feature_ids(settings: Settings):
         fields, peaks = parse_fields(block.lines)
         fields["FEATURE_ID"] = fid
 
-        # Remove RETENTION_TIME if present
-        fields.pop("RETENTION_TIME", None)
         # Ensure RTINSECONDS is present (copy from old RETENTION_TIME if needed)
         if "RTINSECONDS" not in fields:
             if "RETENTION_TIME" in fields and fields.get("RETENTION_TIME"):
                 fields["RTINSECONDS"] = fields["RETENTION_TIME"]
+        # Remove RETENTION_TIME if present
+        fields.pop("RETENTION_TIME", None)
         # Add SELFIES if missing and requested (handled in build_lines)
 
         block.lines = build_lines(fields, peaks)
