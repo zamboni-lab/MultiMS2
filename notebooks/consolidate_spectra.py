@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.16.5"
+__generated_with = "0.23.13"
 app = marimo.App(width="full")
 
 with app.setup:
@@ -37,19 +37,27 @@ with app.setup:
         )
         add_selfies: bool = field(
             default=True,
-            metadata={"help": "If True, add SELFIES (below SMILES) when missing."},
+            metadata={
+                "help": "If True, add SELFIES (below SMILES) when missing.",
+            },
         )
         dry_run: bool = field(
             default=False,
-            metadata={"help": "If True, do not write output file; only report counts."},
+            metadata={
+                "help": "If True, do not write output file; only report counts.",
+            },
         )
         instrument_name: Optional[str] = field(
             default=None,
-            metadata={"help": "Instrument name to add to all spectra (optional)."},
+            metadata={
+                "help": "Instrument name to add to all spectra (optional).",
+            },
         )
         data_curator: Optional[str] = field(
             default=None,
-            metadata={"help": "Data curator to add to all spectra (optional)."},
+            metadata={
+                "help": "Data curator to add to all spectra (optional).",
+            },
         )
 
     parser = ArgumentParser()
@@ -281,8 +289,14 @@ def assign_feature_ids(settings: Settings):
         "QUALITY_EXPLAINED_SIGNALS",
         "NUM_PEAKS",
         # "SPECTRUM_ID",  # REMOVE IT
-        "RTINSECONDS",
     ]
+    excluded_output_fields = {
+        "RTINSECONDS",
+        "RETENTION_TIME",
+        "FEATURE_FULL_ID",
+        "FEATURELIST_FEATURE_ID",
+        "USI",
+    }
     field_rename = {
         "FILE_NAME": "FILENAME",
         "ION_SOURCE": "IONSOURCE",
@@ -295,7 +309,6 @@ def assign_feature_ids(settings: Settings):
         "PARENT_MASS": "EXACTMASS",
         "DATA_CURATOR": "DATA_CURATOR",
         "PRINCIPAL_INVESTIGATOR": "PI",
-        "RETENTION_TIME": "RTINSECONDS",
         "MS_LEVEL": "MSLEVEL",
     }
 
@@ -303,7 +316,9 @@ def assign_feature_ids(settings: Settings):
         fields = {}
         peaks = []
         for line in lines:
-            if line.startswith("BEGIN IONS") or line.startswith("END IONS"):
+            if line.startswith("BEGIN IONS") or line.startswith(
+                "END IONS",
+            ):
                 continue
             if "=" in line:
                 k, v = line.split("=", 1)
@@ -338,8 +353,6 @@ def assign_feature_ids(settings: Settings):
             elif key == "SELFIES" and settings.add_selfies:
                 smi = fields.get("SMILES", "")
                 val = selfies.encoder(smi) if smi else ""
-            elif key == "RTINSECONDS":
-                val = fields.get("RTINSECONDS", "")
             else:
                 val = fields.get(key, "")
             if val != "":
@@ -348,6 +361,8 @@ def assign_feature_ids(settings: Settings):
 
         for key, val in fields.items():
             if key in emitted_keys:
+                continue
+            if key.strip().upper() in excluded_output_fields:
                 continue
             if val != "":
                 out.append(f"{key}={val}\n")
@@ -369,12 +384,9 @@ def assign_feature_ids(settings: Settings):
         fields, peaks = parse_fields(block.lines)
         fields["FEATURE_ID"] = fid
 
-        # Ensure RTINSECONDS is present (copy from old RETENTION_TIME if needed)
-        if "RTINSECONDS" not in fields:
-            if "RETENTION_TIME" in fields and fields.get("RETENTION_TIME"):
-                fields["RTINSECONDS"] = fields["RETENTION_TIME"]
-        # Remove RETENTION_TIME if present
-        fields.pop("RETENTION_TIME", None)
+        for key in list(fields.keys()):
+            if key.strip().upper() in excluded_output_fields:
+                fields.pop(key, None)
         # Add SELFIES if missing and requested (handled in build_lines)
 
         block.lines = build_lines(fields, peaks)
@@ -392,6 +404,25 @@ def assign_feature_ids(settings: Settings):
         "output_mgf": settings.output_mgf if not settings.dry_run else None,
         "dry_run": settings.dry_run,
     }
+
+
+@app.cell
+def run_consolidation():
+    result = assign_feature_ids(settings)
+    if "error" in result:
+        print(f"Error: {result['error']}")
+    elif result["dry_run"]:
+        print(
+            f"Dry run complete: {result['spectra_total']} spectra, "
+            f"{result['unique_feature_ids']} unique FEATURE_IDs",
+        )
+    else:
+        print(
+            f"Consolidated {result['spectra_total']} spectra with "
+            f"{result['unique_feature_ids']} unique FEATURE_IDs to "
+            f"{result['output_mgf']}",
+        )
+    return
 
 
 if __name__ == "__main__":
