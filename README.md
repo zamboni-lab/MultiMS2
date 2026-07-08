@@ -416,7 +416,7 @@ an additional TMAP visualization is also available:
 
 ![](figures/tmap.svg)
 
-<!-- 
+<!--
 ```bash
 uv run python notebooks/viz_tmap.py
 ``` -->
