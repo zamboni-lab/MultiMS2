@@ -92,7 +92,7 @@ Update the metadata file path in `.mzmine/batch/*.mzbatch`:
 
 ## Usage
 
-### Spectral Extraction with mzmine[^1][^2]
+### Spectral Extraction with mzmine[^1] [^2]
 
 The library generation uses mzmine batch processing for consistent, reproducible
 spectral extraction. Below are the commands for all library combinations:
