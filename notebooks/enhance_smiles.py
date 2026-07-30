@@ -14,15 +14,16 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    import marimo as mo
     import csv
-    import os
     import math
+    import os
+    from dataclasses import dataclass, field
+
+    import marimo as mo
+    import selfies
     from rdkit import Chem
     from rdkit.Chem import Descriptors
-    import selfies
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -273,7 +274,6 @@ def show_settings():
     - InChI
     - InChIKey
     """)
-    return
 
 
 @app.cell
@@ -288,7 +288,6 @@ def run_enhancement():
         - **Processed**: {result["total_processed"]:,} SMILES
         - **Output**: `{result["output_file"]}`
         """)
-    return
 
 
 if __name__ == "__main__":

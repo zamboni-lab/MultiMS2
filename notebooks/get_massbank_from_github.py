@@ -13,11 +13,12 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
+    import os
     from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
+
     import marimo as mo
     import pooch
-    import os
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -86,7 +87,6 @@ def show_settings():
     - **Output path**: `{settings.output_path}`
     - **Hash verification**: SHA256
     """)
-    return
 
 
 @app.cell
@@ -97,7 +97,6 @@ def run_download():
     - **File path**: `{result["file_path"]}`
     - **Size**: {result["size_mb"]:.2f} MB
     """)
-    return
 
 
 if __name__ == "__main__":

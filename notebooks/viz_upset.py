@@ -21,17 +21,19 @@ app = marimo.App(width="full")
 
 with app.setup:
     import logging
-    import marimo
     import re
+    from collections.abc import Iterable
+    from dataclasses import dataclass, field
+    from pathlib import Path
+    from typing import Any
+
     import altair as alt
+    import marimo
     import numpy as np
     import polars as pl
-    from dataclasses import dataclass, field
     from matchms.importing import load_from_mgf
-    from pathlib import Path
     from rdkit import Chem
     from simple_parsing import ArgumentParser
-    from typing import Any, Dict, Iterable, List, Optional, Set, Tuple
 
     logger = logging.getLogger("multims_upset")
     logger.setLevel(logging.INFO)
@@ -106,7 +108,7 @@ def sanitize_local(v: Any) -> str:
 
 
 @app.function
-def meta_lookup(md: dict, keys: Iterable[str]) -> Optional[str]:
+def meta_lookup(md: dict, keys: Iterable[str]) -> str | None:
     """Return the first non-empty metadata value matching any key in `keys`.
 
     Parameters
@@ -129,7 +131,7 @@ def meta_lookup(md: dict, keys: Iterable[str]) -> Optional[str]:
 
 
 @app.function
-def smiles_to_inchikey_first_layer(smiles: str) -> Optional[str]:
+def smiles_to_inchikey_first_layer(smiles: str) -> str | None:
     """Convert SMILES to first 14 chars of InChIKey (or None on failure).
 
     Parameters
@@ -187,10 +189,10 @@ def read_consolidated_mgf(settings: Settings):
     ]
     ion_keys = ["ionmode", "ion_mode", "polarity"]
 
-    group_inchikeys: Dict[str, Set[str]] = {}
-    group_adduct_inchikey: Dict[str, Set[Tuple[Optional[str], str]]] = {}
-    smiles2ik: Dict[str, Optional[str]] = {}
-    triplet_set: Set[Tuple[str, str, str]] = set()
+    group_inchikeys: dict[str, set[str]] = {}
+    group_adduct_inchikey: dict[str, set[tuple[str | None, str]]] = {}
+    smiles2ik: dict[str, str | None] = {}
+    triplet_set: set[tuple[str, str, str]] = set()
 
     for spec in spectra:
         md = getattr(spec, "metadata", {}) or {}
@@ -249,7 +251,7 @@ def read_consolidated_mgf(settings: Settings):
 
 
 @app.function
-def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: str):
+def create_upset_data(group_items: dict[str, set], all_items: list, item_label: str):
     """Create a membership DataFrame (polars) and ordered group names from mapping group -> set(items).
 
     Parameters
@@ -261,9 +263,9 @@ def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: 
     item_label : str
         Item label.
     """
-    data_dict: Dict[str, List[int]] = {}
+    data_dict: dict[str, list[int]] = {}
     group_names = list(group_items.keys())
-    group_sizes: List[Tuple[str, int]] = []
+    group_sizes: list[tuple[str, int]] = []
 
     for g in group_names:
         s = group_items[g]
@@ -291,7 +293,7 @@ def create_upset_data(group_items: Dict[str, Set], all_items: List, item_label: 
 
 
 @app.function
-def filter_upset_data(data: pl.DataFrame, group_names: List[str], top_n: int):
+def filter_upset_data(data: pl.DataFrame, group_names: list[str], top_n: int):
     """Select the top_n groups by membership size and return the pandas slice and filtered group names.
 
     Parameters
@@ -661,7 +663,7 @@ def build_combined_upset_figure(
 
 
 @app.function
-def log_triplet_count(triplet_set: Set[Tuple[str, str, str]]) -> int:
+def log_triplet_count(triplet_set: set[tuple[str, str, str]]) -> int:
     """Log number of unique adduct-connectivity-energy triplets and return count.
 
     Parameters
@@ -769,7 +771,6 @@ def _plot(pd_sub_inchikeys, pd_sub_pairs):
 @app.cell
 def _show_combined(combined_chart):
     combined_chart
-    return
 
 
 if __name__ == "__main__":

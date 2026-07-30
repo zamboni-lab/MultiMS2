@@ -14,10 +14,11 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
+    import re
     from dataclasses import dataclass, field
+
     import marimo as mo
     from simple_parsing import ArgumentParser
-    import re
 
     @dataclass
     class Settings:
@@ -140,10 +141,11 @@ def filter_spectra(
     str
         Human-readable summary of input spectra count and exported filtered output.
     """
-    import polars as pl
-    from matchms.importing import load_from_mgf
-    from matchms.exporting import save_as_mgf
     import os
+
+    import polars as pl
+    from matchms.exporting import save_as_mgf
+    from matchms.importing import load_from_mgf
 
     # Read concatenated MGF
     mgf_input_path = settings.input_mgf
@@ -453,7 +455,6 @@ def filter_spectra(
 @app.cell
 def run_app():
     filter_spectra(settings)
-    return
 
 
 if __name__ == "__main__":

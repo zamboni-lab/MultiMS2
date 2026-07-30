@@ -13,13 +13,13 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    from typing import Dict, List, Tuple
     import re
     import sys
+    from dataclasses import dataclass, field
+
     from rdkit import Chem
     from rdkit.Chem import AllChem
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -98,9 +98,9 @@ class MGFLossValidator:
         }
 
     # ---------- MGF parsing (unchanged) ---------- #
-    def parse_mgf_spectrum(self, spectrum_text: str) -> Dict:
+    def parse_mgf_spectrum(self, spectrum_text: str) -> dict:
         lines = spectrum_text.strip().split("\n")
-        spectrum: Dict = {}
+        spectrum: dict = {}
         peaks = []
         for line in lines:
             line = line.strip()
@@ -119,7 +119,7 @@ class MGFLossValidator:
         spectrum["peaks"] = peaks
         return spectrum
 
-    def parse_mgf_file(self, mgf_content: str) -> List[Dict]:
+    def parse_mgf_file(self, mgf_content: str) -> list[dict]:
         """Parse MGF content preserving original block text.
                         Each returned spectrum dict includes a RAW_TEXT key with the exact
                         original block (BEGIN/END IONS inclusive) to allow lossless filtering.
@@ -136,7 +136,7 @@ class MGFLossValidator:
         """
         # Regex finds each full block
         pattern = re.compile(r"BEGIN IONS\n(.*?)END IONS", re.DOTALL)
-        spectra: List[Dict] = []
+        spectra: list[dict] = []
         for match in pattern.finditer(mgf_content):
             block_body = match.group(1)
             full_block = (
@@ -148,7 +148,7 @@ class MGFLossValidator:
         return spectra
 
     # ---------- Adduct parsing ---------- #
-    def parse_adduct(self, adduct_str: str) -> Dict:
+    def parse_adduct(self, adduct_str: str) -> dict:
         clean = adduct_str.strip().strip("[]")
         # Remove optional leading 'M' (common notation) without touching later characters
         if clean.startswith("M") and (len(clean) == 1 or clean[1] in ["-", "+"]):
@@ -171,7 +171,7 @@ class MGFLossValidator:
         return {"losses": losses}
 
     # ---------- Core validation ---------- #
-    def can_form_adduct(self, smiles: str, adduct: str) -> Tuple[bool, str]:
+    def can_form_adduct(self, smiles: str, adduct: str) -> tuple[bool, str]:
         """Validate feasibility of requested neutral losses.
 
                         Strategy:
@@ -339,7 +339,7 @@ class MGFLossValidator:
             note += "; " + "; ".join(special_notes)
         return True, note
 
-    def validate_spectrum(self, spectrum: Dict) -> Tuple[bool, str]:
+    def validate_spectrum(self, spectrum: dict) -> tuple[bool, str]:
         if "SMILES" not in spectrum:
             return False, "No SMILES found"
         if "ADDUCT" not in spectrum:
@@ -380,7 +380,7 @@ class MGFLossValidator:
             stats["reasons"][reason_key] = stats["reasons"].get(reason_key, 0) + 1
         return valid, invalid, stats
 
-    def write_mgf_spectrum(self, spectrum: Dict) -> str:
+    def write_mgf_spectrum(self, spectrum: dict) -> str:
         lines = ["BEGIN IONS"]
         for k, v in spectrum.items():
             if k == "peaks":
@@ -391,7 +391,7 @@ class MGFLossValidator:
         lines.append("END IONS")
         return "\n".join(lines)
 
-    def write_mgf_file(self, spectra: List[Dict]) -> str:
+    def write_mgf_file(self, spectra: list[dict]) -> str:
         """Write spectra using original untouched RAW_TEXT blocks if present.
 
         Parameters
@@ -460,7 +460,6 @@ def _cli_main():
         print("\nReasons:")
         for r, c in sorted(stats["reasons"].items()):
             print(f"  {r}: {c}")
-    return
 
 
 if __name__ == "__main__":

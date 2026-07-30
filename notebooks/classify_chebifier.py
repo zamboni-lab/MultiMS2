@@ -225,7 +225,6 @@ def show_settings():
     | **Output Parquet** | `{settings.output_parquet}` |
     | **Batch size** | `{settings.batch_size}` |
     """)
-    return
 
 
 @app.function
@@ -341,7 +340,6 @@ def show_results(settings: Settings):
 @app.cell
 def display_results():
     show_results(settings)
-    return
 
 
 if __name__ == "__main__":

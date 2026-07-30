@@ -14,15 +14,16 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    from typing import Any
-    import marimo as mo
     import glob
     import os
-    from matchms.importing import load_from_mgf
-    from matchms.exporting import save_as_mgf
+    from dataclasses import dataclass, field
+    from typing import Any
+
+    import marimo as mo
     import polars as pl
+    from matchms.exporting import save_as_mgf
+    from matchms.importing import load_from_mgf
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -168,7 +169,6 @@ def show_settings():
     - **Output metadata TSV**: `{settings.output_tsv}`
     - **Output concatenated MGF**: `{settings.output_mgf}`
     """)
-    return
 
 
 @app.cell
@@ -184,7 +184,6 @@ def run_concatenation():
         - **Metadata saved to**: `{result["output_tsv"]}`
         - **Spectra saved to**: `{result["output_mgf"]}`
         """)
-    return
 
 
 if __name__ == "__main__":

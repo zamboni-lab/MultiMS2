@@ -21,12 +21,13 @@ app = marimo.App(width="full")
 
 with app.setup:
     import os
+    from pathlib import Path
+
     import altair as alt
     import matplotlib as mpl
     import numpy as np
     import polars as pl
     from matchms.importing import load_from_mgf
-    from pathlib import Path
     from rdkit import Chem
 
 
@@ -808,7 +809,6 @@ def _process(mgf_path, msbuddy_root):
 @app.cell
 def _(df):
     df
-    return
 
 
 @app.cell
@@ -860,19 +860,16 @@ def _plot(df_filtered):
 @app.cell
 def _show_main(main_figure):
     main_figure
-    return
 
 
 @app.cell
 def _show_supp(supp_figure_1):
     supp_figure_1
-    return
 
 
 @app.cell
 def _show_supp(supp_figure_2):
     supp_figure_2
-    return
 
 
 if __name__ == "__main__":

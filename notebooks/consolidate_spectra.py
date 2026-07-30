@@ -14,14 +14,14 @@ __generated_with = "0.23.13"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    from typing import List, Optional
     import os
     import re
+    from dataclasses import dataclass, field
+
     import selfies
     from rdkit import Chem
     from rdkit.Chem import Descriptors
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -47,13 +47,13 @@ with app.setup:
                 "help": "If True, do not write output file; only report counts.",
             },
         )
-        instrument_name: Optional[str] = field(
+        instrument_name: str | None = field(
             default=None,
             metadata={
                 "help": "Instrument name to add to all spectra (optional).",
             },
         )
-        data_curator: Optional[str] = field(
+        data_curator: str | None = field(
             default=None,
             metadata={
                 "help": "Data curator to add to all spectra (optional).",
@@ -81,24 +81,24 @@ class SpectrumBlock:
     """Container for one MGF spectrum block."""
 
     __slots__ = (
+        "feature_line_idx",
         "file_path",
         "lines",
-        "peak_count",
-        "feature_line_idx",
-        "smiles_line_idx",
-        "selfies_line_idx",
         "order_in_file",
+        "peak_count",
+        "selfies_line_idx",
+        "smiles_line_idx",
     )
 
     def __init__(
         self,
         file_path: str,
-        lines: List[str],
+        lines: list[str],
         peak_count: int,
         order_in_file: int,
-        feature_line_idx: Optional[int],
-        smiles_line_idx: Optional[int],
-        selfies_line_idx: Optional[int],
+        feature_line_idx: int | None,
+        smiles_line_idx: int | None,
+        selfies_line_idx: int | None,
     ):
         self.file_path = file_path
         self.lines = lines
@@ -110,7 +110,7 @@ class SpectrumBlock:
 
 
 @app.function
-def read_text_fallback(path: str) -> List[str]:
+def read_text_fallback(path: str) -> list[str]:
     try:
         with open(path, encoding="utf-8") as f:
             return f.readlines()
@@ -120,17 +120,17 @@ def read_text_fallback(path: str) -> List[str]:
 
 
 @app.function
-def write_text_utf8(path: str, lines: List[str]):
+def write_text_utf8(path: str, lines: list[str]):
     with open(path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
 
 @app.function
-def parse_mgf_file(path: str) -> List[SpectrumBlock]:
+def parse_mgf_file(path: str) -> list[SpectrumBlock]:
     NUMERIC_LINE_RE = re.compile(r"^\s*(\d+\.?\d*(?:[eE][+-]?\d+)?)\s+\d")
     lines = read_text_fallback(path)
-    blocks: List[SpectrumBlock] = []
-    cur: List[str] = []
+    blocks: list[SpectrumBlock] = []
+    cur: list[str] = []
     feature_idx = None
     smiles_idx = None
     selfies_idx = None
@@ -422,7 +422,6 @@ def run_consolidation():
             f"{result['unique_feature_ids']} unique FEATURE_IDs to "
             f"{result['output_mgf']}",
         )
-    return
 
 
 if __name__ == "__main__":

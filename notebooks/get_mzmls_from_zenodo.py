@@ -13,12 +13,13 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    import marimo as mo
-    import pooch
     import os
     import zipfile
+    from dataclasses import dataclass, field
+
+    import marimo as mo
+    import pooch
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -139,7 +140,7 @@ def download_zenodo_files(settings: Settings) -> dict:
 
             results.append(msg)
         except Exception as e:
-            error_msg = f"✗ {filename}: {str(e)}"
+            error_msg = f"✗ {filename}: {e!s}"
             errors.append(error_msg)
             print(error_msg)
 
@@ -170,7 +171,6 @@ def show_settings():
     - **Unzip after download**: {settings.unzip}
     - **Filter**: {settings.file_filter or "None"}
     """)
-    return
 
 
 @app.cell
@@ -197,7 +197,6 @@ def run_download():
     {error_lines}
     ```
     """)
-    return
 
 
 if __name__ == "__main__":

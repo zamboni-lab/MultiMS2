@@ -14,15 +14,16 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
+    import csv
+    import math
+    import os
+    import time
     from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
+
     import marimo as mo
     import pubchempy as pcp
-    import time
-    import csv
-    import os
-    import math
     from rdkit import Chem
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -184,7 +185,6 @@ def show_settings():
 
     Resolves SMILES to PubChem record names or InChIKeys (fallback).
     """)
-    return
 
 
 @app.cell
@@ -195,7 +195,6 @@ def run_resolution():
     - **Processed**: {result["total_processed"]:,} SMILES
     - **Output**: `{result["output_file"]}`
     """)
-    return
 
 
 if __name__ == "__main__":

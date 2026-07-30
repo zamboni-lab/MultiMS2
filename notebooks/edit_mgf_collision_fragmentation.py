@@ -12,10 +12,11 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    import marimo as mo
     import os
+    from dataclasses import dataclass, field
+
+    import marimo as mo
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -162,7 +163,6 @@ def show_settings():
     - **Collision energy**: `{settings.coll_energy}`
     - **Export path**: `{settings.export_path or settings.mgf_path + " (overwrite)"}`
     """)
-    return
 
 
 @app.cell
@@ -184,7 +184,6 @@ def run_fix():
         - **Fragmentation method**: {result["frag_method"]}
         - **Collision energy**: {result["coll_energy"]}
         """)
-    return
 
 
 if __name__ == "__main__":

@@ -12,12 +12,12 @@ __generated_with = "0.16.5"
 app = marimo.App(width="full")
 
 with app.setup:
-    from dataclasses import dataclass, field
-    from simple_parsing import ArgumentParser
-    import marimo as mo
-    from typing import List
     import os
     import re
+    from dataclasses import dataclass, field
+
+    import marimo as mo
+    from simple_parsing import ArgumentParser
 
     @dataclass
     class Settings:
@@ -57,7 +57,7 @@ with app.setup:
 
 
 @app.function
-def read_text_fallback(path: str) -> List[str]:
+def read_text_fallback(path: str) -> list[str]:
     """Read text file with encoding fallback.
 
     Parameters
@@ -273,7 +273,6 @@ def show_settings():
 
     Converts MGF spectra to GNPS batch upload TSV format.
     """)
-    return
 
 
 @app.cell
@@ -288,7 +287,6 @@ def run_conversion():
         - **Spectra processed**: {result["spectra_total"]:,}
         - **Output file**: `{result["output_tsv"] or "None (dry run)"}`
         """)
-    return
 
 
 if __name__ == "__main__":
