@@ -58,22 +58,22 @@ hooks = [{ id = "add-trailing-comma" }]
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.16.0"
+rev = "v0.16.1"
 hooks = [{ id = "ruff-check", args = ["--fix"] }, { id = "ruff-format" }]
 
 [[repos]]
 repo = "https://github.com/tombi-toml/tombi-pre-commit"
-rev = "v1.2.4"
+rev = "v1.2.6"
 hooks = [{ id = "tombi-format", exclude = '^uv\.lock$' }, { id = "tombi-lint" }]
 
 [[repos]]
 repo = "https://github.com/crate-ci/typos"
-rev = "v1.48.0"
+rev = "v1.49.0"
 hooks = [{ id = "typos" }]
 
 [[repos]]
 repo = "https://github.com/astral-sh/uv-pre-commit"
-rev = "0.12.0"
+rev = "0.12.1"
 hooks = [{ id = "uv-lock" }]
 
 [[repos]]
@@ -91,10 +91,10 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/zizmorcore/zizmor-pre-commit"
-rev = "v1.28.0"
+rev = "v1.29.0"
 hooks = [{ id = "zizmor", entry = "zizmor --fix=all ." }]
 
 [[repos]]
 repo = "https://github.com/jolars/panache-pre-commit"
-rev = "v3.0.2"
+rev = "v3.1.0"
 hooks = [{ id = "panache-format" }, { id = "panache-lint" }]
